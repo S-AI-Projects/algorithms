@@ -1,0 +1,17 @@
+Task: R24-T051
+File: algorithms/linked_list/remove_duplicates.py
+
+Test command:
+python3 work/R24-T051/check.py
+
+Tests executed: 5
+Tests passed: 5
+Exit code: 0
+
+Failure detection:
+Temporary failing assertion added to check.py.
+Expected: AssertionError and nonzero exit code.
+Actual: AssertionError and exit code 1.
+Temporary assertion removed afterward.
+
+Python version: Python 3.9.6
