@@ -1,0 +1,10 @@
+{
+  "task_id": "R24-T008",
+  "module": "algorithms.graph.maximum_flow_bfs",
+  "failure_branch_source_line": "algorithms/graph/maximum_flow_bfs.py:72",
+  "cases_total": 3,
+  "cases_passed": 3,
+  "doctest_passed": true,
+  "unittest_passed": true,
+  "all_passed": true
+}

@@ -169,6 +169,41 @@ class TestMaximumFlowBfs(unittest.TestCase):
 
         self.assertEqual(maximum_flow, 23)
 
+    def test_unreachable_sink_failure_path_fixture(self):
+        # Fixture: Edges A-B (0->1), A-C (0->2), B-D (1->3), with isolated E (sink index 4)
+        # Distances from A: A=0, B=1, C=1, D=2, E is unreachable.
+        graph = [
+            [0, 10, 10, 0, 0],  # 0: A -> B, C
+            [0, 0, 0, 10, 0],   # 1: B -> D
+            [0, 0, 0, 0, 0],    # 2: C
+            [0, 0, 0, 0, 0],    # 3: D
+            [0, 0, 0, 0, 0],    # 4: E (isolated sink)
+        ]
+        snapshot = [row[:] for row in graph]
+
+        # Exercising failure path (line 72: visited[sink] == 0 -> break)
+        result = maximum_flow_bfs(graph)
+        self.assertEqual(result, 0)
+        # Verify caller-owned matrix remains completely unmutated
+        self.assertEqual(graph, snapshot)
+
+    def test_ordinary_call_succeeds_after_failure(self):
+        # 1. First trigger failure path with unreachable sink
+        unreachable = [
+            [0, 10, 0],
+            [0, 0, 0],
+            [0, 0, 0],
+        ]
+        self.assertEqual(maximum_flow_bfs(unreachable), 0)
+
+        # 2. Subsequent ordinary call succeeds normally
+        valid_graph = [
+            [0, 10, 0],
+            [0, 0, 10],
+            [0, 0, 0],
+        ]
+        self.assertEqual(maximum_flow_bfs(valid_graph), 10)
+
 
 class TestMaximumFlowDfs(unittest.TestCase):
     """

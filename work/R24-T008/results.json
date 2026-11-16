@@ -1,0 +1,29 @@
+[
+  {
+    "id": "unreachable_sink_fixture",
+    "description": "5-node network with isolated sink E; distances from A: A=0, B=1, C=1, D=2, E unreachable",
+    "tested_branch_line": "algorithms/graph/maximum_flow_bfs.py:72 (visited[sink] == 0: break)",
+    "expected": 0,
+    "actual": 0,
+    "caller_matrix_unmutated": true,
+    "passed": true
+  },
+  {
+    "id": "valid_call_after_failure",
+    "description": "Ordinary 3-node pipeline with capacity 10 executed after failure case",
+    "tested_branch_line": "algorithms/graph/maximum_flow_bfs.py (augmenting path found)",
+    "expected": 10,
+    "actual": 10,
+    "caller_matrix_unmutated": true,
+    "passed": true
+  },
+  {
+    "id": "zero_capacity_disconnected",
+    "description": "Two nodes with no edges",
+    "tested_branch_line": "algorithms/graph/maximum_flow_bfs.py:72 (visited[sink] == 0: break)",
+    "expected": 0,
+    "actual": 0,
+    "caller_matrix_unmutated": true,
+    "passed": true
+  }
+]

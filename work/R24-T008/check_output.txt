@@ -1,0 +1,19 @@
+============================================================
+Running focused check for R24-T008: maximum_flow_bfs failure path
+============================================================
+Executing unittest command: /Users/kanavpandey/Documents/SnAI Project/algorithms/.venv/bin/python3 -m unittest -v tests.test_graph.TestMaximumFlowBfs
+
+test_maximum_flow_bfs (tests.test_graph.TestMaximumFlowBfs.test_maximum_flow_bfs) ... ok
+test_ordinary_call_succeeds_after_failure (tests.test_graph.TestMaximumFlowBfs.test_ordinary_call_succeeds_after_failure) ... ok
+test_unreachable_sink_failure_path_fixture (tests.test_graph.TestMaximumFlowBfs.test_unreachable_sink_failure_path_fixture) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+
+Running doctests on algorithms/graph/maximum_flow_bfs.py...
+Doctest results: attempted=2, failed=0
+Case 1 (unreachable sink): actual=0, unmutated=True, passed=True
+Case 2 (ordinary valid call after failure): actual=10, passed=True
+Case 3 (zero capacity): actual=0, passed=True

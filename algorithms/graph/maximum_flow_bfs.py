@@ -19,19 +19,38 @@ import queue
 
 
 def maximum_flow_bfs(adjacency_matrix: list[list[int]]) -> int:
-    """Compute maximum flow using BFS augmenting paths.
+    """Compute maximum flow using BFS augmenting paths (Edmonds-Karp).
 
-    The source is the first vertex and the sink is the last vertex.
+    The source is the first vertex (index 0) and the sink is the last vertex
+    (index len - 1).
+
+    Failure / Absent-Result Contract:
+        - When no augmenting path from source (0) to sink (len - 1) exists (e.g.
+          an isolated or disconnected sink), the BFS termination branch is taken:
+          `if visited[len(new_array) - 1] == 0: break` (line 72).
+        - The function terminates cleanly without raising exceptions and returns
+          an empty/zero flow of `0`.
+        - Caller-owned input preservation: `adjacency_matrix` is deep-copied at
+          entry, ensuring the caller's matrix is strictly immutable and intact.
 
     Args:
         adjacency_matrix: n*n capacity matrix.
 
     Returns:
-        The maximum flow value.
+        The maximum flow value (or 0 if sink is unreachable).
 
     Examples:
         >>> maximum_flow_bfs([[0, 10, 0], [0, 0, 10], [0, 0, 0]])
         10
+        >>> # Unreachable sink (A->B, A->C, B->D with isolated sink E):
+        >>> maximum_flow_bfs([
+        ...     [0, 10, 10, 0, 0],
+        ...     [0, 0, 0, 10, 0],
+        ...     [0, 0, 0, 0, 0],
+        ...     [0, 0, 0, 0, 0],
+        ...     [0, 0, 0, 0, 0],
+        ... ])
+        0
     """
     new_array = copy.deepcopy(adjacency_matrix)
     total = 0
