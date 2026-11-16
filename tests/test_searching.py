@@ -103,6 +103,36 @@ class TestSuite(unittest.TestCase):
         self.assertEqual([1, 4], search_range(array, 7))
         self.assertEqual([-1, -1], search_range(array, 11))
 
+    def test_search_range_fixtures_and_boundaries(self):
+        # Source anchors
+        self.assertEqual(search_range([5, 7, 7, 8, 8, 8, 10], 8), [3, 5])
+        self.assertEqual(search_range([5, 7, 7, 8, 8, 8, 10], 11), [-1, -1])
+
+        # Derived neighboring inputs
+        self.assertEqual(search_range([5, 7, 7, 8, 8, 8, 10], 7), [1, 2])
+        self.assertEqual(search_range([5, 7, 7, 8, 8, 8, 10], 5), [0, 0])
+        self.assertEqual(search_range([5, 7, 7, 8, 8, 8, 10], 10), [6, 6])
+
+        # Smallest supported inputs
+        self.assertEqual(search_range([], 5), [-1, -1])
+        self.assertEqual(search_range([8], 8), [0, 0])
+        self.assertEqual(search_range([8], 5), [-1, -1])
+
+        # Repeated boundary values (all identical)
+        self.assertEqual(search_range([2, 2, 2, 2], 2), [0, 3])
+
+    def test_search_range_does_not_mutate_input(self):
+        arr = [5, 7, 7, 8, 8, 8, 10]
+        snapshot = list(arr)
+        result = search_range(arr, 8)
+        self.assertEqual(result, [3, 5])
+        self.assertEqual(arr, snapshot)
+
+    def test_search_range_repeatability(self):
+        for _ in range(5):
+            self.assertEqual(search_range([5, 7, 7, 8, 8, 8, 10], 8), [3, 5])
+            self.assertEqual(search_range([5, 7, 7, 8, 8, 8, 10], 11), [-1, -1])
+
     def test_find_min_rotate(self):
         array = [4, 5, 6, 7, 0, 1, 2]
         self.assertEqual(0, find_min_rotate(array))

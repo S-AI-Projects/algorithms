@@ -18,6 +18,15 @@ from __future__ import annotations
 def search_range(nums: list[int], target: int) -> list[int]:
     """Find the first and last positions of *target* in *nums*.
 
+    Protected Invariant & Lower-Bound Boundary Condition:
+        - The binary search partition condition `if target <= nums[mid]:`
+          is critical for finding the first (lowest index) occurrence of `target`.
+          Replacing `<=` with strict `<` prematurely advances `low` past the true
+          start index, breaking the lower bound contract.
+        - Non-mutation: `nums` is read-only and never mutated.
+        - Repeatability: Repeated invocations with identical inputs produce
+          strictly identical outputs.
+
     Args:
         nums: Sorted list of integers in ascending order.
         target: Value to search for.
@@ -31,6 +40,9 @@ def search_range(nums: list[int], target: int) -> list[int]:
         [3, 5]
         >>> search_range([5, 7, 7, 8, 8, 8, 10], 11)
         [-1, -1]
+        >>> # Derived neighboring input:
+        >>> search_range([5, 7, 7, 8, 8, 8, 10], 7)
+        [1, 2]
     """
     low = 0
     high = len(nums) - 1

@@ -1,0 +1,19 @@
+{
+  "task_id": "R24-T010",
+  "module": "algorithms.searching.search_range",
+  "mutation_tested": "Line 40: replaced 'target <= nums[mid]' with strict 'target < nums[mid]'",
+  "original_result": [
+    3,
+    5
+  ],
+  "mutant_result": [
+    6,
+    5
+  ],
+  "mutant_caught": true,
+  "fixtures_total": 8,
+  "fixtures_passed": 8,
+  "doctest_passed": true,
+  "unittest_passed": true,
+  "all_passed": true
+}

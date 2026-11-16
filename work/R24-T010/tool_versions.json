@@ -1,0 +1,6 @@
+{
+  "python_version": "3.13.15",
+  "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+  "system": "Darwin",
+  "unittest_command": "/Users/kanavpandey/Documents/SnAI Project/algorithms/.venv/bin/python3 -m unittest -v tests.test_searching.TestSuite.test_search_range tests.test_searching.TestSuite.test_search_range_fixtures_and_boundaries tests.test_searching.TestSuite.test_search_range_does_not_mutate_input tests.test_searching.TestSuite.test_search_range_repeatability"
+}

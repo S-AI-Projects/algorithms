@@ -1,0 +1,123 @@
+{
+  "fixture_results": [
+    {
+      "id": "source_anchor_target_8",
+      "expected": [
+        3,
+        5
+      ],
+      "actual": [
+        3,
+        5
+      ],
+      "unmutated": true,
+      "passed": true
+    },
+    {
+      "id": "source_anchor_target_11_missing",
+      "expected": [
+        -1,
+        -1
+      ],
+      "actual": [
+        -1,
+        -1
+      ],
+      "unmutated": true,
+      "passed": true
+    },
+    {
+      "id": "derived_neighbor_target_7",
+      "expected": [
+        1,
+        2
+      ],
+      "actual": [
+        1,
+        2
+      ],
+      "unmutated": true,
+      "passed": true
+    },
+    {
+      "id": "first_element_target_5",
+      "expected": [
+        0,
+        0
+      ],
+      "actual": [
+        0,
+        0
+      ],
+      "unmutated": true,
+      "passed": true
+    },
+    {
+      "id": "last_element_target_10",
+      "expected": [
+        6,
+        6
+      ],
+      "actual": [
+        6,
+        6
+      ],
+      "unmutated": true,
+      "passed": true
+    },
+    {
+      "id": "smallest_empty",
+      "expected": [
+        -1,
+        -1
+      ],
+      "actual": [
+        -1,
+        -1
+      ],
+      "unmutated": true,
+      "passed": true
+    },
+    {
+      "id": "single_hit",
+      "expected": [
+        0,
+        0
+      ],
+      "actual": [
+        0,
+        0
+      ],
+      "unmutated": true,
+      "passed": true
+    },
+    {
+      "id": "single_miss",
+      "expected": [
+        -1,
+        -1
+      ],
+      "actual": [
+        -1,
+        -1
+      ],
+      "unmutated": true,
+      "passed": true
+    }
+  ],
+  "mutation_detection": {
+    "original_result": [
+      3,
+      5
+    ],
+    "mutant_result": [
+      6,
+      5
+    ],
+    "expected": [
+      3,
+      5
+    ],
+    "mutant_caught_by_assertion": true
+  }
+}

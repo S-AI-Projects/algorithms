@@ -1,0 +1,26 @@
+============================================================
+Running focused check for R24-T010: search_range mutation resistance
+============================================================
+Executing unittest command: /Users/kanavpandey/Documents/SnAI Project/algorithms/.venv/bin/python3 -m unittest -v tests.test_searching.TestSuite.test_search_range tests.test_searching.TestSuite.test_search_range_fixtures_and_boundaries tests.test_searching.TestSuite.test_search_range_does_not_mutate_input tests.test_searching.TestSuite.test_search_range_repeatability
+
+test_search_range (tests.test_searching.TestSuite.test_search_range) ... ok
+test_search_range_fixtures_and_boundaries (tests.test_searching.TestSuite.test_search_range_fixtures_and_boundaries) ... ok
+test_search_range_does_not_mutate_input (tests.test_searching.TestSuite.test_search_range_does_not_mutate_input) ... ok
+test_search_range_repeatability (tests.test_searching.TestSuite.test_search_range_repeatability) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+
+Running doctests on algorithms/searching/search_range.py...
+Doctest results: attempted=3, failed=0
+PASSED for source_anchor_target_8: nums=[5, 7, 7, 8, 8, 8, 10], target=8 -> [3, 5]
+PASSED for source_anchor_target_11_missing: nums=[5, 7, 7, 8, 8, 8, 10], target=11 -> [-1, -1]
+PASSED for derived_neighbor_target_7: nums=[5, 7, 7, 8, 8, 8, 10], target=7 -> [1, 2]
+PASSED for first_element_target_5: nums=[5, 7, 7, 8, 8, 8, 10], target=5 -> [0, 0]
+PASSED for last_element_target_10: nums=[5, 7, 7, 8, 8, 8, 10], target=10 -> [6, 6]
+PASSED for smallest_empty: nums=[], target=5 -> [-1, -1]
+PASSED for single_hit: nums=[8], target=8 -> [0, 0]
+PASSED for single_miss: nums=[8], target=5 -> [-1, -1]
+Mutation test SUCCESSFUL: original returned [3, 5] (PASS), mutant returned [6, 5] (REJECTED by test)

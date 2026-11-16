@@ -1,0 +1,86 @@
+[
+  {
+    "id": "source_anchor_target_8",
+    "nums": [
+      5,
+      7,
+      7,
+      8,
+      8,
+      8,
+      10
+    ],
+    "target": 8
+  },
+  {
+    "id": "source_anchor_target_11_missing",
+    "nums": [
+      5,
+      7,
+      7,
+      8,
+      8,
+      8,
+      10
+    ],
+    "target": 11
+  },
+  {
+    "id": "derived_neighbor_target_7",
+    "nums": [
+      5,
+      7,
+      7,
+      8,
+      8,
+      8,
+      10
+    ],
+    "target": 7
+  },
+  {
+    "id": "first_element_target_5",
+    "nums": [
+      5,
+      7,
+      7,
+      8,
+      8,
+      8,
+      10
+    ],
+    "target": 5
+  },
+  {
+    "id": "last_element_target_10",
+    "nums": [
+      5,
+      7,
+      7,
+      8,
+      8,
+      8,
+      10
+    ],
+    "target": 10
+  },
+  {
+    "id": "smallest_empty",
+    "nums": [],
+    "target": 5
+  },
+  {
+    "id": "single_hit",
+    "nums": [
+      8
+    ],
+    "target": 8
+  },
+  {
+    "id": "single_miss",
+    "nums": [
+      8
+    ],
+    "target": 5
+  }
+]
