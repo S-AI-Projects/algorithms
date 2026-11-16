@@ -1,0 +1,99 @@
+[
+  {
+    "id": "fixture_3_1_2",
+    "expected": [
+      1,
+      2,
+      3
+    ],
+    "actual": [
+      1,
+      2,
+      3
+    ],
+    "in_place": true,
+    "passed": true
+  },
+  {
+    "id": "fixture_2_2_1",
+    "expected": [
+      1,
+      2,
+      2
+    ],
+    "actual": [
+      1,
+      2,
+      2
+    ],
+    "in_place": true,
+    "passed": true
+  },
+  {
+    "id": "fixture_ordered_1_2_3",
+    "expected": [
+      1,
+      2,
+      3
+    ],
+    "actual": [
+      1,
+      2,
+      3
+    ],
+    "in_place": true,
+    "passed": true
+  },
+  {
+    "id": "fixture_reversed_3_2_1",
+    "expected": [
+      1,
+      2,
+      3
+    ],
+    "actual": [
+      1,
+      2,
+      3
+    ],
+    "in_place": true,
+    "passed": true
+  },
+  {
+    "id": "smallest_empty",
+    "expected": [],
+    "actual": [],
+    "in_place": true,
+    "passed": true
+  },
+  {
+    "id": "smallest_single",
+    "expected": [
+      42
+    ],
+    "actual": [
+      42
+    ],
+    "in_place": true,
+    "passed": true
+  },
+  {
+    "id": "negative_and_duplicates",
+    "expected": [
+      -2,
+      -2,
+      0,
+      5,
+      5
+    ],
+    "actual": [
+      -2,
+      -2,
+      0,
+      5,
+      5
+    ],
+    "in_place": true,
+    "passed": true
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "id": "fixture_3_1_2",
+    "input": [
+      3,
+      1,
+      2
+    ]
+  },
+  {
+    "id": "fixture_2_2_1",
+    "input": [
+      2,
+      2,
+      1
+    ]
+  },
+  {
+    "id": "fixture_ordered_1_2_3",
+    "input": [
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "id": "fixture_reversed_3_2_1",
+    "input": [
+      3,
+      2,
+      1
+    ]
+  },
+  {
+    "id": "smallest_empty",
+    "input": []
+  },
+  {
+    "id": "smallest_single",
+    "input": [
+      42
+    ]
+  },
+  {
+    "id": "negative_and_duplicates",
+    "input": [
+      5,
+      -2,
+      0,
+      5,
+      -2
+    ]
+  }
+]

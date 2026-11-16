@@ -1,0 +1,25 @@
+============================================================
+Running focused check for R24-T005: insertion_sort determinism
+============================================================
+Executing unittest command: /Users/kanavpandey/Documents/SnAI Project/algorithms/.venv/bin/python3 -m unittest -v tests.test_sorting.TestSuite.test_insertion_sort tests.test_sorting.TestSuite.test_insertion_sort_repeatability_and_fixtures tests.test_sorting.TestSuite.test_insertion_sort_in_place_identity
+
+test_insertion_sort (tests.test_sorting.TestSuite.test_insertion_sort) ... ok
+test_insertion_sort_repeatability_and_fixtures (tests.test_sorting.TestSuite.test_insertion_sort_repeatability_and_fixtures) ... ok
+test_insertion_sort_in_place_identity (tests.test_sorting.TestSuite.test_insertion_sort_in_place_identity) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+
+Running doctests on algorithms/sorting/insertion_sort.py...
+Doctest results: attempted=5, failed=0
+PASSED for fixture_3_1_2: [3, 1, 2] -> [1, 2, 3]
+PASSED for fixture_2_2_1: [2, 2, 1] -> [1, 2, 2]
+PASSED for fixture_ordered_1_2_3: [1, 2, 3] -> [1, 2, 3]
+PASSED for fixture_reversed_3_2_1: [3, 2, 1] -> [1, 2, 3]
+PASSED for smallest_empty: [] -> []
+PASSED for smallest_single: [42] -> [42]
+PASSED for negative_and_duplicates: [5, -2, 0, 5, -2] -> [-2, -2, 0, 5, 5]
+External I/O isolation confirmed: zero I/O operations performed
+Repeatability verified: identical results produced before and after independent execution

@@ -1,0 +1,6 @@
+{
+  "python_version": "3.13.15",
+  "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+  "system": "Darwin",
+  "unittest_command": "/Users/kanavpandey/Documents/SnAI Project/algorithms/.venv/bin/python3 -m unittest -v tests.test_sorting.TestSuite.test_insertion_sort tests.test_sorting.TestSuite.test_insertion_sort_repeatability_and_fixtures tests.test_sorting.TestSuite.test_insertion_sort_in_place_identity"
+}

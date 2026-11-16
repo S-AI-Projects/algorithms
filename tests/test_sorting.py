@@ -63,6 +63,42 @@ class TestSuite(unittest.TestCase):
     def test_insertion_sort(self):
         self.assertTrue(is_sorted(insertion_sort([1, 3, 2, 5, 65, 23, 57, 1232])))
 
+    def test_insertion_sort_repeatability_and_fixtures(self):
+        # Fixtures with explicit expected values
+        self.assertEqual(insertion_sort([3, 1, 2]), [1, 2, 3])
+        self.assertEqual(insertion_sort([2, 2, 1]), [1, 2, 2])
+        self.assertEqual(insertion_sort([1, 2, 3]), [1, 2, 3])
+        self.assertEqual(insertion_sort([3, 2, 1]), [1, 2, 3])
+
+        # Smallest supported collections
+        self.assertEqual(insertion_sort([]), [])
+        self.assertEqual(insertion_sort([42]), [42])
+
+        # Repeatability & state isolation:
+        # Run the same fixture twice in fresh isolated state
+        fixture_a1 = [3, 1, 2]
+        res1 = insertion_sort(fixture_a1)
+        self.assertEqual(res1, [1, 2, 3])
+
+        fixture_a2 = [3, 1, 2]
+        res2 = insertion_sort(fixture_a2)
+        self.assertEqual(res2, [1, 2, 3])
+
+        # Run after another valid intermediate input
+        intermediate = [99, -5, 0, 12, 3]
+        self.assertEqual(insertion_sort(intermediate), [-5, 0, 3, 12, 99])
+
+        # Third run of fixture_a must remain strictly unaffected
+        fixture_a3 = [3, 1, 2]
+        res3 = insertion_sort(fixture_a3)
+        self.assertEqual(res3, [1, 2, 3])
+
+    def test_insertion_sort_in_place_identity(self):
+        arr = [5, 2, 8, 1]
+        result = insertion_sort(arr)
+        self.assertIs(result, arr)
+        self.assertEqual(arr, [1, 2, 5, 8])
+
     def test_merge_sort(self):
         self.assertTrue(is_sorted(merge_sort([1, 3, 2, 5, 65, 23, 57, 1232])))
 

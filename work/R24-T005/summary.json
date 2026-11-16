@@ -1,0 +1,11 @@
+{
+  "task_id": "R24-T005",
+  "module": "algorithms.sorting.insertion_sort",
+  "total_fixtures": 7,
+  "passed_fixtures": 7,
+  "repeatability_verified": true,
+  "external_io_isolated": true,
+  "doctest_passed": true,
+  "unittest_passed": true,
+  "all_passed": true
+}
