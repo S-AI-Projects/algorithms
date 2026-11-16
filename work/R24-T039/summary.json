@@ -1,0 +1,36 @@
+{
+  "artifacts": [
+    "inputs.json",
+    "results.json",
+    "tool_versions.json",
+    "summary.json",
+    "check_output.txt"
+  ],
+  "doctest": {
+    "attempted": 4,
+    "failed": 0,
+    "passed": true
+  },
+  "fixture_failures": [],
+  "scaling_medians_seconds": {
+    "256": 0.002530709000000006,
+    "512": 0.010381666000000012,
+    "1024": 0.04506220800000005
+  },
+  "status": "PASS",
+  "task": "R24-T039",
+  "unittest": {
+    "command": [
+      "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "-m",
+      "unittest",
+      "-v",
+      "tests.test_matrix.TestCopyTransform.test_copy_transform",
+      "tests.test_matrix.TestCopyTransform.test_rotate_clockwise_fixtures",
+      "tests.test_matrix.TestCopyTransform.test_rotate_clockwise_does_not_mutate_input"
+    ],
+    "failures": 0,
+    "passed": true,
+    "tests_run": 3
+  }
+}

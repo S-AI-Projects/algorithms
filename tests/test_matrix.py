@@ -67,6 +67,30 @@ class TestCopyTransform(unittest.TestCase):
             [[9, 6, 3], [8, 5, 2], [7, 4, 1]],
         )
 
+    def test_rotate_clockwise_fixtures(self):
+        # Small rectangular matrix (2x3 -> 3x2): supported because the
+        # implementation iterates rows and builds columns by index.
+        self.assertEqual(
+            copy_transform.rotate_clockwise([[1, 2, 3], [4, 5, 6]]),
+            [[4, 1], [5, 2], [6, 3]],
+        )
+        # 1x1 matrix is invariant under rotation.
+        self.assertEqual(copy_transform.rotate_clockwise([[5]]), [[5]])
+        # Zero-containing matrix: zeros must be preserved in place.
+        self.assertEqual(
+            copy_transform.rotate_clockwise([[0, 1], [2, 0]]),
+            [[2, 0], [0, 1]],
+        )
+        # Empty matrix rotates to empty.
+        self.assertEqual(copy_transform.rotate_clockwise([]), [])
+
+    def test_rotate_clockwise_does_not_mutate_input(self):
+        matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        snapshot = [row[:] for row in matrix]
+        result = copy_transform.rotate_clockwise(matrix)
+        self.assertEqual(matrix, snapshot)
+        self.assertEqual(result, [[7, 4, 1], [8, 5, 2], [9, 6, 3]])
+
 
 class TestCroutMatrixDecomposition(unittest.TestCase):
     """[summary]

@@ -1,0 +1,25 @@
+$ /Library/Developer/CommandLineTools/usr/bin/python3 -m unittest -v tests.test_matrix.TestCopyTransform.test_copy_transform tests.test_matrix.TestCopyTransform.test_rotate_clockwise_fixtures tests.test_matrix.TestCopyTransform.test_rotate_clockwise_does_not_mutate_input
+
+test_copy_transform (tests.test_matrix.TestCopyTransform) ... ok
+test_rotate_clockwise_fixtures (tests.test_matrix.TestCopyTransform) ... ok
+test_rotate_clockwise_does_not_mutate_input (tests.test_matrix.TestCopyTransform) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+
+Fixture results:
+  rectangular_2x3: expected=[[4, 1], [5, 2], [6, 3]] actual=[[4, 1], [5, 2], [6, 3]] passed=True
+  one_by_one: expected=[[5]] actual=[[5]] passed=True
+  zero_containing: expected=[[2, 0], [0, 1]] actual=[[2, 0], [0, 1]] passed=True
+  empty: expected=[] actual=[] passed=True
+  square_3x3: expected=[[7, 4, 1], [8, 5, 2], [9, 6, 3]] actual=[[7, 4, 1], [8, 5, 2], [9, 6, 3]] passed=True
+
+Scaling (rotate_clockwise, square n x n, 5 reps, seed=20260309):
+  n=256: median=0.002531s range=[0.002191, 0.002841]s ratio_vs_prev=None
+  n=512: median=0.010382s range=[0.009573, 0.010990]s ratio_vs_prev=4.102275686378793
+  n=1024: median=0.045062s range=[0.039206, 0.050090]s ratio_vs_prev=4.34055651568833
+
+Doctest: attempted=4 failed=0
+Overall: PASS
