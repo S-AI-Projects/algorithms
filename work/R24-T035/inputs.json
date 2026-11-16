@@ -1,0 +1,50 @@
+{
+  "fixture_anchors": [
+    "node = Node()",
+    "node.keys  # expected: []",
+    "bt = BTree(2)"
+  ],
+  "neighbouring_inputs": [
+    {
+      "node.keys": [
+        10,
+        20
+      ]
+    },
+    {
+      "bt.insert_key": 42
+    },
+    {
+      "bt.insert_key_sequence": [
+        3,
+        1,
+        2
+      ]
+    },
+    {
+      "keys_20": [
+        15,
+        3,
+        9,
+        7,
+        2,
+        18,
+        11,
+        5,
+        14,
+        1,
+        20,
+        6,
+        13,
+        4,
+        17,
+        8,
+        12,
+        19,
+        16,
+        10
+      ]
+    }
+  ],
+  "observable_dependencies": "none \u2014 Node and BTree are pure in-memory structures"
+}

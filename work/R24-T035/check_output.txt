@@ -1,0 +1,24 @@
+test_btree_fixture_twice_identical (__main__.TestNodeFixture) ... ok
+test_btree_independent_instances (__main__.TestNodeFixture) ... ok
+test_btree_initial_state (__main__.TestNodeFixture) ... ok
+test_btree_insert_and_find (__main__.TestNodeFixture) ... ok
+test_btree_many_inserts_traverse (__main__.TestNodeFixture) ... ok
+test_btree_remove_key (__main__.TestNodeFixture) ... ok
+test_btree_root_is_leaf_initially (__main__.TestNodeFixture) ... ok
+test_btree_traverse_sorted (__main__.TestNodeFixture) ... ok
+test_node_add_child_makes_non_leaf (__main__.TestNodeFixture) ... ok
+test_node_children_isolation (__main__.TestNodeFixture) ... ok
+test_node_default_children_empty (__main__.TestNodeFixture) ... ok
+test_node_default_keys_empty (__main__.TestNodeFixture) ... ok
+test_node_fixture_after_other_valid_input_unchanged (__main__.TestNodeFixture) ... ok
+test_node_fixture_twice_identical (__main__.TestNodeFixture) ... ok
+test_node_is_leaf_on_creation (__main__.TestNodeFixture) ... ok
+test_node_manual_key_assignment (__main__.TestNodeFixture) ... ok
+test_node_mutation_does_not_affect_independent_instance (__main__.TestNodeFixture) ... ok
+test_node_repr (__main__.TestNodeFixture) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.000s
+
+OK
+

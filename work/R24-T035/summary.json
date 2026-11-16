@@ -1,0 +1,13 @@
+{
+  "task": "R24-T035",
+  "module": "algorithms.data_structures.b_tree",
+  "target": "Node",
+  "native_command": "python3 -m unittest tests.test_data_structures.TestNodeFixture",
+  "test_count": 18,
+  "passed": 18,
+  "failed": 0,
+  "errors": 0,
+  "status": "PASS",
+  "observable_dependencies": "none",
+  "isolation_verified": true
+}

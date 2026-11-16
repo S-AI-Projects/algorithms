@@ -3,6 +3,7 @@
 import unittest
 
 from algorithms.data_structures.avl_tree import AvlTree
+from algorithms.data_structures.b_tree import BTree, Node
 from algorithms.data_structures.hash_table import HashTable, ResizableHashTable
 from algorithms.data_structures.red_black_tree import RBNode, RBTree
 from algorithms.data_structures.segment_tree import SegmentTree
@@ -278,3 +279,174 @@ class TestSeparateChainingHashTable(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestNodeFixture(unittest.TestCase):
+    """State-isolation and fixture regression tests for Node and BTree (R24-T035).
+
+    Fixture anchors (from docstring):
+        >>> node = Node()
+        >>> node.keys      # []
+        >>> bt = BTree(2)
+
+    Observable dependencies: none — Node is a pure data container with no
+    network, I/O, randomness or time dependencies.
+    """
+
+    # ------------------------------------------------------------------
+    # Fixture anchor: node = Node() / node.keys
+    # ------------------------------------------------------------------
+
+    def test_node_default_keys_empty(self):
+        """node.keys is [] immediately after construction (docstring anchor)."""
+        node = Node()
+        self.assertEqual(node.keys, [])
+
+    def test_node_default_children_empty(self):
+        """node.children is [] immediately after construction."""
+        node = Node()
+        self.assertEqual(node.children, [])
+
+    def test_node_is_leaf_on_creation(self):
+        """A freshly created Node with no children is a leaf."""
+        node = Node()
+        self.assertTrue(node.is_leaf)
+
+    def test_node_repr(self):
+        """__repr__ includes the keys list."""
+        node = Node()
+        self.assertIn("[]", repr(node))
+
+    # ------------------------------------------------------------------
+    # Neighbouring supported input: Node with keys pre-populated
+    # ------------------------------------------------------------------
+
+    def test_node_manual_key_assignment(self):
+        """Keys assigned manually are reflected immediately; is_leaf still True."""
+        node = Node()
+        node.keys = [10, 20]
+        self.assertEqual(node.keys, [10, 20])
+        self.assertTrue(node.is_leaf)
+
+    def test_node_add_child_makes_non_leaf(self):
+        """Adding a child node changes is_leaf to False."""
+        parent = Node()
+        child = Node()
+        parent.children.append(child)
+        self.assertFalse(parent.is_leaf)
+
+    # ------------------------------------------------------------------
+    # Isolation: same fixture run twice gives identical results
+    # ------------------------------------------------------------------
+
+    def test_node_fixture_twice_identical(self):
+        """Running the docstring fixture twice in fresh state gives equal results."""
+        node_a = Node()
+        result_a = (node_a.keys[:], node_a.children[:], node_a.is_leaf)
+
+        node_b = Node()
+        result_b = (node_b.keys[:], node_b.children[:], node_b.is_leaf)
+
+        self.assertEqual(result_a, result_b)
+
+    def test_node_mutation_does_not_affect_independent_instance(self):
+        """Mutating one Node instance does not change another (no shared state)."""
+        node_a = Node()
+        node_b = Node()
+        node_a.keys.append(99)
+        self.assertEqual(node_b.keys, [],
+                         "Mutating node_a.keys leaked into node_b — shared state detected")
+
+    def test_node_fixture_after_other_valid_input_unchanged(self):
+        """Running the fixture after inserting into a BTree does not alter fresh Node."""
+        # earlier operation
+        bt = BTree(2)
+        bt.insert_key(42)
+
+        # fresh fixture must be unaffected
+        node = Node()
+        self.assertEqual(node.keys, [])
+        self.assertEqual(node.children, [])
+
+    # ------------------------------------------------------------------
+    # BTree(2) fixture anchor
+    # ------------------------------------------------------------------
+
+    def test_btree_initial_state(self):
+        """BTree(2) has an empty root node and correct min/max key counts."""
+        bt = BTree(2)
+        self.assertEqual(bt.root.keys, [])
+        self.assertEqual(bt.min_numbers_of_keys, 1)   # t-1 = 1
+        self.assertEqual(bt.max_number_of_keys, 3)    # 2t-1 = 3
+
+    def test_btree_fixture_twice_identical(self):
+        """BTree(2) constructed twice yields identical initial structure."""
+        bt1 = BTree(2)
+        bt2 = BTree(2)
+        self.assertEqual(bt1.root.keys, bt2.root.keys)
+        self.assertEqual(bt1.min_numbers_of_keys, bt2.min_numbers_of_keys)
+        self.assertEqual(bt1.max_number_of_keys, bt2.max_number_of_keys)
+
+    def test_btree_root_is_leaf_initially(self):
+        """BTree(2) root starts as a leaf."""
+        bt = BTree(2)
+        self.assertTrue(bt.root.is_leaf)
+
+    # ------------------------------------------------------------------
+    # BTree insert + find (neighbouring supported inputs)
+    # ------------------------------------------------------------------
+
+    def test_btree_insert_and_find(self):
+        """Inserted key is found; non-inserted key is not found."""
+        bt = BTree(2)
+        bt.insert_key(10)
+        self.assertTrue(bt.find(10))
+        self.assertFalse(bt.find(99))
+
+    def test_btree_traverse_sorted(self):
+        """traverse_tree returns keys in sorted ascending order."""
+        bt = BTree(2)
+        for k in [3, 1, 2]:
+            bt.insert_key(k)
+        self.assertEqual(bt.traverse_tree(), [1, 2, 3])
+
+    def test_btree_remove_key(self):
+        """Removed key is no longer found; other keys remain."""
+        bt = BTree(2)
+        for k in [5, 3, 7]:
+            bt.insert_key(k)
+        bt.remove_key(3)
+        self.assertFalse(bt.find(3))
+        self.assertTrue(bt.find(5))
+        self.assertTrue(bt.find(7))
+
+    def test_btree_independent_instances(self):
+        """Two BTree instances share no state; inserting into one does not affect other."""
+        bt1 = BTree(2)
+        bt2 = BTree(2)
+        bt1.insert_key(55)
+        self.assertFalse(bt2.find(55),
+                         "bt2 found 55 that was only inserted into bt1 — shared state")
+
+    # ------------------------------------------------------------------
+    # Enumeration: 20+ valid Node / BTree inputs
+    # ------------------------------------------------------------------
+
+    def test_btree_many_inserts_traverse(self):
+        """Insert 20 valid keys and verify traverse_tree returns all in sorted order."""
+        keys = [15, 3, 9, 7, 2, 18, 11, 5, 14, 1,
+                20, 6, 13, 4, 17, 8, 12, 19, 16, 10]
+        bt = BTree(2)
+        for k in keys:
+            bt.insert_key(k)
+        self.assertEqual(bt.traverse_tree(), sorted(keys))
+
+    def test_node_children_isolation(self):
+        """child.keys mutation does not propagate to parent.keys."""
+        parent = Node()
+        child = Node()
+        child.keys = [1, 2, 3]
+        parent.children.append(child)
+        child.keys.append(4)
+        # parent's own keys list is unaffected
+        self.assertEqual(parent.keys, [])
