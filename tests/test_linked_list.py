@@ -146,6 +146,93 @@ class TestSuite(unittest.TestCase):
             curr = curr.next
         self.assertFalse(is_cyclic(head))
 
+    def test_node_invariants_and_fixtures(self):
+        # 1. Three distinct nodes A -> B -> C fixture
+        a = Node("A")
+        b = Node("B")
+        c = Node("C")
+        a.next = b
+        b.next = c
+        c.next = None
+
+        # Check values and node links separately
+        self.assertEqual(a.val, "A")
+        self.assertEqual(b.val, "B")
+        self.assertEqual(c.val, "C")
+        self.assertIs(a.next, b)
+        self.assertIs(b.next, c)
+        self.assertIsNone(c.next)
+
+        # Invariant: traversal visits each node once and terminates at None
+        visited = []
+        curr = a
+        while curr:
+            visited.append(curr)
+            curr = curr.next
+        self.assertEqual([n.val for n in visited], ["A", "B", "C"])
+        self.assertEqual(len(set(visited)), 3)
+
+        # Acyclic test & non-mutation verification
+        self.assertFalse(is_cyclic(a))
+        self.assertEqual(a.val, "A")
+        self.assertIs(a.next, b)
+        self.assertIs(b.next, c)
+        self.assertIsNone(c.next)
+
+        # 2. Smallest supported lists
+        self.assertFalse(is_cyclic(None))
+
+        single = Node("alone")
+        self.assertFalse(is_cyclic(single))
+        self.assertIsNone(single.next)
+        self.assertEqual(single.val, "alone")
+
+        # Self-loop boundary
+        single.next = single
+        self.assertTrue(is_cyclic(single))
+        single.next = None  # restore
+
+        # 3. Three-node cycles
+        c.next = a  # A -> B -> C -> A
+        self.assertTrue(is_cyclic(a))
+        c.next = b  # A -> B -> C -> B
+        self.assertTrue(is_cyclic(a))
+        c.next = None  # restore
+
+    def test_node_property_generator_100_cases(self):
+        import random
+        rng = random.Random(20260309)
+
+        for case_idx in range(100):
+            size = rng.randint(1, 25)
+            nodes = [Node(f"val_{i}") for i in range(size)]
+            for i in range(size - 1):
+                nodes[i].next = nodes[i + 1]
+
+            has_cycle = rng.choice([True, False])
+            cycle_target_idx = None
+            if has_cycle:
+                cycle_target_idx = rng.randint(0, size - 1)
+                nodes[-1].next = nodes[cycle_target_idx]
+
+            head = nodes[0]
+            result = is_cyclic(head)
+            self.assertEqual(
+                result,
+                has_cycle,
+                f"Case {case_idx} (size {size}, cycle_target {cycle_target_idx}): expected {has_cycle}, got {result}",
+            )
+
+            # Invariant: values and node links are preserved after call
+            for i in range(size):
+                self.assertEqual(nodes[i].val, f"val_{i}")
+                if i < size - 1:
+                    self.assertIs(nodes[i].next, nodes[i + 1])
+                elif has_cycle:
+                    self.assertIs(nodes[i].next, nodes[cycle_target_idx])
+                else:
+                    self.assertIsNone(nodes[i].next)
+
     def test_merge_two_list(self):
         """
         Input: head1:1->2->4, head2: 1->3->4

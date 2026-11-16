@@ -1,0 +1,7 @@
+{
+  "python_version": "3.13.15",
+  "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+  "system": "Darwin",
+  "unittest_command": "/Users/kanavpandey/Documents/SnAI Project/algorithms/.venv/bin/python3 -m unittest -v tests.test_linked_list.TestSuite.test_node_invariants_and_fixtures tests.test_linked_list.TestSuite.test_node_property_generator_100_cases tests.test_linked_list.TestSuite.test_is_cyclic",
+  "seed": 20260309
+}

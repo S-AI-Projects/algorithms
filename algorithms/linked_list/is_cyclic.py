@@ -15,6 +15,17 @@ from __future__ import annotations
 
 
 class Node:
+    """Singly linked list node.
+
+    Structural Invariants:
+        - Value preservation: `node.val` holds the assigned payload without alteration.
+        - Link integrity: `node.next` points either to another `Node` instance or `None`.
+        - Acyclic termination: In an acyclic chain of length n, traversal from `head`
+          terminates at `None` in exactly n steps, visiting each node identity once.
+        - Non-mutation contract: Inspection functions (like `is_cyclic`) must preserve
+          both `.val` and `.next` references across the entire list.
+    """
+
     def __init__(self, x: object) -> None:
         self.val = x
         self.next: Node | None = None
@@ -35,6 +46,8 @@ def is_cyclic(head: Node | None) -> bool:
         True
         >>> c = Node(3); c.next = Node(4)
         >>> is_cyclic(c)
+        False
+        >>> is_cyclic(None)
         False
     """
     if not head:

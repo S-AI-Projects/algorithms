@@ -1,0 +1,839 @@
+{
+  "fixtures_results": [
+    {
+      "id": "fixture_A_B_C",
+      "description": "Three distinct nodes A -> B -> C",
+      "expected_cyclic": false,
+      "actual_cyclic": false,
+      "invariant_valid": true,
+      "passed": true
+    },
+    {
+      "id": "smallest_list_none",
+      "description": "Empty list (None)",
+      "expected_cyclic": false,
+      "actual_cyclic": false,
+      "invariant_valid": true,
+      "passed": true
+    },
+    {
+      "id": "single_node",
+      "description": "Single isolated node Node(1)",
+      "expected_cyclic": false,
+      "actual_cyclic": false,
+      "invariant_valid": true,
+      "passed": true
+    },
+    {
+      "id": "single_self_loop",
+      "description": "Single node with self-loop",
+      "expected_cyclic": true,
+      "actual_cyclic": true,
+      "invariant_valid": true,
+      "passed": true
+    }
+  ],
+  "generator_results": [
+    {
+      "case_id": 0,
+      "length": 1,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 1,
+      "length": 10,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 2,
+      "length": 15,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 3,
+      "length": 4,
+      "has_cycle": true,
+      "cycle_entry": 3,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 4,
+      "length": 11,
+      "has_cycle": true,
+      "cycle_entry": 8,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 5,
+      "length": 9,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 6,
+      "length": 11,
+      "has_cycle": true,
+      "cycle_entry": 8,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 7,
+      "length": 9,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 8,
+      "length": 1,
+      "has_cycle": true,
+      "cycle_entry": 0,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 9,
+      "length": 6,
+      "has_cycle": true,
+      "cycle_entry": 4,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 10,
+      "length": 10,
+      "has_cycle": true,
+      "cycle_entry": 1,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 11,
+      "length": 13,
+      "has_cycle": true,
+      "cycle_entry": 9,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 12,
+      "length": 16,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 13,
+      "length": 10,
+      "has_cycle": true,
+      "cycle_entry": 5,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 14,
+      "length": 19,
+      "has_cycle": true,
+      "cycle_entry": 10,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 15,
+      "length": 13,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 16,
+      "length": 13,
+      "has_cycle": true,
+      "cycle_entry": 8,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 17,
+      "length": 15,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 18,
+      "length": 15,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 19,
+      "length": 13,
+      "has_cycle": true,
+      "cycle_entry": 6,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 20,
+      "length": 15,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 21,
+      "length": 13,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 22,
+      "length": 7,
+      "has_cycle": true,
+      "cycle_entry": 5,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 23,
+      "length": 5,
+      "has_cycle": true,
+      "cycle_entry": 0,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 24,
+      "length": 12,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 25,
+      "length": 13,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 26,
+      "length": 3,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 27,
+      "length": 7,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 28,
+      "length": 18,
+      "has_cycle": true,
+      "cycle_entry": 14,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 29,
+      "length": 16,
+      "has_cycle": true,
+      "cycle_entry": 3,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 30,
+      "length": 17,
+      "has_cycle": true,
+      "cycle_entry": 4,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 31,
+      "length": 20,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 32,
+      "length": 13,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 33,
+      "length": 4,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 34,
+      "length": 16,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 35,
+      "length": 19,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 36,
+      "length": 19,
+      "has_cycle": true,
+      "cycle_entry": 18,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 37,
+      "length": 5,
+      "has_cycle": true,
+      "cycle_entry": 0,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 38,
+      "length": 17,
+      "has_cycle": true,
+      "cycle_entry": 3,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 39,
+      "length": 1,
+      "has_cycle": true,
+      "cycle_entry": 0,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 40,
+      "length": 7,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 41,
+      "length": 1,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 42,
+      "length": 18,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 43,
+      "length": 19,
+      "has_cycle": true,
+      "cycle_entry": 11,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 44,
+      "length": 12,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 45,
+      "length": 10,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 46,
+      "length": 18,
+      "has_cycle": true,
+      "cycle_entry": 12,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 47,
+      "length": 20,
+      "has_cycle": true,
+      "cycle_entry": 15,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 48,
+      "length": 15,
+      "has_cycle": true,
+      "cycle_entry": 14,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 49,
+      "length": 20,
+      "has_cycle": true,
+      "cycle_entry": 2,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 50,
+      "length": 4,
+      "has_cycle": true,
+      "cycle_entry": 2,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 51,
+      "length": 9,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 52,
+      "length": 5,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 53,
+      "length": 6,
+      "has_cycle": true,
+      "cycle_entry": 2,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 54,
+      "length": 4,
+      "has_cycle": true,
+      "cycle_entry": 3,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 55,
+      "length": 17,
+      "has_cycle": true,
+      "cycle_entry": 11,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 56,
+      "length": 14,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 57,
+      "length": 16,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 58,
+      "length": 8,
+      "has_cycle": true,
+      "cycle_entry": 2,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 59,
+      "length": 2,
+      "has_cycle": true,
+      "cycle_entry": 1,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 60,
+      "length": 11,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 61,
+      "length": 4,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 62,
+      "length": 14,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 63,
+      "length": 20,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 64,
+      "length": 18,
+      "has_cycle": true,
+      "cycle_entry": 4,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 65,
+      "length": 6,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 66,
+      "length": 11,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 67,
+      "length": 19,
+      "has_cycle": true,
+      "cycle_entry": 0,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 68,
+      "length": 14,
+      "has_cycle": true,
+      "cycle_entry": 1,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 69,
+      "length": 17,
+      "has_cycle": true,
+      "cycle_entry": 12,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 70,
+      "length": 15,
+      "has_cycle": true,
+      "cycle_entry": 13,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 71,
+      "length": 17,
+      "has_cycle": true,
+      "cycle_entry": 15,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 72,
+      "length": 9,
+      "has_cycle": true,
+      "cycle_entry": 1,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 73,
+      "length": 8,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 74,
+      "length": 15,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 75,
+      "length": 20,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 76,
+      "length": 20,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 77,
+      "length": 10,
+      "has_cycle": true,
+      "cycle_entry": 6,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 78,
+      "length": 5,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 79,
+      "length": 18,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 80,
+      "length": 17,
+      "has_cycle": true,
+      "cycle_entry": 12,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 81,
+      "length": 15,
+      "has_cycle": true,
+      "cycle_entry": 12,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 82,
+      "length": 4,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 83,
+      "length": 4,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 84,
+      "length": 6,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 85,
+      "length": 1,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 86,
+      "length": 17,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 87,
+      "length": 19,
+      "has_cycle": true,
+      "cycle_entry": 15,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 88,
+      "length": 1,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 89,
+      "length": 17,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 90,
+      "length": 17,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 91,
+      "length": 16,
+      "has_cycle": true,
+      "cycle_entry": 13,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 92,
+      "length": 13,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 93,
+      "length": 15,
+      "has_cycle": true,
+      "cycle_entry": 0,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 94,
+      "length": 14,
+      "has_cycle": true,
+      "cycle_entry": 9,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 95,
+      "length": 13,
+      "has_cycle": true,
+      "cycle_entry": 12,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 96,
+      "length": 5,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 97,
+      "length": 13,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 98,
+      "length": 15,
+      "has_cycle": true,
+      "cycle_entry": 14,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 99,
+      "length": 18,
+      "has_cycle": true,
+      "cycle_entry": 15,
+      "actual_cycle": true,
+      "passed": true
+    }
+  ],
+  "negative_path_detected": true
+}

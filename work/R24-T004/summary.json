@@ -1,0 +1,12 @@
+{
+  "task_id": "R24-T004",
+  "module": "algorithms.linked_list.is_cyclic",
+  "fixtures_checked": 4,
+  "fixtures_passed": 4,
+  "generator_cases_total": 100,
+  "generator_cases_passed": 100,
+  "negative_path_verified": true,
+  "doctest_passed": true,
+  "unittest_passed": true,
+  "all_passed": true
+}

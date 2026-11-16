@@ -1,0 +1,19 @@
+============================================================
+Running focused check for R24-T004: Node invariant and is_cyclic
+============================================================
+Executing unittest command: /Users/kanavpandey/Documents/SnAI Project/algorithms/.venv/bin/python3 -m unittest -v tests.test_linked_list.TestSuite.test_node_invariants_and_fixtures tests.test_linked_list.TestSuite.test_node_property_generator_100_cases tests.test_linked_list.TestSuite.test_is_cyclic
+
+test_node_invariants_and_fixtures (tests.test_linked_list.TestSuite.test_node_invariants_and_fixtures) ... ok
+test_node_property_generator_100_cases (tests.test_linked_list.TestSuite.test_node_property_generator_100_cases) ... ok
+test_is_cyclic (tests.test_linked_list.TestSuite.test_is_cyclic) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK
+
+Running doctests on algorithms/linked_list/is_cyclic.py...
+Doctest results: attempted=5, failed=0
+Fixture A->B->C: passed=True (Invariant holds)
+Property generator (100 bounded cases): 100/100 passed
+Negative path check verified: correctly rejected corrupted link (Values mismatch: got ['A', 'C'], expected ['A', 'B', 'C'])

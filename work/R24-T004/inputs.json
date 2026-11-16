@@ -1,0 +1,118 @@
+{
+  "fixtures": [
+    {
+      "id": "fixture_A_B_C",
+      "description": "Three distinct nodes A -> B -> C",
+      "expected_cyclic": false,
+      "actual_cyclic": false,
+      "invariant_valid": true,
+      "passed": true
+    },
+    {
+      "id": "smallest_list_none",
+      "description": "Empty list (None)",
+      "expected_cyclic": false,
+      "actual_cyclic": false,
+      "invariant_valid": true,
+      "passed": true
+    },
+    {
+      "id": "single_node",
+      "description": "Single isolated node Node(1)",
+      "expected_cyclic": false,
+      "actual_cyclic": false,
+      "invariant_valid": true,
+      "passed": true
+    },
+    {
+      "id": "single_self_loop",
+      "description": "Single node with self-loop",
+      "expected_cyclic": true,
+      "actual_cyclic": true,
+      "invariant_valid": true,
+      "passed": true
+    }
+  ],
+  "generator_sample": [
+    {
+      "case_id": 0,
+      "length": 1,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 1,
+      "length": 10,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 2,
+      "length": 15,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 3,
+      "length": 4,
+      "has_cycle": true,
+      "cycle_entry": 3,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 4,
+      "length": 11,
+      "has_cycle": true,
+      "cycle_entry": 8,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 5,
+      "length": 9,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 6,
+      "length": 11,
+      "has_cycle": true,
+      "cycle_entry": 8,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 7,
+      "length": 9,
+      "has_cycle": false,
+      "cycle_entry": null,
+      "actual_cycle": false,
+      "passed": true
+    },
+    {
+      "case_id": 8,
+      "length": 1,
+      "has_cycle": true,
+      "cycle_entry": 0,
+      "actual_cycle": true,
+      "passed": true
+    },
+    {
+      "case_id": 9,
+      "length": 6,
+      "has_cycle": true,
+      "cycle_entry": 4,
+      "actual_cycle": true,
+      "passed": true
+    }
+  ]
+}
