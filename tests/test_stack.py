@@ -9,6 +9,7 @@ from algorithms.stack import (
     first_switch_pairs,
     is_sorted,
     is_valid,
+    length_longest_path,
     remove_min,
     second_is_consecutive,
     second_stutter,
@@ -80,6 +81,20 @@ class TestSuite(unittest.TestCase):
     def test_simplify_path(self):
         p = "/my/name/is/..//keon"
         self.assertEqual("/my/name/keon", simplify_path(p))
+
+    def test_length_longest_path(self):
+        """Regression tests for length_longest_path."""
+        # Empty-state behavior
+        self.assertEqual(0, length_longest_path(""))
+        self.assertEqual(0, length_longest_path("dir"))
+        self.assertEqual(0, length_longest_path("dir\n\tsubdir"))
+
+        # Docstring example
+        self.assertEqual(12, length_longest_path("dir\n\tfile.txt"))
+
+        # Fixture: Push A, B, C; pop twice; push D; drain (pop order C, B, D, A)
+        self.assertEqual(9, length_longest_path("A\n\tB\n\t\tC.txt\n\tD.txt"))
+        self.assertEqual(0, length_longest_path("A\n\tB\n\t\tC\n\tD"))
 
 
 class TestStack(unittest.TestCase):

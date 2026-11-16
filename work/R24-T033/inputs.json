@@ -1,0 +1,29 @@
+{
+  "module": "algorithms/stack/longest_abs_path.py",
+  "total_domain_samples": 23,
+  "test_inputs": [
+    "",
+    "dir",
+    "file.txt",
+    "a.txt",
+    "dir\n\tfile.txt",
+    "dir\n\tfile.ext",
+    "dir\n\tsubdir",
+    "dir\n\tsubdir\n\t\tfile.txt",
+    "dir\n\tsubdir1\n\tsubdir2",
+    "dir\n\tsubdir1\n\tsubdir2\n\t\tfile.txt",
+    "dir1\n\tfile1.txt\ndir2\n\tfile2.txt",
+    "a\n\tb\n\t\tc\n\t\t\td.txt",
+    "a\n\tb.txt\n\tc.txt",
+    "a\n\tb.txt\n\tc.longer",
+    "A\n\tB\n\t\tC\n\tD",
+    "A\n\tB\n\t\tC.txt\n\tD.txt",
+    "A\n\tB\n\t\tC\n\tD.verylongfile",
+    "f.c",
+    "x.y.z",
+    "dir\n\tfile1.ext\n\tsubdir\n\t\tfile2.ext",
+    "root\n\ta\n\t\tb\n\t\t\tc.txt\n\td.txt",
+    "a\n\tb\n\tc\n\td.txt",
+    "dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext"
+  ]
+}
