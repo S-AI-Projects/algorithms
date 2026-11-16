@@ -1,0 +1,26 @@
+============================================================
+Running focused check for R24-T006: AvlTree refactoring
+============================================================
+Executing unittest command: /Users/kanavpandey/Documents/SnAI Project/algorithms/.venv/bin/python3 -m unittest -v tests.test_data_structures.TestAvlTree
+
+test_avl_tree_rotations_and_metric_refresh (tests.test_data_structures.TestAvlTree.test_avl_tree_rotations_and_metric_refresh) ... ok
+test_balanced_after_insert (tests.test_data_structures.TestAvlTree.test_balanced_after_insert) ... ok
+test_empty_tree (tests.test_data_structures.TestAvlTree.test_empty_tree) ... ok
+test_in_order_traverse_populated (tests.test_data_structures.TestAvlTree.test_in_order_traverse_populated) ... ok
+test_insert_balance_factor (tests.test_data_structures.TestAvlTree.test_insert_balance_factor) ... ok
+test_insert_multiple_root_exists (tests.test_data_structures.TestAvlTree.test_insert_multiple_root_exists) ... ok
+test_insert_single (tests.test_data_structures.TestAvlTree.test_insert_single) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.000s
+
+OK
+
+Running doctests on algorithms/data_structures/avl_tree.py...
+Doctest results: attempted=4, failed=0
+PASSED for smallest_valid_empty: in-order=[], balance=0, height=-1
+PASSED for ordinary_input_populated: in-order=[1, 3, 4, 5, 7], balance=1, height=2
+PASSED for rotation_left_left_right_rotate: in-order=[1, 2, 3], balance=0, height=1
+PASSED for rotation_right_right_left_rotate: in-order=[1, 2, 3], balance=0, height=1
+PASSED for double_rotation_left_right: in-order=[1, 2, 3], balance=0, height=1
+PASSED for double_rotation_right_left: in-order=[1, 2, 3], balance=0, height=1

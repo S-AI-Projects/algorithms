@@ -1,0 +1,10 @@
+{
+  "task_id": "R24-T006",
+  "module": "algorithms.data_structures.avl_tree",
+  "refactored_operation": "Consolidated repeated update_heights()+update_balances() into _refresh_metrics(), and simplified balance check to abs(self.balance) > 1",
+  "fixtures_total": 6,
+  "fixtures_passed": 6,
+  "doctest_passed": true,
+  "unittest_passed": true,
+  "all_passed": true
+}

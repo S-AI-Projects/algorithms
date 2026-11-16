@@ -1,11 +1,18 @@
 """Imports TreeNodes"""
 
+from __future__ import annotations
+
 from algorithms.common.tree_node import TreeNode
 
 
 class AvlTree:
     """
-    An avl tree.
+    An AVL tree implementation supporting balanced binary search tree operations.
+
+    Invariants:
+        - For every node, balance factor = height(left) - height(right) is in {-1, 0, 1}.
+        - Rebalancing uses left and right rotations to maintain O(log n) height.
+        - in_order_traverse returns keys in sorted ascending order.
     """
 
     def __init__(self):
@@ -30,6 +37,11 @@ class AvlTree:
             self.node.right.insert(key)
         self.re_balance()
 
+    def _refresh_metrics(self):
+        """Update both heights and balance factors for this subtree."""
+        self.update_heights()
+        self.update_balances()
+
     def re_balance(self):
         """
         Re balance tree. After inserting or deleting a node,
@@ -37,24 +49,20 @@ class AvlTree:
         self.update_heights(recursive=False)
         self.update_balances(False)
 
-        while self.balance < -1 or self.balance > 1:
+        while abs(self.balance) > 1:
             if self.balance > 1:
                 if self.node.left.balance < 0:
                     self.node.left.rotate_left()
-                    self.update_heights()
-                    self.update_balances()
+                    self._refresh_metrics()
                 self.rotate_right()
-                self.update_heights()
-                self.update_balances()
+                self._refresh_metrics()
 
             if self.balance < -1:
                 if self.node.right.balance > 0:
                     self.node.right.rotate_right()
-                    self.update_heights()
-                    self.update_balances()
+                    self._refresh_metrics()
                 self.rotate_left()
-                self.update_heights()
-                self.update_balances()
+                self._refresh_metrics()
 
     def update_heights(self, recursive=True):
         """
@@ -113,7 +121,19 @@ class AvlTree:
 
     def in_order_traverse(self):
         """
-        In-order traversal of the tree
+        In-order traversal of the tree.
+
+        Returns:
+            List of node values in sorted ascending order.
+
+        Examples:
+            >>> tree = AvlTree()
+            >>> tree.in_order_traverse()
+            []
+            >>> for val in [5, 3, 7, 1, 4]:
+            ...     tree.insert(val)
+            >>> tree.in_order_traverse()
+            [1, 3, 4, 5, 7]
         """
         result = []
 

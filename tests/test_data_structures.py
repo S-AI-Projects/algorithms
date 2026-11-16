@@ -87,6 +87,35 @@ class TestAvlTree(unittest.TestCase):
         # After balancing, the balance factor should be within [-1, 1]
         self.assertIn(tree.balance, [-1, 0, 1])
 
+    def test_avl_tree_rotations_and_metric_refresh(self):
+        # 1. Left-Left (Right rotation trigger)
+        ll_tree = AvlTree()
+        for v in [3, 2, 1]:
+            ll_tree.insert(v)
+        self.assertEqual(ll_tree.in_order_traverse(), [1, 2, 3])
+        self.assertIn(ll_tree.balance, [-1, 0, 1])
+
+        # 2. Right-Right (Left rotation trigger)
+        rr_tree = AvlTree()
+        for v in [1, 2, 3]:
+            rr_tree.insert(v)
+        self.assertEqual(rr_tree.in_order_traverse(), [1, 2, 3])
+        self.assertIn(rr_tree.balance, [-1, 0, 1])
+
+        # 3. Left-Right double rotation
+        lr_tree = AvlTree()
+        for v in [3, 1, 2]:
+            lr_tree.insert(v)
+        self.assertEqual(lr_tree.in_order_traverse(), [1, 2, 3])
+        self.assertIn(lr_tree.balance, [-1, 0, 1])
+
+        # 4. Right-Left double rotation
+        rl_tree = AvlTree()
+        for v in [1, 3, 2]:
+            rl_tree.insert(v)
+        self.assertEqual(rl_tree.in_order_traverse(), [1, 2, 3])
+        self.assertIn(rl_tree.balance, [-1, 0, 1])
+
 
 class TestTrie(unittest.TestCase):
     def test_insert_and_search(self):

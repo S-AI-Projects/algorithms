@@ -1,0 +1,94 @@
+[
+  {
+    "id": "smallest_valid_empty",
+    "expected_traverse": [],
+    "actual_traverse": [],
+    "actual_balance": 0,
+    "actual_height": -1,
+    "passed": true
+  },
+  {
+    "id": "ordinary_input_populated",
+    "expected_traverse": [
+      1,
+      3,
+      4,
+      5,
+      7
+    ],
+    "actual_traverse": [
+      1,
+      3,
+      4,
+      5,
+      7
+    ],
+    "actual_balance": 1,
+    "actual_height": 2,
+    "passed": true
+  },
+  {
+    "id": "rotation_left_left_right_rotate",
+    "expected_traverse": [
+      1,
+      2,
+      3
+    ],
+    "actual_traverse": [
+      1,
+      2,
+      3
+    ],
+    "actual_balance": 0,
+    "actual_height": 1,
+    "passed": true
+  },
+  {
+    "id": "rotation_right_right_left_rotate",
+    "expected_traverse": [
+      1,
+      2,
+      3
+    ],
+    "actual_traverse": [
+      1,
+      2,
+      3
+    ],
+    "actual_balance": 0,
+    "actual_height": 1,
+    "passed": true
+  },
+  {
+    "id": "double_rotation_left_right",
+    "expected_traverse": [
+      1,
+      2,
+      3
+    ],
+    "actual_traverse": [
+      1,
+      2,
+      3
+    ],
+    "actual_balance": 0,
+    "actual_height": 1,
+    "passed": true
+  },
+  {
+    "id": "double_rotation_right_left",
+    "expected_traverse": [
+      1,
+      2,
+      3
+    ],
+    "actual_traverse": [
+      1,
+      2,
+      3
+    ],
+    "actual_balance": 0,
+    "actual_height": 1,
+    "passed": true
+  }
+]
