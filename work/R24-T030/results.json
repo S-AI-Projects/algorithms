@@ -1,0 +1,108 @@
+{
+  "mutation_table": {
+    "original": {
+      "outcomes": {
+        "TestRabinMiller.test_is_prime": "pass",
+        "TestIsPrimeRegression.test_one_is_not_prime": "pass",
+        "TestIsPrimeRegression.test_fixture_domain_around_1_2_9_11": "pass",
+        "TestIsPrimeRegression.test_primes_below_12_with_exclusive_upper_bound": "pass",
+        "TestIsPrimeRegression.test_no_emitted_prime_has_a_divisor_up_to_its_square_root": "pass"
+      },
+      "killed_by_old": [],
+      "killed_by_new": []
+    },
+    "P": {
+      "outcomes": {
+        "TestRabinMiller.test_is_prime": "pass",
+        "TestIsPrimeRegression.test_one_is_not_prime": "fail: AssertionError: False is not True",
+        "TestIsPrimeRegression.test_fixture_domain_around_1_2_9_11": "fail: AssertionError: {1: False, 2: True, 9: False, 11: True} != {1: True, 2: True, 9: False, 11: True}",
+        "TestIsPrimeRegression.test_primes_below_12_with_exclusive_upper_bound": "fail: AssertionError: Lists differ: [2, 3, 5, 7, 11] != [0, 1, 2, 3, 5, 7, 11]",
+        "TestIsPrimeRegression.test_no_emitted_prime_has_a_divisor_up_to_its_square_root": "fail: AssertionError: True is not False"
+      },
+      "killed_by_old": [],
+      "killed_by_new": [
+        "TestIsPrimeRegression.test_one_is_not_prime",
+        "TestIsPrimeRegression.test_fixture_domain_around_1_2_9_11",
+        "TestIsPrimeRegression.test_primes_below_12_with_exclusive_upper_bound",
+        "TestIsPrimeRegression.test_no_emitted_prime_has_a_divisor_up_to_its_square_root"
+      ]
+    },
+    "B": {
+      "outcomes": {
+        "TestRabinMiller.test_is_prime": "pass",
+        "TestIsPrimeRegression.test_one_is_not_prime": "pass",
+        "TestIsPrimeRegression.test_fixture_domain_around_1_2_9_11": "pass",
+        "TestIsPrimeRegression.test_primes_below_12_with_exclusive_upper_bound": "fail: AssertionError: Lists differ: [2, 3, 5, 7, 11] != [2, 3, 7, 11]",
+        "TestIsPrimeRegression.test_no_emitted_prime_has_a_divisor_up_to_its_square_root": "fail: AssertionError: 46 != 45"
+      },
+      "killed_by_old": [],
+      "killed_by_new": [
+        "TestIsPrimeRegression.test_primes_below_12_with_exclusive_upper_bound",
+        "TestIsPrimeRegression.test_no_emitted_prime_has_a_divisor_up_to_its_square_root"
+      ]
+    },
+    "R": {
+      "outcomes": {
+        "TestRabinMiller.test_is_prime": "fail: AssertionError: True is not false",
+        "TestIsPrimeRegression.test_one_is_not_prime": "pass",
+        "TestIsPrimeRegression.test_fixture_domain_around_1_2_9_11": "fail: AssertionError: {1: False, 2: True, 9: False, 11: True} != {1: False, 2: True, 9: True, 11: True}",
+        "TestIsPrimeRegression.test_primes_below_12_with_exclusive_upper_bound": "fail: AssertionError: Lists differ: [2, 3, 5, 7, 11] != [2, 3, 5, 6, 7, 8, 9, 10, 11]",
+        "TestIsPrimeRegression.test_no_emitted_prime_has_a_divisor_up_to_its_square_root": "fail: AssertionError: True is not False"
+      },
+      "killed_by_old": [
+        "TestRabinMiller.test_is_prime"
+      ],
+      "killed_by_new": [
+        "TestIsPrimeRegression.test_fixture_domain_around_1_2_9_11",
+        "TestIsPrimeRegression.test_primes_below_12_with_exclusive_upper_bound",
+        "TestIsPrimeRegression.test_no_emitted_prime_has_a_divisor_up_to_its_square_root"
+      ]
+    },
+    "W": {
+      "outcomes": {
+        "TestRabinMiller.test_is_prime": "fail: AssertionError: False is not true",
+        "TestIsPrimeRegression.test_one_is_not_prime": "pass",
+        "TestIsPrimeRegression.test_fixture_domain_around_1_2_9_11": "fail: AssertionError: {1: False, 2: True, 9: False, 11: True} != {1: False, 2: True, 9: False, 11: False}",
+        "TestIsPrimeRegression.test_primes_below_12_with_exclusive_upper_bound": "fail: AssertionError: Lists differ: [2, 3, 5, 7, 11] != [2, 3, 5]",
+        "TestIsPrimeRegression.test_no_emitted_prime_has_a_divisor_up_to_its_square_root": "fail: AssertionError: 46 != 15"
+      },
+      "killed_by_old": [
+        "TestRabinMiller.test_is_prime"
+      ],
+      "killed_by_new": [
+        "TestIsPrimeRegression.test_fixture_domain_around_1_2_9_11",
+        "TestIsPrimeRegression.test_primes_below_12_with_exclusive_upper_bound",
+        "TestIsPrimeRegression.test_no_emitted_prime_has_a_divisor_up_to_its_square_root"
+      ]
+    }
+  },
+  "primary_differing_inputs": [
+    {
+      "n": 0,
+      "original": false,
+      "mutant": true,
+      "trial_division": false
+    },
+    {
+      "n": 1,
+      "original": false,
+      "mutant": true,
+      "trial_division": false
+    }
+  ],
+  "invariant": {
+    "emitted_count": 46,
+    "expected_count": 46,
+    "emitted_with_a_small_divisor": [],
+    "nine_rejected": true,
+    "primes_below_12": [
+      2,
+      3,
+      5,
+      7,
+      11
+    ],
+    "passed": true
+  },
+  "code_unchanged_apart_from_docstrings": true
+}

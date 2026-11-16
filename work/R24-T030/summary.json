@@ -1,0 +1,21 @@
+{
+  "task": "R24-T030",
+  "target": "algorithms/math/rabin_miller.py:is_prime",
+  "protected_condition": "n < 5: return n == 2 or n == 3",
+  "primary_mutant": "return n == 2 or n == 3 -> return n <= 3",
+  "named_assertion": "TestIsPrimeRegression.test_one_is_not_prime",
+  "mutants_killed_by_old_tests": [
+    "R",
+    "W"
+  ],
+  "mutants_killed_by_new_tests": [
+    "P",
+    "B",
+    "R",
+    "W"
+  ],
+  "pytest_command": "python3 -m pytest tests/test_math.py::TestIsPrimeRegression -q --no-header",
+  "pytest_passed": 4,
+  "pytest_failed": 0,
+  "overall": "PASS"
+}

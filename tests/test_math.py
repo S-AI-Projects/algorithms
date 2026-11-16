@@ -340,6 +340,63 @@ class TestRabinMiller(unittest.TestCase):
         self.assertFalse(is_prime(6, 2))
 
 
+class TestIsPrimeRegression(unittest.TestCase):
+    """Regression tests for is_prime in rabin_miller.py.
+
+    The protected condition is the small-number branch, ``n < 5``, where only
+    2 and 3 are prime. The plausible one-line mistake ``return n <= 3``
+    (instead of ``n == 2 or n == 3``) passes the older test above but fails
+    test_one_is_not_prime. Random bases come from ``secrets.randbelow``;
+    check() swaps in the fixed bases 2, 3, 5 and 7, so every result here is
+    repeatable.
+    """
+
+    ROUNDS = 4
+
+    def check(self, n):
+        import itertools
+        from unittest import mock
+
+        offsets = itertools.cycle([0, 1, 3, 5])  # bases 2, 3, 5 and 7
+
+        def fixed_randbelow(bound):
+            return next(offsets) % bound
+
+        with mock.patch("secrets.randbelow", new=fixed_randbelow):
+            return is_prime(n, self.ROUNDS)
+
+    @staticmethod
+    def prime_by_trial_division(n):
+        """Independent answer: n > 1 with no divisor from 2 to isqrt(n)."""
+        divisor = 2
+        while divisor * divisor <= n:
+            if n % divisor == 0:
+                return False
+            divisor += 1
+        return n > 1
+
+    def test_one_is_not_prime(self):
+        # 1 has only one divisor, so it is not prime.
+        self.assertIs(False, self.check(1))
+
+    def test_fixture_domain_around_1_2_9_11(self):
+        # 9 = 3 * 3 has the divisor 3 <= isqrt(9), so it must be rejected.
+        self.assertEqual(
+            {1: False, 2: True, 9: False, 11: True},
+            {n: self.check(n) for n in (1, 2, 9, 11)},
+        )
+
+    def test_primes_below_12_with_exclusive_upper_bound(self):
+        self.assertEqual([2, 3, 5, 7, 11], [n for n in range(12) if self.check(n)])
+
+    def test_no_emitted_prime_has_a_divisor_up_to_its_square_root(self):
+        emitted = [n for n in range(200) if self.check(n)]
+        for n in emitted:
+            with self.subTest(n=n):
+                self.assertIs(True, self.prime_by_trial_division(n))
+        self.assertEqual(46, len(emitted))  # there are 46 primes below 200
+
+
 class TestRSA(unittest.TestCase):
     """[summary]
     Test for the file rsa.py

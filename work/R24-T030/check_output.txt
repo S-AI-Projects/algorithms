@@ -1,0 +1,50 @@
+R24-T030 is_prime mutation check
+
+original: killed by old tests none; killed by new tests 0/4
+    TestRabinMiller.test_is_prime: pass
+    TestIsPrimeRegression.test_one_is_not_prime: pass
+    TestIsPrimeRegression.test_fixture_domain_around_1_2_9_11: pass
+    TestIsPrimeRegression.test_primes_below_12_with_exclusive_upper_bound: pass
+    TestIsPrimeRegression.test_no_emitted_prime_has_a_divisor_up_to_its_square_root: pass
+mutant P (return condition): killed by old tests none; killed by new tests 4/4
+    TestRabinMiller.test_is_prime: pass
+    TestIsPrimeRegression.test_one_is_not_prime: fail: AssertionError: False is not True
+    TestIsPrimeRegression.test_fixture_domain_around_1_2_9_11: fail: AssertionError: {1: False, 2: True, 9: False, 11: True} != {1: True, 2: True, 9: False, 11: True}
+    TestIsPrimeRegression.test_primes_below_12_with_exclusive_upper_bound: fail: AssertionError: Lists differ: [2, 3, 5, 7, 11] != [0, 1, 2, 3, 5, 7, 11]
+    TestIsPrimeRegression.test_no_emitted_prime_has_a_divisor_up_to_its_square_root: fail: AssertionError: True is not False
+mutant B (boundary comparison): killed by old tests none; killed by new tests 2/4
+    TestRabinMiller.test_is_prime: pass
+    TestIsPrimeRegression.test_one_is_not_prime: pass
+    TestIsPrimeRegression.test_fixture_domain_around_1_2_9_11: pass
+    TestIsPrimeRegression.test_primes_below_12_with_exclusive_upper_bound: fail: AssertionError: Lists differ: [2, 3, 5, 7, 11] != [2, 3, 7, 11]
+    TestIsPrimeRegression.test_no_emitted_prime_has_a_divisor_up_to_its_square_root: fail: AssertionError: 46 != 45
+mutant R (return condition): killed by old tests ['TestRabinMiller.test_is_prime']; killed by new tests 3/4
+    TestRabinMiller.test_is_prime: fail: AssertionError: True is not false
+    TestIsPrimeRegression.test_one_is_not_prime: pass
+    TestIsPrimeRegression.test_fixture_domain_around_1_2_9_11: fail: AssertionError: {1: False, 2: True, 9: False, 11: True} != {1: False, 2: True, 9: True, 11: True}
+    TestIsPrimeRegression.test_primes_below_12_with_exclusive_upper_bound: fail: AssertionError: Lists differ: [2, 3, 5, 7, 11] != [2, 3, 5, 6, 7, 8, 9, 10, 11]
+    TestIsPrimeRegression.test_no_emitted_prime_has_a_divisor_up_to_its_square_root: fail: AssertionError: True is not False
+mutant W (comparison): killed by old tests ['TestRabinMiller.test_is_prime']; killed by new tests 3/4
+    TestRabinMiller.test_is_prime: fail: AssertionError: False is not true
+    TestIsPrimeRegression.test_one_is_not_prime: pass
+    TestIsPrimeRegression.test_fixture_domain_around_1_2_9_11: fail: AssertionError: {1: False, 2: True, 9: False, 11: True} != {1: False, 2: True, 9: False, 11: False}
+    TestIsPrimeRegression.test_primes_below_12_with_exclusive_upper_bound: fail: AssertionError: Lists differ: [2, 3, 5, 7, 11] != [2, 3, 5]
+    TestIsPrimeRegression.test_no_emitted_prime_has_a_divisor_up_to_its_square_root: fail: AssertionError: 46 != 15
+
+[PASS] original passes every old and new test
+[PASS] mutant P survives the old test and fails TestIsPrimeRegression.test_one_is_not_prime: fail: AssertionError: False is not True
+[PASS] every mutant fails at least one new test
+[PASS] inputs below 12 where P differs: [(0, False, True), (1, False, True)] (n, original, mutant); trial division says none of them is prime
+[PASS] invariant on 0..199: 46 emitted (expected 46), with a small divisor: [], 9 rejected: True, primes below 12: [2, 3, 5, 7, 11]
+[PASS] code identical to bd1d152 apart from docstrings (no mutant or test-only branch)
+
+Pytest command: python3 -m pytest tests/test_math.py::TestIsPrimeRegression -q --no-header
+Pytest result: 4 passed, 0 failed, exit 0
+============================= test session starts ==============================
+collected 4 items
+
+tests/test_math.py ....                                                  [100%]
+
+============================== 4 passed in 0.06s ===============================
+
+OVERALL: PASS

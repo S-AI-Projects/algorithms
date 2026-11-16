@@ -27,11 +27,23 @@ def is_prime(n: int, k: int) -> bool:
     Returns:
         True if n is probably prime, False if n is definitely composite.
 
+    Small inputs (a regression test protects this condition):
+        ``n < 5`` is decided without any random rounds: only 2 and 3 are
+        prime, so 0, 1 and 4 return False. From 5 up, the k rounds never
+        reject a prime. A composite such as 9 is always rejected, because
+        every base it can draw (2 to 6) proves it composite.
+
     Examples:
         >>> is_prime(7, 2)
         True
         >>> is_prime(6, 2)
         False
+        >>> is_prime(1, 4)
+        False
+        >>> is_prime(9, 4)
+        False
+        >>> is_prime(11, 4)
+        True
     """
 
     def _pow2_factor(num: int) -> tuple[int, int]:
