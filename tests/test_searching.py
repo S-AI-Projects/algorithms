@@ -24,6 +24,34 @@ from algorithms.searching import (
 )
 
 
+class TestLastOccurrenceWork(unittest.TestCase):
+    """Regression for last_occurrence: right answers, logarithmic work."""
+
+    def test_neighbouring_inputs(self):
+        # Anchor [1, 2, 2, 2, 3, 4] with one more 2: the last 2 moves to index 4.
+        self.assertEqual(4, last_occurrence([1, 2, 2, 2, 2, 3, 4], 2))
+        # Anchor [1, 2, 3, 4, 5] searched for its final value instead of 6.
+        self.assertEqual(4, last_occurrence([1, 2, 3, 4, 5], 5))
+
+    def test_work_stays_logarithmic(self):
+        class CountingList(list):
+            """A list that counts how many elements are read from it."""
+
+            def __init__(self, values):
+                super().__init__(values)
+                self.reads = 0
+
+            def __getitem__(self, index):
+                self.reads += 1
+                return super().__getitem__(index)
+
+        array = CountingList(range(1024))
+        # A query above every element is the worst case: at most
+        # floor(log2(1024)) + 1 = 11 passes, each reading at most 4 elements.
+        self.assertEqual(-1, last_occurrence(array, 5000))
+        self.assertLessEqual(array.reads, 4 * 11)
+
+
 class TestSuite(unittest.TestCase):
     def test_first_occurrence(self):
         def helper(array, query):

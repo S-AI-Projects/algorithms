@@ -1,0 +1,314 @@
+{
+  "anchors": [
+    {
+      "name": "anchor",
+      "array": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        4
+      ],
+      "query": 2,
+      "expected": 3,
+      "actual": 3,
+      "passed": true
+    },
+    {
+      "name": "anchor",
+      "array": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "query": 6,
+      "expected": -1,
+      "actual": -1,
+      "passed": true
+    },
+    {
+      "name": "neighbour: one more 2",
+      "array": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        4
+      ],
+      "query": 2,
+      "expected": 4,
+      "actual": 4,
+      "passed": true
+    },
+    {
+      "name": "neighbour: the final value",
+      "array": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "query": 5,
+      "expected": 4,
+      "actual": 4,
+      "passed": true
+    }
+  ],
+  "sizes": [
+    {
+      "n": 1000,
+      "bound_passes": 10,
+      "bound_reads": 40,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "queries": 58,
+          "mismatches": [],
+          "max_passes": 10,
+          "median_passes": 10.0,
+          "max_reads": 32,
+          "ns_per_call": 524.4137931034483,
+          "within_bounds": true,
+          "passed": true
+        },
+        {
+          "repetition": 2,
+          "queries": 58,
+          "mismatches": [],
+          "max_passes": 10,
+          "median_passes": 10.0,
+          "max_reads": 32,
+          "ns_per_call": 593.3965517241379,
+          "within_bounds": true,
+          "passed": true
+        },
+        {
+          "repetition": 3,
+          "queries": 58,
+          "mismatches": [],
+          "max_passes": 10,
+          "median_passes": 9.0,
+          "max_reads": 32,
+          "ns_per_call": 568.9655172413793,
+          "within_bounds": true,
+          "passed": true
+        },
+        {
+          "repetition": 4,
+          "queries": 58,
+          "mismatches": [],
+          "max_passes": 10,
+          "median_passes": 10.0,
+          "max_reads": 32,
+          "ns_per_call": 573.2758620689655,
+          "within_bounds": true,
+          "passed": true
+        },
+        {
+          "repetition": 5,
+          "queries": 58,
+          "mismatches": [],
+          "max_passes": 10,
+          "median_passes": 9.0,
+          "max_reads": 32,
+          "ns_per_call": 540.2241379310345,
+          "within_bounds": true,
+          "passed": true
+        }
+      ],
+      "max_passes": {
+        "median": 10,
+        "min": 10,
+        "max": 10
+      },
+      "median_passes": {
+        "median": 10.0,
+        "min": 9.0,
+        "max": 10.0
+      },
+      "max_reads": {
+        "median": 32,
+        "min": 32,
+        "max": 32
+      },
+      "ns_per_call": {
+        "median": 568.9655172413793,
+        "min": 524.4137931034483,
+        "max": 593.3965517241379
+      },
+      "passed": true
+    },
+    {
+      "n": 10000,
+      "bound_passes": 14,
+      "bound_reads": 56,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "queries": 58,
+          "mismatches": [],
+          "max_passes": 14,
+          "median_passes": 13.0,
+          "max_reads": 45,
+          "ns_per_call": 846.2758620689655,
+          "within_bounds": true,
+          "passed": true
+        },
+        {
+          "repetition": 2,
+          "queries": 58,
+          "mismatches": [],
+          "max_passes": 14,
+          "median_passes": 13.0,
+          "max_reads": 45,
+          "ns_per_call": 894.3965517241379,
+          "within_bounds": true,
+          "passed": true
+        },
+        {
+          "repetition": 3,
+          "queries": 58,
+          "mismatches": [],
+          "max_passes": 14,
+          "median_passes": 13.0,
+          "max_reads": 45,
+          "ns_per_call": 783.7586206896551,
+          "within_bounds": true,
+          "passed": true
+        },
+        {
+          "repetition": 4,
+          "queries": 58,
+          "mismatches": [],
+          "max_passes": 14,
+          "median_passes": 13.0,
+          "max_reads": 45,
+          "ns_per_call": 836.2068965517242,
+          "within_bounds": true,
+          "passed": true
+        },
+        {
+          "repetition": 5,
+          "queries": 58,
+          "mismatches": [],
+          "max_passes": 14,
+          "median_passes": 13.0,
+          "max_reads": 46,
+          "ns_per_call": 795.2586206896551,
+          "within_bounds": true,
+          "passed": true
+        }
+      ],
+      "max_passes": {
+        "median": 14,
+        "min": 14,
+        "max": 14
+      },
+      "median_passes": {
+        "median": 13.0,
+        "min": 13.0,
+        "max": 13.0
+      },
+      "max_reads": {
+        "median": 45,
+        "min": 45,
+        "max": 46
+      },
+      "ns_per_call": {
+        "median": 836.2068965517242,
+        "min": 783.7586206896551,
+        "max": 894.3965517241379
+      },
+      "passed": true
+    },
+    {
+      "n": 100000,
+      "bound_passes": 17,
+      "bound_reads": 68,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "queries": 58,
+          "mismatches": [],
+          "max_passes": 17,
+          "median_passes": 16.0,
+          "max_reads": 54,
+          "ns_per_call": 1000.0,
+          "within_bounds": true,
+          "passed": true
+        },
+        {
+          "repetition": 2,
+          "queries": 58,
+          "mismatches": [],
+          "max_passes": 17,
+          "median_passes": 16.0,
+          "max_reads": 54,
+          "ns_per_call": 975.5689655172414,
+          "within_bounds": true,
+          "passed": true
+        },
+        {
+          "repetition": 3,
+          "queries": 58,
+          "mismatches": [],
+          "max_passes": 17,
+          "median_passes": 16.0,
+          "max_reads": 54,
+          "ns_per_call": 987.0689655172414,
+          "within_bounds": true,
+          "passed": true
+        },
+        {
+          "repetition": 4,
+          "queries": 58,
+          "mismatches": [],
+          "max_passes": 17,
+          "median_passes": 16.5,
+          "max_reads": 54,
+          "ns_per_call": 988.5,
+          "within_bounds": true,
+          "passed": true
+        },
+        {
+          "repetition": 5,
+          "queries": 58,
+          "mismatches": [],
+          "max_passes": 17,
+          "median_passes": 16.0,
+          "max_reads": 54,
+          "ns_per_call": 1035.2068965517242,
+          "within_bounds": true,
+          "passed": true
+        }
+      ],
+      "max_passes": {
+        "median": 17,
+        "min": 17,
+        "max": 17
+      },
+      "median_passes": {
+        "median": 16.0,
+        "min": 16.0,
+        "max": 16.5
+      },
+      "max_reads": {
+        "median": 54,
+        "min": 54,
+        "max": 54
+      },
+      "ns_per_call": {
+        "median": 988.5,
+        "min": 975.5689655172414,
+        "max": 1035.2068965517242
+      },
+      "passed": true
+    }
+  ]
+}

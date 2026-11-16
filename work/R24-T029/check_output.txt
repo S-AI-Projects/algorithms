@@ -1,0 +1,25 @@
+R24-T029 last_occurrence work measurement
+
+Loop line counted for passes: L42 'mid = (high + low) // 2'
+
+Anchors and neighbouring inputs (expected vs actual):
+  [PASS] anchor: last_occurrence([1, 2, 2, 2, 3, 4], 2) expected=3 actual=3
+  [PASS] anchor: last_occurrence([1, 2, 3, 4, 5], 6) expected=-1 actual=-1
+  [PASS] neighbour: one more 2: last_occurrence([1, 2, 2, 2, 2, 3, 4], 2) expected=4 actual=4
+  [PASS] neighbour: the final value: last_occurrence([1, 2, 3, 4, 5], 5) expected=4 actual=4
+
+Experiment (seed 24029, 5 fresh arrays per size; median and range over repetitions):
+  [PASS] n=1,000: correct 290/290; max passes 10 (range 10-10) <= 10; median passes 10.0 (range 9.0-10.0); max reads 32 (range 32-32) <= 40; time per call 569 (range 524-593) ns (reported, not judged)
+  [PASS] n=10,000: correct 290/290; max passes 14 (range 14-14) <= 14; median passes 13.0 (range 13.0-13.0); max reads 45 (range 45-46) <= 56; time per call 836 (range 784-894) ns (reported, not judged)
+  [PASS] n=100,000: correct 290/290; max passes 17 (range 17-17) <= 17; median passes 16.0 (range 16.0-16.5); max reads 54 (range 54-54) <= 68; time per call 988 (range 976-1035) ns (reported, not judged)
+
+Pytest command: python3 -m pytest tests/test_searching.py::TestLastOccurrenceWork -q --no-header
+Pytest result: 2 passed, 0 failed, exit 0
+============================= test session starts ==============================
+collected 2 items
+
+tests/test_searching.py ..                                               [100%]
+
+============================== 2 passed in 0.01s ===============================
+
+OVERALL: PASS

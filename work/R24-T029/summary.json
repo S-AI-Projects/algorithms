@@ -1,0 +1,21 @@
+{
+  "task": "R24-T029",
+  "target": "algorithms/searching/last_occurrence.py:last_occurrence",
+  "input_size": "n = len(array)",
+  "claim": "at most n.bit_length() loop passes and 4 reads per pass",
+  "observed_max_passes": {
+    "1000": 10,
+    "10000": 14,
+    "100000": 17
+  },
+  "bound_passes": {
+    "1000": 10,
+    "10000": 14,
+    "100000": 17
+  },
+  "all_correct_and_within_bounds": true,
+  "pytest_command": "python3 -m pytest tests/test_searching.py::TestLastOccurrenceWork -q --no-header",
+  "pytest_passed": 2,
+  "pytest_failed": 0,
+  "overall": "PASS"
+}
