@@ -1,0 +1,138 @@
+{
+  "task": "R24-T032",
+  "module": "algorithms/math/prime_check.py",
+  "public_contract": {
+    "inputs": "n: int (integer to test)",
+    "result": "bool (True if n is prime, False otherwise)",
+    "mutation_behavior": "Pure function; does not mutate inputs or global state",
+    "external_dependencies": "None (pure Python built-ins)"
+  },
+  "native_check": {
+    "command": "python3 -m unittest tests.test_math.TestPrimeTest",
+    "test_count": 5,
+    "failures_count": 0,
+    "errors_count": 0,
+    "success": true,
+    "runner_output": "test_prime_check_boundary_around_eleven (tests.test_math.TestPrimeTest)\nDomain boundary around 11: prime check at 11 and composite neighbor 12. ... ok\ntest_prime_check_boundary_around_nine (tests.test_math.TestPrimeTest)\nDomain boundary around 9: smallest odd composite number. ... ok\ntest_prime_check_boundary_around_one_and_two (tests.test_math.TestPrimeTest)\nDocumented boundary: n <= 1 returns False sentinel; n = 2 is smallest prime. ... ok\ntest_prime_check_sieve_through_twelve_exclusive (tests.test_math.TestPrimeTest)\nSieve through 12 respecting exclusive upper-bound interface: primes are 2, 3, 5, 7, 11. ... ok\ntest_prime_test (tests.test_math.TestPrimeTest)\nchecks all prime numbers between 2 up to 100. ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nOK\n"
+  },
+  "boundary_results": {
+    "individual_boundary_checks": [
+      {
+        "boundary": "around_1_sentinel",
+        "input": -1,
+        "side": "below_boundary",
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "boundary": "around_1_sentinel",
+        "input": 0,
+        "side": "below_boundary",
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "boundary": "around_1_sentinel",
+        "input": 1,
+        "side": "on_boundary",
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "boundary": "around_2_smallest_prime",
+        "input": 1,
+        "side": "below_boundary",
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "boundary": "around_2_smallest_prime",
+        "input": 2,
+        "side": "on_boundary_smallest_prime",
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "boundary": "around_2_smallest_prime",
+        "input": 3,
+        "side": "above_boundary_interior_prime",
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "boundary": "around_9_first_odd_composite",
+        "input": 8,
+        "side": "below_boundary",
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "boundary": "around_9_first_odd_composite",
+        "input": 9,
+        "side": "on_boundary_smallest_odd_composite",
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "boundary": "around_9_first_odd_composite",
+        "input": 10,
+        "side": "above_boundary",
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "boundary": "around_11_sieve_limit",
+        "input": 10,
+        "side": "below_boundary",
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "boundary": "around_11_sieve_limit",
+        "input": 11,
+        "side": "on_boundary_prime",
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "boundary": "around_11_sieve_limit",
+        "input": 12,
+        "side": "above_boundary_composite",
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    ],
+    "sieve_through_12_exclusive": {
+      "upper_bound_exclusive": 12,
+      "expected_primes": [
+        2,
+        3,
+        5,
+        7,
+        11
+      ],
+      "actual_primes": [
+        2,
+        3,
+        5,
+        7,
+        11
+      ],
+      "pass": true
+    },
+    "all_passed": true
+  },
+  "status": "ALL_CHECKS_PASSED"
+}
