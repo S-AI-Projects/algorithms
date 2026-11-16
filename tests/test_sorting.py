@@ -52,6 +52,62 @@ class TestSuite(unittest.TestCase):
     def test_cycle_sort(self):
         self.assertTrue(is_sorted(cycle_sort([1, 3, 2, 5, 65, 23, 57, 1232])))
 
+    def test_cycle_sort_ordinary(self):
+        """Regression test: ordinary unsorted collection [3, 1, 2]."""
+        arr = [3, 1, 2]
+        res = cycle_sort(arr)
+        # Test returned value
+        self.assertEqual(res, [1, 2, 3])
+        # Test observable mutation separately
+        self.assertEqual(arr, [1, 2, 3])
+        self.assertIs(res, arr)
+
+    def test_cycle_sort_repeated_values(self):
+        """Regression test: collection with repeated values [2, 2, 1]."""
+        arr = [2, 2, 1]
+        res = cycle_sort(arr)
+        # Test returned value
+        self.assertEqual(res, [1, 2, 2])
+        # Test observable mutation separately
+        self.assertEqual(arr, [1, 2, 2])
+        self.assertIs(res, arr)
+
+    def test_cycle_sort_already_ordered(self):
+        """Regression test: already ordered collection [1, 2, 3]."""
+        arr = [1, 2, 3]
+        res = cycle_sort(arr)
+        # Test returned value
+        self.assertEqual(res, [1, 2, 3])
+        # Test observable mutation separately
+        self.assertEqual(arr, [1, 2, 3])
+        self.assertIs(res, arr)
+
+    def test_cycle_sort_reversed(self):
+        """Regression test: reverse-ordered collection [3, 2, 1]."""
+        arr = [3, 2, 1]
+        res = cycle_sort(arr)
+        # Test returned value
+        self.assertEqual(res, [1, 2, 3])
+        # Test observable mutation separately
+        self.assertEqual(arr, [1, 2, 3])
+        self.assertIs(res, arr)
+
+    def test_cycle_sort_smallest_supported(self):
+        """Regression test: smallest supported collections ([] and [1])."""
+        # Empty collection
+        empty_arr = []
+        res_empty = cycle_sort(empty_arr)
+        self.assertEqual(res_empty, [])
+        self.assertEqual(empty_arr, [])
+        self.assertIs(res_empty, empty_arr)
+
+        # Single element collection
+        single_arr = [1]
+        res_single = cycle_sort(single_arr)
+        self.assertEqual(res_single, [1])
+        self.assertEqual(single_arr, [1])
+        self.assertIs(res_single, single_arr)
+
     def test_exchange_sort(self):
         self.assertTrue(is_sorted(exchange_sort([1, 3, 2, 5, 65, 23, 57, 1232])))
 
