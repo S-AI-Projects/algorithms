@@ -1,0 +1,143 @@
+{
+  "boundary_cases": [
+    {
+      "partition": "valid boundary",
+      "name": "empty_stack",
+      "input": [],
+      "expected": [],
+      "source": "L34/L36 loops run zero times; L44 returns stack"
+    },
+    {
+      "partition": "valid boundary",
+      "name": "single_value",
+      "input": [
+        7
+      ],
+      "expected": [
+        7
+      ],
+      "source": "L5; odd case L38-40"
+    },
+    {
+      "partition": "valid boundary",
+      "name": "smallest_even",
+      "input": [
+        1,
+        2
+      ],
+      "expected": [
+        2,
+        1
+      ],
+      "source": "L4; swap L41-43"
+    },
+    {
+      "partition": "valid boundary",
+      "name": "smallest_odd_with_pair",
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "expected": [
+        2,
+        1,
+        3
+      ],
+      "source": "L5; odd case L38-40"
+    },
+    {
+      "partition": "valid interior",
+      "name": "even_four",
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected": [
+        2,
+        1,
+        4,
+        3
+      ],
+      "source": "L4"
+    },
+    {
+      "partition": "valid interior",
+      "name": "docstring_example",
+      "input": [
+        3,
+        8,
+        17,
+        9,
+        1,
+        10
+      ],
+      "expected": [
+        8,
+        3,
+        9,
+        17,
+        10,
+        1
+      ],
+      "source": "L30-31 (existing doctest)"
+    }
+  ],
+  "fixture": {
+    "operations": "push A, B, C; pop twice; push D; drain",
+    "expected_pop_order": [
+      "C",
+      "B",
+      "D",
+      "A"
+    ],
+    "states": [
+      {
+        "after": "push A, B, C",
+        "stack": [
+          "A",
+          "B",
+          "C"
+        ],
+        "switched": [
+          "B",
+          "A",
+          "C"
+        ]
+      },
+      {
+        "after": "pop twice",
+        "stack": [
+          "A"
+        ],
+        "switched": [
+          "A"
+        ]
+      },
+      {
+        "after": "push D",
+        "stack": [
+          "A",
+          "D"
+        ],
+        "switched": [
+          "D",
+          "A"
+        ]
+      },
+      {
+        "after": "drain",
+        "stack": [],
+        "switched": []
+      }
+    ]
+  },
+  "unsupported": {
+    "partition": "unsupported",
+    "name": "non_list_argument",
+    "input": "a tuple or None",
+    "note": "No guard in the source (L33-44) and no documented exception, so behaviour is undefined and no exception is asserted."
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "fixture": {
+    "operations": "push A, B, C; pop twice; push D; drain",
+    "expected_pop_order": [
+      "C",
+      "B",
+      "D",
+      "A"
+    ],
+    "actual_pop_order": [
+      "C",
+      "B",
+      "D",
+      "A"
+    ],
+    "pop_order_ok": true,
+    "states": [
+      {
+        "after": "push A, B, C",
+        "expected_stack": [
+          "A",
+          "B",
+          "C"
+        ],
+        "actual_stack": [
+          "A",
+          "B",
+          "C"
+        ],
+        "expected_switched": [
+          "B",
+          "A",
+          "C"
+        ],
+        "actual_switched": [
+          "B",
+          "A",
+          "C"
+        ],
+        "passed": true
+      },
+      {
+        "after": "pop twice",
+        "expected_stack": [
+          "A"
+        ],
+        "actual_stack": [
+          "A"
+        ],
+        "expected_switched": [
+          "A"
+        ],
+        "actual_switched": [
+          "A"
+        ],
+        "passed": true
+      },
+      {
+        "after": "push D",
+        "expected_stack": [
+          "A",
+          "D"
+        ],
+        "actual_stack": [
+          "A",
+          "D"
+        ],
+        "expected_switched": [
+          "D",
+          "A"
+        ],
+        "actual_switched": [
+          "D",
+          "A"
+        ],
+        "passed": true
+      },
+      {
+        "after": "drain",
+        "expected_stack": [],
+        "actual_stack": [],
+        "expected_switched": [],
+        "actual_switched": [],
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "boundary_cases": [
+    {
+      "partition": "valid boundary",
+      "name": "empty_stack",
+      "input": [],
+      "expected": [],
+      "source": "L34/L36 loops run zero times; L44 returns stack",
+      "actual": [],
+      "value_ok": true,
+      "same_list_returned": true,
+      "passed": true
+    },
+    {
+      "partition": "valid boundary",
+      "name": "single_value",
+      "input": [
+        7
+      ],
+      "expected": [
+        7
+      ],
+      "source": "L5; odd case L38-40",
+      "actual": [
+        7
+      ],
+      "value_ok": true,
+      "same_list_returned": true,
+      "passed": true
+    },
+    {
+      "partition": "valid boundary",
+      "name": "smallest_even",
+      "input": [
+        1,
+        2
+      ],
+      "expected": [
+        2,
+        1
+      ],
+      "source": "L4; swap L41-43",
+      "actual": [
+        2,
+        1
+      ],
+      "value_ok": true,
+      "same_list_returned": true,
+      "passed": true
+    },
+    {
+      "partition": "valid boundary",
+      "name": "smallest_odd_with_pair",
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "expected": [
+        2,
+        1,
+        3
+      ],
+      "source": "L5; odd case L38-40",
+      "actual": [
+        2,
+        1,
+        3
+      ],
+      "value_ok": true,
+      "same_list_returned": true,
+      "passed": true
+    },
+    {
+      "partition": "valid interior",
+      "name": "even_four",
+      "input": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected": [
+        2,
+        1,
+        4,
+        3
+      ],
+      "source": "L4",
+      "actual": [
+        2,
+        1,
+        4,
+        3
+      ],
+      "value_ok": true,
+      "same_list_returned": true,
+      "passed": true
+    },
+    {
+      "partition": "valid interior",
+      "name": "docstring_example",
+      "input": [
+        3,
+        8,
+        17,
+        9,
+        1,
+        10
+      ],
+      "expected": [
+        8,
+        3,
+        9,
+        17,
+        10,
+        1
+      ],
+      "source": "L30-31 (existing doctest)",
+      "actual": [
+        8,
+        3,
+        9,
+        17,
+        10,
+        1
+      ],
+      "value_ok": true,
+      "same_list_returned": true,
+      "passed": true
+    }
+  ]
+}

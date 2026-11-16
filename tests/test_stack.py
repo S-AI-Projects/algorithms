@@ -82,6 +82,59 @@ class TestSuite(unittest.TestCase):
         self.assertEqual("/my/name/keon", simplify_path(p))
 
 
+class TestFirstSwitchPairsBoundaries(unittest.TestCase):
+    """Boundary contract of first_switch_pairs (index 0 is the stack bottom)."""
+
+    def test_fixture_walk_on_list_stack(self):
+        # Fixture: push A, B, C; pop twice; push D; drain.
+        # Expected pop order: C, B, D, A. At each state, first_switch_pairs
+        # runs on a copy so the fixture stack itself is not disturbed.
+        stack: list[str] = []
+        popped: list[str] = []
+        for value in ("A", "B", "C"):
+            stack.append(value)
+        self.assertEqual(["A", "B", "C"], stack)
+        self.assertEqual(["B", "A", "C"], first_switch_pairs(list(stack)))
+
+        popped.append(stack.pop())
+        popped.append(stack.pop())
+        self.assertEqual(["A"], stack)
+        self.assertEqual(["A"], first_switch_pairs(list(stack)))
+
+        stack.append("D")
+        self.assertEqual(["A", "D"], stack)
+        self.assertEqual(["D", "A"], first_switch_pairs(list(stack)))
+
+        while stack:
+            popped.append(stack.pop())
+        self.assertEqual(["C", "B", "D", "A"], popped)
+
+        # Documented empty-state behaviour on the drained stack.
+        self.assertEqual([], first_switch_pairs(stack))
+        self.assertEqual([], stack)
+
+    def test_empty_stack_returns_empty_without_error(self):
+        self.assertEqual([], first_switch_pairs([]))
+
+    def test_single_value_is_not_moved(self):
+        self.assertEqual([7], first_switch_pairs([7]))
+
+    def test_two_values_are_swapped(self):
+        self.assertEqual([2, 1], first_switch_pairs([1, 2]))
+
+    def test_odd_count_leaves_top_value_in_place(self):
+        self.assertEqual([2, 1, 3], first_switch_pairs([1, 2, 3]))
+
+    def test_even_count_swaps_every_pair(self):
+        self.assertEqual([2, 1, 4, 3], first_switch_pairs([1, 2, 3, 4]))
+
+    def test_rearranges_input_in_place_and_returns_it(self):
+        stack = [1, 2, 3, 4]
+        result = first_switch_pairs(stack)
+        self.assertIs(stack, result)
+        self.assertEqual([2, 1, 4, 3], stack)
+
+
 class TestStack(unittest.TestCase):
     def test_array_stack(self):
         stack = ArrayStack()

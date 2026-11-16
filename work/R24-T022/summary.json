@@ -1,0 +1,11 @@
+{
+  "task": "R24-T022",
+  "target": "algorithms/stack/switch_pairs.py:first_switch_pairs",
+  "fixture_passed": true,
+  "boundary_cases": 6,
+  "boundary_cases_passed": 6,
+  "pytest_command": "python3 -m pytest tests/test_stack.py::TestFirstSwitchPairsBoundaries -q --no-header",
+  "pytest_passed": 7,
+  "pytest_failed": 0,
+  "overall": "PASS"
+}

@@ -1,0 +1,28 @@
+R24-T022 first_switch_pairs boundary check
+
+Fixture: push A, B, C; pop twice; push D; drain
+  [PASS] pop order: expected=['C', 'B', 'D', 'A'] actual=['C', 'B', 'D', 'A']
+  [PASS] after push A, B, C: stack=['A', 'B', 'C'] switched expected=['B', 'A', 'C'] actual=['B', 'A', 'C']
+  [PASS] after pop twice: stack=['A'] switched expected=['A'] actual=['A']
+  [PASS] after push D: stack=['A', 'D'] switched expected=['D', 'A'] actual=['D', 'A']
+  [PASS] after drain: stack=[] switched expected=[] actual=[]
+
+Boundary cases (expected vs actual):
+  [PASS] valid boundary empty_stack: input=[] expected=[] actual=[] same_list_returned=True
+  [PASS] valid boundary single_value: input=[7] expected=[7] actual=[7] same_list_returned=True
+  [PASS] valid boundary smallest_even: input=[1, 2] expected=[2, 1] actual=[2, 1] same_list_returned=True
+  [PASS] valid boundary smallest_odd_with_pair: input=[1, 2, 3] expected=[2, 1, 3] actual=[2, 1, 3] same_list_returned=True
+  [PASS] valid interior even_four: input=[1, 2, 3, 4] expected=[2, 1, 4, 3] actual=[2, 1, 4, 3] same_list_returned=True
+  [PASS] valid interior docstring_example: input=[3, 8, 17, 9, 1, 10] expected=[8, 3, 9, 17, 10, 1] actual=[8, 3, 9, 17, 10, 1] same_list_returned=True
+  [SKIP] unsupported non_list_argument: No guard in the source (L33-44) and no documented exception, so behaviour is undefined and no exception is asserted.
+
+Pytest command: python3 -m pytest tests/test_stack.py::TestFirstSwitchPairsBoundaries -q --no-header
+Pytest result: 7 passed, 0 failed, exit 0
+============================= test session starts ==============================
+collected 7 items
+
+tests/test_stack.py .......                                              [100%]
+
+============================== 7 passed in 0.01s ===============================
+
+OVERALL: PASS
