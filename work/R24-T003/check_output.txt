@@ -1,0 +1,37 @@
+============================================================
+Running focused check for R24-T003: can_attend_meetings
+============================================================
+Executing unittest command: /Users/kanavpandey/Documents/SnAI Project/algorithms/.venv/bin/python3 -m unittest -v tests.test_sorting.TestMeetingRooms
+
+test_meeting_rooms_does_not_mutate_input (tests.test_sorting.TestMeetingRooms.test_meeting_rooms_does_not_mutate_input) ... ok
+test_meeting_rooms_fixtures (tests.test_sorting.TestMeetingRooms.test_meeting_rooms_fixtures) ... ok
+test_meeting_rooms_oracle_cross_check (tests.test_sorting.TestMeetingRooms.test_meeting_rooms_oracle_cross_check) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+
+Running doctests on algorithms/sorting/meeting_rooms.py...
+Doctest results: attempted=6, failed=0
+PASSED for empty: [] -> True (matches oracle)
+PASSED for single: [[1, 2]] -> True (matches oracle)
+PASSED for fixture_3_1_2: [[3, 4], [1, 2], [2, 3]] -> True (matches oracle)
+PASSED for fixture_ordered_1_2_3: [[1, 2], [2, 3], [3, 4]] -> True (matches oracle)
+PASSED for fixture_reversed_3_2_1: [[3, 4], [2, 3], [1, 2]] -> True (matches oracle)
+PASSED for fixture_multiplicity_2_2_1: [[2, 3], [2, 4], [1, 2]] -> False (matches oracle)
+PASSED for touching_boundary_pair: [[1, 2], [2, 3]] -> True (matches oracle)
+PASSED for overlapping_pair: [[1, 3], [2, 4]] -> False (matches oracle)
+PASSED for touching_three: [[0, 5], [5, 10], [10, 15]] -> True (matches oracle)
+PASSED for enclosed_interval: [[0, 10], [2, 3], [11, 12]] -> False (matches oracle)
+PASSED for unordered_touching: [[10, 20], [0, 5], [5, 10]] -> True (matches oracle)
+PASSED for nested_overlap: [[1, 10], [2, 5]] -> False (matches oracle)
+PASSED for gapped_four_ordered: [[1, 2], [3, 4], [5, 6], [7, 8]] -> True (matches oracle)
+PASSED for gapped_four_reversed: [[7, 8], [5, 6], [3, 4], [1, 2]] -> True (matches oracle)
+PASSED for overlap_in_middle: [[1, 4], [2, 3], [5, 6]] -> False (matches oracle)
+PASSED for disjoint_intervals: [[2, 6], [8, 10], [15, 18]] -> True (matches oracle)
+PASSED for consecutive_touching_chain: [[1, 5], [5, 6], [6, 7], [7, 8]] -> True (matches oracle)
+PASSED for partial_overlap_two: [[1, 5], [4, 6]] -> False (matches oracle)
+PASSED for unit_chain_four: [[0, 1], [1, 2], [2, 3], [3, 4]] -> True (matches oracle)
+PASSED for unit_overlap_two: [[0, 2], [1, 3]] -> False (matches oracle)
+PASSED for large_container_overlap: [[1, 100], [50, 60]] -> False (matches oracle)

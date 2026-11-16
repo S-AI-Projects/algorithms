@@ -1,10 +1,12 @@
 import unittest
 
 from algorithms.sorting import (
+    Interval,
     bitonic_sort,
     bogo_sort,
     bubble_sort,
     bucket_sort,
+    can_attend_meetings,
     cocktail_shaker_sort,
     comb_sort,
     counting_sort,
@@ -92,6 +94,87 @@ class TestSuite(unittest.TestCase):
 
     def test_cocktail_shaker_sort(self):
         self.assertTrue(is_sorted(cocktail_shaker_sort([1, 3, 2, 5, 65, 23, 57, 1232])))
+
+
+def _reference_can_attend(intervals: list[Interval]) -> bool:
+    """Independent O(n^2) pairwise reference oracle without sorting."""
+    n = len(intervals)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if max(intervals[i].start, intervals[j].start) < min(intervals[i].end, intervals[j].end):
+                return False
+    return True
+
+
+class TestMeetingRooms(unittest.TestCase):
+    def test_meeting_rooms_fixtures(self):
+        # Anchor fixture [3, 1, 2]: start times permuted, non-overlapping
+        self.assertTrue(
+            can_attend_meetings([Interval(3, 4), Interval(1, 2), Interval(2, 3)])
+        )
+        # Already ordered [1, 2, 3]
+        self.assertTrue(
+            can_attend_meetings([Interval(1, 2), Interval(2, 3), Interval(3, 4)])
+        )
+        # Reversed [3, 2, 1]
+        self.assertTrue(
+            can_attend_meetings([Interval(3, 4), Interval(2, 3), Interval(1, 2)])
+        )
+        # Multiplicities [2, 2, 1]: repeated start time creates overlap
+        self.assertFalse(
+            can_attend_meetings([Interval(2, 3), Interval(2, 4), Interval(1, 2)])
+        )
+        # Smallest supported collections
+        self.assertTrue(can_attend_meetings([]))
+        self.assertTrue(can_attend_meetings([Interval(1, 5)]))
+
+        # Distinct LeetCode examples
+        self.assertFalse(
+            can_attend_meetings([Interval(0, 30), Interval(5, 10), Interval(15, 20)])
+        )
+        self.assertTrue(can_attend_meetings([Interval(7, 10), Interval(2, 4)]))
+
+    def test_meeting_rooms_oracle_cross_check(self):
+        test_inputs = [
+            [],
+            [Interval(1, 2)],
+            [Interval(1, 2), Interval(2, 3)],
+            [Interval(1, 3), Interval(2, 4)],
+            [Interval(0, 5), Interval(5, 10), Interval(10, 15)],
+            [Interval(0, 10), Interval(2, 3), Interval(11, 12)],
+            [Interval(10, 20), Interval(0, 5), Interval(5, 10)],
+            [Interval(1, 10), Interval(2, 5)],
+            [Interval(1, 2), Interval(3, 4), Interval(5, 6), Interval(7, 8)],
+            [Interval(7, 8), Interval(5, 6), Interval(3, 4), Interval(1, 2)],
+            [Interval(1, 4), Interval(2, 3), Interval(5, 6)],
+            [Interval(2, 6), Interval(8, 10), Interval(15, 18)],
+            [Interval(1, 5), Interval(5, 6), Interval(6, 7), Interval(7, 8)],
+            [Interval(1, 5), Interval(4, 6)],
+            [Interval(0, 1), Interval(1, 2), Interval(2, 3), Interval(3, 4)],
+            [Interval(0, 2), Interval(1, 3)],
+            [Interval(5, 10), Interval(0, 5), Interval(10, 15)],
+            [Interval(10, 15), Interval(5, 10), Interval(0, 5)],
+            [Interval(3, 5), Interval(1, 2), Interval(6, 8)],
+            [Interval(1, 100), Interval(50, 60)],
+            [Interval(2, 3), Interval(3, 4), Interval(4, 5), Interval(5, 6)],
+        ]
+        self.assertGreaterEqual(len(test_inputs), 20)
+        for intervals in test_inputs:
+            actual = can_attend_meetings(intervals)
+            expected = _reference_can_attend(intervals)
+            self.assertEqual(
+                actual,
+                expected,
+                f"Mismatch for input {intervals}: got {actual}, expected {expected}",
+            )
+
+    def test_meeting_rooms_does_not_mutate_input(self):
+        intervals = [Interval(3, 4), Interval(1, 2), Interval(2, 3)]
+        snapshot = [(iv.start, iv.end) for iv in intervals]
+        result = can_attend_meetings(intervals)
+        self.assertTrue(result)
+        current = [(iv.start, iv.end) for iv in intervals]
+        self.assertEqual(current, snapshot)
 
 
 if __name__ == "__main__":

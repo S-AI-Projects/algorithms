@@ -1,0 +1,9 @@
+{
+  "task_id": "R24-T003",
+  "module": "algorithms.sorting.meeting_rooms",
+  "total_cases": 21,
+  "passed_cases": 21,
+  "doctest_passed": true,
+  "unittest_passed": true,
+  "all_passed": true
+}

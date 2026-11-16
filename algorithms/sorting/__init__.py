@@ -13,7 +13,7 @@ from algorithms.sorting.exchange_sort import exchange_sort
 from algorithms.sorting.gnome_sort import gnome_sort
 from algorithms.sorting.heap_sort import max_heap_sort, min_heap_sort
 from algorithms.sorting.insertion_sort import insertion_sort
-from algorithms.sorting.meeting_rooms import can_attend_meetings
+from algorithms.sorting.meeting_rooms import Interval, can_attend_meetings
 from algorithms.sorting.merge_sort import merge_sort
 from algorithms.sorting.pancake_sort import pancake_sort
 from algorithms.sorting.pigeonhole_sort import pigeonhole_sort
@@ -31,6 +31,7 @@ __all__ = [
     "bogo_sort",
     "bubble_sort",
     "bucket_sort",
+    "Interval",
     "can_attend_meetings",
     "cocktail_shaker_sort",
     "comb_sort",

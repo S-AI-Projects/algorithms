@@ -1,0 +1,414 @@
+[
+  {
+    "id": "empty",
+    "intervals": [],
+    "expected_oracle": true,
+    "actual": true,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "single",
+    "intervals": [
+      [
+        1,
+        2
+      ]
+    ],
+    "expected_oracle": true,
+    "actual": true,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "fixture_3_1_2",
+    "intervals": [
+      [
+        3,
+        4
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "expected_oracle": true,
+    "actual": true,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "fixture_ordered_1_2_3",
+    "intervals": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ]
+    ],
+    "expected_oracle": true,
+    "actual": true,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "fixture_reversed_3_2_1",
+    "intervals": [
+      [
+        3,
+        4
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "expected_oracle": true,
+    "actual": true,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "fixture_multiplicity_2_2_1",
+    "intervals": [
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "expected_oracle": false,
+    "actual": false,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "touching_boundary_pair",
+    "intervals": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "expected_oracle": true,
+    "actual": true,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "overlapping_pair",
+    "intervals": [
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    "expected_oracle": false,
+    "actual": false,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "touching_three",
+    "intervals": [
+      [
+        0,
+        5
+      ],
+      [
+        5,
+        10
+      ],
+      [
+        10,
+        15
+      ]
+    ],
+    "expected_oracle": true,
+    "actual": true,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "enclosed_interval",
+    "intervals": [
+      [
+        0,
+        10
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        11,
+        12
+      ]
+    ],
+    "expected_oracle": false,
+    "actual": false,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "unordered_touching",
+    "intervals": [
+      [
+        10,
+        20
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        5,
+        10
+      ]
+    ],
+    "expected_oracle": true,
+    "actual": true,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "nested_overlap",
+    "intervals": [
+      [
+        1,
+        10
+      ],
+      [
+        2,
+        5
+      ]
+    ],
+    "expected_oracle": false,
+    "actual": false,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "gapped_four_ordered",
+    "intervals": [
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        7,
+        8
+      ]
+    ],
+    "expected_oracle": true,
+    "actual": true,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "gapped_four_reversed",
+    "intervals": [
+      [
+        7,
+        8
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "expected_oracle": true,
+    "actual": true,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "overlap_in_middle",
+    "intervals": [
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        5,
+        6
+      ]
+    ],
+    "expected_oracle": false,
+    "actual": false,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "disjoint_intervals",
+    "intervals": [
+      [
+        2,
+        6
+      ],
+      [
+        8,
+        10
+      ],
+      [
+        15,
+        18
+      ]
+    ],
+    "expected_oracle": true,
+    "actual": true,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "consecutive_touching_chain",
+    "intervals": [
+      [
+        1,
+        5
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        7,
+        8
+      ]
+    ],
+    "expected_oracle": true,
+    "actual": true,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "partial_overlap_two",
+    "intervals": [
+      [
+        1,
+        5
+      ],
+      [
+        4,
+        6
+      ]
+    ],
+    "expected_oracle": false,
+    "actual": false,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "unit_chain_four",
+    "intervals": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ]
+    ],
+    "expected_oracle": true,
+    "actual": true,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "unit_overlap_two",
+    "intervals": [
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        3
+      ]
+    ],
+    "expected_oracle": false,
+    "actual": false,
+    "passed": true,
+    "mutation_detected": false
+  },
+  {
+    "id": "large_container_overlap",
+    "intervals": [
+      [
+        1,
+        100
+      ],
+      [
+        50,
+        60
+      ]
+    ],
+    "expected_oracle": false,
+    "actual": false,
+    "passed": true,
+    "mutation_detected": false
+  }
+]
