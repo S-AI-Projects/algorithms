@@ -230,5 +230,139 @@ class TestSqrtDecomposition(unittest.TestCase):
         self.assertEqual(sd.query(0, 9), 55)  # 1+2+...+10
 
 
+class TestTreeNodeIsLeaf(unittest.TestCase):
+    """Regression tests for TreeNode.is_leaf refactor (R24-T036).
+
+    Readability improvement: the repeated inline expression
+    ``node.left is None and node.right is None`` is now named ``is_leaf``
+    on TreeNode itself, making every call site self-documenting.
+
+    Before: ``if root.left is None and root.right is None:``
+    After:  ``if root.is_leaf:``
+
+    Public interface is unchanged: val, left, right still work identically.
+    """
+
+    # ------------------------------------------------------------------
+    # Fixture anchors from docstring
+    # ------------------------------------------------------------------
+
+    def test_fixture_left_val(self):
+        """root.left.val == 2 (docstring anchor)."""
+        root = TreeNode(1, TreeNode(2), TreeNode(3))
+        self.assertEqual(root.left.val, 2)
+
+    def test_fixture_right_val(self):
+        """root.right.val == 3 (docstring anchor)."""
+        root = TreeNode(1, TreeNode(2), TreeNode(3))
+        self.assertEqual(root.right.val, 3)
+
+    def test_root_is_not_leaf(self):
+        """root with two children is not a leaf."""
+        root = TreeNode(1, TreeNode(2), TreeNode(3))
+        self.assertFalse(root.is_leaf)
+
+    def test_leaf_child_left(self):
+        """root.left with no children IS a leaf."""
+        root = TreeNode(1, TreeNode(2), TreeNode(3))
+        self.assertTrue(root.left.is_leaf)
+
+    def test_leaf_child_right(self):
+        """root.right with no children IS a leaf."""
+        root = TreeNode(1, TreeNode(2), TreeNode(3))
+        self.assertTrue(root.right.is_leaf)
+
+    # ------------------------------------------------------------------
+    # Default / boundary cases
+    # ------------------------------------------------------------------
+
+    def test_single_node_is_leaf(self):
+        """TreeNode(val) with no children is a leaf."""
+        node = TreeNode(42)
+        self.assertTrue(node.is_leaf)
+
+    def test_default_node_is_leaf(self):
+        """TreeNode() with default val=0 and no children is a leaf."""
+        node = TreeNode()
+        self.assertTrue(node.is_leaf)
+
+    def test_one_left_child_not_leaf(self):
+        """Node with only a left child is not a leaf."""
+        node = TreeNode(5, left=TreeNode(1))
+        self.assertFalse(node.is_leaf)
+
+    def test_one_right_child_not_leaf(self):
+        """Node with only a right child is not a leaf."""
+        node = TreeNode(5, right=TreeNode(9))
+        self.assertFalse(node.is_leaf)
+
+    # ------------------------------------------------------------------
+    # Neighbouring supported input (independently calculated)
+    # TreeNode(10, TreeNode(20, TreeNode(40), TreeNode(50)), TreeNode(30))
+    # root.val=10, root.left.val=20, root.right.val=30
+    # root.left.left.val=40  → is_leaf=True
+    # root.left.right.val=50 → is_leaf=True
+    # root.left               → is_leaf=False (has two children)
+    # root.right              → is_leaf=True  (no children)
+    # ------------------------------------------------------------------
+
+    def test_neighbour_deeper_tree(self):
+        """Neighbouring input: 3-level tree; independently verify is_leaf at each level."""
+        root = TreeNode(10,
+                        TreeNode(20, TreeNode(40), TreeNode(50)),
+                        TreeNode(30))
+        self.assertEqual(root.val, 10)
+        self.assertFalse(root.is_leaf)                   # has two children
+        self.assertFalse(root.left.is_leaf)              # left has two children
+        self.assertTrue(root.right.is_leaf)              # right has no children
+        self.assertTrue(root.left.left.is_leaf)          # 40 is a leaf
+        self.assertTrue(root.left.right.is_leaf)         # 50 is a leaf
+
+    # ------------------------------------------------------------------
+    # Before/after equivalence: is_leaf == (left is None and right is None)
+    # ------------------------------------------------------------------
+
+    def test_is_leaf_agrees_with_inline_expression_no_children(self):
+        """is_leaf returns the same value as the inline expression when leaf."""
+        node = TreeNode(7)
+        inline = node.left is None and node.right is None
+        self.assertEqual(node.is_leaf, inline)
+
+    def test_is_leaf_agrees_with_inline_expression_has_children(self):
+        """is_leaf returns the same value as the inline expression when non-leaf."""
+        node = TreeNode(7, TreeNode(1), TreeNode(2))
+        inline = node.left is None and node.right is None
+        self.assertEqual(node.is_leaf, inline)
+
+    def test_is_leaf_agrees_left_only(self):
+        """is_leaf agrees with inline expression for left-only child case."""
+        node = TreeNode(7, left=TreeNode(1))
+        inline = node.left is None and node.right is None
+        self.assertEqual(node.is_leaf, inline)
+
+    def test_is_leaf_agrees_right_only(self):
+        """is_leaf agrees with inline expression for right-only child case."""
+        node = TreeNode(7, right=TreeNode(2))
+        inline = node.left is None and node.right is None
+        self.assertEqual(node.is_leaf, inline)
+
+    # ------------------------------------------------------------------
+    # Public interface unchanged: val/left/right still work
+    # ------------------------------------------------------------------
+
+    def test_val_attribute_unchanged(self):
+        """val attribute still set by first positional arg."""
+        self.assertEqual(TreeNode(99).val, 99)
+        self.assertEqual(TreeNode().val, 0)
+
+    def test_left_right_attributes_unchanged(self):
+        """left and right attributes still addressable."""
+        n = TreeNode(1, TreeNode(2), TreeNode(3))
+        self.assertIsInstance(n.left, TreeNode)
+        self.assertIsInstance(n.right, TreeNode)
+        self.assertIsNone(n.left.left)
+        self.assertIsNone(n.right.right)
+
+
 if __name__ == "__main__":
     unittest.main()
