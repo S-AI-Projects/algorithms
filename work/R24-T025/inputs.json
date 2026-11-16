@@ -1,0 +1,41 @@
+{
+  "fixture": "push A, B, C; pop twice; push D; drain",
+  "values": {
+    "A": 3,
+    "B": 1,
+    "C": 2,
+    "D": 5
+  },
+  "expected": {
+    "push A, B, C": [
+      3,
+      2
+    ],
+    "pop twice": [],
+    "push D": [
+      5
+    ],
+    "drain": [],
+    "pop order": [
+      2,
+      1,
+      5,
+      3
+    ]
+  },
+  "other_valid_input": [
+    4,
+    8,
+    3,
+    7,
+    3
+  ],
+  "isolation_input": [
+    2,
+    8,
+    3,
+    -6,
+    7,
+    3
+  ]
+}

@@ -1,0 +1,45 @@
+R24-T025 remove_min repeatability check
+
+[PASS] dependency audit: imports=['from __future__ import annotations'] names=['append', 'len', 'pop', 'range']
+
+[PASS] fixture run 1, fresh state:
+    [PASS] push A, B, C: expected=[3, 2] actual=[3, 2]
+    [PASS] pop twice: expected=[] actual=[]
+    [PASS] push D: expected=[5] actual=[5]
+    [PASS] drain: expected=[] actual=[]
+    [PASS] pop order: expected=[2, 1, 5, 3] actual=[2, 1, 5, 3]
+[PASS] fixture run 2, fresh state:
+    [PASS] push A, B, C: expected=[3, 2] actual=[3, 2]
+    [PASS] pop twice: expected=[] actual=[]
+    [PASS] push D: expected=[5] actual=[5]
+    [PASS] drain: expected=[] actual=[]
+    [PASS] pop order: expected=[2, 1, 5, 3] actual=[2, 1, 5, 3]
+[PASS] fixture run 3, after another valid input:
+    [PASS] push A, B, C: expected=[3, 2] actual=[3, 2]
+    [PASS] pop twice: expected=[] actual=[]
+    [PASS] push D: expected=[5] actual=[5]
+    [PASS] drain: expected=[] actual=[]
+    [PASS] pop order: expected=[2, 1, 5, 3] actual=[2, 1, 5, 3]
+[PASS] fixture sealed run:
+    [PASS] push A, B, C: expected=[3, 2] actual=[3, 2]
+    [PASS] pop twice: expected=[] actual=[]
+    [PASS] push D: expected=[5] actual=[5]
+    [PASS] drain: expected=[] actual=[]
+    [PASS] pop order: expected=[2, 1, 5, 3] actual=[2, 1, 5, 3]
+
+Input isolation:
+  [PASS] copy is changed in place and returned: expected=[True, [2, 8, 3, 7, 3]] actual=[True, [2, 8, 3, 7, 3]]
+  [PASS] original list is untouched: expected=[2, 8, 3, -6, 7, 3] actual=[2, 8, 3, -6, 7, 3]
+  [PASS] empty stack comes back as the same empty list: expected=[True, []] actual=[True, []]
+  [PASS] other input [4, 8, 3, 7, 3] before run 3, and unchanged after: expected=[[4, 8, 7], [4, 8, 7]] actual=[[4, 8, 7], [4, 8, 7]]
+
+Pytest command: python3 -m pytest tests/test_stack.py::TestRemoveMinRepeatable -q --no-header
+Pytest result: 5 passed, 0 failed, exit 0
+============================= test session starts ==============================
+collected 5 items
+
+tests/test_stack.py .....                                                [100%]
+
+============================== 5 passed in 0.01s ===============================
+
+OVERALL: PASS

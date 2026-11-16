@@ -1,0 +1,335 @@
+{
+  "dependency_audit": {
+    "imports": [
+      "from __future__ import annotations"
+    ],
+    "expected_imports": [
+      "from __future__ import annotations"
+    ],
+    "names_used_by_remove_min": [
+      "append",
+      "len",
+      "pop",
+      "range"
+    ],
+    "expected_names": [
+      "append",
+      "len",
+      "pop",
+      "range"
+    ],
+    "passed": true
+  },
+  "runs": [
+    {
+      "run": "run 1, fresh state",
+      "rows": [
+        {
+          "state": "push A, B, C",
+          "expected": [
+            3,
+            2
+          ],
+          "actual": [
+            3,
+            2
+          ],
+          "passed": true
+        },
+        {
+          "state": "pop twice",
+          "expected": [],
+          "actual": [],
+          "passed": true
+        },
+        {
+          "state": "push D",
+          "expected": [
+            5
+          ],
+          "actual": [
+            5
+          ],
+          "passed": true
+        },
+        {
+          "state": "drain",
+          "expected": [],
+          "actual": [],
+          "passed": true
+        },
+        {
+          "state": "pop order",
+          "expected": [
+            2,
+            1,
+            5,
+            3
+          ],
+          "actual": [
+            2,
+            1,
+            5,
+            3
+          ],
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "run": "run 2, fresh state",
+      "rows": [
+        {
+          "state": "push A, B, C",
+          "expected": [
+            3,
+            2
+          ],
+          "actual": [
+            3,
+            2
+          ],
+          "passed": true
+        },
+        {
+          "state": "pop twice",
+          "expected": [],
+          "actual": [],
+          "passed": true
+        },
+        {
+          "state": "push D",
+          "expected": [
+            5
+          ],
+          "actual": [
+            5
+          ],
+          "passed": true
+        },
+        {
+          "state": "drain",
+          "expected": [],
+          "actual": [],
+          "passed": true
+        },
+        {
+          "state": "pop order",
+          "expected": [
+            2,
+            1,
+            5,
+            3
+          ],
+          "actual": [
+            2,
+            1,
+            5,
+            3
+          ],
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "run": "run 3, after another valid input",
+      "rows": [
+        {
+          "state": "push A, B, C",
+          "expected": [
+            3,
+            2
+          ],
+          "actual": [
+            3,
+            2
+          ],
+          "passed": true
+        },
+        {
+          "state": "pop twice",
+          "expected": [],
+          "actual": [],
+          "passed": true
+        },
+        {
+          "state": "push D",
+          "expected": [
+            5
+          ],
+          "actual": [
+            5
+          ],
+          "passed": true
+        },
+        {
+          "state": "drain",
+          "expected": [],
+          "actual": [],
+          "passed": true
+        },
+        {
+          "state": "pop order",
+          "expected": [
+            2,
+            1,
+            5,
+            3
+          ],
+          "actual": [
+            2,
+            1,
+            5,
+            3
+          ],
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "run": "sealed run",
+      "rows": [
+        {
+          "state": "push A, B, C",
+          "expected": [
+            3,
+            2
+          ],
+          "actual": [
+            3,
+            2
+          ],
+          "passed": true
+        },
+        {
+          "state": "pop twice",
+          "expected": [],
+          "actual": [],
+          "passed": true
+        },
+        {
+          "state": "push D",
+          "expected": [
+            5
+          ],
+          "actual": [
+            5
+          ],
+          "passed": true
+        },
+        {
+          "state": "drain",
+          "expected": [],
+          "actual": [],
+          "passed": true
+        },
+        {
+          "state": "pop order",
+          "expected": [
+            2,
+            1,
+            5,
+            3
+          ],
+          "actual": [
+            2,
+            1,
+            5,
+            3
+          ],
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "isolation": [
+    {
+      "name": "copy is changed in place and returned",
+      "expected": [
+        true,
+        [
+          2,
+          8,
+          3,
+          7,
+          3
+        ]
+      ],
+      "actual": [
+        true,
+        [
+          2,
+          8,
+          3,
+          7,
+          3
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "original list is untouched",
+      "expected": [
+        2,
+        8,
+        3,
+        -6,
+        7,
+        3
+      ],
+      "actual": [
+        2,
+        8,
+        3,
+        -6,
+        7,
+        3
+      ],
+      "passed": true
+    },
+    {
+      "name": "empty stack comes back as the same empty list",
+      "expected": [
+        true,
+        []
+      ],
+      "actual": [
+        true,
+        []
+      ],
+      "passed": true
+    },
+    {
+      "name": "other input [4, 8, 3, 7, 3] before run 3, and unchanged after",
+      "expected": [
+        [
+          4,
+          8,
+          7
+        ],
+        [
+          4,
+          8,
+          7
+        ]
+      ],
+      "actual": [
+        [
+          4,
+          8,
+          7
+        ],
+        [
+          4,
+          8,
+          7
+        ]
+      ],
+      "passed": true
+    }
+  ]
+}

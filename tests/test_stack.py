@@ -163,5 +163,72 @@ class TestOrderedStack(unittest.TestCase):
         self.assertEqual(3, stack.size())
 
 
+class TestRemoveMinRepeatable(unittest.TestCase):
+    """remove_min has no hidden state: the same values give the same result.
+
+    The fixture walks a plain list used as a stack (push A, B, C; pop twice;
+    push D; drain) and calls remove_min on a copy at each state. A, B, C and
+    D are small integers, so every input stays within list[int].
+    """
+
+    A, B, C, D = 3, 1, 2, 5
+
+    EXPECTED = {
+        "push A, B, C": [3, 2],  # [A, B, C] is [3, 1, 2]; B (1) is the minimum
+        "pop twice": [],  # [A] is [3]; its only value is the minimum
+        "push D": [5],  # [A, D] is [3, 5]; A (3) is the minimum
+        "drain": [],  # documented empty-state behaviour: returned unchanged
+        "pop order": [2, 1, 5, 3],  # C, B, D, A
+    }
+
+    def walk_fixture(self):
+        """Run the fixture once from fresh state and return what it saw."""
+        stack: list[int] = []
+        popped: list[int] = []
+        seen = {}
+        for value in (self.A, self.B, self.C):
+            stack.append(value)
+        seen["push A, B, C"] = remove_min(list(stack))
+        popped.append(stack.pop())
+        popped.append(stack.pop())
+        seen["pop twice"] = remove_min(list(stack))
+        stack.append(self.D)
+        seen["push D"] = remove_min(list(stack))
+        while stack:
+            popped.append(stack.pop())
+        seen["drain"] = remove_min(stack)
+        seen["pop order"] = popped
+        return seen
+
+    def test_fixture_walk(self):
+        self.assertEqual(self.EXPECTED, self.walk_fixture())
+
+    def test_fixture_twice_in_fresh_state(self):
+        first = self.walk_fixture()
+        second = self.walk_fixture()
+        self.assertEqual(self.EXPECTED, first)
+        self.assertEqual(self.EXPECTED, second)
+
+    def test_fixture_after_another_valid_input(self):
+        other = [4, 8, 3, 7, 3]
+        self.assertEqual([4, 8, 7], remove_min(other))
+        self.assertEqual(self.EXPECTED, self.walk_fixture())
+        # The later run did not reach back into the earlier input either.
+        self.assertEqual([4, 8, 7], other)
+
+    def test_only_the_list_passed_in_changes(self):
+        original = [2, 8, 3, -6, 7, 3]
+        working_copy = list(original)
+        result = remove_min(working_copy)
+        self.assertIs(working_copy, result)
+        self.assertEqual([2, 8, 3, 7, 3], working_copy)
+        self.assertEqual([2, 8, 3, -6, 7, 3], original)
+
+    def test_empty_stack_is_returned_unchanged(self):
+        empty: list[int] = []
+        self.assertIs(empty, remove_min(empty))
+        self.assertEqual([], empty)
+
+
 if __name__ == "__main__":
     unittest.main()

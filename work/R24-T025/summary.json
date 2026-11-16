@@ -1,0 +1,13 @@
+{
+  "task": "R24-T025",
+  "target": "algorithms/stack/remove_min.py:remove_min",
+  "dependencies_found": [],
+  "fixture_runs_passed": 4,
+  "fixture_runs_total": 4,
+  "isolation_checks_passed": 4,
+  "isolation_checks_total": 4,
+  "pytest_command": "python3 -m pytest tests/test_stack.py::TestRemoveMinRepeatable -q --no-header",
+  "pytest_passed": 5,
+  "pytest_failed": 0,
+  "overall": "PASS"
+}
