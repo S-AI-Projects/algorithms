@@ -219,6 +219,36 @@ class TestMaxOnesIndex(unittest.TestCase):
         self.assertEqual(3, max_ones_index([1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1]))
         self.assertEqual(-1, max_ones_index([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]))
 
+    def test_max_ones_index_fixtures_and_boundaries(self):
+        # Primary fixture: source anchor with two zeros (indices 3 and 9)
+        self.assertEqual(
+            max_ones_index([1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1]),
+            3,
+        )
+        # Neighboring supported input: extending trailing ones tilts the longest run to index 9
+        # Flipping index 3 gives 3+1+5=9 ones; flipping index 9 gives 5+1+6=12 ones.
+        self.assertEqual(
+            max_ones_index([1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1]),
+            9,
+        )
+        # Smallest supported inputs:
+        self.assertEqual(max_ones_index([]), -1)
+        self.assertEqual(max_ones_index([0]), 0)
+        self.assertEqual(max_ones_index([1]), -1)
+
+        # Repeated-value / domain boundary:
+        # All zeros: flipping any zero yields run of 1; earliest index 0 returned.
+        self.assertEqual(max_ones_index([0, 0, 0]), 0)
+        # Adjacent zeros:
+        self.assertEqual(max_ones_index([1, 0, 0, 1]), 1)
+
+    def test_max_ones_index_does_not_mutate_input(self):
+        fixture = [1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1]
+        snapshot = list(fixture)
+        result = max_ones_index(fixture)
+        self.assertEqual(fixture, snapshot)
+        self.assertEqual(result, 3)
+
 
 class TestMergeInterval(unittest.TestCase):
     def test_merge(self):

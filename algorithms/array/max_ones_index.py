@@ -17,6 +17,14 @@ from __future__ import annotations
 def max_ones_index(array: list[int]) -> int:
     """Find the index of 0 to replace with 1 for the longest run of 1s.
 
+    Input/Output Contract:
+        - Input: `array`, a sequence of binary digits (0 or 1). Does not mutate `array`.
+        - Output: Integer representing the 0-based index of the 0 to flip to 1.
+          Returns -1 if no 0 exists in `array` or if `array` is empty.
+        - Invariant: Flipping `array[result]` maximizes the length of contiguous 1s.
+          When multiple zeros produce the same maximum run length, the earliest
+          valid index encountered is returned.
+
     Args:
         array: Binary array containing only 0s and 1s.
 

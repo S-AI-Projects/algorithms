@@ -1,0 +1,81 @@
+[
+  {
+    "id": "source_anchor",
+    "description": "Primary fixture from source anchor with two zeros at indices 3 and 9",
+    "input": [
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1
+    ]
+  },
+  {
+    "id": "neighbor_extended_trailing_ones",
+    "description": "Neighboring input where extending trailing ones makes index 9 optimal (5+1+6=12 ones vs 3+1+5=9)",
+    "input": [
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  {
+    "id": "smallest_empty",
+    "description": "Smallest supported input: empty list",
+    "input": []
+  },
+  {
+    "id": "single_zero",
+    "description": "Smallest input containing a zero",
+    "input": [
+      0
+    ]
+  },
+  {
+    "id": "single_one",
+    "description": "Smallest input containing no zero",
+    "input": [
+      1
+    ]
+  },
+  {
+    "id": "repeated_boundary_all_zeros",
+    "description": "Repeated-value boundary: all zeros",
+    "input": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "id": "adjacent_zeros",
+    "description": "Adjacent zeros: [1, 0, 0, 1]",
+    "input": [
+      1,
+      0,
+      0,
+      1
+    ]
+  }
+]

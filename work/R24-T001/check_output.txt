@@ -1,0 +1,23 @@
+============================================================
+Running focused check for R24-T001: max_ones_index
+============================================================
+Executing unittest command: /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -m unittest -v tests.test_array.TestMaxOnesIndex
+
+test_max_ones_index (tests.test_array.TestMaxOnesIndex.test_max_ones_index) ... ok
+test_max_ones_index_does_not_mutate_input (tests.test_array.TestMaxOnesIndex.test_max_ones_index_does_not_mutate_input) ... ok
+test_max_ones_index_fixtures_and_boundaries (tests.test_array.TestMaxOnesIndex.test_max_ones_index_fixtures_and_boundaries) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+
+Running doctests on algorithms/array/max_ones_index.py...
+Doctest results: attempted=1, failed=0
+Assertion PASSED for source_anchor: [1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1] -> 3 (expected 3)
+Assertion PASSED for neighbor_extended_trailing_ones: [1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1] -> 9 (expected 9)
+Assertion PASSED for smallest_empty: [] -> -1 (expected -1)
+Assertion PASSED for single_zero: [0] -> 0 (expected 0)
+Assertion PASSED for single_one: [1] -> -1 (expected -1)
+Assertion PASSED for repeated_boundary_all_zeros: [0, 0, 0] -> 0 (expected 0)
+Assertion PASSED for adjacent_zeros: [1, 0, 0, 1] -> 1 (expected 1)

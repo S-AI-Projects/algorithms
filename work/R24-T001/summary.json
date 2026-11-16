@@ -1,0 +1,9 @@
+{
+  "task_id": "R24-T001",
+  "module": "algorithms.array.max_ones_index",
+  "total_fixtures": 7,
+  "passed_fixtures": 7,
+  "doctest_passed": true,
+  "unittest_passed": true,
+  "all_passed": true
+}
