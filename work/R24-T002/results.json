@@ -1,0 +1,58 @@
+[
+  {
+    "id": "lower_boundary_zero",
+    "description": "Smallest supported domain boundary: 0! = 1",
+    "expected": 1,
+    "actual": 1,
+    "passed": true
+  },
+  {
+    "id": "successor_boundary_one",
+    "description": "Smallest strictly positive boundary: 1! = 1",
+    "expected": 1,
+    "actual": 1,
+    "passed": true
+  },
+  {
+    "id": "interior_value_two",
+    "description": "First nontrivial recursive step: 2! = 2",
+    "expected": 2,
+    "actual": 2,
+    "passed": true
+  },
+  {
+    "id": "interior_value_five",
+    "description": "Specified fixture interior value: 5! = 120",
+    "expected": 120,
+    "actual": 120,
+    "passed": true
+  },
+  {
+    "id": "modular_boundary_exact_multiple",
+    "description": "Modulo boundary where 5! (120) % 10 = 0",
+    "expected": 0,
+    "actual": 0,
+    "passed": true
+  },
+  {
+    "id": "modular_boundary_coprime",
+    "description": "Modulo boundary where 5! (120) % 7 = 1",
+    "expected": 1,
+    "actual": 1,
+    "passed": true
+  },
+  {
+    "id": "unsupported_negative_n",
+    "description": "Directly below lower boundary: n=-1 raises ValueError",
+    "expected": "ValueError",
+    "actual": "ValueError",
+    "passed": true
+  },
+  {
+    "id": "unsupported_zero_mod",
+    "description": "Directly below modular boundary: mod=0 raises ValueError",
+    "expected": "ValueError",
+    "actual": "ValueError",
+    "passed": true
+  }
+]

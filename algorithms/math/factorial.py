@@ -17,6 +17,14 @@ from __future__ import annotations
 def factorial(n: int, mod: int | None = None) -> int:
     """Calculate n! iteratively, optionally modulo mod.
 
+    Supported Domain & Boundary Contract:
+        - Domain: Non-negative integer `n >= 0`.
+        - Lower boundary: `n = 0` -> 1 (by mathematical definition 0! = 1).
+        - Successor boundary: `n = 1` -> 1.
+        - Interior values: `n = 2` -> 2, `n = 5` -> 120.
+        - Modulus boundary: `mod` must be a strictly positive integer (`mod > 0`) if specified.
+        - Unsupported values: `n < 0` or `mod <= 0` raises ValueError.
+
     Args:
         n: A non-negative integer.
         mod: Optional positive integer modulus.
@@ -28,6 +36,12 @@ def factorial(n: int, mod: int | None = None) -> int:
         ValueError: If n is negative or mod is not a positive integer.
 
     Examples:
+        >>> factorial(0)
+        1
+        >>> factorial(1)
+        1
+        >>> factorial(2)
+        2
         >>> factorial(5)
         120
         >>> factorial(10)

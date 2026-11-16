@@ -1,0 +1,9 @@
+{
+  "task_id": "R24-T002",
+  "module": "algorithms.math.factorial",
+  "total_boundary_cases": 8,
+  "passed_boundary_cases": 8,
+  "doctest_passed": true,
+  "unittest_passed": true,
+  "all_passed": true
+}

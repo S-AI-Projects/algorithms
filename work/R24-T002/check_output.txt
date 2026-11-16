@@ -1,0 +1,25 @@
+============================================================
+Running focused check for R24-T002: factorial boundary cases
+============================================================
+Executing unittest command: /Users/kanavpandey/Documents/SnAI Project/algorithms/.venv/bin/python3 -m unittest -v tests.test_math.TestFactorial
+
+test_factorial (tests.test_math.TestFactorial.test_factorial) ... ok
+test_factorial_boundary_cases (tests.test_math.TestFactorial.test_factorial_boundary_cases) ... ok
+test_factorial_does_not_mutate_or_side_effect (tests.test_math.TestFactorial.test_factorial_does_not_mutate_or_side_effect) ... ok
+test_factorial_recur (tests.test_math.TestFactorial.test_factorial_recur) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.002s
+
+OK
+
+Running doctests on algorithms/math/factorial.py...
+Doctest results: attempted=6, failed=0
+Assertion PASSED for lower_boundary_zero: n=0, mod=None -> 1
+Assertion PASSED for successor_boundary_one: n=1, mod=None -> 1
+Assertion PASSED for interior_value_two: n=2, mod=None -> 2
+Assertion PASSED for interior_value_five: n=5, mod=None -> 120
+Assertion PASSED for modular_boundary_exact_multiple: n=5, mod=10 -> 0
+Assertion PASSED for modular_boundary_coprime: n=5, mod=7 -> 1
+Assertion PASSED for unsupported_negative_n: n=-1, mod=None -> ValueError
+Assertion PASSED for unsupported_zero_mod: n=5, mod=0 -> ValueError

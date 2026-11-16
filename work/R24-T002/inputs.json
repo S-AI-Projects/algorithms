@@ -1,0 +1,50 @@
+[
+  {
+    "id": "lower_boundary_zero",
+    "description": "Smallest supported domain boundary: 0! = 1",
+    "n": 0,
+    "mod": null
+  },
+  {
+    "id": "successor_boundary_one",
+    "description": "Smallest strictly positive boundary: 1! = 1",
+    "n": 1,
+    "mod": null
+  },
+  {
+    "id": "interior_value_two",
+    "description": "First nontrivial recursive step: 2! = 2",
+    "n": 2,
+    "mod": null
+  },
+  {
+    "id": "interior_value_five",
+    "description": "Specified fixture interior value: 5! = 120",
+    "n": 5,
+    "mod": null
+  },
+  {
+    "id": "modular_boundary_exact_multiple",
+    "description": "Modulo boundary where 5! (120) % 10 = 0",
+    "n": 5,
+    "mod": 10
+  },
+  {
+    "id": "modular_boundary_coprime",
+    "description": "Modulo boundary where 5! (120) % 7 = 1",
+    "n": 5,
+    "mod": 7
+  },
+  {
+    "id": "unsupported_negative_n",
+    "description": "Directly below lower boundary: n=-1 raises ValueError",
+    "n": -1,
+    "mod": null
+  },
+  {
+    "id": "unsupported_zero_mod",
+    "description": "Directly below modular boundary: mod=0 raises ValueError",
+    "n": 5,
+    "mod": 0
+  }
+]

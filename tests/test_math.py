@@ -394,6 +394,28 @@ class TestFactorial(unittest.TestCase):
         self.assertRaises(ValueError, factorial, -42)
         self.assertRaises(ValueError, factorial, 42, -1)
 
+    def test_factorial_boundary_cases(self):
+        # Explicit boundaries: 0, 1, 2, 5 expecting 1, 1, 2, 120
+        self.assertEqual(factorial(0), 1)
+        self.assertEqual(factorial(1), 1)
+        self.assertEqual(factorial(2), 2)
+        self.assertEqual(factorial(5), 120)
+
+        # Modulo boundary behavior
+        self.assertEqual(factorial(5, mod=10), 0)
+        self.assertEqual(factorial(5, mod=7), 1)
+
+        # Explicitly unsupported boundary values
+        with self.assertRaises(ValueError):
+            factorial(-1)
+        with self.assertRaises(ValueError):
+            factorial(5, mod=0)
+
+    def test_factorial_does_not_mutate_or_side_effect(self):
+        # Pure arithmetic function: repeated calls give identical outputs
+        self.assertEqual(factorial(5), factorial(5))
+        self.assertEqual(factorial(0), factorial(0))
+
     def test_factorial_recur(self):
         self.assertEqual(1, factorial_recur(0))
         self.assertEqual(120, factorial_recur(5))
