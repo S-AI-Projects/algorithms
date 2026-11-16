@@ -1,0 +1,119 @@
+{
+  "individual_boundary_checks": [
+    {
+      "boundary": "around_1_sentinel",
+      "input": -1,
+      "side": "below_boundary",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "boundary": "around_1_sentinel",
+      "input": 0,
+      "side": "below_boundary",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "boundary": "around_1_sentinel",
+      "input": 1,
+      "side": "on_boundary",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "boundary": "around_2_smallest_prime",
+      "input": 1,
+      "side": "below_boundary",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "boundary": "around_2_smallest_prime",
+      "input": 2,
+      "side": "on_boundary_smallest_prime",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "boundary": "around_2_smallest_prime",
+      "input": 3,
+      "side": "above_boundary_interior_prime",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "boundary": "around_9_first_odd_composite",
+      "input": 8,
+      "side": "below_boundary",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "boundary": "around_9_first_odd_composite",
+      "input": 9,
+      "side": "on_boundary_smallest_odd_composite",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "boundary": "around_9_first_odd_composite",
+      "input": 10,
+      "side": "above_boundary",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "boundary": "around_11_sieve_limit",
+      "input": 10,
+      "side": "below_boundary",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "boundary": "around_11_sieve_limit",
+      "input": 11,
+      "side": "on_boundary_prime",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "boundary": "around_11_sieve_limit",
+      "input": 12,
+      "side": "above_boundary_composite",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    }
+  ],
+  "sieve_through_12_exclusive": {
+    "upper_bound_exclusive": 12,
+    "expected_primes": [
+      2,
+      3,
+      5,
+      7,
+      11
+    ],
+    "actual_primes": [
+      2,
+      3,
+      5,
+      7,
+      11
+    ],
+    "pass": true
+  },
+  "all_passed": true
+}

@@ -1,0 +1,129 @@
+{
+  "module": "algorithms/math/prime_check.py",
+  "domain_partitions": {
+    "valid_boundary": [
+      -1,
+      0,
+      1,
+      2,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "valid_interior": [
+      3,
+      5,
+      7
+    ],
+    "undefined_behavior_policy": "No arbitrary TypeError/RangeError imposed; left unconstrained per spec"
+  },
+  "boundary_table": [
+    {
+      "boundary": "around_1_sentinel",
+      "source_contract_clause": "algorithms/math/prime_check.py:32 - 'if n <= 1: return False'",
+      "description": "Non-positive and unity boundary returning sentinel False",
+      "cases": [
+        {
+          "input": -1,
+          "side": "below_boundary",
+          "expected": false
+        },
+        {
+          "input": 0,
+          "side": "below_boundary",
+          "expected": false
+        },
+        {
+          "input": 1,
+          "side": "on_boundary",
+          "expected": false
+        }
+      ]
+    },
+    {
+      "boundary": "around_2_smallest_prime",
+      "source_contract_clause": "algorithms/math/prime_check.py:34 - 'if n == 2 or n == 3: return True'",
+      "description": "Transition from non-prime (<= 1) to smallest prime (2)",
+      "cases": [
+        {
+          "input": 1,
+          "side": "below_boundary",
+          "expected": false
+        },
+        {
+          "input": 2,
+          "side": "on_boundary_smallest_prime",
+          "expected": true
+        },
+        {
+          "input": 3,
+          "side": "above_boundary_interior_prime",
+          "expected": true
+        }
+      ]
+    },
+    {
+      "boundary": "around_9_first_odd_composite",
+      "source_contract_clause": "algorithms/math/prime_check.py:36 - 'if n % 2 == 0 or n % 3 == 0: return False'",
+      "description": "Smallest odd composite number (9 = 3*3)",
+      "cases": [
+        {
+          "input": 8,
+          "side": "below_boundary",
+          "expected": false
+        },
+        {
+          "input": 9,
+          "side": "on_boundary_smallest_odd_composite",
+          "expected": false
+        },
+        {
+          "input": 10,
+          "side": "above_boundary",
+          "expected": false
+        }
+      ]
+    },
+    {
+      "boundary": "around_11_sieve_limit",
+      "source_contract_clause": "algorithms/math/prime_check.py:38-43 - 'while j * j <= n: ... return True'",
+      "description": "Prime boundary around 11 before exclusive upper bound 12",
+      "cases": [
+        {
+          "input": 10,
+          "side": "below_boundary",
+          "expected": false
+        },
+        {
+          "input": 11,
+          "side": "on_boundary_prime",
+          "expected": true
+        },
+        {
+          "input": 12,
+          "side": "above_boundary_composite",
+          "expected": false
+        }
+      ]
+    },
+    {
+      "boundary": "sieve_through_12_exclusive_interface",
+      "source_contract_clause": "Exclusive upper bound < 12 interface; primes in [0, 12) are 2, 3, 5, 7, 11",
+      "description": "Primes less than 12",
+      "cases": [
+        {
+          "range_exclusive": 12,
+          "expected_primes": [
+            2,
+            3,
+            5,
+            7,
+            11
+          ]
+        }
+      ]
+    }
+  ]
+}

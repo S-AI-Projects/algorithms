@@ -1,6 +1,9 @@
 import unittest
 
-import pytest
+try:
+    import pytest
+except ImportError:
+    pytest = None
 
 from algorithms.math import (
     base_to_int,
@@ -312,6 +315,30 @@ class TestPrimeTest(unittest.TestCase):
             if prime_check(i):
                 counter += 1
         self.assertEqual(25, counter)
+
+    def test_prime_check_boundary_around_one_and_two(self):
+        """Documented boundary: n <= 1 returns False sentinel; n = 2 is smallest prime."""
+        self.assertFalse(prime_check(0))
+        self.assertFalse(prime_check(1))
+        self.assertTrue(prime_check(2))
+        self.assertTrue(prime_check(3))
+
+    def test_prime_check_boundary_around_nine(self):
+        """Domain boundary around 9: smallest odd composite number."""
+        self.assertFalse(prime_check(8))
+        self.assertFalse(prime_check(9))
+        self.assertFalse(prime_check(10))
+
+    def test_prime_check_boundary_around_eleven(self):
+        """Domain boundary around 11: prime check at 11 and composite neighbor 12."""
+        self.assertFalse(prime_check(10))
+        self.assertTrue(prime_check(11))
+        self.assertFalse(prime_check(12))
+
+    def test_prime_check_sieve_through_twelve_exclusive(self):
+        """Sieve through 12 respecting exclusive upper-bound interface: primes are 2, 3, 5, 7, 11."""
+        primes_through_12 = [n for n in range(12) if prime_check(n)]
+        self.assertEqual(primes_through_12, [2, 3, 5, 7, 11])
 
 
 class TestPythagoras(unittest.TestCase):
