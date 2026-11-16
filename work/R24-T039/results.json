@@ -1,0 +1,247 @@
+{
+  "doctest": {
+    "attempted": 4,
+    "failed": 0,
+    "passed": true
+  },
+  "fixtures": [
+    {
+      "actual": [
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          3
+        ]
+      ],
+      "expected": [
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          3
+        ]
+      ],
+      "input": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          5,
+          6
+        ]
+      ],
+      "input_unchanged": true,
+      "name": "rectangular_2x3",
+      "passed": true
+    },
+    {
+      "actual": [
+        [
+          5
+        ]
+      ],
+      "expected": [
+        [
+          5
+        ]
+      ],
+      "input": [
+        [
+          5
+        ]
+      ],
+      "input_unchanged": true,
+      "name": "one_by_one",
+      "passed": true
+    },
+    {
+      "actual": [
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "expected": [
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "input": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "input_unchanged": true,
+      "name": "zero_containing",
+      "passed": true
+    },
+    {
+      "actual": [],
+      "expected": [],
+      "input": [],
+      "input_unchanged": true,
+      "name": "empty",
+      "passed": true
+    },
+    {
+      "actual": [
+        [
+          7,
+          4,
+          1
+        ],
+        [
+          8,
+          5,
+          2
+        ],
+        [
+          9,
+          6,
+          3
+        ]
+      ],
+      "expected": [
+        [
+          7,
+          4,
+          1
+        ],
+        [
+          8,
+          5,
+          2
+        ],
+        [
+          9,
+          6,
+          3
+        ]
+      ],
+      "input": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          7,
+          8,
+          9
+        ]
+      ],
+      "input_unchanged": true,
+      "name": "square_3x3",
+      "passed": true
+    }
+  ],
+  "scaling": [
+    {
+      "correctness": "PASS (verified against independent reference outside the timed region)",
+      "max_seconds": 0.0028412089999999973,
+      "median_seconds": 0.002530709000000006,
+      "min_seconds": 0.0021910419999999903,
+      "n": 256,
+      "range_seconds": 0.000650167000000007,
+      "repetitions": 5,
+      "samples_seconds": [
+        0.0026460830000000005,
+        0.0028412089999999973,
+        0.002530709000000006,
+        0.0021910419999999903,
+        0.0022549159999999957
+      ],
+      "seed_base": 20260309,
+      "size_variable": "n (side length; element count = n*n)"
+    },
+    {
+      "correctness": "PASS (verified against independent reference outside the timed region)",
+      "max_seconds": 0.010990250000000035,
+      "median_ratio_vs_previous": 4.102275686378793,
+      "median_seconds": 0.010381666000000012,
+      "min_seconds": 0.009573290999999984,
+      "n": 512,
+      "range_seconds": 0.001416959000000051,
+      "repetitions": 5,
+      "samples_seconds": [
+        0.009573290999999984,
+        0.010652834000000028,
+        0.010381666000000012,
+        0.009813249999999996,
+        0.010990250000000035
+      ],
+      "seed_base": 20260309,
+      "size_ratio_vs_previous": 2.0,
+      "size_variable": "n (side length; element count = n*n)"
+    },
+    {
+      "correctness": "PASS (verified against independent reference outside the timed region)",
+      "max_seconds": 0.05009037499999991,
+      "median_ratio_vs_previous": 4.34055651568833,
+      "median_seconds": 0.04506220800000005,
+      "min_seconds": 0.03920608399999992,
+      "n": 1024,
+      "range_seconds": 0.01088429099999999,
+      "repetitions": 5,
+      "samples_seconds": [
+        0.03920608399999992,
+        0.041732375000000044,
+        0.04631641699999989,
+        0.05009037499999991,
+        0.04506220800000005
+      ],
+      "seed_base": 20260309,
+      "size_ratio_vs_previous": 2.0,
+      "size_variable": "n (side length; element count = n*n)"
+    }
+  ],
+  "unittest": {
+    "command": [
+      "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "-m",
+      "unittest",
+      "-v",
+      "tests.test_matrix.TestCopyTransform.test_copy_transform",
+      "tests.test_matrix.TestCopyTransform.test_rotate_clockwise_fixtures",
+      "tests.test_matrix.TestCopyTransform.test_rotate_clockwise_does_not_mutate_input"
+    ],
+    "failures": 0,
+    "passed": true,
+    "tests_run": 3
+  }
+}
