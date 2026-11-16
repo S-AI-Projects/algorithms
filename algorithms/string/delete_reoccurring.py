@@ -17,6 +17,17 @@ from __future__ import annotations
 def delete_reoccurring_characters(string: str) -> str:
     """Remove duplicate characters, keeping only the first occurrence of each.
 
+    Contract:
+        - Input: any ``str``, including the empty string.
+        - Output: a ``str`` holding each distinct character of ``string``
+          exactly once, in the order of its first occurrence. Repeats are
+          removed wherever they appear, not only when adjacent.
+        - Characters are compared exactly, so the comparison is case-sensitive
+          (``"aA"`` is returned unchanged).
+        - ``""`` returns ``""``; a string with no repeats is returned unchanged.
+        - Pure function: the argument is not modified and no state is kept
+          between calls.
+
     Args:
         string: The input string to process.
 
@@ -26,6 +37,10 @@ def delete_reoccurring_characters(string: str) -> str:
     Examples:
         >>> delete_reoccurring_characters("aaabcccc")
         'abc'
+        >>> delete_reoccurring_characters("aaabcccca")
+        'abc'
+        >>> delete_reoccurring_characters("")
+        ''
     """
     seen_characters: set[str] = set()
     output_string = ""

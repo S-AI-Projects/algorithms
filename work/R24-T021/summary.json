@@ -1,0 +1,10 @@
+{
+  "task": "R24-T021",
+  "target": "algorithms/string/delete_reoccurring.py:delete_reoccurring_characters",
+  "direct_cases": 8,
+  "direct_cases_passed": 8,
+  "pytest_command": "python3 -m pytest tests/test_string.py::TestDeleteReoccurring -q --no-header",
+  "pytest_passed": 9,
+  "pytest_failed": 0,
+  "overall": "PASS"
+}

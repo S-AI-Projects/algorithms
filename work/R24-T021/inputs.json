@@ -1,0 +1,42 @@
+[
+  {
+    "name": "fixture",
+    "input": "aaabcccc",
+    "expected": "abc"
+  },
+  {
+    "name": "neighbour_non_adjacent_repeat",
+    "input": "aaabcccca",
+    "expected": "abc"
+  },
+  {
+    "name": "neighbour_new_char_appended",
+    "input": "aaabccccd",
+    "expected": "abcd"
+  },
+  {
+    "name": "smallest_empty",
+    "input": "",
+    "expected": ""
+  },
+  {
+    "name": "single_char",
+    "input": "z",
+    "expected": "z"
+  },
+  {
+    "name": "boundary_all_identical",
+    "input": "aaaa",
+    "expected": "a"
+  },
+  {
+    "name": "boundary_all_distinct",
+    "input": "abcd",
+    "expected": "abcd"
+  },
+  {
+    "name": "case_sensitive",
+    "input": "aA",
+    "expected": "aA"
+  }
+]

@@ -140,6 +140,39 @@ class TestDeleteReoccurring(unittest.TestCase):
     def test_delete_reoccurring_characters(self):
         self.assertEqual("abc", delete_reoccurring_characters("aaabcccc"))
 
+    def test_non_adjacent_repeat_is_removed(self):
+        # Neighbour of the fixture: a trailing "a" repeats a character seen
+        # earlier but not adjacent to it. De-duplication drops it ("abc");
+        # run-collapsing would wrongly give "abca".
+        self.assertEqual("abc", delete_reoccurring_characters("aaabcccca"))
+
+    def test_new_character_is_appended_in_order(self):
+        self.assertEqual("abcd", delete_reoccurring_characters("aaabccccd"))
+
+    def test_empty_string(self):
+        self.assertEqual("", delete_reoccurring_characters(""))
+
+    def test_single_character(self):
+        self.assertEqual("z", delete_reoccurring_characters("z"))
+
+    def test_all_characters_identical(self):
+        self.assertEqual("a", delete_reoccurring_characters("aaaa"))
+
+    def test_all_characters_distinct_unchanged(self):
+        self.assertEqual("abcd", delete_reoccurring_characters("abcd"))
+
+    def test_comparison_is_case_sensitive(self):
+        self.assertEqual("aA", delete_reoccurring_characters("aA"))
+
+    def test_input_not_mutated_and_no_state_between_calls(self):
+        original = "aaabcccc"
+        first = delete_reoccurring_characters(original)
+        # A leaked "seen" set would make this repeat call return "".
+        second = delete_reoccurring_characters(original)
+        self.assertEqual("aaabcccc", original)
+        self.assertEqual("abc", first)
+        self.assertEqual("abc", second)
+
 
 class TestDomainExtractor(unittest.TestCase):
     """[summary]

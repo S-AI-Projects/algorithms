@@ -1,0 +1,74 @@
+[
+  {
+    "name": "fixture",
+    "input": "aaabcccc",
+    "expected": "abc",
+    "actual": "abc",
+    "value_ok": true,
+    "input_unchanged": true,
+    "passed": true
+  },
+  {
+    "name": "neighbour_non_adjacent_repeat",
+    "input": "aaabcccca",
+    "expected": "abc",
+    "actual": "abc",
+    "value_ok": true,
+    "input_unchanged": true,
+    "passed": true
+  },
+  {
+    "name": "neighbour_new_char_appended",
+    "input": "aaabccccd",
+    "expected": "abcd",
+    "actual": "abcd",
+    "value_ok": true,
+    "input_unchanged": true,
+    "passed": true
+  },
+  {
+    "name": "smallest_empty",
+    "input": "",
+    "expected": "",
+    "actual": "",
+    "value_ok": true,
+    "input_unchanged": true,
+    "passed": true
+  },
+  {
+    "name": "single_char",
+    "input": "z",
+    "expected": "z",
+    "actual": "z",
+    "value_ok": true,
+    "input_unchanged": true,
+    "passed": true
+  },
+  {
+    "name": "boundary_all_identical",
+    "input": "aaaa",
+    "expected": "a",
+    "actual": "a",
+    "value_ok": true,
+    "input_unchanged": true,
+    "passed": true
+  },
+  {
+    "name": "boundary_all_distinct",
+    "input": "abcd",
+    "expected": "abcd",
+    "actual": "abcd",
+    "value_ok": true,
+    "input_unchanged": true,
+    "passed": true
+  },
+  {
+    "name": "case_sensitive",
+    "input": "aA",
+    "expected": "aA",
+    "actual": "aA",
+    "value_ok": true,
+    "input_unchanged": true,
+    "passed": true
+  }
+]

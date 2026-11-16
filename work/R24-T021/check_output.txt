@@ -1,0 +1,22 @@
+R24-T021 delete_reoccurring_characters contract check
+
+Direct cases (expected vs actual):
+  [PASS] fixture: input='aaabcccc' expected='abc' actual='abc' input_unchanged=True
+  [PASS] neighbour_non_adjacent_repeat: input='aaabcccca' expected='abc' actual='abc' input_unchanged=True
+  [PASS] neighbour_new_char_appended: input='aaabccccd' expected='abcd' actual='abcd' input_unchanged=True
+  [PASS] smallest_empty: input='' expected='' actual='' input_unchanged=True
+  [PASS] single_char: input='z' expected='z' actual='z' input_unchanged=True
+  [PASS] boundary_all_identical: input='aaaa' expected='a' actual='a' input_unchanged=True
+  [PASS] boundary_all_distinct: input='abcd' expected='abcd' actual='abcd' input_unchanged=True
+  [PASS] case_sensitive: input='aA' expected='aA' actual='aA' input_unchanged=True
+
+Pytest command: python3 -m pytest tests/test_string.py::TestDeleteReoccurring -q --no-header
+Pytest result: 9 passed, 0 failed, exit 0
+============================= test session starts ==============================
+collected 9 items
+
+tests/test_string.py .........                                           [100%]
+
+============================== 9 passed in 0.02s ===============================
+
+OVERALL: PASS
