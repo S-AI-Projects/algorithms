@@ -1,0 +1,13 @@
+{
+  "task": "R24-T023",
+  "target": "algorithms/searching/find_min_rotate.py:find_min_rotate",
+  "anchors_passed": 5,
+  "anchors_total": 5,
+  "cross_check_passed": 28,
+  "cross_check_total": 28,
+  "recursive_mismatches_recorded": 11,
+  "pytest_command": "python3 -m pytest tests/test_searching.py::TestFindMinRotateCrossCheck -q --no-header",
+  "pytest_passed": 4,
+  "pytest_failed": 0,
+  "overall": "PASS"
+}

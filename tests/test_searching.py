@@ -155,5 +155,54 @@ class TestSuite(unittest.TestCase):
         self.assertEqual(10, interpolation_search(array, 20))
 
 
+class TestFindMinRotateCrossCheck(unittest.TestCase):
+    """Cross-check find_min_rotate against an independent reference.
+
+    Inputs are every rotation of sorted, duplicate-free lists of length 1-7.
+    The expected minimum is known by construction (the first value of the
+    sorted list) and confirmed with the built-in min(), a linear scan that
+    does not call the function under test.
+    """
+
+    SORTED_VALUES = [-5, -2, 0, 3, 4, 9, 12]
+
+    @classmethod
+    def rotated_inputs(cls):
+        cases = []
+        for n in range(1, len(cls.SORTED_VALUES) + 1):
+            base = cls.SORTED_VALUES[-n:]
+            for k in range(n):
+                cases.append((base[k:] + base[:k], base[0]))
+        return cases
+
+    def test_source_anchors(self):
+        self.assertEqual(0, find_min_rotate([4, 5, 6, 7, 0, 1, 2]))
+        self.assertEqual(1, find_min_rotate([1, 2, 3]))
+        self.assertEqual(0, find_min_rotate_recur([4, 5, 6, 7, 0, 1, 2], 0, 6))
+
+    def test_neighbouring_inputs(self):
+        # First anchor rotated one more step left: the minimum is still 0.
+        self.assertEqual(0, find_min_rotate([5, 6, 7, 0, 1, 2, 4]))
+        # Second anchor rotated one step right: the minimum moves to index 1.
+        self.assertEqual(1, find_min_rotate([3, 1, 2]))
+
+    def test_matches_reference_on_every_small_rotation(self):
+        cases = self.rotated_inputs()
+        self.assertEqual(28, len(cases))
+        for array, expected in cases:
+            with self.subTest(array=array):
+                self.assertEqual(expected, min(array))  # the oracle agrees
+                self.assertEqual(expected, find_min_rotate(list(array)))
+
+    def test_repeated_runs_on_fresh_inputs_agree_without_mutation(self):
+        for array, expected in self.rotated_inputs():
+            with self.subTest(array=array):
+                first_input, second_input = list(array), list(array)
+                self.assertEqual(expected, find_min_rotate(first_input))
+                self.assertEqual(expected, find_min_rotate(second_input))
+                self.assertEqual(array, first_input)
+                self.assertEqual(array, second_input)
+
+
 if __name__ == "__main__":
     unittest.main()

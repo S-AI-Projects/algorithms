@@ -1,0 +1,51 @@
+R24-T023 find_min_rotate cross-check
+
+Anchors and neighbouring inputs (expected vs actual):
+  [PASS] anchor_rotated: find_min_rotate([4, 5, 6, 7, 0, 1, 2]) expected=0 actual=0
+  [PASS] anchor_not_rotated: find_min_rotate([1, 2, 3]) expected=1 actual=1
+  [PASS] anchor_recursive: find_min_rotate_recur([4, 5, 6, 7, 0, 1, 2], 0, 6) expected=0 actual=0
+  [PASS] neighbour_first_anchor_one_more_left_rotation: find_min_rotate([5, 6, 7, 0, 1, 2, 4]) expected=0 actual=0
+  [PASS] neighbour_second_anchor_one_right_rotation: find_min_rotate([3, 1, 2]) expected=1 actual=1
+
+Cross-check vs linear-scan oracle: 28/28 inputs passed
+  [PASS] [12]: expected=12 oracle=12 run1=12 run2=12 unchanged=True
+  [PASS] [9, 12]: expected=9 oracle=9 run1=9 run2=9 unchanged=True
+  [PASS] [12, 9]: expected=9 oracle=9 run1=9 run2=9 unchanged=True
+  [PASS] [4, 9, 12]: expected=4 oracle=4 run1=4 run2=4 unchanged=True
+  [PASS] [9, 12, 4]: expected=4 oracle=4 run1=4 run2=4 unchanged=True
+  [PASS] [12, 4, 9]: expected=4 oracle=4 run1=4 run2=4 unchanged=True
+  [PASS] [3, 4, 9, 12]: expected=3 oracle=3 run1=3 run2=3 unchanged=True
+  [PASS] [4, 9, 12, 3]: expected=3 oracle=3 run1=3 run2=3 unchanged=True
+  [PASS] [9, 12, 3, 4]: expected=3 oracle=3 run1=3 run2=3 unchanged=True
+  [PASS] [12, 3, 4, 9]: expected=3 oracle=3 run1=3 run2=3 unchanged=True
+  [PASS] [0, 3, 4, 9, 12]: expected=0 oracle=0 run1=0 run2=0 unchanged=True
+  [PASS] [3, 4, 9, 12, 0]: expected=0 oracle=0 run1=0 run2=0 unchanged=True
+  [PASS] [4, 9, 12, 0, 3]: expected=0 oracle=0 run1=0 run2=0 unchanged=True
+  [PASS] [9, 12, 0, 3, 4]: expected=0 oracle=0 run1=0 run2=0 unchanged=True
+  [PASS] [12, 0, 3, 4, 9]: expected=0 oracle=0 run1=0 run2=0 unchanged=True
+  [PASS] [-2, 0, 3, 4, 9, 12]: expected=-2 oracle=-2 run1=-2 run2=-2 unchanged=True
+  [PASS] [0, 3, 4, 9, 12, -2]: expected=-2 oracle=-2 run1=-2 run2=-2 unchanged=True
+  [PASS] [3, 4, 9, 12, -2, 0]: expected=-2 oracle=-2 run1=-2 run2=-2 unchanged=True
+  [PASS] [4, 9, 12, -2, 0, 3]: expected=-2 oracle=-2 run1=-2 run2=-2 unchanged=True
+  [PASS] [9, 12, -2, 0, 3, 4]: expected=-2 oracle=-2 run1=-2 run2=-2 unchanged=True
+  [PASS] [12, -2, 0, 3, 4, 9]: expected=-2 oracle=-2 run1=-2 run2=-2 unchanged=True
+  [PASS] [-5, -2, 0, 3, 4, 9, 12]: expected=-5 oracle=-5 run1=-5 run2=-5 unchanged=True
+  [PASS] [-2, 0, 3, 4, 9, 12, -5]: expected=-5 oracle=-5 run1=-5 run2=-5 unchanged=True
+  [PASS] [0, 3, 4, 9, 12, -5, -2]: expected=-5 oracle=-5 run1=-5 run2=-5 unchanged=True
+  [PASS] [3, 4, 9, 12, -5, -2, 0]: expected=-5 oracle=-5 run1=-5 run2=-5 unchanged=True
+  [PASS] [4, 9, 12, -5, -2, 0, 3]: expected=-5 oracle=-5 run1=-5 run2=-5 unchanged=True
+  [PASS] [9, 12, -5, -2, 0, 3, 4]: expected=-5 oracle=-5 run1=-5 run2=-5 unchanged=True
+  [PASS] [12, -5, -2, 0, 3, 4, 9]: expected=-5 oracle=-5 run1=-5 run2=-5 unchanged=True
+
+Recorded, not asserted: find_min_rotate_recur wrong on 11/28 inputs; minimal repro find_min_rotate_recur([2, 1], 0, 1) -> 2 (expected 1).
+
+Pytest command: python3 -m pytest tests/test_searching.py::TestFindMinRotateCrossCheck -q --no-header
+Pytest result: 4 passed, 0 failed, exit 0
+============================= test session starts ==============================
+collected 4 items
+
+tests/test_searching.py ....                                             [100%]
+
+============================== 4 passed in 0.02s ===============================
+
+OVERALL: PASS

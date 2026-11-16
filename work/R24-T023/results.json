@@ -1,0 +1,685 @@
+{
+  "anchors_and_neighbours": [
+    {
+      "name": "anchor_rotated",
+      "function": "find_min_rotate",
+      "args": [
+        [
+          4,
+          5,
+          6,
+          7,
+          0,
+          1,
+          2
+        ]
+      ],
+      "expected": 0,
+      "actual": 0,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "name": "anchor_not_rotated",
+      "function": "find_min_rotate",
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": 1,
+      "actual": 1,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "name": "anchor_recursive",
+      "function": "find_min_rotate_recur",
+      "args": [
+        [
+          4,
+          5,
+          6,
+          7,
+          0,
+          1,
+          2
+        ],
+        0,
+        6
+      ],
+      "expected": 0,
+      "actual": 0,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "name": "neighbour_first_anchor_one_more_left_rotation",
+      "function": "find_min_rotate",
+      "args": [
+        [
+          5,
+          6,
+          7,
+          0,
+          1,
+          2,
+          4
+        ]
+      ],
+      "expected": 0,
+      "actual": 0,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "name": "neighbour_second_anchor_one_right_rotation",
+      "function": "find_min_rotate",
+      "args": [
+        [
+          3,
+          1,
+          2
+        ]
+      ],
+      "expected": 1,
+      "actual": 1,
+      "input_unchanged": true,
+      "passed": true
+    }
+  ],
+  "cross_check": [
+    {
+      "input": [
+        12
+      ],
+      "left_rotation": 0,
+      "expected": 12,
+      "oracle": 12,
+      "actual_first_run": 12,
+      "actual_second_run": 12,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        9,
+        12
+      ],
+      "left_rotation": 0,
+      "expected": 9,
+      "oracle": 9,
+      "actual_first_run": 9,
+      "actual_second_run": 9,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        12,
+        9
+      ],
+      "left_rotation": 1,
+      "expected": 9,
+      "oracle": 9,
+      "actual_first_run": 9,
+      "actual_second_run": 9,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        4,
+        9,
+        12
+      ],
+      "left_rotation": 0,
+      "expected": 4,
+      "oracle": 4,
+      "actual_first_run": 4,
+      "actual_second_run": 4,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        9,
+        12,
+        4
+      ],
+      "left_rotation": 1,
+      "expected": 4,
+      "oracle": 4,
+      "actual_first_run": 4,
+      "actual_second_run": 4,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        12,
+        4,
+        9
+      ],
+      "left_rotation": 2,
+      "expected": 4,
+      "oracle": 4,
+      "actual_first_run": 4,
+      "actual_second_run": 4,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        3,
+        4,
+        9,
+        12
+      ],
+      "left_rotation": 0,
+      "expected": 3,
+      "oracle": 3,
+      "actual_first_run": 3,
+      "actual_second_run": 3,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        4,
+        9,
+        12,
+        3
+      ],
+      "left_rotation": 1,
+      "expected": 3,
+      "oracle": 3,
+      "actual_first_run": 3,
+      "actual_second_run": 3,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        9,
+        12,
+        3,
+        4
+      ],
+      "left_rotation": 2,
+      "expected": 3,
+      "oracle": 3,
+      "actual_first_run": 3,
+      "actual_second_run": 3,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        12,
+        3,
+        4,
+        9
+      ],
+      "left_rotation": 3,
+      "expected": 3,
+      "oracle": 3,
+      "actual_first_run": 3,
+      "actual_second_run": 3,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        0,
+        3,
+        4,
+        9,
+        12
+      ],
+      "left_rotation": 0,
+      "expected": 0,
+      "oracle": 0,
+      "actual_first_run": 0,
+      "actual_second_run": 0,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        3,
+        4,
+        9,
+        12,
+        0
+      ],
+      "left_rotation": 1,
+      "expected": 0,
+      "oracle": 0,
+      "actual_first_run": 0,
+      "actual_second_run": 0,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        4,
+        9,
+        12,
+        0,
+        3
+      ],
+      "left_rotation": 2,
+      "expected": 0,
+      "oracle": 0,
+      "actual_first_run": 0,
+      "actual_second_run": 0,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        9,
+        12,
+        0,
+        3,
+        4
+      ],
+      "left_rotation": 3,
+      "expected": 0,
+      "oracle": 0,
+      "actual_first_run": 0,
+      "actual_second_run": 0,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        12,
+        0,
+        3,
+        4,
+        9
+      ],
+      "left_rotation": 4,
+      "expected": 0,
+      "oracle": 0,
+      "actual_first_run": 0,
+      "actual_second_run": 0,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        -2,
+        0,
+        3,
+        4,
+        9,
+        12
+      ],
+      "left_rotation": 0,
+      "expected": -2,
+      "oracle": -2,
+      "actual_first_run": -2,
+      "actual_second_run": -2,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        0,
+        3,
+        4,
+        9,
+        12,
+        -2
+      ],
+      "left_rotation": 1,
+      "expected": -2,
+      "oracle": -2,
+      "actual_first_run": -2,
+      "actual_second_run": -2,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        3,
+        4,
+        9,
+        12,
+        -2,
+        0
+      ],
+      "left_rotation": 2,
+      "expected": -2,
+      "oracle": -2,
+      "actual_first_run": -2,
+      "actual_second_run": -2,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        4,
+        9,
+        12,
+        -2,
+        0,
+        3
+      ],
+      "left_rotation": 3,
+      "expected": -2,
+      "oracle": -2,
+      "actual_first_run": -2,
+      "actual_second_run": -2,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        9,
+        12,
+        -2,
+        0,
+        3,
+        4
+      ],
+      "left_rotation": 4,
+      "expected": -2,
+      "oracle": -2,
+      "actual_first_run": -2,
+      "actual_second_run": -2,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        12,
+        -2,
+        0,
+        3,
+        4,
+        9
+      ],
+      "left_rotation": 5,
+      "expected": -2,
+      "oracle": -2,
+      "actual_first_run": -2,
+      "actual_second_run": -2,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        -5,
+        -2,
+        0,
+        3,
+        4,
+        9,
+        12
+      ],
+      "left_rotation": 0,
+      "expected": -5,
+      "oracle": -5,
+      "actual_first_run": -5,
+      "actual_second_run": -5,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        -2,
+        0,
+        3,
+        4,
+        9,
+        12,
+        -5
+      ],
+      "left_rotation": 1,
+      "expected": -5,
+      "oracle": -5,
+      "actual_first_run": -5,
+      "actual_second_run": -5,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        0,
+        3,
+        4,
+        9,
+        12,
+        -5,
+        -2
+      ],
+      "left_rotation": 2,
+      "expected": -5,
+      "oracle": -5,
+      "actual_first_run": -5,
+      "actual_second_run": -5,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        3,
+        4,
+        9,
+        12,
+        -5,
+        -2,
+        0
+      ],
+      "left_rotation": 3,
+      "expected": -5,
+      "oracle": -5,
+      "actual_first_run": -5,
+      "actual_second_run": -5,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        4,
+        9,
+        12,
+        -5,
+        -2,
+        0,
+        3
+      ],
+      "left_rotation": 4,
+      "expected": -5,
+      "oracle": -5,
+      "actual_first_run": -5,
+      "actual_second_run": -5,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        9,
+        12,
+        -5,
+        -2,
+        0,
+        3,
+        4
+      ],
+      "left_rotation": 5,
+      "expected": -5,
+      "oracle": -5,
+      "actual_first_run": -5,
+      "actual_second_run": -5,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "input": [
+        12,
+        -5,
+        -2,
+        0,
+        3,
+        4,
+        9
+      ],
+      "left_rotation": 6,
+      "expected": -5,
+      "oracle": -5,
+      "actual_first_run": -5,
+      "actual_second_run": -5,
+      "input_unchanged": true,
+      "passed": true
+    }
+  ],
+  "find_min_rotate_recur_findings": {
+    "asserted": false,
+    "checked": 28,
+    "mismatch_count": 11,
+    "mismatches": [
+      {
+        "input": [
+          12,
+          9
+        ],
+        "expected": 9,
+        "actual": 12
+      },
+      {
+        "input": [
+          12,
+          4,
+          9
+        ],
+        "expected": 4,
+        "actual": 12
+      },
+      {
+        "input": [
+          4,
+          9,
+          12,
+          3
+        ],
+        "expected": 3,
+        "actual": 12
+      },
+      {
+        "input": [
+          12,
+          3,
+          4,
+          9
+        ],
+        "expected": 3,
+        "actual": 12
+      },
+      {
+        "input": [
+          3,
+          4,
+          9,
+          12,
+          0
+        ],
+        "expected": 0,
+        "actual": 12
+      },
+      {
+        "input": [
+          12,
+          0,
+          3,
+          4,
+          9
+        ],
+        "expected": 0,
+        "actual": 12
+      },
+      {
+        "input": [
+          3,
+          4,
+          9,
+          12,
+          -2,
+          0
+        ],
+        "expected": -2,
+        "actual": 12
+      },
+      {
+        "input": [
+          12,
+          -2,
+          0,
+          3,
+          4,
+          9
+        ],
+        "expected": -2,
+        "actual": 12
+      },
+      {
+        "input": [
+          0,
+          3,
+          4,
+          9,
+          12,
+          -5,
+          -2
+        ],
+        "expected": -5,
+        "actual": 12
+      },
+      {
+        "input": [
+          4,
+          9,
+          12,
+          -5,
+          -2,
+          0,
+          3
+        ],
+        "expected": -5,
+        "actual": 12
+      },
+      {
+        "input": [
+          12,
+          -5,
+          -2,
+          0,
+          3,
+          4,
+          9
+        ],
+        "expected": -5,
+        "actual": 12
+      }
+    ],
+    "smallest_mismatch_found": {
+      "input": [
+        12,
+        9
+      ],
+      "expected": 9,
+      "actual": 12
+    },
+    "minimal_repro": {
+      "call": "find_min_rotate_recur([2, 1], 0, 1)",
+      "expected": 1,
+      "actual": 2
+    }
+  }
+}

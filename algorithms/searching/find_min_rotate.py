@@ -17,6 +17,21 @@ from __future__ import annotations
 def find_min_rotate(array: list[int]) -> int:
     """Find the minimum element in a rotated sorted array (iterative).
 
+    Contract:
+        Supported input is a non-empty list of unique values in ascending
+        order, rotated by any number of positions (zero included). Lists
+        with duplicates are outside this domain (see the module docstring).
+        The smallest value is returned (not its index), and ``array`` is
+        only read, never modified.
+
+    Worked example, ``[4, 5, 6, 7, 0, 1, 2]``:
+        - low=0, high=6, mid=3: 7 > 2, so the minimum is right of mid and
+          low becomes 4.
+        - low=4, high=6, mid=5: 1 <= 2, so the minimum is at mid or left of
+          it and high becomes 5.
+        - low=4, high=5, mid=4: 0 <= 1, so high becomes 4.
+        - low == high == 4, so ``array[4]``, which is 0, is returned.
+
     Args:
         array: A sorted list of unique integers that has been rotated.
 
@@ -28,6 +43,8 @@ def find_min_rotate(array: list[int]) -> int:
         0
         >>> find_min_rotate([1, 2, 3])
         1
+        >>> find_min_rotate([5, 6, 7, 0, 1, 2, 4])
+        0
     """
     low = 0
     high = len(array) - 1
