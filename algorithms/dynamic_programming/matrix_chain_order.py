@@ -28,10 +28,19 @@ def matrix_chain_order(array: list[int]) -> tuple[list[list[int]], list[list[int
         holds the minimum cost and split_matrix[i][j] holds the optimal
         split point.
 
+    Empty result (there is no error branch):
+        Nothing is validated and nothing is raised. With at most one matrix
+        (``len(array) <= 2``) the loop over chain lengths, ``range(2, n)``,
+        does not run, so both tables keep the zeros they start with: cost 0
+        and split 0. A split of 0 means "no split", because real split
+        points start at 1. An empty ``array`` gives two empty tables.
+
     Examples:
         >>> m, s = matrix_chain_order([30, 35, 15, 5, 10, 20, 25])
         >>> m[1][6]
         15125
+        >>> matrix_chain_order([2, 3])  # one 2 x 3 matrix: nothing to multiply
+        ([[0, 0], [0, 0]], [[0, 0], [0, 0]])
     """
     n = len(array)
     matrix = [[0 for x in range(n)] for x in range(n)]

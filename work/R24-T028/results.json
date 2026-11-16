@@ -1,0 +1,359 @@
+{
+  "current_lines": {
+    "loop_header": 48,
+    "loop_body": 49,
+    "return": 60
+  },
+  "empty_result_cases": [
+    {
+      "name": "2 x 3 rectangular matrix",
+      "input": [
+        2,
+        3
+      ],
+      "expected": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "actual": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "reached": {
+        "loop_header": true,
+        "loop_body": false,
+        "return": true
+      },
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "name": "1 x 1 matrix",
+      "input": [
+        1,
+        1
+      ],
+      "expected": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "actual": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "reached": {
+        "loop_header": true,
+        "loop_body": false,
+        "return": true
+      },
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "name": "0 x 3 zero-dimension matrix",
+      "input": [
+        0,
+        3
+      ],
+      "expected": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "actual": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "reached": {
+        "loop_header": true,
+        "loop_body": false,
+        "return": true
+      },
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "name": "smallest input []",
+      "input": [],
+      "expected": [
+        [],
+        []
+      ],
+      "actual": [
+        [],
+        []
+      ],
+      "reached": {
+        "loop_header": true,
+        "loop_body": false,
+        "return": true
+      },
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "name": "one dimension [5]",
+      "input": [
+        5
+      ],
+      "expected": [
+        [
+          [
+            0
+          ]
+        ],
+        [
+          [
+            0
+          ]
+        ]
+      ],
+      "actual": [
+        [
+          [
+            0
+          ]
+        ],
+        [
+          [
+            0
+          ]
+        ]
+      ],
+      "reached": {
+        "loop_header": true,
+        "loop_body": false,
+        "return": true
+      },
+      "input_unchanged": true,
+      "passed": true
+    }
+  ],
+  "caller_state": {
+    "name": "returned tables belong to the caller; input unchanged",
+    "expected": {
+      "later_call": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "dims": [
+        2,
+        3
+      ]
+    },
+    "actual": {
+      "later_call": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "dims": [
+        2,
+        3
+      ]
+    },
+    "passed": true
+  },
+  "ordinary_cases": [
+    {
+      "name": "2 x 3 times 3 x 4",
+      "input": [
+        2,
+        3,
+        4
+      ],
+      "cell": [
+        1,
+        2
+      ],
+      "expected": {
+        "cost": 24,
+        "split": 1
+      },
+      "actual": {
+        "cost": 24,
+        "split": 1
+      },
+      "reached": {
+        "loop_header": true,
+        "loop_body": true,
+        "return": true
+      },
+      "inf_left_in_table": false,
+      "passed": true
+    },
+    {
+      "name": "docstring chain",
+      "input": [
+        30,
+        35,
+        15,
+        5,
+        10,
+        20,
+        25
+      ],
+      "cell": [
+        1,
+        6
+      ],
+      "expected": {
+        "cost": 15125,
+        "split": 3
+      },
+      "actual": {
+        "cost": 15125,
+        "split": 3
+      },
+      "reached": {
+        "loop_header": true,
+        "loop_body": true,
+        "return": true
+      },
+      "inf_left_in_table": false,
+      "passed": true
+    }
+  ]
+}

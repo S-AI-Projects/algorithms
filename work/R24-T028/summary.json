@@ -1,0 +1,14 @@
+{
+  "task": "R24-T028",
+  "target": "algorithms/dynamic_programming/matrix_chain_order.py:matrix_chain_order",
+  "branch": "L39 loop skipped when len(array) <= 2; zero tables (L37-38) returned at L51",
+  "empty_cases_passed": 5,
+  "empty_cases_total": 5,
+  "caller_state_passed": true,
+  "ordinary_cases_passed": 2,
+  "ordinary_cases_total": 2,
+  "pytest_command": "python3 -m pytest tests/test_dynamic_programming.py::TestMatrixChainOrderEmptyResult -q --no-header",
+  "pytest_passed": 4,
+  "pytest_failed": 0,
+  "overall": "PASS"
+}

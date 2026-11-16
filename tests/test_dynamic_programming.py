@@ -19,6 +19,7 @@ from algorithms.dynamic_programming import (
     house_robber,
     int_divide,
     longest_increasing_subsequence,
+    matrix_chain_order,
     max_profit_naive,
     max_profit_optimized,
     planting_trees,
@@ -309,6 +310,56 @@ class TestRegexMatching(unittest.TestCase):
         s = "abb"
         p = "ab*"
         self.assertTrue(regex_matching.is_match(s, p))
+
+
+class TestMatrixChainOrderEmptyResult(unittest.TestCase):
+    """matrix_chain_order has no error branch, so this covers its empty result.
+
+    With at most one matrix (len(array) <= 2) the loop over chain lengths
+    (L39 at commit bd1d152) does not run, and both tables keep the zeros they
+    start with (L37-38): cost 0 and split 0, meaning "no split".
+    """
+
+    def test_one_matrix_has_nothing_to_multiply(self):
+        cases = {
+            "2 x 3 rectangular matrix": [2, 3],
+            "1 x 1 matrix": [1, 1],
+            "0 x 3 zero-dimension matrix": [0, 3],
+        }
+        for label, dims in cases.items():
+            with self.subTest(label):
+                before = list(dims)
+                m, s = matrix_chain_order(dims)
+                self.assertEqual([[0, 0], [0, 0]], m)
+                self.assertEqual([[0, 0], [0, 0]], s)
+                self.assertEqual(before, dims)
+
+    def test_smallest_inputs_reach_the_same_branch(self):
+        self.assertEqual(([], []), matrix_chain_order([]))
+        self.assertEqual(([[0]], [[0]]), matrix_chain_order([5]))
+
+    def test_zero_dimension_in_a_chain_still_records_a_split(self):
+        # 2 x 0 times 0 x 3 costs 2 * 0 * 3 = 0, like the empty result, but
+        # the loop runs and records the only possible split, after matrix 1.
+        m, s = matrix_chain_order([2, 0, 3])
+        self.assertEqual(0, m[1][2])
+        self.assertEqual(1, s[1][2])
+
+    def test_ordinary_calls_still_succeed_afterwards(self):
+        dims = [2, 3]
+        m, _ = matrix_chain_order(dims)
+        m[1][1] = 99  # the caller owns the returned tables
+        again = matrix_chain_order([2, 3])
+        self.assertEqual(([[0, 0], [0, 0]], [[0, 0], [0, 0]]), again)
+        self.assertEqual([2, 3], dims)
+        # Two rectangular matrices: 2 x 3 times 3 x 4 costs 2 * 3 * 4 = 24.
+        m, s = matrix_chain_order([2, 3, 4])
+        self.assertEqual(24, m[1][2])
+        self.assertEqual(1, s[1][2])
+        # The docstring chain: minimum cost 15125, split after matrix 3.
+        m, s = matrix_chain_order([30, 35, 15, 5, 10, 20, 25])
+        self.assertEqual(15125, m[1][6])
+        self.assertEqual(3, s[1][6])
 
 
 if __name__ == "__main__":

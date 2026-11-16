@@ -1,0 +1,27 @@
+R24-T028 matrix_chain_order empty-result check
+
+Named statements (pinned bd1d152 -> this branch): L39 -> L48 'for chain_length in range(2, n):', L40 -> L49 'for a in range(1, n - chain_length + 1):', L51 -> L60 'return matrix, sol'
+
+Empty-result cases (expected vs actual, and lines reached):
+  [PASS] 2 x 3 rectangular matrix [2, 3]: expected=[[[0, 0], [0, 0]], [[0, 0], [0, 0]]] actual=[[[0, 0], [0, 0]], [[0, 0], [0, 0]]] reached={'loop_header': True, 'loop_body': False, 'return': True}
+  [PASS] 1 x 1 matrix [1, 1]: expected=[[[0, 0], [0, 0]], [[0, 0], [0, 0]]] actual=[[[0, 0], [0, 0]], [[0, 0], [0, 0]]] reached={'loop_header': True, 'loop_body': False, 'return': True}
+  [PASS] 0 x 3 zero-dimension matrix [0, 3]: expected=[[[0, 0], [0, 0]], [[0, 0], [0, 0]]] actual=[[[0, 0], [0, 0]], [[0, 0], [0, 0]]] reached={'loop_header': True, 'loop_body': False, 'return': True}
+  [PASS] smallest input [] []: expected=[[], []] actual=[[], []] reached={'loop_header': True, 'loop_body': False, 'return': True}
+  [PASS] one dimension [5] [5]: expected=[[[0]], [[0]]] actual=[[[0]], [[0]]] reached={'loop_header': True, 'loop_body': False, 'return': True}
+
+[PASS] returned tables belong to the caller; input unchanged: expected={'later_call': [[[0, 0], [0, 0]], [[0, 0], [0, 0]]], 'dims': [2, 3]} actual={'later_call': [[[0, 0], [0, 0]], [[0, 0], [0, 0]]], 'dims': [2, 3]}
+
+Ordinary calls afterwards:
+  [PASS] 2 x 3 times 3 x 4 [2, 3, 4] cell [1, 2]: expected={'cost': 24, 'split': 1} actual={'cost': 24, 'split': 1} loop body ran=True _INF left=False
+  [PASS] docstring chain [30, 35, 15, 5, 10, 20, 25] cell [1, 6]: expected={'cost': 15125, 'split': 3} actual={'cost': 15125, 'split': 3} loop body ran=True _INF left=False
+
+Pytest command: python3 -m pytest tests/test_dynamic_programming.py::TestMatrixChainOrderEmptyResult -q --no-header
+Pytest result: 4 passed, 0 failed, exit 0
+============================= test session starts ==============================
+collected 4 items
+
+tests/test_dynamic_programming.py ....                                   [100%]
+
+============================== 4 passed in 0.02s ===============================
+
+OVERALL: PASS

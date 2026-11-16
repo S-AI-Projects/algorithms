@@ -1,0 +1,160 @@
+{
+  "named_statements": {
+    "loop_header": "L39",
+    "loop_body": "L40",
+    "return": "L51"
+  },
+  "empty_result_cases": [
+    {
+      "name": "2 x 3 rectangular matrix",
+      "input": [
+        2,
+        3
+      ],
+      "expected": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "1 x 1 matrix",
+      "input": [
+        1,
+        1
+      ],
+      "expected": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "0 x 3 zero-dimension matrix",
+      "input": [
+        0,
+        3
+      ],
+      "expected": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "smallest input []",
+      "input": [],
+      "expected": [
+        [],
+        []
+      ]
+    },
+    {
+      "name": "one dimension [5]",
+      "input": [
+        5
+      ],
+      "expected": [
+        [
+          [
+            0
+          ]
+        ],
+        [
+          [
+            0
+          ]
+        ]
+      ]
+    }
+  ],
+  "ordinary_cases": [
+    {
+      "name": "2 x 3 times 3 x 4",
+      "input": [
+        2,
+        3,
+        4
+      ],
+      "cell": [
+        1,
+        2
+      ],
+      "expected": {
+        "cost": 24,
+        "split": 1
+      }
+    },
+    {
+      "name": "docstring chain",
+      "input": [
+        30,
+        35,
+        15,
+        5,
+        10,
+        20,
+        25
+      ],
+      "cell": [
+        1,
+        6
+      ],
+      "expected": {
+        "cost": 15125,
+        "split": 3
+      }
+    }
+  ]
+}
