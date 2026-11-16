@@ -1,0 +1,19 @@
+============================================================
+Running focused check for R24-T009: a_star scaling measurement
+============================================================
+Executing unittest command: /Users/kanavpandey/Documents/SnAI Project/algorithms/.venv/bin/python3 -m unittest -v tests.test_graph.TestAStar
+
+test_a_star_fixtures (tests.test_graph.TestAStar.test_a_star_fixtures) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+
+Running doctests on algorithms/graph/a_star.py...
+Doctest results: attempted=4, failed=0
+Source anchor fixture: path=['A', 'B', 'C'], cost=3.0, passed=True
+Derived neighbor fixture: path=['A', 'B', 'C', 'D'], cost=6.0, passed=True
+Size N=50: median=0.011ms (range [0.009ms, 0.020ms]), verified 5/5
+Size N=100: median=0.021ms (range [0.020ms, 0.030ms]), verified 5/5
+Size N=200: median=0.047ms (range [0.046ms, 0.057ms]), verified 5/5

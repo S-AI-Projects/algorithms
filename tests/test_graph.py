@@ -3,6 +3,7 @@ import unittest
 from algorithms.graph import (
     Sudoku,
     Tarjan,
+    a_star,
     all_pairs_shortest_path,
     bellman_ford,
     check_bipartite,
@@ -631,3 +632,36 @@ class TestTopologicalSort(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             topological_sort(vertices, edges)
+
+
+class TestAStar(unittest.TestCase):
+    def test_a_star_fixtures(self):
+        # Anchor fixture: A -> B (cost 1), B -> C (cost 2)
+        g = {"A": [("B", 1)], "B": [("C", 2)], "C": []}
+        path, cost = a_star(g, "A", "C", lambda n: 0)
+        self.assertEqual(path, ["A", "B", "C"])
+        self.assertEqual(cost, 3)
+
+        # Derived neighboring input: chain extended to D
+        g2 = {"A": [("B", 1)], "B": [("C", 2)], "C": [("D", 3)], "D": []}
+        path2, cost2 = a_star(g2, "A", "D", lambda n: 0)
+        self.assertEqual(path2, ["A", "B", "C", "D"])
+        self.assertEqual(cost2, 6)
+
+        # Multiple alternative paths: chooses lowest cost
+        g3 = {
+            "S": [("A", 1), ("B", 4)],
+            "A": [("G", 5)],
+            "B": [("G", 1)],
+            "G": [],
+        }
+        # S->A->G cost 6, S->B->G cost 5
+        path3, cost3 = a_star(g3, "S", "G", lambda n: 0)
+        self.assertEqual(path3, ["S", "B", "G"])
+        self.assertEqual(cost3, 5)
+
+        # Disconnected / no path exists
+        g4 = {"X": [("Y", 1)], "Y": [], "Z": []}
+        path4, cost4 = a_star(g4, "X", "Z", lambda n: 0)
+        self.assertIsNone(path4)
+        self.assertEqual(cost4, float("inf"))

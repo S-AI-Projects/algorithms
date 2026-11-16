@@ -1,0 +1,62 @@
+{
+  "task_id": "R24-T009",
+  "module": "algorithms.graph.a_star",
+  "complexity_definition": "Input size N = number of vertices in graph. Time complexity O(E log V) with consistent heuristic, worst-case O(b^d).",
+  "sizes_tested": [
+    50,
+    100,
+    200
+  ],
+  "scaling_measurements": [
+    {
+      "size_N": 50,
+      "repetitions": 5,
+      "correct_runs": 5,
+      "durations_seconds": [
+        1.9624974811449647e-05,
+        1.0792020475491881e-05,
+        1.2083008186891675e-05,
+        1.0457995813339949e-05,
+        9.25001222640276e-06
+      ],
+      "median_seconds": 1.1e-05,
+      "min_seconds": 9e-06,
+      "max_seconds": 2e-05
+    },
+    {
+      "size_N": 100,
+      "repetitions": 5,
+      "correct_runs": 5,
+      "durations_seconds": [
+        2.995799877680838e-05,
+        2.3083004634827375e-05,
+        2.0750012481585145e-05,
+        2.012500772252679e-05,
+        2.1499989088624716e-05
+      ],
+      "median_seconds": 2.1e-05,
+      "min_seconds": 2e-05,
+      "max_seconds": 3e-05
+    },
+    {
+      "size_N": 200,
+      "repetitions": 5,
+      "correct_runs": 5,
+      "durations_seconds": [
+        5.629198858514428e-05,
+        5.687499651685357e-05,
+        4.650000482797623e-05,
+        4.712500958703458e-05,
+        4.6375003876164556e-05
+      ],
+      "median_seconds": 4.7e-05,
+      "min_seconds": 4.6e-05,
+      "max_seconds": 5.7e-05
+    }
+  ],
+  "anchor_passed": true,
+  "neighbor_passed": true,
+  "doctest_passed": true,
+  "unittest_passed": true,
+  "all_passed": true
+}
