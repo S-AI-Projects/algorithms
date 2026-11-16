@@ -196,6 +196,34 @@ class TestSuite(unittest.TestCase):
         self.assertEqual(1, get_bit(22, 2))
         self.assertEqual(0, get_bit(22, 3))
 
+    def test_get_bit_property_regression(self):
+        """Property test around get_bit verifying invariant on anchors, neighbors, and bounded cases."""
+        # Anchors from docstrings
+        self.assertEqual(1, get_bit(22, 2))
+        self.assertEqual(0, get_bit(22, 3))
+        # set_bit(22, 3) == 30; get_bit(30, 3) must be 1
+        self.assertEqual(30, set_bit(22, 3))
+        self.assertEqual(1, get_bit(30, 3))
+
+        # Derived neighboring supported input: 22 at position 4 (22 = 0b10110, bit 4 is 1)
+        self.assertEqual(1, get_bit(22, 4))
+        # Derived neighboring supported input: 22 at position 1 (bit 1 is 1)
+        self.assertEqual(1, get_bit(22, 1))
+
+        # Invariant: repeated run with fresh equivalent inputs gives identical result
+        self.assertEqual(1, get_bit(int("22"), int("4")))
+
+        # 100 bounded valid generated cases with fixed seed
+        import random
+        rng = random.Random(42)
+        for _ in range(100):
+            num = rng.randint(0, 10000)
+            pos = rng.randint(0, 30)
+            expected = (num >> pos) & 1
+            self.assertEqual(expected, get_bit(num, pos))
+            # Invariant: fresh equivalent inputs
+            self.assertEqual(expected, get_bit(int(str(num)), int(str(pos))))
+
     def test_set_bit(self):
         # 22 = 10110  --> after set bit at 3th position: 30 = 11110
         self.assertEqual(30, set_bit(22, 3))

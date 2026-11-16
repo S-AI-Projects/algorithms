@@ -1,0 +1,76 @@
+{
+  "task": "R24-T034",
+  "module": "algorithms/bit_manipulation/bit_operation.py",
+  "public_contract": {
+    "inputs": "number: int, position: int",
+    "result": "int (1 if bit at position is set, 0 otherwise)",
+    "mutation_behavior": "Pure function; does not mutate inputs or global state",
+    "external_dependencies": "None (pure Python built-ins)"
+  },
+  "native_check": {
+    "command": "python3 -m unittest -k get_bit tests/test_bit_manipulation.py",
+    "test_count": 2,
+    "failures_count": 0,
+    "errors_count": 0,
+    "success": true,
+    "runner_output": "test_get_bit (tests.test_bit_manipulation.TestSuite) ... ok\ntest_get_bit_property_regression (tests.test_bit_manipulation.TestSuite)\nProperty test around get_bit verifying invariant on anchors, neighbors, and bounded cases. ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.000s\n\nOK\n"
+  },
+  "property_results": {
+    "anchor_and_neighbor_results": [
+      {
+        "description": "Anchor 1",
+        "number": 22,
+        "position": 2,
+        "expected": 1,
+        "actual": true,
+        "idempotence_fresh_pass": true,
+        "pass": true
+      },
+      {
+        "description": "Anchor 2",
+        "number": 22,
+        "position": 3,
+        "expected": 0,
+        "actual": false,
+        "idempotence_fresh_pass": true,
+        "pass": true
+      },
+      {
+        "description": "Neighbor 1 (position 4 of 22)",
+        "number": 22,
+        "position": 4,
+        "expected": 1,
+        "actual": true,
+        "idempotence_fresh_pass": true,
+        "pass": true
+      },
+      {
+        "description": "Neighbor 2 (position 1 of 22)",
+        "number": 22,
+        "position": 1,
+        "expected": 1,
+        "actual": true,
+        "idempotence_fresh_pass": true,
+        "pass": true
+      },
+      {
+        "description": "Neighbor 3 (set_bit(22, 3)=30, check bit 3)",
+        "number": 30,
+        "position": 3,
+        "expected": 1,
+        "actual": true,
+        "idempotence_fresh_pass": true,
+        "pass": true
+      }
+    ],
+    "generated_cases_tested": 100,
+    "generated_all_passed": true,
+    "mutant_check": {
+      "mutant_file": "mutant_bit_operation.py",
+      "mutant_correctly_failed": true,
+      "failure_detail": "Mutant returned False instead of 1"
+    },
+    "all_passed": true
+  },
+  "status": "ALL_CHECKS_PASSED"
+}

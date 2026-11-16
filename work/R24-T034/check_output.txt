@@ -1,0 +1,19 @@
+============================================================
+TASK R24-T034: Focused Runner & Property Check (get_bit)
+============================================================
+[1/4] Tool Versions recorded: Python 3.9.6 | git version 2.50.1 (Apple Git-155)
+[2/4] Native Check: Ran python3 -m unittest -k get_bit tests/test_bit_manipulation.py
+      Tests executed: 2 (Nonzero test count: OK)
+      Status: PASSED
+[3/4] Property & Invariant Check:
+      - Anchor 1 (22, 2): expected 1 -> actual True (OK)
+      - Anchor 2 (22, 3): expected 0 -> actual False (OK)
+      - Neighbor 1 (position 4 of 22) (22, 4): expected 1 -> actual True (OK)
+      - Neighbor 2 (position 1 of 22) (22, 1): expected 1 -> actual True (OK)
+      - Neighbor 3 (set_bit(22, 3)=30, check bit 3) (30, 3): expected 1 -> actual True (OK)
+      - 100 Bounded Cases with seed 42: ALL PASSED
+[4/4] Broken Invariant Check on Mutant:
+      Mutant correctly caught & failed: True
+      Failure detail: Mutant returned False instead of 1
+
+All checks completed successfully. Artifacts saved to work/R24-T034/.

@@ -1,0 +1,57 @@
+{
+  "anchor_and_neighbor_results": [
+    {
+      "description": "Anchor 1",
+      "number": 22,
+      "position": 2,
+      "expected": 1,
+      "actual": true,
+      "idempotence_fresh_pass": true,
+      "pass": true
+    },
+    {
+      "description": "Anchor 2",
+      "number": 22,
+      "position": 3,
+      "expected": 0,
+      "actual": false,
+      "idempotence_fresh_pass": true,
+      "pass": true
+    },
+    {
+      "description": "Neighbor 1 (position 4 of 22)",
+      "number": 22,
+      "position": 4,
+      "expected": 1,
+      "actual": true,
+      "idempotence_fresh_pass": true,
+      "pass": true
+    },
+    {
+      "description": "Neighbor 2 (position 1 of 22)",
+      "number": 22,
+      "position": 1,
+      "expected": 1,
+      "actual": true,
+      "idempotence_fresh_pass": true,
+      "pass": true
+    },
+    {
+      "description": "Neighbor 3 (set_bit(22, 3)=30, check bit 3)",
+      "number": 30,
+      "position": 3,
+      "expected": 1,
+      "actual": true,
+      "idempotence_fresh_pass": true,
+      "pass": true
+    }
+  ],
+  "generated_cases_tested": 100,
+  "generated_all_passed": true,
+  "mutant_check": {
+    "mutant_file": "mutant_bit_operation.py",
+    "mutant_correctly_failed": true,
+    "failure_detail": "Mutant returned False instead of 1"
+  },
+  "all_passed": true
+}
