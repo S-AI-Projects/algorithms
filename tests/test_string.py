@@ -330,6 +330,24 @@ class TestMultiplyStrings(unittest.TestCase):
         self.assertEqual("0", multiply("0", "23"))
         self.assertEqual("1000000", multiply("100", "10000"))
 
+    def test_multiply_neighbor_regression(self):
+        """Regression test verifying multiply against anchor and neighbor.
+
+        Fixture anchor: multiply("23", "23") == "529"
+        Neighboring input: multiply("23", "24") == "552" (23 * 24 = 552)
+        Invariant: Independently calculated output matches return contract;
+        repeated runs with fresh equivalent inputs produce identical results.
+        Reduced input: multiply("1", "11") == "11" (1 * 11 = 11)
+        """
+        # Executable anchor
+        self.assertEqual("529", multiply("23", "23"))
+        # Neighboring supported input derived from anchor
+        self.assertEqual("552", multiply("23", "24"))
+        # Invariant: repeated runs with fresh equivalent inputs give the same result
+        self.assertEqual("552", multiply(str(23), str(24)))
+        # Reduced minimal input where accumulation mistake manifests
+        self.assertEqual("11", multiply("1", "11"))
+
 
 class TestOneEditDistance(unittest.TestCase):
     """[summary]
