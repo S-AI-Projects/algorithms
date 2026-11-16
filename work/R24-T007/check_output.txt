@@ -1,0 +1,26 @@
+============================================================
+Running focused check for R24-T007: _Node worked example
+============================================================
+Executing unittest command: /Users/kanavpandey/Documents/SnAI Project/algorithms/.venv/bin/python3 -m unittest -v tests.test_data_structures.TestSeparateChainingHashTable
+
+test_bracket_operators (tests.test_data_structures.TestSeparateChainingHashTable.test_bracket_operators) ... ok
+test_collision_handling (tests.test_data_structures.TestSeparateChainingHashTable.test_collision_handling) ... ok
+test_delete (tests.test_data_structures.TestSeparateChainingHashTable.test_delete) ... ok
+test_get_missing (tests.test_data_structures.TestSeparateChainingHashTable.test_get_missing) ... ok
+test_len (tests.test_data_structures.TestSeparateChainingHashTable.test_len) ... ok
+test_node_worked_example_and_transitions (tests.test_data_structures.TestSeparateChainingHashTable.test_node_worked_example_and_transitions) ... ok
+test_put_and_get (tests.test_data_structures.TestSeparateChainingHashTable.test_put_and_get) ... ok
+test_source_anchor_and_neighbor (tests.test_data_structures.TestSeparateChainingHashTable.test_source_anchor_and_neighbor) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.000s
+
+OK
+
+Running doctests on algorithms/data_structures/separate_chaining_hash_table.py...
+Doctest results: attempted=20, failed=0
+Step 1 (initial node): passed=True
+Step 2 (intermediate chaining): passed=True
+Step 3 (in-place mutation): passed=True
+Step 4 (source anchor table): passed=True
+Step 5 (neighboring input & update): passed=True

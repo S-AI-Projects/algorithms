@@ -1,0 +1,10 @@
+{
+  "task_id": "R24-T007",
+  "module": "algorithms.data_structures.separate_chaining_hash_table",
+  "target_class": "_Node",
+  "steps_checked": 5,
+  "steps_passed": 5,
+  "doctest_passed": true,
+  "unittest_passed": true,
+  "all_passed": true
+}

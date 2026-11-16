@@ -15,7 +15,39 @@ from __future__ import annotations
 
 
 class _Node:
-    """Internal linked list node for chaining.
+    """Internal linked list node for bucket chaining.
+
+    Worked Example:
+        Step 1 (Initial node creation):
+        >>> n1 = _Node('hello', 'world')
+        >>> n1.key
+        'hello'
+        >>> n1.value
+        'world'
+        >>> n1.next is None
+        True
+
+        Step 2 (Chaining intermediate collision node):
+        >>> n2 = _Node('foo', 'bar', next_node=n1)
+        >>> n2.key, n2.value
+        ('foo', 'bar')
+        >>> n2.next is n1
+        True
+        >>> n2.next.key, n2.next.value
+        ('hello', 'world')
+
+        Step 3 (In-place value update on existing node):
+        >>> n1.value = 'updated_world'
+        >>> n2.next.value
+        'updated_world'
+
+    Decisive State Transitions:
+        - Insertion into empty bucket: `_table[hash]` transitions from `None`
+          to a new `_Node(key, value)`.
+        - Collision chaining: existing tail `node_.next` transitions from `None`
+          to a newly linked `_Node(key, value)`.
+        - Existing key update: `node_.value` updates in-place while retaining
+          its `next` pointer and without altering the table length.
 
     Args:
         key: The key stored in this node.
@@ -42,11 +74,19 @@ class SeparateChainingHashTable:
         >>> table.put('hello', 'world')
         >>> len(table)
         1
+        >>> # Neighboring supported input:
+        >>> table.put('foo', 'bar')
+        >>> len(table)
+        2
         >>> table.get('hello')
         'world'
+        >>> table.get('foo')
+        'bar'
         >>> del table['hello']
         >>> table.get('hello') is None
         True
+        >>> len(table)
+        1
     """
 
     _empty = None
@@ -78,6 +118,9 @@ class SeparateChainingHashTable:
                     node_.value = value
                     return
                 node_ = node_.next
+            if node_.key == key:
+                node_.value = value
+                return
             node_.next = _Node(key, value)
         self._len += 1
 
@@ -114,6 +157,7 @@ class SeparateChainingHashTable:
                 else:
                     previous_node.next = node_.next
                 self._len -= 1
+                return
             previous_node = node_
             node_ = node_.next
 

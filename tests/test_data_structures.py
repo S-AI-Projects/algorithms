@@ -8,6 +8,7 @@ from algorithms.data_structures.red_black_tree import RBNode, RBTree
 from algorithms.data_structures.segment_tree import SegmentTree
 from algorithms.data_structures.separate_chaining_hash_table import (
     SeparateChainingHashTable,
+    _Node,
 )
 from algorithms.data_structures.trie import Trie
 from algorithms.data_structures.union_find import Union
@@ -274,6 +275,43 @@ class TestSeparateChainingHashTable(unittest.TestCase):
         self.assertEqual(table["k"], "v")
         del table["k"]
         self.assertIsNone(table["k"])
+
+    def test_node_worked_example_and_transitions(self):
+        # Step 1: Initial _Node allocation
+        n1 = _Node("hello", "world")
+        self.assertEqual(n1.key, "hello")
+        self.assertEqual(n1.value, "world")
+        self.assertIsNone(n1.next)
+
+        # Step 2: Intermediate state - chaining colliding node
+        n2 = _Node("foo", "bar", next_node=n1)
+        self.assertEqual(n2.key, "foo")
+        self.assertEqual(n2.value, "bar")
+        self.assertIs(n2.next, n1)
+        self.assertEqual(n2.next.key, "hello")
+        self.assertEqual(n2.next.value, "world")
+
+        # Step 3: In-place value transition
+        n1.value = "updated_world"
+        self.assertEqual(n2.next.value, "updated_world")
+
+    def test_source_anchor_and_neighbor(self):
+        # Source anchor:
+        table = SeparateChainingHashTable()
+        table.put("hello", "world")
+        self.assertEqual(len(table), 1)
+        self.assertEqual(table.get("hello"), "world")
+
+        # Derived neighboring input:
+        table.put("foo", "bar")
+        self.assertEqual(len(table), 2)
+        self.assertEqual(table.get("hello"), "world")
+        self.assertEqual(table.get("foo"), "bar")
+
+        # Neighboring key update (value update on existing node):
+        table.put("hello", "new_world")
+        self.assertEqual(len(table), 2)
+        self.assertEqual(table.get("hello"), "new_world")
 
 
 if __name__ == "__main__":

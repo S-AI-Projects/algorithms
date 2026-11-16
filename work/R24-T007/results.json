@@ -1,0 +1,76 @@
+[
+  {
+    "step": 1,
+    "name": "initial_node_allocation",
+    "description": "Create single node _Node('hello', 'world')",
+    "expected": {
+      "key": "hello",
+      "value": "world",
+      "next": null
+    },
+    "actual": {
+      "key": "hello",
+      "value": "world",
+      "next": null
+    },
+    "passed": true
+  },
+  {
+    "step": 2,
+    "name": "chaining_intermediate_node",
+    "description": "Create colliding node _Node('foo', 'bar', next_node=n1)",
+    "expected": {
+      "key": "foo",
+      "value": "bar",
+      "next_key": "hello"
+    },
+    "actual": {
+      "key": "foo",
+      "value": "bar",
+      "next_key": "hello"
+    },
+    "passed": true
+  },
+  {
+    "step": 3,
+    "name": "in_place_value_transition",
+    "description": "Mutate payload of chained node n1.value = 'updated_world'",
+    "expected": {
+      "chained_node_value": "updated_world"
+    },
+    "actual": {
+      "chained_node_value": "updated_world"
+    },
+    "passed": true
+  },
+  {
+    "step": 4,
+    "name": "source_anchor_table",
+    "description": "table.put('hello', 'world'); len(table) == 1",
+    "expected": {
+      "len": 1,
+      "get_hello": "world"
+    },
+    "actual": {
+      "len": 1,
+      "get_hello": "world"
+    },
+    "passed": true
+  },
+  {
+    "step": 5,
+    "name": "neighboring_input_and_update",
+    "description": "table.put('foo', 'bar'); table.put('hello', 'new_world')",
+    "expected": {
+      "len": 2,
+      "get_foo": "bar",
+      "get_hello": "new_world"
+    },
+    "actual": {
+      "len": 2,
+      "get_foo": "bar",
+      "get_hello": "new_world"
+    },
+    "passed": true
+  }
+]
