@@ -1,0 +1,14 @@
+{
+  "task": "R24-T036",
+  "module": "algorithms.common.tree_node",
+  "target": "TreeNode",
+  "refactor": "Added TreeNode.is_leaf property naming the repeated inline expression",
+  "native_command": "python3 -m unittest tests.test_issue_fixes.TestTreeNodeIsLeaf",
+  "test_count": 16,
+  "passed": 16,
+  "failed": 0,
+  "errors": 0,
+  "status": "PASS",
+  "public_interface_unchanged": true,
+  "behavior_preserved": true
+}

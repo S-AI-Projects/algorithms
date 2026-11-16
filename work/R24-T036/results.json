@@ -1,0 +1,39 @@
+{
+  "fixture_left_val": {
+    "expected": 2,
+    "actual": 2
+  },
+  "fixture_right_val": {
+    "expected": 3,
+    "actual": 3
+  },
+  "root_is_leaf": {
+    "expected": false,
+    "actual": false
+  },
+  "root_left_is_leaf": {
+    "expected": true,
+    "actual": true
+  },
+  "root_right_is_leaf": {
+    "expected": true,
+    "actual": true
+  },
+  "neighbour_root_is_leaf": {
+    "expected": false,
+    "actual": false
+  },
+  "neighbour_right_is_leaf": {
+    "expected": true,
+    "actual": true
+  },
+  "default_node_val": {
+    "expected": 0,
+    "actual": 0
+  },
+  "tests_run": 16,
+  "tests_passed": 16,
+  "tests_failed": 0,
+  "tests_errors": 0,
+  "native_command": "python3 -m unittest tests.test_issue_fixes.TestTreeNodeIsLeaf"
+}

@@ -1,0 +1,22 @@
+test_default_node_is_leaf (__main__.TestTreeNodeIsLeaf) ... ok
+test_fixture_left_val (__main__.TestTreeNodeIsLeaf) ... ok
+test_fixture_right_val (__main__.TestTreeNodeIsLeaf) ... ok
+test_is_leaf_agrees_has_children (__main__.TestTreeNodeIsLeaf) ... ok
+test_is_leaf_agrees_left_only (__main__.TestTreeNodeIsLeaf) ... ok
+test_is_leaf_agrees_no_children (__main__.TestTreeNodeIsLeaf) ... ok
+test_is_leaf_agrees_right_only (__main__.TestTreeNodeIsLeaf) ... ok
+test_leaf_child_left (__main__.TestTreeNodeIsLeaf) ... ok
+test_leaf_child_right (__main__.TestTreeNodeIsLeaf) ... ok
+test_left_right_attributes_unchanged (__main__.TestTreeNodeIsLeaf) ... ok
+test_neighbour_deeper_tree (__main__.TestTreeNodeIsLeaf) ... ok
+test_one_left_child_not_leaf (__main__.TestTreeNodeIsLeaf) ... ok
+test_one_right_child_not_leaf (__main__.TestTreeNodeIsLeaf) ... ok
+test_root_is_not_leaf (__main__.TestTreeNodeIsLeaf) ... ok
+test_single_node_is_leaf (__main__.TestTreeNodeIsLeaf) ... ok
+test_val_attribute_unchanged (__main__.TestTreeNodeIsLeaf) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.000s
+
+OK
+

@@ -30,3 +30,19 @@ class TreeNode:
     val: int = 0
     left: TreeNode | None = None
     right: TreeNode | None = None
+
+    @property
+    def is_leaf(self) -> bool:
+        """Return True when this node has no children.
+
+        This names the responsibility that was previously written inline as
+        ``node.left is None and node.right is None`` across tree algorithms.
+
+        Examples:
+            >>> root = TreeNode(1, TreeNode(2), TreeNode(3))
+            >>> root.is_leaf
+            False
+            >>> root.left.is_leaf
+            True
+        """
+        return self.left is None and self.right is None

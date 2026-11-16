@@ -1,0 +1,29 @@
+{
+  "fixture_anchors": [
+    "root = TreeNode(1, TreeNode(2), TreeNode(3))",
+    "root.left.val  # expected: 2",
+    "root.right.val # expected: 3"
+  ],
+  "neighbouring_input": {
+    "description": "TreeNode(10, TreeNode(20, TreeNode(40), TreeNode(50)), TreeNode(30))",
+    "expected_is_leaf": {
+      "root": false,
+      "root.left": false,
+      "root.right": true,
+      "root.left.left": true,
+      "root.left.right": true
+    }
+  },
+  "refactor": {
+    "before": "node.left is None and node.right is None",
+    "after": "node.is_leaf",
+    "occurrences_before": 12,
+    "files_affected_before": [
+      "algorithms/tree/path_sum.py",
+      "algorithms/tree/path_sum2.py",
+      "algorithms/tree/bst_depth_sum.py",
+      "algorithms/tree/binary_tree_paths.py",
+      "algorithms/tree/min_height.py"
+    ]
+  }
+}
