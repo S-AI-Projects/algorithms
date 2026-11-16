@@ -28,6 +28,14 @@ def has_alternative_bit(number: int) -> bool:
         True
         >>> has_alternative_bit(7)
         False
+
+    Boundary case: ``0`` has no bits, so the ``while`` loop body never
+    runs and the function falls through to the final ``return True``
+    (vacuously alternating -- there are no adjacent bit pairs to
+    violate):
+
+        >>> has_alternative_bit(0)
+        True
     """
     first_bit = 0
     second_bit = 0

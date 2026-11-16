@@ -1,0 +1,85 @@
+{
+  "contract": {
+    "dependencies": [
+      "none beyond builtins"
+    ],
+    "descending_interface": false,
+    "inputs": "int (documented as positive; total function, returns bool)",
+    "mutation": "none; pure function, no caller-owned state",
+    "result": "True iff every pair of adjacent bits differs"
+  },
+  "fixtures": [
+    {
+      "branch": "inner else return True (line 41)",
+      "expected": true,
+      "function": "has_alternative_bit",
+      "input": 5,
+      "name": "anchor_5"
+    },
+    {
+      "branch": "return False (line 39)",
+      "expected": false,
+      "function": "has_alternative_bit",
+      "input": 7,
+      "name": "anchor_7"
+    },
+    {
+      "branch": "O(1) mask return (line 63)",
+      "expected": true,
+      "function": "has_alternative_bit_fast",
+      "input": 5,
+      "name": "anchor_fast_5"
+    },
+    {
+      "branch": "return False (line 39)",
+      "expected": false,
+      "function": "has_alternative_bit",
+      "input": 6,
+      "name": "neighbor_6"
+    },
+    {
+      "branch": "trailing return True (line 43)",
+      "expected": true,
+      "function": "has_alternative_bit",
+      "input": 0,
+      "name": "empty_zero"
+    }
+  ],
+  "module": "algorithms/bit_manipulation/has_alternative_bit.py",
+  "native_check_command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "-m",
+    "unittest",
+    "-v",
+    "tests.test_bit_manipulation.TestSuite.test_has_alternative_bit",
+    "tests.test_bit_manipulation.TestSuite.test_has_alternative_bit_fast",
+    "tests.test_bit_manipulation.TestSuite.test_has_alternative_bit_empty_input"
+  ],
+  "post_failure_calls": [
+    {
+      "expected": true,
+      "function": "has_alternative_bit",
+      "input": 5
+    },
+    {
+      "expected": false,
+      "function": "has_alternative_bit",
+      "input": 7
+    },
+    {
+      "expected": true,
+      "function": "has_alternative_bit_fast",
+      "input": 5
+    }
+  ],
+  "public_functions": [
+    "has_alternative_bit(number: int) -> bool",
+    "has_alternative_bit_fast(number: int) -> bool"
+  ],
+  "target_branch": {
+    "location": "trailing `return True` at line 43, reached when `while number:` (line 34) is skipped for input 0",
+    "name": "absent-result / empty bit pattern",
+    "smallest_input": 0
+  },
+  "task": "R24-T038"
+}

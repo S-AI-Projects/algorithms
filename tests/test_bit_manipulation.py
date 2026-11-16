@@ -245,6 +245,24 @@ class TestSuite(unittest.TestCase):
         self.assertFalse(has_alternative_bit_fast(11))
         self.assertTrue(has_alternative_bit_fast(10))
 
+    def test_has_alternative_bit_empty_input(self):
+        # 0 has no set bits: the `while number:` loop in
+        # has_alternative_bit (algorithms/bit_manipulation/
+        # has_alternative_bit.py, line 34) never executes, so control
+        # reaches the trailing `return True` at line 43 -- the
+        # absent-result branch. Vacuously alternating: expected True.
+        self.assertIs(has_alternative_bit(0), True)
+        # Neighboring supported input derived from the anchors: 6 is
+        # 0b110, whose two adjacent 1-bits are equal, so it is NOT
+        # alternating. Expected False.
+        self.assertIs(has_alternative_bit(6), False)
+        # Caller-owned state remains valid: ordinary calls still succeed
+        # after the empty-input case (ints are immutable, nothing is
+        # consumed or mutated by the boundary path).
+        self.assertIs(has_alternative_bit(5), True)
+        self.assertIs(has_alternative_bit(7), False)
+        self.assertIs(has_alternative_bit_fast(5), True)
+
     def test_insert_one_bit(self):
         """
         Input: num = 10101 (21)
