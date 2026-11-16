@@ -1,0 +1,121 @@
+{
+  "task": "R24-T040",
+  "module": "algorithms/string/multiply_strings.py",
+  "public_contract": {
+    "inputs": "num1: str, num2: str (representing non-negative integers as decimal strings)",
+    "result": "str (representing the product without leading zeros except single '0')",
+    "mutation_behavior": "Pure function; arguments are immutable strings, no internal or external state modified",
+    "external_dependencies": "None (built-ins ord, sum, reversed, str, list, int)"
+  },
+  "native_check": {
+    "command": "python3 -m unittest tests.test_string.TestMultiplyStrings",
+    "test_count": 2,
+    "failures_count": 0,
+    "errors_count": 0,
+    "success": true,
+    "runner_output": "test_multiply (tests.test_string.TestMultiplyStrings) ... ok\ntest_multiply_neighbor_regression (tests.test_string.TestMultiplyStrings)\nRegression test verifying multiply against anchor and neighbor. ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.000s\n\nOK\n"
+  },
+  "fixture_and_invariant": {
+    "anchor": {
+      "num1": "23",
+      "num2": "23",
+      "source": "algorithms/string/multiply_strings.py docstring: >>> multiply('23', '23')",
+      "independent_calculation": "23 * 23 = 529",
+      "expected": "529"
+    },
+    "neighbor": {
+      "num1": "23",
+      "num2": "24",
+      "derivation": "Increment num2 by 1 to form a neighboring multi-digit supported input",
+      "independent_calculation": "23 * 24 = 23 * (20 + 4) = 460 + 92 = 552",
+      "expected": "552"
+    },
+    "reduced": {
+      "num1": "1",
+      "num2": "11",
+      "derivation": "Minimal 1-digit and 2-digit non-zero-product input where inner loop accumulation failure manifests",
+      "independent_calculation": "1 * 11 = 11",
+      "expected": "11"
+    },
+    "invariant": {
+      "name": "agreement_and_repeated_run_fresh_inputs",
+      "description": "The independently calculated output and the documented return/mutation contract agree; repeated runs with fresh equivalent inputs give the same result."
+    }
+  },
+  "results": {
+    "original": {
+      "anchor": {
+        "input": [
+          "23",
+          "23"
+        ],
+        "expected": "529",
+        "actual": "529",
+        "pass": true
+      },
+      "neighbor": {
+        "input": [
+          "23",
+          "24"
+        ],
+        "expected": "552",
+        "actual": "552",
+        "pass": true
+      },
+      "neighbor_repeated": {
+        "input": [
+          "23",
+          "24"
+        ],
+        "expected": "552",
+        "actual": "552",
+        "pass": true
+      },
+      "reduced": {
+        "input": [
+          "1",
+          "11"
+        ],
+        "expected": "11",
+        "actual": "11",
+        "pass": true
+      },
+      "named_test_multiply_neighbor_regression": "PASS"
+    },
+    "mutant": {
+      "mutation_description": "Altered line 42 accumulation from `accumulator += product` to `accumulator = product`",
+      "anchor": {
+        "input": [
+          "23",
+          "23"
+        ],
+        "expected": "529",
+        "actual": "460",
+        "pass": false
+      },
+      "neighbor": {
+        "input": [
+          "23",
+          "24"
+        ],
+        "expected": "552",
+        "actual": "460",
+        "pass": false
+      },
+      "reduced": {
+        "input": [
+          "1",
+          "11"
+        ],
+        "expected": "11",
+        "actual": "10",
+        "pass": false
+      },
+      "named_test_multiply_neighbor_regression": "FAIL",
+      "failure_reason": "AssertionError: actual '460' != expected '552'",
+      "named_assertion_error": "'529' != '460'\n- 529\n+ 460\n",
+      "semantic_failure_confirmed": true
+    }
+  },
+  "status": "ALL_CHECKS_PASSED"
+}

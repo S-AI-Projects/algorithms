@@ -1,0 +1,75 @@
+{
+  "original": {
+    "anchor": {
+      "input": [
+        "23",
+        "23"
+      ],
+      "expected": "529",
+      "actual": "529",
+      "pass": true
+    },
+    "neighbor": {
+      "input": [
+        "23",
+        "24"
+      ],
+      "expected": "552",
+      "actual": "552",
+      "pass": true
+    },
+    "neighbor_repeated": {
+      "input": [
+        "23",
+        "24"
+      ],
+      "expected": "552",
+      "actual": "552",
+      "pass": true
+    },
+    "reduced": {
+      "input": [
+        "1",
+        "11"
+      ],
+      "expected": "11",
+      "actual": "11",
+      "pass": true
+    },
+    "named_test_multiply_neighbor_regression": "PASS"
+  },
+  "mutant": {
+    "mutation_description": "Altered line 42 accumulation from `accumulator += product` to `accumulator = product`",
+    "anchor": {
+      "input": [
+        "23",
+        "23"
+      ],
+      "expected": "529",
+      "actual": "460",
+      "pass": false
+    },
+    "neighbor": {
+      "input": [
+        "23",
+        "24"
+      ],
+      "expected": "552",
+      "actual": "460",
+      "pass": false
+    },
+    "reduced": {
+      "input": [
+        "1",
+        "11"
+      ],
+      "expected": "11",
+      "actual": "10",
+      "pass": false
+    },
+    "named_test_multiply_neighbor_regression": "FAIL",
+    "failure_reason": "AssertionError: actual '460' != expected '552'",
+    "named_assertion_error": "'529' != '460'\n- 529\n+ 460\n",
+    "semantic_failure_confirmed": true
+  }
+}

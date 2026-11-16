@@ -1,0 +1,27 @@
+{
+  "anchor": {
+    "num1": "23",
+    "num2": "23",
+    "source": "algorithms/string/multiply_strings.py docstring: >>> multiply('23', '23')",
+    "independent_calculation": "23 * 23 = 529",
+    "expected": "529"
+  },
+  "neighbor": {
+    "num1": "23",
+    "num2": "24",
+    "derivation": "Increment num2 by 1 to form a neighboring multi-digit supported input",
+    "independent_calculation": "23 * 24 = 23 * (20 + 4) = 460 + 92 = 552",
+    "expected": "552"
+  },
+  "reduced": {
+    "num1": "1",
+    "num2": "11",
+    "derivation": "Minimal 1-digit and 2-digit non-zero-product input where inner loop accumulation failure manifests",
+    "independent_calculation": "1 * 11 = 11",
+    "expected": "11"
+  },
+  "invariant": {
+    "name": "agreement_and_repeated_run_fresh_inputs",
+    "description": "The independently calculated output and the documented return/mutation contract agree; repeated runs with fresh equivalent inputs give the same result."
+  }
+}
