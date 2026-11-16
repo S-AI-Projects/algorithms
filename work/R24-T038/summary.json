@@ -1,0 +1,31 @@
+{
+  "artifacts": [
+    "inputs.json",
+    "results.json",
+    "tool_versions.json",
+    "summary.json",
+    "check_output.txt"
+  ],
+  "doctest": {
+    "attempted": 5,
+    "failed": 0,
+    "passed": true
+  },
+  "fixture_failures": [],
+  "status": "PASS",
+  "task": "R24-T038",
+  "unittest": {
+    "command": [
+      "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "-m",
+      "unittest",
+      "-v",
+      "tests.test_bit_manipulation.TestSuite.test_has_alternative_bit",
+      "tests.test_bit_manipulation.TestSuite.test_has_alternative_bit_fast",
+      "tests.test_bit_manipulation.TestSuite.test_has_alternative_bit_empty_input"
+    ],
+    "failures": 0,
+    "passed": true,
+    "tests_run": 3
+  }
+}

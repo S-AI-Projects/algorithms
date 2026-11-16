@@ -1,0 +1,23 @@
+$ /Library/Developer/CommandLineTools/usr/bin/python3 -m unittest -v tests.test_bit_manipulation.TestSuite.test_has_alternative_bit tests.test_bit_manipulation.TestSuite.test_has_alternative_bit_fast tests.test_bit_manipulation.TestSuite.test_has_alternative_bit_empty_input
+
+test_has_alternative_bit (tests.test_bit_manipulation.TestSuite) ... ok
+test_has_alternative_bit_fast (tests.test_bit_manipulation.TestSuite) ... ok
+test_has_alternative_bit_empty_input (tests.test_bit_manipulation.TestSuite) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+
+Fixture results:
+  anchor_5: has_alternative_bit(5) expected=True actual=True passed=True
+  anchor_7: has_alternative_bit(7) expected=False actual=False passed=True
+  anchor_fast_5: has_alternative_bit_fast(5) expected=True actual=True passed=True
+  neighbor_6: has_alternative_bit(6) expected=False actual=False passed=True
+  empty_zero: has_alternative_bit(0) expected=True actual=True passed=True
+  post_failure_has_alternative_bit_5: has_alternative_bit(5) expected=True actual=True passed=True
+  post_failure_has_alternative_bit_7: has_alternative_bit(7) expected=False actual=False passed=True
+  post_failure_has_alternative_bit_fast_5: has_alternative_bit_fast(5) expected=True actual=True passed=True
+
+Doctest: attempted=5 failed=0
+Overall: PASS
