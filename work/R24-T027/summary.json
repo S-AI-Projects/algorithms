@@ -1,0 +1,13 @@
+{
+  "task": "R24-T027",
+  "target": "algorithms/math/geometric_mean.py:geometric_mean",
+  "value_cases_passed": 4,
+  "value_cases_total": 4,
+  "states_match_trace": true,
+  "doctest_examples_attempted": 11,
+  "doctest_examples_failed": 0,
+  "pytest_command": "python3 -m pytest tests/test_math.py::TestGeometricMeanWorkedExample -q --no-header",
+  "pytest_passed": 3,
+  "pytest_failed": 0,
+  "overall": "PASS"
+}

@@ -1,0 +1,26 @@
+R24-T027 geometric_mean worked-example check
+
+Anchors and neighbouring input (expected vs actual, rounded):
+  [PASS] anchor [1, 2, 3, 4, 5]: expected=2.6052 actual=2.6052
+  [PASS] anchor [2, 8]: expected=4.0 actual=4.0
+  [PASS] anchor [1, 1, 1]: expected=1.0 actual=1.0
+  [PASS] neighbour [2, 8, 4]: expected=4.0 actual=4.0
+
+Intermediate state for [2, 8, 4], hand vs traced execution:
+  [PASS] product_states: expected=[1.0, 2.0, 16.0, 64.0] actual=[1.0, 2.0, 16.0, 64.0]
+  [PASS] n: expected=3 actual=3
+  [PASS] result_rounded_to_4_places: expected=4.0 actual=4.0
+  raw traced result: 3.9999999999999996
+
+[PASS] docstring examples executed: 11 attempted (expected 11), 0 failed
+
+Pytest command: python3 -m pytest tests/test_math.py::TestGeometricMeanWorkedExample -q --no-header
+Pytest result: 3 passed, 0 failed, exit 0
+============================= test session starts ==============================
+collected 3 items
+
+tests/test_math.py ...                                                   [100%]
+
+============================== 3 passed in 0.02s ===============================
+
+OVERALL: PASS

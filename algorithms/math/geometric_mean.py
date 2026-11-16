@@ -36,6 +36,26 @@ def geometric_mean(numbers: list[float]) -> float:
     1.0
     >>> round(geometric_mean([100, 100, 100]), 4)
     100.0
+
+    Worked example (input, intermediate state, result):
+
+    The loop only builds a running product, so for ``[2, 8, 4]`` the state
+    goes 1.0 -> 2.0 -> 16.0 -> 64.0. The decisive step is the return line,
+    which turns that product into its n-th root. Here n = 3, so it computes
+    ``64.0 ** (1 / 3)``, the cube root of 64, which is 4 because
+    4 * 4 * 4 = 64. Floating-point roots can be off in the last digits, so
+    the examples round to 4 places.
+
+    >>> import math
+    >>> from algorithms.math import geometric_mean
+    >>> numbers = [2, 8, 4]
+    >>> product = math.prod(numbers, start=1.0)  # the state the loop ends with
+    >>> product
+    64.0
+    >>> round(product ** (1 / len(numbers)), 4)  # the n-th root, n = 3
+    4.0
+    >>> round(geometric_mean(numbers), 4)
+    4.0
     """
     if not numbers:
         msg = "List cannot be empty"

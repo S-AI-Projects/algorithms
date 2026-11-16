@@ -1,3 +1,4 @@
+import doctest
 import unittest
 
 import pytest
@@ -683,6 +684,29 @@ class TestGeometricMean(unittest.TestCase):
     def test_geometric_mean_logarithm_negative_numbers(self):
         with pytest.raises(ValueError, match=r"All numbers must be positive"):
             geometric_mean_logarithm([-1, 2, 3])
+
+
+class TestGeometricMeanWorkedExample(unittest.TestCase):
+    """The worked example in geometric_mean's docstring runs as shown."""
+
+    def test_source_anchors(self):
+        self.assertEqual(2.6052, round(geometric_mean([1, 2, 3, 4, 5]), 4))
+        self.assertEqual(4.0, round(geometric_mean([2, 8]), 4))
+        self.assertEqual(1.0, round(geometric_mean([1, 1, 1]), 4))
+
+    def test_neighbouring_input(self):
+        # [2, 8] plus one more value: the product is 2 * 8 * 4 = 64, and the
+        # cube root of 64 is 4 because 4 * 4 * 4 = 64.
+        self.assertEqual(4.0, round(geometric_mean([2, 8, 4]), 4))
+
+    def test_docstring_examples_run_and_show_their_output(self):
+        (test,) = doctest.DocTestFinder().find(
+            geometric_mean, "geometric_mean", globs={"geometric_mean": geometric_mean}
+        )
+        results = doctest.DocTestRunner().run(test, out=lambda text: None)
+        # 4 source anchors plus 7 lines of the worked example.
+        self.assertEqual(11, results.attempted)
+        self.assertEqual(0, results.failed)
 
 
 if __name__ == "__main__":

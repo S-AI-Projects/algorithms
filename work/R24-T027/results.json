@@ -1,0 +1,146 @@
+{
+  "value_cases": [
+    {
+      "name": "anchor [1, 2, 3, 4, 5]",
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "expected": 2.6052,
+      "actual": 2.6052,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "name": "anchor [2, 8]",
+      "input": [
+        2,
+        8
+      ],
+      "expected": 4.0,
+      "actual": 4.0,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "name": "anchor [1, 1, 1]",
+      "input": [
+        1,
+        1,
+        1
+      ],
+      "expected": 1.0,
+      "actual": 1.0,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "name": "neighbour [2, 8, 4]",
+      "input": [
+        2,
+        8,
+        4
+      ],
+      "expected": 4.0,
+      "actual": 4.0,
+      "input_unchanged": true,
+      "passed": true
+    }
+  ],
+  "traced_execution": {
+    "product_states": [
+      1.0,
+      2.0,
+      16.0,
+      64.0
+    ],
+    "n": 3,
+    "raw_result": 3.9999999999999996,
+    "result_rounded_to_4_places": 4.0
+  },
+  "state_comparison": [
+    {
+      "state": "product_states",
+      "expected": [
+        1.0,
+        2.0,
+        16.0,
+        64.0
+      ],
+      "actual": [
+        1.0,
+        2.0,
+        16.0,
+        64.0
+      ],
+      "passed": true
+    },
+    {
+      "state": "n",
+      "expected": 3,
+      "actual": 3,
+      "passed": true
+    },
+    {
+      "state": "result_rounded_to_4_places",
+      "expected": 4.0,
+      "actual": 4.0,
+      "passed": true
+    }
+  ],
+  "doctests": {
+    "examples": [
+      {
+        "source": "round(geometric_mean([1, 2, 3, 4, 5]), 4)",
+        "displayed_output": "2.6052"
+      },
+      {
+        "source": "round(geometric_mean([2, 8]), 4)",
+        "displayed_output": "4.0"
+      },
+      {
+        "source": "round(geometric_mean([1, 1, 1]), 4)",
+        "displayed_output": "1.0"
+      },
+      {
+        "source": "round(geometric_mean([100, 100, 100]), 4)",
+        "displayed_output": "100.0"
+      },
+      {
+        "source": "import math",
+        "displayed_output": ""
+      },
+      {
+        "source": "from algorithms.math import geometric_mean",
+        "displayed_output": ""
+      },
+      {
+        "source": "numbers = [2, 8, 4]",
+        "displayed_output": ""
+      },
+      {
+        "source": "product = math.prod(numbers, start=1.0)  # the state the loop ends with",
+        "displayed_output": ""
+      },
+      {
+        "source": "product",
+        "displayed_output": "64.0"
+      },
+      {
+        "source": "round(product ** (1 / len(numbers)), 4)  # the n-th root, n = 3",
+        "displayed_output": "4.0"
+      },
+      {
+        "source": "round(geometric_mean(numbers), 4)",
+        "displayed_output": "4.0"
+      }
+    ],
+    "attempted": 11,
+    "failed": 0,
+    "failure_report": "",
+    "passed": true
+  }
+}
