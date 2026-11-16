@@ -1,0 +1,1235 @@
+{
+  "seed": 24024,
+  "readable_cases": [
+    [
+      0,
+      0
+    ],
+    [
+      5,
+      7
+    ],
+    [
+      342,
+      465
+    ]
+  ],
+  "random_cases": 200,
+  "cases": [
+    {
+      "kind": "readable",
+      "left": 0,
+      "right": 0
+    },
+    {
+      "kind": "readable",
+      "left": 5,
+      "right": 7
+    },
+    {
+      "kind": "readable",
+      "left": 342,
+      "right": 465
+    },
+    {
+      "kind": "random",
+      "index": 0,
+      "left": 47,
+      "right": 21
+    },
+    {
+      "kind": "random",
+      "index": 1,
+      "left": 582847629,
+      "right": 72768184
+    },
+    {
+      "kind": "random",
+      "index": 2,
+      "left": 38096516,
+      "right": 47914
+    },
+    {
+      "kind": "random",
+      "index": 3,
+      "left": 484,
+      "right": 9
+    },
+    {
+      "kind": "random",
+      "index": 4,
+      "left": 36,
+      "right": 272773466
+    },
+    {
+      "kind": "random",
+      "index": 5,
+      "left": 56150,
+      "right": 663607830
+    },
+    {
+      "kind": "random",
+      "index": 6,
+      "left": 63827,
+      "right": 7
+    },
+    {
+      "kind": "random",
+      "index": 7,
+      "left": 18525362354,
+      "right": 21601
+    },
+    {
+      "kind": "random",
+      "index": 8,
+      "left": 9033,
+      "right": 3
+    },
+    {
+      "kind": "random",
+      "index": 9,
+      "left": 5221917140,
+      "right": 9
+    },
+    {
+      "kind": "random",
+      "index": 10,
+      "left": 49189,
+      "right": 489474360969
+    },
+    {
+      "kind": "random",
+      "index": 11,
+      "left": 348,
+      "right": 436818219
+    },
+    {
+      "kind": "random",
+      "index": 12,
+      "left": 991353564486,
+      "right": 76934819326
+    },
+    {
+      "kind": "random",
+      "index": 13,
+      "left": 3952526914,
+      "right": 366945573
+    },
+    {
+      "kind": "random",
+      "index": 14,
+      "left": 4536,
+      "right": 392849436
+    },
+    {
+      "kind": "random",
+      "index": 15,
+      "left": 2558,
+      "right": 2605010
+    },
+    {
+      "kind": "random",
+      "index": 16,
+      "left": 2,
+      "right": 6
+    },
+    {
+      "kind": "random",
+      "index": 17,
+      "left": 37018156117,
+      "right": 89591571543
+    },
+    {
+      "kind": "random",
+      "index": 18,
+      "left": 2795,
+      "right": 0
+    },
+    {
+      "kind": "random",
+      "index": 19,
+      "left": 3060875189,
+      "right": 82382004582
+    },
+    {
+      "kind": "random",
+      "index": 20,
+      "left": 803476,
+      "right": 7383323700
+    },
+    {
+      "kind": "random",
+      "index": 21,
+      "left": 475084,
+      "right": 158030419466
+    },
+    {
+      "kind": "random",
+      "index": 22,
+      "left": 94376451291,
+      "right": 75
+    },
+    {
+      "kind": "random",
+      "index": 23,
+      "left": 9537518,
+      "right": 347802
+    },
+    {
+      "kind": "random",
+      "index": 24,
+      "left": 70,
+      "right": 9715
+    },
+    {
+      "kind": "random",
+      "index": 25,
+      "left": 28809,
+      "right": 5704
+    },
+    {
+      "kind": "random",
+      "index": 26,
+      "left": 4,
+      "right": 721495314125
+    },
+    {
+      "kind": "random",
+      "index": 27,
+      "left": 91,
+      "right": 16662236309
+    },
+    {
+      "kind": "random",
+      "index": 28,
+      "left": 3099238519,
+      "right": 4
+    },
+    {
+      "kind": "random",
+      "index": 29,
+      "left": 274601,
+      "right": 31
+    },
+    {
+      "kind": "random",
+      "index": 30,
+      "left": 920695392893,
+      "right": 729
+    },
+    {
+      "kind": "random",
+      "index": 31,
+      "left": 4,
+      "right": 7575412
+    },
+    {
+      "kind": "random",
+      "index": 32,
+      "left": 5150678,
+      "right": 609911607
+    },
+    {
+      "kind": "random",
+      "index": 33,
+      "left": 2933,
+      "right": 2901
+    },
+    {
+      "kind": "random",
+      "index": 34,
+      "left": 20040310,
+      "right": 206359961851
+    },
+    {
+      "kind": "random",
+      "index": 35,
+      "left": 79801,
+      "right": 22877070
+    },
+    {
+      "kind": "random",
+      "index": 36,
+      "left": 801090314,
+      "right": 8226163
+    },
+    {
+      "kind": "random",
+      "index": 37,
+      "left": 8,
+      "right": 3
+    },
+    {
+      "kind": "random",
+      "index": 38,
+      "left": 425029,
+      "right": 6792718543
+    },
+    {
+      "kind": "random",
+      "index": 39,
+      "left": 49279393074,
+      "right": 442042030834
+    },
+    {
+      "kind": "random",
+      "index": 40,
+      "left": 42694,
+      "right": 379939
+    },
+    {
+      "kind": "random",
+      "index": 41,
+      "left": 679209494515,
+      "right": 2170218
+    },
+    {
+      "kind": "random",
+      "index": 42,
+      "left": 36297,
+      "right": 197610
+    },
+    {
+      "kind": "random",
+      "index": 43,
+      "left": 576837981,
+      "right": 4536
+    },
+    {
+      "kind": "random",
+      "index": 44,
+      "left": 5834208788,
+      "right": 27768511911
+    },
+    {
+      "kind": "random",
+      "index": 45,
+      "left": 23032019,
+      "right": 5902632
+    },
+    {
+      "kind": "random",
+      "index": 46,
+      "left": 9563,
+      "right": 8395276
+    },
+    {
+      "kind": "random",
+      "index": 47,
+      "left": 434093011957,
+      "right": 641496225582
+    },
+    {
+      "kind": "random",
+      "index": 48,
+      "left": 49755,
+      "right": 3103224286
+    },
+    {
+      "kind": "random",
+      "index": 49,
+      "left": 37083299,
+      "right": 4
+    },
+    {
+      "kind": "random",
+      "index": 50,
+      "left": 13063726109,
+      "right": 7881
+    },
+    {
+      "kind": "random",
+      "index": 51,
+      "left": 93450832,
+      "right": 218532
+    },
+    {
+      "kind": "random",
+      "index": 52,
+      "left": 64737,
+      "right": 97856619
+    },
+    {
+      "kind": "random",
+      "index": 53,
+      "left": 5655,
+      "right": 0
+    },
+    {
+      "kind": "random",
+      "index": 54,
+      "left": 4992006771,
+      "right": 1258
+    },
+    {
+      "kind": "random",
+      "index": 55,
+      "left": 255733,
+      "right": 1672809
+    },
+    {
+      "kind": "random",
+      "index": 56,
+      "left": 64568,
+      "right": 379022304019
+    },
+    {
+      "kind": "random",
+      "index": 57,
+      "left": 3,
+      "right": 7
+    },
+    {
+      "kind": "random",
+      "index": 58,
+      "left": 500,
+      "right": 273
+    },
+    {
+      "kind": "random",
+      "index": 59,
+      "left": 25073754670,
+      "right": 462046173596
+    },
+    {
+      "kind": "random",
+      "index": 60,
+      "left": 78012966791,
+      "right": 9059773
+    },
+    {
+      "kind": "random",
+      "index": 61,
+      "left": 111657,
+      "right": 915278
+    },
+    {
+      "kind": "random",
+      "index": 62,
+      "left": 2417357,
+      "right": 4140
+    },
+    {
+      "kind": "random",
+      "index": 63,
+      "left": 154065,
+      "right": 12678282163
+    },
+    {
+      "kind": "random",
+      "index": 64,
+      "left": 73165455066,
+      "right": 1325470311
+    },
+    {
+      "kind": "random",
+      "index": 65,
+      "left": 7883876,
+      "right": 26188660
+    },
+    {
+      "kind": "random",
+      "index": 66,
+      "left": 8,
+      "right": 3
+    },
+    {
+      "kind": "random",
+      "index": 67,
+      "left": 23198248486,
+      "right": 4754127
+    },
+    {
+      "kind": "random",
+      "index": 68,
+      "left": 85,
+      "right": 24736681
+    },
+    {
+      "kind": "random",
+      "index": 69,
+      "left": 231554,
+      "right": 42041
+    },
+    {
+      "kind": "random",
+      "index": 70,
+      "left": 14,
+      "right": 6282
+    },
+    {
+      "kind": "random",
+      "index": 71,
+      "left": 5,
+      "right": 885028120456
+    },
+    {
+      "kind": "random",
+      "index": 72,
+      "left": 88223928742,
+      "right": 368192279817
+    },
+    {
+      "kind": "random",
+      "index": 73,
+      "left": 5,
+      "right": 1
+    },
+    {
+      "kind": "random",
+      "index": 74,
+      "left": 4899,
+      "right": 95175
+    },
+    {
+      "kind": "random",
+      "index": 75,
+      "left": 85519434,
+      "right": 45720
+    },
+    {
+      "kind": "random",
+      "index": 76,
+      "left": 14808,
+      "right": 801537162
+    },
+    {
+      "kind": "random",
+      "index": 77,
+      "left": 968977201820,
+      "right": 6950831
+    },
+    {
+      "kind": "random",
+      "index": 78,
+      "left": 685997,
+      "right": 838623414340
+    },
+    {
+      "kind": "random",
+      "index": 79,
+      "left": 5298611,
+      "right": 2892
+    },
+    {
+      "kind": "random",
+      "index": 80,
+      "left": 7964,
+      "right": 3499036
+    },
+    {
+      "kind": "random",
+      "index": 81,
+      "left": 685,
+      "right": 123093069932
+    },
+    {
+      "kind": "random",
+      "index": 82,
+      "left": 11271309,
+      "right": 65534110892
+    },
+    {
+      "kind": "random",
+      "index": 83,
+      "left": 14004021386,
+      "right": 738330141750
+    },
+    {
+      "kind": "random",
+      "index": 84,
+      "left": 2810,
+      "right": 576883
+    },
+    {
+      "kind": "random",
+      "index": 85,
+      "left": 40644908,
+      "right": 23
+    },
+    {
+      "kind": "random",
+      "index": 86,
+      "left": 9742637119,
+      "right": 46236118
+    },
+    {
+      "kind": "random",
+      "index": 87,
+      "left": 7386189,
+      "right": 31
+    },
+    {
+      "kind": "random",
+      "index": 88,
+      "left": 575912,
+      "right": 23359315
+    },
+    {
+      "kind": "random",
+      "index": 89,
+      "left": 539132,
+      "right": 425035746036
+    },
+    {
+      "kind": "random",
+      "index": 90,
+      "left": 833,
+      "right": 5
+    },
+    {
+      "kind": "random",
+      "index": 91,
+      "left": 32469,
+      "right": 7
+    },
+    {
+      "kind": "random",
+      "index": 92,
+      "left": 929272,
+      "right": 875610
+    },
+    {
+      "kind": "random",
+      "index": 93,
+      "left": 365356485,
+      "right": 1500739
+    },
+    {
+      "kind": "random",
+      "index": 94,
+      "left": 374,
+      "right": 74195295304
+    },
+    {
+      "kind": "random",
+      "index": 95,
+      "left": 559890,
+      "right": 2838612
+    },
+    {
+      "kind": "random",
+      "index": 96,
+      "left": 2011940376,
+      "right": 703
+    },
+    {
+      "kind": "random",
+      "index": 97,
+      "left": 0,
+      "right": 2456286710
+    },
+    {
+      "kind": "random",
+      "index": 98,
+      "left": 902464,
+      "right": 7044
+    },
+    {
+      "kind": "random",
+      "index": 99,
+      "left": 7282750,
+      "right": 7803932390
+    },
+    {
+      "kind": "random",
+      "index": 100,
+      "left": 275,
+      "right": 62778188977
+    },
+    {
+      "kind": "random",
+      "index": 101,
+      "left": 8013591,
+      "right": 80354847857
+    },
+    {
+      "kind": "random",
+      "index": 102,
+      "left": 358030,
+      "right": 2333336
+    },
+    {
+      "kind": "random",
+      "index": 103,
+      "left": 89977667817,
+      "right": 680672484
+    },
+    {
+      "kind": "random",
+      "index": 104,
+      "left": 1428,
+      "right": 3437
+    },
+    {
+      "kind": "random",
+      "index": 105,
+      "left": 785863572200,
+      "right": 371371
+    },
+    {
+      "kind": "random",
+      "index": 106,
+      "left": 7,
+      "right": 3797
+    },
+    {
+      "kind": "random",
+      "index": 107,
+      "left": 57031488548,
+      "right": 1423919739
+    },
+    {
+      "kind": "random",
+      "index": 108,
+      "left": 55861700238,
+      "right": 268
+    },
+    {
+      "kind": "random",
+      "index": 109,
+      "left": 2,
+      "right": 51
+    },
+    {
+      "kind": "random",
+      "index": 110,
+      "left": 614,
+      "right": 9062748348
+    },
+    {
+      "kind": "random",
+      "index": 111,
+      "left": 82315819,
+      "right": 790615
+    },
+    {
+      "kind": "random",
+      "index": 112,
+      "left": 474430531,
+      "right": 7823575393
+    },
+    {
+      "kind": "random",
+      "index": 113,
+      "left": 8,
+      "right": 2052
+    },
+    {
+      "kind": "random",
+      "index": 114,
+      "left": 1296643174,
+      "right": 8917
+    },
+    {
+      "kind": "random",
+      "index": 115,
+      "left": 5980,
+      "right": 3401103074
+    },
+    {
+      "kind": "random",
+      "index": 116,
+      "left": 3712751,
+      "right": 9627202
+    },
+    {
+      "kind": "random",
+      "index": 117,
+      "left": 78559,
+      "right": 37019
+    },
+    {
+      "kind": "random",
+      "index": 118,
+      "left": 49730746830,
+      "right": 1833476
+    },
+    {
+      "kind": "random",
+      "index": 119,
+      "left": 4,
+      "right": 1694568
+    },
+    {
+      "kind": "random",
+      "index": 120,
+      "left": 1606,
+      "right": 637618134
+    },
+    {
+      "kind": "random",
+      "index": 121,
+      "left": 4794865,
+      "right": 7869
+    },
+    {
+      "kind": "random",
+      "index": 122,
+      "left": 89613215,
+      "right": 2472307
+    },
+    {
+      "kind": "random",
+      "index": 123,
+      "left": 767,
+      "right": 8603
+    },
+    {
+      "kind": "random",
+      "index": 124,
+      "left": 99327,
+      "right": 86708818
+    },
+    {
+      "kind": "random",
+      "index": 125,
+      "left": 9,
+      "right": 779
+    },
+    {
+      "kind": "random",
+      "index": 126,
+      "left": 30104175,
+      "right": 49085
+    },
+    {
+      "kind": "random",
+      "index": 127,
+      "left": 8350,
+      "right": 19984560
+    },
+    {
+      "kind": "random",
+      "index": 128,
+      "left": 68,
+      "right": 695491156
+    },
+    {
+      "kind": "random",
+      "index": 129,
+      "left": 48601929,
+      "right": 60
+    },
+    {
+      "kind": "random",
+      "index": 130,
+      "left": 97,
+      "right": 330849094227
+    },
+    {
+      "kind": "random",
+      "index": 131,
+      "left": 4368188868,
+      "right": 4
+    },
+    {
+      "kind": "random",
+      "index": 132,
+      "left": 1966,
+      "right": 2939186
+    },
+    {
+      "kind": "random",
+      "index": 133,
+      "left": 7,
+      "right": 7761278526
+    },
+    {
+      "kind": "random",
+      "index": 134,
+      "left": 5383765154,
+      "right": 798234
+    },
+    {
+      "kind": "random",
+      "index": 135,
+      "left": 743774912,
+      "right": 6
+    },
+    {
+      "kind": "random",
+      "index": 136,
+      "left": 20517,
+      "right": 9937523
+    },
+    {
+      "kind": "random",
+      "index": 137,
+      "left": 69494556023,
+      "right": 6591151
+    },
+    {
+      "kind": "random",
+      "index": 138,
+      "left": 200088735,
+      "right": 963295949874
+    },
+    {
+      "kind": "random",
+      "index": 139,
+      "left": 38755,
+      "right": 516927299013
+    },
+    {
+      "kind": "random",
+      "index": 140,
+      "left": 93337,
+      "right": 8538
+    },
+    {
+      "kind": "random",
+      "index": 141,
+      "left": 342,
+      "right": 65462
+    },
+    {
+      "kind": "random",
+      "index": 142,
+      "left": 3530,
+      "right": 72763905
+    },
+    {
+      "kind": "random",
+      "index": 143,
+      "left": 55796757,
+      "right": 693538230
+    },
+    {
+      "kind": "random",
+      "index": 144,
+      "left": 10,
+      "right": 217930
+    },
+    {
+      "kind": "random",
+      "index": 145,
+      "left": 549512,
+      "right": 5411808823
+    },
+    {
+      "kind": "random",
+      "index": 146,
+      "left": 5,
+      "right": 3
+    },
+    {
+      "kind": "random",
+      "index": 147,
+      "left": 69397,
+      "right": 8691112
+    },
+    {
+      "kind": "random",
+      "index": 148,
+      "left": 2,
+      "right": 4
+    },
+    {
+      "kind": "random",
+      "index": 149,
+      "left": 79344649722,
+      "right": 86065
+    },
+    {
+      "kind": "random",
+      "index": 150,
+      "left": 1489,
+      "right": 16
+    },
+    {
+      "kind": "random",
+      "index": 151,
+      "left": 444012384648,
+      "right": 122711
+    },
+    {
+      "kind": "random",
+      "index": 152,
+      "left": 47,
+      "right": 165
+    },
+    {
+      "kind": "random",
+      "index": 153,
+      "left": 83405428,
+      "right": 469
+    },
+    {
+      "kind": "random",
+      "index": 154,
+      "left": 336521558,
+      "right": 35914448864
+    },
+    {
+      "kind": "random",
+      "index": 155,
+      "left": 1387364008,
+      "right": 6714
+    },
+    {
+      "kind": "random",
+      "index": 156,
+      "left": 831974861037,
+      "right": 5
+    },
+    {
+      "kind": "random",
+      "index": 157,
+      "left": 857678,
+      "right": 693
+    },
+    {
+      "kind": "random",
+      "index": 158,
+      "left": 31065666700,
+      "right": 8977
+    },
+    {
+      "kind": "random",
+      "index": 159,
+      "left": 89,
+      "right": 15546
+    },
+    {
+      "kind": "random",
+      "index": 160,
+      "left": 82,
+      "right": 56442310000
+    },
+    {
+      "kind": "random",
+      "index": 161,
+      "left": 899390703985,
+      "right": 91488
+    },
+    {
+      "kind": "random",
+      "index": 162,
+      "left": 5435018099,
+      "right": 5155
+    },
+    {
+      "kind": "random",
+      "index": 163,
+      "left": 60128723851,
+      "right": 257086
+    },
+    {
+      "kind": "random",
+      "index": 164,
+      "left": 576845394333,
+      "right": 63545416427
+    },
+    {
+      "kind": "random",
+      "index": 165,
+      "left": 206,
+      "right": 5128269
+    },
+    {
+      "kind": "random",
+      "index": 166,
+      "left": 404454905683,
+      "right": 440312033906
+    },
+    {
+      "kind": "random",
+      "index": 167,
+      "left": 8842,
+      "right": 917
+    },
+    {
+      "kind": "random",
+      "index": 168,
+      "left": 641,
+      "right": 91
+    },
+    {
+      "kind": "random",
+      "index": 169,
+      "left": 577558766752,
+      "right": 4352
+    },
+    {
+      "kind": "random",
+      "index": 170,
+      "left": 7609,
+      "right": 1
+    },
+    {
+      "kind": "random",
+      "index": 171,
+      "left": 97810582,
+      "right": 1122677
+    },
+    {
+      "kind": "random",
+      "index": 172,
+      "left": 4900,
+      "right": 518392
+    },
+    {
+      "kind": "random",
+      "index": 173,
+      "left": 8,
+      "right": 8783500690
+    },
+    {
+      "kind": "random",
+      "index": 174,
+      "left": 77,
+      "right": 120115
+    },
+    {
+      "kind": "random",
+      "index": 175,
+      "left": 555,
+      "right": 66332954
+    },
+    {
+      "kind": "random",
+      "index": 176,
+      "left": 278,
+      "right": 792343691064
+    },
+    {
+      "kind": "random",
+      "index": 177,
+      "left": 60178,
+      "right": 444045127
+    },
+    {
+      "kind": "random",
+      "index": 178,
+      "left": 422,
+      "right": 32
+    },
+    {
+      "kind": "random",
+      "index": 179,
+      "left": 47916436,
+      "right": 8145320016
+    },
+    {
+      "kind": "random",
+      "index": 180,
+      "left": 437653087730,
+      "right": 2074
+    },
+    {
+      "kind": "random",
+      "index": 181,
+      "left": 308237645703,
+      "right": 94502
+    },
+    {
+      "kind": "random",
+      "index": 182,
+      "left": 419977504986,
+      "right": 8787877990
+    },
+    {
+      "kind": "random",
+      "index": 183,
+      "left": 2041663445,
+      "right": 1
+    },
+    {
+      "kind": "random",
+      "index": 184,
+      "left": 790309,
+      "right": 41344097
+    },
+    {
+      "kind": "random",
+      "index": 185,
+      "left": 69389424668,
+      "right": 5038
+    },
+    {
+      "kind": "random",
+      "index": 186,
+      "left": 269850523,
+      "right": 456
+    },
+    {
+      "kind": "random",
+      "index": 187,
+      "left": 37631446324,
+      "right": 723802
+    },
+    {
+      "kind": "random",
+      "index": 188,
+      "left": 49,
+      "right": 7
+    },
+    {
+      "kind": "random",
+      "index": 189,
+      "left": 5836345,
+      "right": 730265184
+    },
+    {
+      "kind": "random",
+      "index": 190,
+      "left": 9157206578,
+      "right": 7
+    },
+    {
+      "kind": "random",
+      "index": 191,
+      "left": 57374620798,
+      "right": 5938
+    },
+    {
+      "kind": "random",
+      "index": 192,
+      "left": 5846027,
+      "right": 398
+    },
+    {
+      "kind": "random",
+      "index": 193,
+      "left": 325,
+      "right": 8922
+    },
+    {
+      "kind": "random",
+      "index": 194,
+      "left": 4879830,
+      "right": 485202
+    },
+    {
+      "kind": "random",
+      "index": 195,
+      "left": 309793458,
+      "right": 41426945
+    },
+    {
+      "kind": "random",
+      "index": 196,
+      "left": 94,
+      "right": 90538
+    },
+    {
+      "kind": "random",
+      "index": 197,
+      "left": 719,
+      "right": 8
+    },
+    {
+      "kind": "random",
+      "index": 198,
+      "left": 8864527,
+      "right": 936859311884
+    },
+    {
+      "kind": "random",
+      "index": 199,
+      "left": 637,
+      "right": 9193103
+    }
+  ]
+}

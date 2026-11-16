@@ -16,6 +16,26 @@ from __future__ import annotations
 
 
 class Node:
+    """One digit of a number stored as a singly linked list.
+
+    In this module each ``val`` is one decimal digit (0-9), and a list holds
+    a non-negative integer with its least significant digit first.
+
+    Invariant:
+        ``Node(x)`` stores ``x`` in ``val`` and starts with ``next`` set to
+        ``None``, so a single node is the smallest supported list. A list is
+        made by linking distinct nodes through ``next``. Following ``next``
+        from the head then visits each node exactly once and stops at
+        ``None``. Nothing stops a caller from linking a node back to an
+        earlier one, but that makes a cycle, and no function in this module
+        does it.
+
+    Ownership:
+        The functions in this module only read the nodes they are given.
+        They never change a node's ``val`` or ``next``, and every list they
+        return is built from new nodes.
+    """
+
     def __init__(self, x: int) -> None:
         self.val = x
         self.next: Node | None = None

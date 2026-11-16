@@ -1,0 +1,14 @@
+{
+  "task": "R24-T024",
+  "target": "algorithms/linked_list/add_two_numbers.py:Node",
+  "seed": 24024,
+  "fixture_checks_passed": 18,
+  "fixture_checks_total": 18,
+  "property_cases_passed": 203,
+  "property_cases_total": 203,
+  "smallest_failing_example": null,
+  "pytest_command": "python3 -m pytest tests/test_linked_list.py::TestAddTwoNumbersNodeInvariant -q --no-header",
+  "pytest_passed": 5,
+  "pytest_failed": 0,
+  "overall": "PASS"
+}

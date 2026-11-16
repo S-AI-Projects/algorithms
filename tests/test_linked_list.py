@@ -1,3 +1,4 @@
+import random
 import unittest
 
 from algorithms.linked_list import (
@@ -17,6 +18,8 @@ from algorithms.linked_list import (
     rotate_right,
     swap_pairs,
 )
+from algorithms.linked_list.add_two_numbers import Node as DigitNode
+from algorithms.linked_list.add_two_numbers import add_two_numbers, convert_to_str
 
 
 class Node:
@@ -224,6 +227,131 @@ class TestSuite(unittest.TestCase):
         )
         random_list_node4.next = random_list_node5
         random_list_node5.random = random_list_node3
+
+
+class TestAddTwoNumbersNodeInvariant(unittest.TestCase):
+    """Invariant of Node in algorithms/linked_list/add_two_numbers.py.
+
+    Following ``next`` from a head stops at None and visits each node once.
+    The module's functions only read the nodes they are given and return
+    lists built from new nodes. Values and links are checked separately:
+    links by identity, so a value-only comparison cannot hide a broken link.
+    """
+
+    SEED = 24024
+    RANDOM_CASES = 200
+    READABLE_CASES = [(0, 0), (5, 7), (342, 465)]
+
+    @staticmethod
+    def build(digits):
+        """Link one new DigitNode per digit and return (head, nodes)."""
+        nodes = [DigitNode(digit) for digit in digits]
+        # The last node has no successor, so the lengths differ by one.
+        for node, successor in zip(nodes, nodes[1:], strict=False):
+            node.next = successor
+        return nodes[0], nodes
+
+    @staticmethod
+    def walk(head, limit):
+        """Follow next from head; fail instead of looping on a cycle."""
+        visited = []
+        node = head
+        while node is not None:
+            if len(visited) == limit:
+                raise AssertionError(f"traversal did not stop within {limit} nodes")
+            visited.append(node)
+            node = node.next
+        return visited
+
+    @staticmethod
+    def ids(nodes):
+        return [id(node) for node in nodes]
+
+    @staticmethod
+    def state(nodes):
+        """Each node's value and the identity of its successor."""
+        return [(node.val, id(node.next)) for node in nodes]
+
+    def test_fixture_three_distinct_nodes(self):
+        a, b, c = DigitNode(2), DigitNode(4), DigitNode(3)
+        a.next = b
+        b.next = c
+        # Links, checked by identity.
+        self.assertIs(b, a.next)
+        self.assertIs(c, b.next)
+        self.assertIsNone(c.next)
+        # Values, checked separately.
+        self.assertEqual([2, 4, 3], [a.val, b.val, c.val])
+        # Traversal visits A, B, C once each, in order, then stops.
+        self.assertEqual(self.ids([a, b, c]), self.ids(self.walk(a, 3)))
+        # Reading the list reports its digits and leaves every link alone.
+        self.assertEqual("243", convert_to_str(a))
+        self.assertIs(b, a.next)
+        self.assertIs(c, b.next)
+        self.assertIsNone(c.next)
+
+    def test_fixture_smallest_supported_list(self):
+        only = DigitNode(5)
+        self.assertIsNone(only.next)
+        self.assertEqual(5, only.val)
+        self.assertEqual(self.ids([only]), self.ids(self.walk(only, 1)))
+        self.assertEqual("5", convert_to_str(only))
+        self.assertIsNone(only.next)
+
+    def test_fixture_sum_is_built_from_new_nodes(self):
+        # 342 + 5 = 347, stored least significant digit first.
+        a, inputs_left = self.build([2, 4, 3])
+        d = DigitNode(5)
+        inputs = inputs_left + [d]
+        before = self.state(inputs)
+        # Check the inputs stop at None first, so a cycle fails, not hangs.
+        self.assertEqual(self.ids(inputs_left), self.ids(self.walk(a, 3)))
+        self.assertIsNone(d.next)
+        result = self.walk(add_two_numbers(a, d), 3)
+        self.assertEqual([7, 4, 3], [node.val for node in result])
+        self.assertEqual(3, len(set(self.ids(result))))
+        self.assertEqual(set(), set(self.ids(result)) & set(self.ids(inputs)))
+        self.assertEqual(before, self.state(inputs))
+
+    def check_case(self, left_number, right_number):
+        left_digits = [int(ch) for ch in reversed(str(left_number))]
+        right_digits = [int(ch) for ch in reversed(str(right_number))]
+        left, left_nodes = self.build(left_digits)
+        right, right_nodes = self.build(right_digits)
+        inputs = left_nodes + right_nodes
+        before = self.state(inputs)
+
+        # Each input visits its own nodes once each, then stops.
+        self.assertEqual(
+            self.ids(left_nodes), self.ids(self.walk(left, len(left_nodes)))
+        )
+        self.assertEqual(
+            self.ids(right_nodes), self.ids(self.walk(right, len(right_nodes)))
+        )
+        self.assertEqual("".join(map(str, left_digits)), convert_to_str(left))
+
+        # The sum is a new list: right digits, each node once, no input node.
+        expected = [int(ch) for ch in reversed(str(left_number + right_number))]
+        result = self.walk(add_two_numbers(left, right), len(expected) + 1)
+        self.assertEqual(expected, [node.val for node in result])
+        self.assertEqual(len(result), len(set(self.ids(result))))
+        self.assertEqual(set(), set(self.ids(result)) & set(self.ids(inputs)))
+
+        # Every input node keeps its value and its link.
+        self.assertEqual(before, self.state(inputs))
+
+    def test_property_readable_small_cases(self):
+        for left_number, right_number in self.READABLE_CASES:
+            with self.subTest(left=left_number, right=right_number):
+                self.check_case(left_number, right_number)
+
+    def test_property_seeded_random_cases(self):
+        rng = random.Random(self.SEED)
+        for case in range(self.RANDOM_CASES):
+            left_number = rng.randrange(10 ** rng.randint(1, 12))
+            right_number = rng.randrange(10 ** rng.randint(1, 12))
+            with self.subTest(case=case, left=left_number, right=right_number):
+                self.check_case(left_number, right_number)
 
 
 if __name__ == "__main__":
