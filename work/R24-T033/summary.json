@@ -1,0 +1,114 @@
+{
+  "task": "R24-T033",
+  "module": "algorithms/stack/longest_abs_path.py",
+  "public_contract": {
+    "inputs": "input_str: str (file system structure encoded with newlines and tabs)",
+    "result": "int (length of the longest absolute path to a file, or 0 if no file exists)",
+    "mutation_behavior": "Pure function; no mutation",
+    "external_dependencies": "None (pure Python built-ins)"
+  },
+  "native_check": {
+    "command": "python3 -m unittest -k length_longest_path tests/test_stack.py",
+    "test_count": 1,
+    "failures_count": 0,
+    "errors_count": 0,
+    "success": true,
+    "runner_output": "test_length_longest_path (tests.test_stack.TestSuite)\nRegression tests for length_longest_path. ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+  },
+  "stack_fixture": {
+    "fixture_pop_order": [
+      "C",
+      "B",
+      "D",
+      "A"
+    ],
+    "pop_order_expected": [
+      "C",
+      "B",
+      "D",
+      "A"
+    ],
+    "pop_order_matched": true,
+    "history": [
+      {
+        "operation": "push(A)",
+        "stack": [
+          "A"
+        ],
+        "size": 1
+      },
+      {
+        "operation": "push(B)",
+        "stack": [
+          "A",
+          "B"
+        ],
+        "size": 2
+      },
+      {
+        "operation": "push(C)",
+        "stack": [
+          "A",
+          "B",
+          "C"
+        ],
+        "size": 3
+      },
+      {
+        "operation": "pop() -> C",
+        "stack": [
+          "A",
+          "B"
+        ],
+        "size": 2
+      },
+      {
+        "operation": "pop() -> B",
+        "stack": [
+          "A"
+        ],
+        "size": 1
+      },
+      {
+        "operation": "push(D)",
+        "stack": [
+          "A",
+          "D"
+        ],
+        "size": 2
+      },
+      {
+        "operation": "drain_pop() -> D",
+        "stack": [
+          "A"
+        ],
+        "size": 1
+      },
+      {
+        "operation": "drain_pop() -> A",
+        "stack": [],
+        "size": 0
+      }
+    ],
+    "fs_fixture_with_files": {
+      "input": "A\n\tB\n\t\tC.txt\n\tD.txt",
+      "expected": 9,
+      "actual": 9
+    },
+    "fs_fixture_dirs_only": {
+      "input": "A\n\tB\n\t\tC\n\tD",
+      "expected": 0,
+      "actual": 0
+    },
+    "empty_state": {
+      "input": "",
+      "expected": 0,
+      "actual": 0
+    }
+  },
+  "oracle_comparison": {
+    "sample_count": 23,
+    "all_passed": true
+  },
+  "status": "ALL_CHECKS_PASSED"
+}

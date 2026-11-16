@@ -1,0 +1,144 @@
+{
+  "domain_sample_count": 23,
+  "all_oracle_comparisons_passed": true,
+  "comparisons": [
+    {
+      "input": "",
+      "expected_oracle": 0,
+      "actual_tested": 0,
+      "pass": true
+    },
+    {
+      "input": "dir",
+      "expected_oracle": 0,
+      "actual_tested": 0,
+      "pass": true
+    },
+    {
+      "input": "file.txt",
+      "expected_oracle": 8,
+      "actual_tested": 8,
+      "pass": true
+    },
+    {
+      "input": "a.txt",
+      "expected_oracle": 5,
+      "actual_tested": 5,
+      "pass": true
+    },
+    {
+      "input": "dir\n\tfile.txt",
+      "expected_oracle": 12,
+      "actual_tested": 12,
+      "pass": true
+    },
+    {
+      "input": "dir\n\tfile.ext",
+      "expected_oracle": 12,
+      "actual_tested": 12,
+      "pass": true
+    },
+    {
+      "input": "dir\n\tsubdir",
+      "expected_oracle": 0,
+      "actual_tested": 0,
+      "pass": true
+    },
+    {
+      "input": "dir\n\tsubdir\n\t\tfile.txt",
+      "expected_oracle": 19,
+      "actual_tested": 19,
+      "pass": true
+    },
+    {
+      "input": "dir\n\tsubdir1\n\tsubdir2",
+      "expected_oracle": 0,
+      "actual_tested": 0,
+      "pass": true
+    },
+    {
+      "input": "dir\n\tsubdir1\n\tsubdir2\n\t\tfile.txt",
+      "expected_oracle": 20,
+      "actual_tested": 20,
+      "pass": true
+    },
+    {
+      "input": "dir1\n\tfile1.txt\ndir2\n\tfile2.txt",
+      "expected_oracle": 14,
+      "actual_tested": 14,
+      "pass": true
+    },
+    {
+      "input": "a\n\tb\n\t\tc\n\t\t\td.txt",
+      "expected_oracle": 11,
+      "actual_tested": 11,
+      "pass": true
+    },
+    {
+      "input": "a\n\tb.txt\n\tc.txt",
+      "expected_oracle": 7,
+      "actual_tested": 7,
+      "pass": true
+    },
+    {
+      "input": "a\n\tb.txt\n\tc.longer",
+      "expected_oracle": 10,
+      "actual_tested": 10,
+      "pass": true
+    },
+    {
+      "input": "A\n\tB\n\t\tC\n\tD",
+      "expected_oracle": 0,
+      "actual_tested": 0,
+      "pass": true
+    },
+    {
+      "input": "A\n\tB\n\t\tC.txt\n\tD.txt",
+      "expected_oracle": 9,
+      "actual_tested": 9,
+      "pass": true
+    },
+    {
+      "input": "A\n\tB\n\t\tC\n\tD.verylongfile",
+      "expected_oracle": 16,
+      "actual_tested": 16,
+      "pass": true
+    },
+    {
+      "input": "f.c",
+      "expected_oracle": 3,
+      "actual_tested": 3,
+      "pass": true
+    },
+    {
+      "input": "x.y.z",
+      "expected_oracle": 5,
+      "actual_tested": 5,
+      "pass": true
+    },
+    {
+      "input": "dir\n\tfile1.ext\n\tsubdir\n\t\tfile2.ext",
+      "expected_oracle": 20,
+      "actual_tested": 20,
+      "pass": true
+    },
+    {
+      "input": "root\n\ta\n\t\tb\n\t\t\tc.txt\n\td.txt",
+      "expected_oracle": 14,
+      "actual_tested": 14,
+      "pass": true
+    },
+    {
+      "input": "a\n\tb\n\tc\n\td.txt",
+      "expected_oracle": 7,
+      "actual_tested": 7,
+      "pass": true
+    },
+    {
+      "input": "dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext",
+      "expected_oracle": 32,
+      "actual_tested": 32,
+      "pass": true
+    }
+  ]
+}
