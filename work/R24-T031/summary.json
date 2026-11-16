@@ -1,0 +1,175 @@
+{
+  "task": "R24-T031",
+  "module": "algorithms/sorting/cycle_sort.py",
+  "public_contract": {
+    "inputs": "array: list[int] (mutable sequence of integers)",
+    "result": "list[int] (the sorted list in ascending order)",
+    "mutation_behavior": "In-place mutation of input list; returns reference to the same list object",
+    "external_dependencies": "None (pure Python built-ins)"
+  },
+  "native_check": {
+    "command": "python3 -m unittest -k cycle_sort tests/test_sorting.py",
+    "test_count": 6,
+    "failures_count": 0,
+    "errors_count": 0,
+    "success": true,
+    "runner_output": "test_cycle_sort (tests.test_sorting.TestSuite) ... ok\ntest_cycle_sort_already_ordered (tests.test_sorting.TestSuite)\nRegression test: already ordered collection [1, 2, 3]. ... ok\ntest_cycle_sort_ordinary (tests.test_sorting.TestSuite)\nRegression test: ordinary unsorted collection [3, 1, 2]. ... ok\ntest_cycle_sort_repeated_values (tests.test_sorting.TestSuite)\nRegression test: collection with repeated values [2, 2, 1]. ... ok\ntest_cycle_sort_reversed (tests.test_sorting.TestSuite)\nRegression test: reverse-ordered collection [3, 2, 1]. ... ok\ntest_cycle_sort_smallest_supported (tests.test_sorting.TestSuite)\nRegression test: smallest supported collections ([] and [1]). ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.000s\n\nOK\n"
+  },
+  "regression_results": {
+    "checks_executed": 6,
+    "results": [
+      {
+        "category": "ordinary",
+        "input": [
+          3,
+          1,
+          2
+        ],
+        "expected_returned": [
+          1,
+          2,
+          3
+        ],
+        "actual_returned": [
+          1,
+          2,
+          3
+        ],
+        "expected_mutated": [
+          1,
+          2,
+          3
+        ],
+        "actual_mutated": [
+          1,
+          2,
+          3
+        ],
+        "in_place_identity": true,
+        "status": "PASS"
+      },
+      {
+        "category": "repeated_values",
+        "input": [
+          2,
+          2,
+          1
+        ],
+        "expected_returned": [
+          1,
+          2,
+          2
+        ],
+        "actual_returned": [
+          1,
+          2,
+          2
+        ],
+        "expected_mutated": [
+          1,
+          2,
+          2
+        ],
+        "actual_mutated": [
+          1,
+          2,
+          2
+        ],
+        "in_place_identity": true,
+        "status": "PASS"
+      },
+      {
+        "category": "already_ordered",
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected_returned": [
+          1,
+          2,
+          3
+        ],
+        "actual_returned": [
+          1,
+          2,
+          3
+        ],
+        "expected_mutated": [
+          1,
+          2,
+          3
+        ],
+        "actual_mutated": [
+          1,
+          2,
+          3
+        ],
+        "in_place_identity": true,
+        "status": "PASS"
+      },
+      {
+        "category": "reversed",
+        "input": [
+          3,
+          2,
+          1
+        ],
+        "expected_returned": [
+          1,
+          2,
+          3
+        ],
+        "actual_returned": [
+          1,
+          2,
+          3
+        ],
+        "expected_mutated": [
+          1,
+          2,
+          3
+        ],
+        "actual_mutated": [
+          1,
+          2,
+          3
+        ],
+        "in_place_identity": true,
+        "status": "PASS"
+      },
+      {
+        "category": "smallest_supported_empty",
+        "input": [],
+        "expected_returned": [],
+        "actual_returned": [],
+        "expected_mutated": [],
+        "actual_mutated": [],
+        "in_place_identity": true,
+        "status": "PASS"
+      },
+      {
+        "category": "smallest_supported_single",
+        "input": [
+          1
+        ],
+        "expected_returned": [
+          1
+        ],
+        "actual_returned": [
+          1
+        ],
+        "expected_mutated": [
+          1
+        ],
+        "actual_mutated": [
+          1
+        ],
+        "in_place_identity": true,
+        "status": "PASS"
+      }
+    ],
+    "all_passed": true
+  },
+  "status": "ALL_CHECKS_PASSED"
+}

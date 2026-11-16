@@ -1,0 +1,156 @@
+{
+  "checks_executed": 6,
+  "results": [
+    {
+      "category": "ordinary",
+      "input": [
+        3,
+        1,
+        2
+      ],
+      "expected_returned": [
+        1,
+        2,
+        3
+      ],
+      "actual_returned": [
+        1,
+        2,
+        3
+      ],
+      "expected_mutated": [
+        1,
+        2,
+        3
+      ],
+      "actual_mutated": [
+        1,
+        2,
+        3
+      ],
+      "in_place_identity": true,
+      "status": "PASS"
+    },
+    {
+      "category": "repeated_values",
+      "input": [
+        2,
+        2,
+        1
+      ],
+      "expected_returned": [
+        1,
+        2,
+        2
+      ],
+      "actual_returned": [
+        1,
+        2,
+        2
+      ],
+      "expected_mutated": [
+        1,
+        2,
+        2
+      ],
+      "actual_mutated": [
+        1,
+        2,
+        2
+      ],
+      "in_place_identity": true,
+      "status": "PASS"
+    },
+    {
+      "category": "already_ordered",
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "expected_returned": [
+        1,
+        2,
+        3
+      ],
+      "actual_returned": [
+        1,
+        2,
+        3
+      ],
+      "expected_mutated": [
+        1,
+        2,
+        3
+      ],
+      "actual_mutated": [
+        1,
+        2,
+        3
+      ],
+      "in_place_identity": true,
+      "status": "PASS"
+    },
+    {
+      "category": "reversed",
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "expected_returned": [
+        1,
+        2,
+        3
+      ],
+      "actual_returned": [
+        1,
+        2,
+        3
+      ],
+      "expected_mutated": [
+        1,
+        2,
+        3
+      ],
+      "actual_mutated": [
+        1,
+        2,
+        3
+      ],
+      "in_place_identity": true,
+      "status": "PASS"
+    },
+    {
+      "category": "smallest_supported_empty",
+      "input": [],
+      "expected_returned": [],
+      "actual_returned": [],
+      "expected_mutated": [],
+      "actual_mutated": [],
+      "in_place_identity": true,
+      "status": "PASS"
+    },
+    {
+      "category": "smallest_supported_single",
+      "input": [
+        1
+      ],
+      "expected_returned": [
+        1
+      ],
+      "actual_returned": [
+        1
+      ],
+      "expected_mutated": [
+        1
+      ],
+      "actual_mutated": [
+        1
+      ],
+      "in_place_identity": true,
+      "status": "PASS"
+    }
+  ],
+  "all_passed": true
+}

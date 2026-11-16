@@ -1,0 +1,104 @@
+{
+  "fixtures": [
+    {
+      "category": "ordinary",
+      "description": "Ordinary unsorted collection",
+      "input": [
+        3,
+        1,
+        2
+      ],
+      "expected_returned": [
+        1,
+        2,
+        3
+      ],
+      "expected_mutated": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "category": "repeated_values",
+      "description": "Domain boundary with repeated values",
+      "input": [
+        2,
+        2,
+        1
+      ],
+      "expected_returned": [
+        1,
+        2,
+        2
+      ],
+      "expected_mutated": [
+        1,
+        2,
+        2
+      ]
+    },
+    {
+      "category": "already_ordered",
+      "description": "Already ordered ascending collection",
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "expected_returned": [
+        1,
+        2,
+        3
+      ],
+      "expected_mutated": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "category": "reversed",
+      "description": "Reverse-ordered collection",
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "expected_returned": [
+        1,
+        2,
+        3
+      ],
+      "expected_mutated": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "category": "smallest_supported_empty",
+      "description": "Smallest supported collection: empty list",
+      "input": [],
+      "expected_returned": [],
+      "expected_mutated": []
+    },
+    {
+      "category": "smallest_supported_single",
+      "description": "Smallest supported collection: single element",
+      "input": [
+        1
+      ],
+      "expected_returned": [
+        1
+      ],
+      "expected_mutated": [
+        1
+      ]
+    }
+  ],
+  "contract": {
+    "interface": "ascending",
+    "mutation_behavior": "in-place mutation returning the original list reference"
+  }
+}
