@@ -1,0 +1,50 @@
+{
+  "node_keys": {
+    "input": "Node()",
+    "expected": [],
+    "actual": []
+  },
+  "node_children": {
+    "input": "Node()",
+    "expected": [],
+    "actual": []
+  },
+  "node_is_leaf": {
+    "input": "Node()",
+    "expected": true,
+    "actual": true
+  },
+  "btree_root_keys": {
+    "input": "BTree(2)",
+    "expected": [],
+    "actual": []
+  },
+  "btree_min_keys": {
+    "input": "BTree(2)",
+    "expected": 1,
+    "actual": 1
+  },
+  "btree_max_keys": {
+    "input": "BTree(2)",
+    "expected": 3,
+    "actual": 3
+  },
+  "btree_traverse_123": {
+    "input": "BTree(2).insert [3,1,2]",
+    "expected": [
+      1,
+      2,
+      3
+    ],
+    "actual": [
+      1,
+      2,
+      3
+    ]
+  },
+  "tests_run": 18,
+  "tests_passed": 18,
+  "tests_failed": 0,
+  "tests_errors": 0,
+  "native_command": "python3 -m unittest tests.test_data_structures.TestNodeFixture"
+}
