@@ -1,0 +1,543 @@
+{
+  "module": "algorithms/bit_manipulation/bit_operation.py",
+  "anchors_and_neighbors": [
+    {
+      "desc": "Anchor 1",
+      "number": 22,
+      "position": 2,
+      "expected": 1
+    },
+    {
+      "desc": "Anchor 2",
+      "number": 22,
+      "position": 3,
+      "expected": 0
+    },
+    {
+      "desc": "Neighbor 1 (position 4 of 22)",
+      "number": 22,
+      "position": 4,
+      "expected": 1
+    },
+    {
+      "desc": "Neighbor 2 (position 1 of 22)",
+      "number": 22,
+      "position": 1,
+      "expected": 1
+    },
+    {
+      "desc": "Neighbor 3 (set_bit(22, 3)=30, check bit 3)",
+      "number": 30,
+      "position": 3,
+      "expected": 1
+    }
+  ],
+  "generator_spec": {
+    "seed": 42,
+    "bounded_case_count": 100,
+    "number_domain": "[0, 10000]",
+    "position_domain": "[0, 30]"
+  },
+  "generated_cases": [
+    {
+      "number": 1824,
+      "position": 0,
+      "expected": 0
+    },
+    {
+      "number": 4506,
+      "position": 7,
+      "expected": 1
+    },
+    {
+      "number": 3657,
+      "position": 4,
+      "expected": 0
+    },
+    {
+      "number": 1679,
+      "position": 21,
+      "expected": 0
+    },
+    {
+      "number": 8935,
+      "position": 2,
+      "expected": 1
+    },
+    {
+      "number": 9674,
+      "position": 13,
+      "expected": 1
+    },
+    {
+      "number": 520,
+      "position": 0,
+      "expected": 0
+    },
+    {
+      "number": 1535,
+      "position": 6,
+      "expected": 1
+    },
+    {
+      "number": 3811,
+      "position": 16,
+      "expected": 0
+    },
+    {
+      "number": 9863,
+      "position": 0,
+      "expected": 1
+    },
+    {
+      "number": 9195,
+      "position": 6,
+      "expected": 1
+    },
+    {
+      "number": 8928,
+      "position": 13,
+      "expected": 1
+    },
+    {
+      "number": 3611,
+      "position": 14,
+      "expected": 0
+    },
+    {
+      "number": 9654,
+      "position": 8,
+      "expected": 1
+    },
+    {
+      "number": 106,
+      "position": 24,
+      "expected": 0
+    },
+    {
+      "number": 2615,
+      "position": 22,
+      "expected": 0
+    },
+    {
+      "number": 6924,
+      "position": 10,
+      "expected": 0
+    },
+    {
+      "number": 4552,
+      "position": 4,
+      "expected": 0
+    },
+    {
+      "number": 3527,
+      "position": 30,
+      "expected": 0
+    },
+    {
+      "number": 5514,
+      "position": 3,
+      "expected": 1
+    },
+    {
+      "number": 1519,
+      "position": 12,
+      "expected": 0
+    },
+    {
+      "number": 1584,
+      "position": 11,
+      "expected": 0
+    },
+    {
+      "number": 5635,
+      "position": 19,
+      "expected": 0
+    },
+    {
+      "number": 4333,
+      "position": 25,
+      "expected": 0
+    },
+    {
+      "number": 711,
+      "position": 23,
+      "expected": 0
+    },
+    {
+      "number": 7527,
+      "position": 17,
+      "expected": 0
+    },
+    {
+      "number": 2045,
+      "position": 29,
+      "expected": 0
+    },
+    {
+      "number": 6201,
+      "position": 2,
+      "expected": 0
+    },
+    {
+      "number": 9044,
+      "position": 9,
+      "expected": 1
+    },
+    {
+      "number": 5925,
+      "position": 18,
+      "expected": 0
+    },
+    {
+      "number": 3150,
+      "position": 22,
+      "expected": 0
+    },
+    {
+      "number": 1139,
+      "position": 1,
+      "expected": 1
+    },
+    {
+      "number": 3733,
+      "position": 24,
+      "expected": 0
+    },
+    {
+      "number": 4741,
+      "position": 2,
+      "expected": 1
+    },
+    {
+      "number": 3814,
+      "position": 27,
+      "expected": 0
+    },
+    {
+      "number": 1654,
+      "position": 12,
+      "expected": 0
+    },
+    {
+      "number": 4554,
+      "position": 14,
+      "expected": 0
+    },
+    {
+      "number": 5977,
+      "position": 5,
+      "expected": 0
+    },
+    {
+      "number": 6065,
+      "position": 11,
+      "expected": 0
+    },
+    {
+      "number": 3432,
+      "position": 21,
+      "expected": 0
+    },
+    {
+      "number": 4374,
+      "position": 22,
+      "expected": 0
+    },
+    {
+      "number": 1169,
+      "position": 19,
+      "expected": 0
+    },
+    {
+      "number": 2803,
+      "position": 17,
+      "expected": 0
+    },
+    {
+      "number": 4010,
+      "position": 5,
+      "expected": 1
+    },
+    {
+      "number": 7573,
+      "position": 12,
+      "expected": 1
+    },
+    {
+      "number": 4422,
+      "position": 29,
+      "expected": 0
+    },
+    {
+      "number": 9125,
+      "position": 7,
+      "expected": 1
+    },
+    {
+      "number": 5313,
+      "position": 26,
+      "expected": 0
+    },
+    {
+      "number": 916,
+      "position": 7,
+      "expected": 1
+    },
+    {
+      "number": 525,
+      "position": 25,
+      "expected": 0
+    },
+    {
+      "number": 5168,
+      "position": 12,
+      "expected": 1
+    },
+    {
+      "number": 4386,
+      "position": 2,
+      "expected": 0
+    },
+    {
+      "number": 3456,
+      "position": 29,
+      "expected": 0
+    },
+    {
+      "number": 9292,
+      "position": 28,
+      "expected": 0
+    },
+    {
+      "number": 5155,
+      "position": 6,
+      "expected": 0
+    },
+    {
+      "number": 8179,
+      "position": 12,
+      "expected": 1
+    },
+    {
+      "number": 7517,
+      "position": 4,
+      "expected": 1
+    },
+    {
+      "number": 4339,
+      "position": 4,
+      "expected": 1
+    },
+    {
+      "number": 4040,
+      "position": 23,
+      "expected": 0
+    },
+    {
+      "number": 9197,
+      "position": 17,
+      "expected": 0
+    },
+    {
+      "number": 4304,
+      "position": 23,
+      "expected": 0
+    },
+    {
+      "number": 9577,
+      "position": 13,
+      "expected": 1
+    },
+    {
+      "number": 9560,
+      "position": 12,
+      "expected": 0
+    },
+    {
+      "number": 5930,
+      "position": 7,
+      "expected": 0
+    },
+    {
+      "number": 2266,
+      "position": 16,
+      "expected": 0
+    },
+    {
+      "number": 8085,
+      "position": 2,
+      "expected": 1
+    },
+    {
+      "number": 771,
+      "position": 27,
+      "expected": 0
+    },
+    {
+      "number": 1796,
+      "position": 4,
+      "expected": 0
+    },
+    {
+      "number": 2621,
+      "position": 25,
+      "expected": 0
+    },
+    {
+      "number": 6916,
+      "position": 19,
+      "expected": 0
+    },
+    {
+      "number": 1040,
+      "position": 12,
+      "expected": 0
+    },
+    {
+      "number": 6252,
+      "position": 19,
+      "expected": 0
+    },
+    {
+      "number": 7668,
+      "position": 16,
+      "expected": 0
+    },
+    {
+      "number": 4119,
+      "position": 17,
+      "expected": 0
+    },
+    {
+      "number": 188,
+      "position": 21,
+      "expected": 0
+    },
+    {
+      "number": 1876,
+      "position": 21,
+      "expected": 0
+    },
+    {
+      "number": 8797,
+      "position": 24,
+      "expected": 0
+    },
+    {
+      "number": 4371,
+      "position": 24,
+      "expected": 0
+    },
+    {
+      "number": 5573,
+      "position": 3,
+      "expected": 0
+    },
+    {
+      "number": 4808,
+      "position": 13,
+      "expected": 0
+    },
+    {
+      "number": 2591,
+      "position": 14,
+      "expected": 0
+    },
+    {
+      "number": 53,
+      "position": 30,
+      "expected": 0
+    },
+    {
+      "number": 4315,
+      "position": 16,
+      "expected": 0
+    },
+    {
+      "number": 2927,
+      "position": 16,
+      "expected": 0
+    },
+    {
+      "number": 1743,
+      "position": 27,
+      "expected": 0
+    },
+    {
+      "number": 4889,
+      "position": 26,
+      "expected": 0
+    },
+    {
+      "number": 8317,
+      "position": 19,
+      "expected": 0
+    },
+    {
+      "number": 3258,
+      "position": 4,
+      "expected": 1
+    },
+    {
+      "number": 6126,
+      "position": 24,
+      "expected": 0
+    },
+    {
+      "number": 2646,
+      "position": 17,
+      "expected": 0
+    },
+    {
+      "number": 8689,
+      "position": 29,
+      "expected": 0
+    },
+    {
+      "number": 9,
+      "position": 19,
+      "expected": 0
+    },
+    {
+      "number": 5310,
+      "position": 15,
+      "expected": 0
+    },
+    {
+      "number": 319,
+      "position": 3,
+      "expected": 1
+    },
+    {
+      "number": 5947,
+      "position": 28,
+      "expected": 0
+    },
+    {
+      "number": 5038,
+      "position": 7,
+      "expected": 1
+    },
+    {
+      "number": 949,
+      "position": 7,
+      "expected": 1
+    },
+    {
+      "number": 9295,
+      "position": 30,
+      "expected": 0
+    },
+    {
+      "number": 1290,
+      "position": 2,
+      "expected": 0
+    },
+    {
+      "number": 7962,
+      "position": 26,
+      "expected": 0
+    }
+  ]
+}
