@@ -44,11 +44,11 @@ class Node:
             return NotImplemented
         return self.frequency == other.frequency
 
-    def __str__(self) -> str:
-        return f"<ch: {self.sign}: {self.frequency}>"
-
     def __repr__(self) -> str:
         return f"<ch: {self.sign}: {self.frequency}>"
+
+    # str() shows the same text as repr(), so the format is written once.
+    __str__ = __repr__
 
 
 class HuffmanReader:

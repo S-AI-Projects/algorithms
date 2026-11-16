@@ -1,0 +1,7 @@
+{
+  "python": "3.12.15",
+  "implementation": "CPython",
+  "platform": "macOS-27.3-arm64-arm-64bit",
+  "pytest": "9.2.0",
+  "git": "git version 2.54.0 (Apple Git-157)"
+}

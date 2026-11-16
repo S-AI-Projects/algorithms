@@ -1,7 +1,7 @@
 import unittest
 
 from algorithms.compression.elias import elias_delta, elias_gamma
-from algorithms.compression.huffman_coding import HuffmanCoding
+from algorithms.compression.huffman_coding import HuffmanCoding, Node
 from algorithms.compression.lzw_compression import lzw_decode, lzw_encode
 from algorithms.compression.rle_compression import decode_rle, encode_rle
 
@@ -40,6 +40,58 @@ class TestHuffmanCoding(unittest.TestCase):
         os.remove(self.file_in_name)
         os.remove(self.file_out_bin_name)
         os.remove(self.file_out_name)
+
+
+class TestHuffmanNode(unittest.TestCase):
+    """Public contract of Node in huffman_coding.py.
+
+    Written before refactoring Node, with expected values worked out by hand
+    from the source: defaults (L26-29), ordering by frequency (L36-40),
+    equality by frequency only (L42-45) and the text form
+    ``<ch: {sign}: {frequency}>`` (L47-51, at commit bd1d152).
+    """
+
+    def test_smallest_valid_input_uses_the_defaults(self):
+        node = Node()
+        self.assertEqual(0, node.frequency)
+        self.assertIsNone(node.sign)
+        self.assertIsNone(node.left)
+        self.assertIsNone(node.right)
+        self.assertEqual("<ch: None: 0>", str(node))
+        self.assertEqual("<ch: None: 0>", repr(node))
+
+    def test_ordinary_leaf(self):
+        leaf = Node(frequency=5, sign=97)
+        self.assertEqual(5, leaf.frequency)
+        self.assertEqual(97, leaf.sign)
+        self.assertIsNone(leaf.left)
+        self.assertIsNone(leaf.right)
+        self.assertEqual("<ch: 97: 5>", str(leaf))
+        self.assertEqual("<ch: 97: 5>", repr(leaf))
+
+    def test_ordinary_internal_node(self):
+        left = Node(frequency=2, sign=98)
+        right = Node(frequency=3, sign=99)
+        parent = Node(frequency=5, left=left, right=right)
+        self.assertIs(left, parent.left)
+        self.assertIs(right, parent.right)
+        self.assertIsNone(parent.sign)
+        self.assertEqual("<ch: None: 5>", str(parent))
+        self.assertEqual("<ch: None: 5>", repr(parent))
+        # Containers show their items with repr().
+        self.assertEqual("[<ch: 98: 2>, <ch: 99: 3>]", str([left, right]))
+
+    def test_ordering_and_equality_use_frequency_only(self):
+        low = Node(frequency=2, sign=1)
+        high = Node(frequency=7, sign=2)
+        self.assertIs(True, low < high)
+        self.assertIs(False, high < low)
+        self.assertIs(True, high > low)
+        self.assertIs(False, low > high)
+        self.assertIs(True, Node(frequency=4, sign=1) == Node(frequency=4, sign=2))
+        self.assertIs(False, Node(frequency=4) == Node(frequency=5))
+        # A non-Node is never equal: __eq__ returns NotImplemented (L43-44).
+        self.assertIs(False, Node(frequency=4) == 4)
 
 
 class TestRLECompression(unittest.TestCase):

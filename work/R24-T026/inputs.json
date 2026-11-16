@@ -1,0 +1,76 @@
+{
+  "pinned_commit": "bd1d152f9ec7331c69be662831610b003b10fc7a",
+  "cases": [
+    {
+      "name": "smallest valid input: Node() fields",
+      "expected": [
+        0,
+        null,
+        null,
+        null
+      ],
+      "precondition_source_line": "L24-30: every parameter has a default (frequency=0 L26, sign=None L27, left=None L28, right=None L29)"
+    },
+    {
+      "name": "smallest valid input: str(Node())",
+      "expected": "<ch: None: 0>",
+      "precondition_source_line": "L47-48: __str__ formats sign and frequency"
+    },
+    {
+      "name": "smallest valid input: repr(Node())",
+      "expected": "<ch: None: 0>",
+      "precondition_source_line": "L50-51: __repr__ formats sign and frequency"
+    },
+    {
+      "name": "ordinary leaf: Node(frequency=5, sign=97) fields",
+      "expected": [
+        5,
+        97,
+        null,
+        null
+      ],
+      "precondition_source_line": "L26-27: frequency is an int and sign an int or None; L31-34 store them"
+    },
+    {
+      "name": "ordinary leaf: str and repr",
+      "expected": [
+        "<ch: 97: 5>",
+        "<ch: 97: 5>"
+      ],
+      "precondition_source_line": "L47-51: the text form <ch: {sign}: {frequency}>"
+    },
+    {
+      "name": "ordinary internal node: Node(5, left=..., right=...)",
+      "expected": {
+        "links": [
+          true,
+          true
+        ],
+        "sign": null,
+        "str": "<ch: None: 5>",
+        "repr": "<ch: None: 5>",
+        "str of [left, right]": "[<ch: 98: 2>, <ch: 99: 3>]"
+      },
+      "precondition_source_line": "L28-29, L33-34: left and right are stored as given; L27: sign defaults to None; L47-51: text form"
+    },
+    {
+      "name": "ordering: low < high, high < low, high > low, low > high",
+      "expected": [
+        true,
+        false,
+        true,
+        false
+      ],
+      "precondition_source_line": "L36-40: __lt__ and __gt__ compare frequency only"
+    },
+    {
+      "name": "equality: same frequency, different frequency, non-Node",
+      "expected": [
+        true,
+        false,
+        false
+      ],
+      "precondition_source_line": "L42-45: __eq__ compares frequency only and returns NotImplemented for a non-Node (L43-44)"
+    }
+  ]
+}

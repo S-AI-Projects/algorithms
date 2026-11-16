@@ -1,0 +1,186 @@
+{
+  "observations": [
+    {
+      "name": "smallest valid input: Node() fields",
+      "precondition_source_line": "L24-30: every parameter has a default (frequency=0 L26, sign=None L27, left=None L28, right=None L29)",
+      "expected": [
+        0,
+        null,
+        null,
+        null
+      ],
+      "before": [
+        0,
+        null,
+        null,
+        null
+      ],
+      "after": [
+        0,
+        null,
+        null,
+        null
+      ],
+      "after_matches_expected": true,
+      "before_after_agree": true,
+      "passed": true
+    },
+    {
+      "name": "smallest valid input: str(Node())",
+      "precondition_source_line": "L47-48: __str__ formats sign and frequency",
+      "expected": "<ch: None: 0>",
+      "before": "<ch: None: 0>",
+      "after": "<ch: None: 0>",
+      "after_matches_expected": true,
+      "before_after_agree": true,
+      "passed": true
+    },
+    {
+      "name": "smallest valid input: repr(Node())",
+      "precondition_source_line": "L50-51: __repr__ formats sign and frequency",
+      "expected": "<ch: None: 0>",
+      "before": "<ch: None: 0>",
+      "after": "<ch: None: 0>",
+      "after_matches_expected": true,
+      "before_after_agree": true,
+      "passed": true
+    },
+    {
+      "name": "ordinary leaf: Node(frequency=5, sign=97) fields",
+      "precondition_source_line": "L26-27: frequency is an int and sign an int or None; L31-34 store them",
+      "expected": [
+        5,
+        97,
+        null,
+        null
+      ],
+      "before": [
+        5,
+        97,
+        null,
+        null
+      ],
+      "after": [
+        5,
+        97,
+        null,
+        null
+      ],
+      "after_matches_expected": true,
+      "before_after_agree": true,
+      "passed": true
+    },
+    {
+      "name": "ordinary leaf: str and repr",
+      "precondition_source_line": "L47-51: the text form <ch: {sign}: {frequency}>",
+      "expected": [
+        "<ch: 97: 5>",
+        "<ch: 97: 5>"
+      ],
+      "before": [
+        "<ch: 97: 5>",
+        "<ch: 97: 5>"
+      ],
+      "after": [
+        "<ch: 97: 5>",
+        "<ch: 97: 5>"
+      ],
+      "after_matches_expected": true,
+      "before_after_agree": true,
+      "passed": true
+    },
+    {
+      "name": "ordinary internal node: Node(5, left=..., right=...)",
+      "precondition_source_line": "L28-29, L33-34: left and right are stored as given; L27: sign defaults to None; L47-51: text form",
+      "expected": {
+        "links": [
+          true,
+          true
+        ],
+        "sign": null,
+        "str": "<ch: None: 5>",
+        "repr": "<ch: None: 5>",
+        "str of [left, right]": "[<ch: 98: 2>, <ch: 99: 3>]"
+      },
+      "before": {
+        "links": [
+          true,
+          true
+        ],
+        "sign": null,
+        "str": "<ch: None: 5>",
+        "repr": "<ch: None: 5>",
+        "str of [left, right]": "[<ch: 98: 2>, <ch: 99: 3>]"
+      },
+      "after": {
+        "links": [
+          true,
+          true
+        ],
+        "sign": null,
+        "str": "<ch: None: 5>",
+        "repr": "<ch: None: 5>",
+        "str of [left, right]": "[<ch: 98: 2>, <ch: 99: 3>]"
+      },
+      "after_matches_expected": true,
+      "before_after_agree": true,
+      "passed": true
+    },
+    {
+      "name": "ordering: low < high, high < low, high > low, low > high",
+      "precondition_source_line": "L36-40: __lt__ and __gt__ compare frequency only",
+      "expected": [
+        true,
+        false,
+        true,
+        false
+      ],
+      "before": [
+        true,
+        false,
+        true,
+        false
+      ],
+      "after": [
+        true,
+        false,
+        true,
+        false
+      ],
+      "after_matches_expected": true,
+      "before_after_agree": true,
+      "passed": true
+    },
+    {
+      "name": "equality: same frequency, different frequency, non-Node",
+      "precondition_source_line": "L42-45: __eq__ compares frequency only and returns NotImplemented for a non-Node (L43-44)",
+      "expected": [
+        true,
+        false,
+        false
+      ],
+      "before": [
+        true,
+        false,
+        false
+      ],
+      "after": [
+        true,
+        false,
+        false
+      ],
+      "after_matches_expected": true,
+      "before_after_agree": true,
+      "passed": true
+    }
+  ],
+  "scope": {
+    "diff": "--- algorithms/compression/huffman_coding.py@bd1d152\n+++ algorithms/compression/huffman_coding.py (this branch)\n@@ -44,11 +44,11 @@\n             return NotImplemented\n         return self.frequency == other.frequency\n \n-    def __str__(self) -> str:\n-        return f\"<ch: {self.sign}: {self.frequency}>\"\n-\n     def __repr__(self) -> str:\n         return f\"<ch: {self.sign}: {self.frequency}>\"\n+\n+    # str() shows the same text as repr(), so the format is written once.\n+    __str__ = __repr__\n \n \n class HuffmanReader:\n",
+    "hunks": 1,
+    "changed_files_under_algorithms": [
+      "algorithms/compression/huffman_coding.py"
+    ],
+    "str_is_repr_after": true,
+    "passed": true
+  }
+}

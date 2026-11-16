@@ -1,0 +1,13 @@
+{
+  "task": "R24-T026",
+  "target": "algorithms/compression/huffman_coding.py:Node",
+  "refactor": "__str__ = __repr__: the text form is written once",
+  "observations_passed": 8,
+  "observations_total": 8,
+  "before_after_agree": true,
+  "scope_passed": true,
+  "pytest_command": "python3 -m pytest tests/test_compression.py::TestHuffmanNode -q --no-header",
+  "pytest_passed": 4,
+  "pytest_failed": 0,
+  "overall": "PASS"
+}

@@ -1,0 +1,40 @@
+R24-T026 Node refactor check (huffman_coding.py)
+
+Fixture observations (expected / before / after):
+  [PASS] smallest valid input: Node() fields
+      precondition: L24-30: every parameter has a default (frequency=0 L26, sign=None L27, left=None L28, right=None L29)
+      expected=[0, None, None, None] before=[0, None, None, None] after=[0, None, None, None]
+  [PASS] smallest valid input: str(Node())
+      precondition: L47-48: __str__ formats sign and frequency
+      expected='<ch: None: 0>' before='<ch: None: 0>' after='<ch: None: 0>'
+  [PASS] smallest valid input: repr(Node())
+      precondition: L50-51: __repr__ formats sign and frequency
+      expected='<ch: None: 0>' before='<ch: None: 0>' after='<ch: None: 0>'
+  [PASS] ordinary leaf: Node(frequency=5, sign=97) fields
+      precondition: L26-27: frequency is an int and sign an int or None; L31-34 store them
+      expected=[5, 97, None, None] before=[5, 97, None, None] after=[5, 97, None, None]
+  [PASS] ordinary leaf: str and repr
+      precondition: L47-51: the text form <ch: {sign}: {frequency}>
+      expected=['<ch: 97: 5>', '<ch: 97: 5>'] before=['<ch: 97: 5>', '<ch: 97: 5>'] after=['<ch: 97: 5>', '<ch: 97: 5>']
+  [PASS] ordinary internal node: Node(5, left=..., right=...)
+      precondition: L28-29, L33-34: left and right are stored as given; L27: sign defaults to None; L47-51: text form
+      expected={'links': [True, True], 'sign': None, 'str': '<ch: None: 5>', 'repr': '<ch: None: 5>', 'str of [left, right]': '[<ch: 98: 2>, <ch: 99: 3>]'} before={'links': [True, True], 'sign': None, 'str': '<ch: None: 5>', 'repr': '<ch: None: 5>', 'str of [left, right]': '[<ch: 98: 2>, <ch: 99: 3>]'} after={'links': [True, True], 'sign': None, 'str': '<ch: None: 5>', 'repr': '<ch: None: 5>', 'str of [left, right]': '[<ch: 98: 2>, <ch: 99: 3>]'}
+  [PASS] ordering: low < high, high < low, high > low, low > high
+      precondition: L36-40: __lt__ and __gt__ compare frequency only
+      expected=[True, False, True, False] before=[True, False, True, False] after=[True, False, True, False]
+  [PASS] equality: same frequency, different frequency, non-Node
+      precondition: L42-45: __eq__ compares frequency only and returns NotImplemented for a non-Node (L43-44)
+      expected=[True, False, False] before=[True, False, False] after=[True, False, False]
+
+[PASS] scope: changed files under algorithms/ = ['algorithms/compression/huffman_coding.py'], hunks = 1, Node.__str__ is Node.__repr__ = True
+
+Pytest command: python3 -m pytest tests/test_compression.py::TestHuffmanNode -q --no-header
+Pytest result: 4 passed, 0 failed, exit 0
+============================= test session starts ==============================
+collected 4 items
+
+tests/test_compression.py ....                                           [100%]
+
+============================== 4 passed in 0.01s ===============================
+
+OVERALL: PASS
