@@ -1,0 +1,19 @@
+test_already_sorted_no_shuffle_needed (__main__.TestBogoSortWorkedExample) ... ok
+test_docstring_example_2_2_1 (__main__.TestBogoSortWorkedExample) ... ok
+test_docstring_example_3_1_2 (__main__.TestBogoSortWorkedExample) ... ok
+test_docstring_example_already_sorted (__main__.TestBogoSortWorkedExample) ... ok
+test_docstring_example_reversed_seed42 (__main__.TestBogoSortWorkedExample) ... ok
+test_docstring_example_single (__main__.TestBogoSortWorkedExample) ... ok
+test_fixture_2_2_1 (__main__.TestBogoSortWorkedExample) ... ok
+test_fixture_3_1_2 (__main__.TestBogoSortWorkedExample) ... ok
+test_fixture_already_sorted (__main__.TestBogoSortWorkedExample) ... ok
+test_fixture_reversed (__main__.TestBogoSortWorkedExample) ... ok
+test_fixture_smallest_collection (__main__.TestBogoSortWorkedExample) ... ok
+test_returns_same_object (__main__.TestBogoSortWorkedExample) ... ok
+test_single_element_no_shuffle_needed (__main__.TestBogoSortWorkedExample) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.000s
+
+OK
+

@@ -1,0 +1,65 @@
+{
+  "fixtures": [
+    {
+      "input": [
+        3,
+        1,
+        2
+      ],
+      "seed": 0,
+      "expected": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "input": [
+        2,
+        2,
+        1
+      ],
+      "seed": 0,
+      "expected": [
+        1,
+        2,
+        2
+      ]
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "seed": 0,
+      "expected": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "seed": 42,
+      "expected": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "input": [
+        1
+      ],
+      "expected": [
+        1
+      ]
+    }
+  ],
+  "decisive_state_transition": "_is_sorted returns True; while-loop terminates immediately. Shuffle is bypassed entirely for already sorted inputs."
+}
