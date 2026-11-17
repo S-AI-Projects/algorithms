@@ -1,0 +1,31 @@
+{
+  "fixture_3_1_2": {
+    "expected": [
+      1,
+      2,
+      3
+    ],
+    "actual": [
+      1,
+      2,
+      3
+    ]
+  },
+  "fixture_2_2_1": {
+    "expected": [
+      1,
+      2,
+      2
+    ],
+    "actual": [
+      1,
+      2,
+      2
+    ]
+  },
+  "tests_run": 13,
+  "tests_passed": 13,
+  "tests_failed": 0,
+  "tests_errors": 0,
+  "native_command": "python3 -m unittest tests.test_sorting.TestBogoSortWorkedExample"
+}

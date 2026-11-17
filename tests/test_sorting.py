@@ -94,5 +94,129 @@ class TestSuite(unittest.TestCase):
         self.assertTrue(is_sorted(cocktail_shaker_sort([1, 3, 2, 5, 65, 23, 57, 1232])))
 
 
+class TestBogoSortWorkedExample(unittest.TestCase):
+    """Executable worked-example regression tests for bogo_sort (R24-T037).
+
+    bogo_sort mutates *and* returns the same list object.
+    The decisive state transition: ``_is_sorted`` returns True and
+    the while-loop exits.  Every shuffle before that is an intermediate
+    state that is discarded.
+
+    random.shuffle is seeded before each call so the examples are
+    deterministic and their displayed output can be asserted.
+    """
+
+    def setUp(self):
+        import random
+        random.seed(0)
+
+    # ------------------------------------------------------------------
+    # Fixture inputs — explicit expected values, ascending interface
+    # ------------------------------------------------------------------
+
+    def test_fixture_3_1_2(self):
+        """[3, 1, 2] → [1, 2, 3]  (fixture anchor, seed 0)."""
+        import random; random.seed(0)
+        from algorithms.sorting.bogo_sort import bogo_sort
+        result = bogo_sort([3, 1, 2])
+        self.assertEqual(result, [1, 2, 3])
+
+    def test_fixture_2_2_1(self):
+        """[2, 2, 1] → [1, 2, 2]  (duplicates preserved, seed 0)."""
+        import random; random.seed(0)
+        from algorithms.sorting.bogo_sort import bogo_sort
+        result = bogo_sort([2, 2, 1])
+        self.assertEqual(result, [1, 2, 2])
+
+    def test_fixture_already_sorted(self):
+        """[1, 2, 3] → [1, 2, 3]  (zero shuffles needed; decisive transition on first check)."""
+        import random; random.seed(0)
+        from algorithms.sorting.bogo_sort import bogo_sort
+        result = bogo_sort([1, 2, 3])
+        self.assertEqual(result, [1, 2, 3])
+
+    def test_fixture_reversed(self):
+        """[3, 2, 1] → [1, 2, 3]  (fully reversed, seed 42)."""
+        import random; random.seed(42)
+        from algorithms.sorting.bogo_sort import bogo_sort
+        result = bogo_sort([3, 2, 1])
+        self.assertEqual(result, [1, 2, 3])
+
+    def test_fixture_smallest_collection(self):
+        """[1] → [1]  (single element: _is_sorted returns True immediately, no shuffle)."""
+        from algorithms.sorting.bogo_sort import bogo_sort
+        result = bogo_sort([1])
+        self.assertEqual(result, [1])
+
+    # ------------------------------------------------------------------
+    # Mutation contract: same object returned
+    # ------------------------------------------------------------------
+
+    def test_returns_same_object(self):
+        """bogo_sort returns the same list object it mutated (in-place + return)."""
+        import random; random.seed(0)
+        from algorithms.sorting.bogo_sort import bogo_sort
+        arr = [3, 1, 2]
+        result = bogo_sort(arr)
+        self.assertIs(result, arr)
+        self.assertEqual(arr, [1, 2, 3])
+
+    # ------------------------------------------------------------------
+    # Decisive state transition: already-sorted exits without any shuffle
+    # ------------------------------------------------------------------
+
+    def test_already_sorted_no_shuffle_needed(self):
+        """Already-sorted input exits on first _is_sorted check; shuffle never called."""
+        from algorithms.sorting.bogo_sort import bogo_sort
+        from unittest.mock import patch
+        arr = [1, 2, 3]
+        with patch("random.shuffle") as mock_shuffle:
+            result = bogo_sort(arr)
+        mock_shuffle.assert_not_called()
+        self.assertEqual(result, [1, 2, 3])
+
+    def test_single_element_no_shuffle_needed(self):
+        """Single-element list exits without any shuffle."""
+        from algorithms.sorting.bogo_sort import bogo_sort
+        from unittest.mock import patch
+        with patch("random.shuffle") as mock_shuffle:
+            result = bogo_sort([7])
+        mock_shuffle.assert_not_called()
+        self.assertEqual(result, [7])
+
+    # ------------------------------------------------------------------
+    # Docstring examples executed — displayed output asserted
+    # ------------------------------------------------------------------
+
+    def test_docstring_example_3_1_2(self):
+        """Docstring example: seed(0) + [3,1,2] → [1,2,3] (displayed output asserted)."""
+        import random; random.seed(0)
+        from algorithms.sorting.bogo_sort import bogo_sort
+        self.assertEqual(bogo_sort([3, 1, 2]), [1, 2, 3])
+
+    def test_docstring_example_already_sorted(self):
+        """Docstring example: seed(0) + [1,2,3] → [1,2,3]."""
+        import random; random.seed(0)
+        from algorithms.sorting.bogo_sort import bogo_sort
+        self.assertEqual(bogo_sort([1, 2, 3]), [1, 2, 3])
+
+    def test_docstring_example_2_2_1(self):
+        """Docstring example: seed(0) + [2,2,1] → [1,2,2]."""
+        import random; random.seed(0)
+        from algorithms.sorting.bogo_sort import bogo_sort
+        self.assertEqual(bogo_sort([2, 2, 1]), [1, 2, 2])
+
+    def test_docstring_example_reversed_seed42(self):
+        """Docstring example: seed(42) + [3,2,1] → [1,2,3]."""
+        import random; random.seed(42)
+        from algorithms.sorting.bogo_sort import bogo_sort
+        self.assertEqual(bogo_sort([3, 2, 1]), [1, 2, 3])
+
+    def test_docstring_example_single(self):
+        """Docstring example: [1] → [1]."""
+        from algorithms.sorting.bogo_sort import bogo_sort
+        self.assertEqual(bogo_sort([1]), [1])
+
+
 if __name__ == "__main__":
     unittest.main()
