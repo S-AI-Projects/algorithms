@@ -1,0 +1,108 @@
+{
+  "fixture_three_nodes": {
+    "copy_random_pointer_v1": {
+      "values_ok": true,
+      "links_ok": true,
+      "orig_unmutated": true,
+      "passed": true
+    },
+    "copy_random_pointer_v2": {
+      "values_ok": true,
+      "links_ok": true,
+      "orig_unmutated": true,
+      "passed": true
+    }
+  },
+  "boundary_cases": [
+    {
+      "partition": "valid boundary",
+      "name": "smallest_empty_list_v1",
+      "description": "Smallest list: None passed to copy_random_pointer_v1",
+      "input": "None",
+      "expected": "None",
+      "source_contract": "copy_random_pointer.py L28-54; head is None returns None",
+      "passed": true
+    },
+    {
+      "partition": "valid boundary",
+      "name": "smallest_empty_list_v2",
+      "description": "Smallest list: None passed to copy_random_pointer_v2",
+      "input": "None",
+      "expected": "None",
+      "source_contract": "copy_random_pointer.py L57-83; head is None returns None",
+      "passed": true
+    },
+    {
+      "partition": "valid boundary",
+      "name": "single_node_smallest_nonempty_v1",
+      "description": "Single node with next=None and random=None (v1)",
+      "input": "RandomListNode(1)",
+      "expected": "distinct node with label=1, next=None, random=None",
+      "source_contract": "copy_random_pointer.py L19, L28; 1-node deep copy",
+      "passed": true
+    },
+    {
+      "partition": "valid boundary",
+      "name": "single_node_smallest_nonempty_v2",
+      "description": "Single node with next=None and random=None (v2)",
+      "input": "RandomListNode(1)",
+      "expected": "distinct node with label=1, next=None, random=None",
+      "source_contract": "copy_random_pointer.py L19, L57; 1-node deep copy",
+      "passed": true
+    },
+    {
+      "partition": "valid boundary",
+      "name": "single_node_self_referential_v1",
+      "description": "Single node with random pointing to itself (v1)",
+      "input": "RandomListNode(1) with random=self",
+      "expected": "distinct copy with copy.random is copy",
+      "source_contract": "copy_random_pointer.py L38-42; self-referential random pointer",
+      "passed": true
+    },
+    {
+      "partition": "valid boundary",
+      "name": "single_node_self_referential_v2",
+      "description": "Single node with random pointing to itself (v2)",
+      "input": "RandomListNode(1) with random=self",
+      "expected": "distinct copy with copy.random is copy",
+      "source_contract": "copy_random_pointer.py L67-71; self-referential random pointer",
+      "passed": true
+    },
+    {
+      "partition": "valid boundary",
+      "name": "falsy_label_zero_preserved",
+      "description": "Node with falsy integer label 0 preserved",
+      "input": "RandomListNode(0)",
+      "expected": "label == 0",
+      "source_contract": "RandomListNode L22-25; preserves label 0",
+      "passed": true
+    },
+    {
+      "partition": "valid boundary",
+      "name": "negative_label_preserved",
+      "description": "Node with negative integer label",
+      "input": "RandomListNode(-7)",
+      "expected": "label == -7",
+      "source_contract": "RandomListNode L22-25; negative integer supported",
+      "passed": true
+    },
+    {
+      "partition": "valid interior",
+      "name": "duck_typed_string_label",
+      "description": "Node with string label (duck typing supported)",
+      "input": "RandomListNode('A')",
+      "expected": "label == 'A'",
+      "source_contract": "RandomListNode L22-25; generic label assignment",
+      "passed": true
+    },
+    {
+      "partition": "explicitly unsupported",
+      "name": "missing_required_label_argument",
+      "description": "Instantiating RandomListNode without required label argument",
+      "input": "RandomListNode()",
+      "expected": "raises TypeError",
+      "source_contract": "RandomListNode.__init__(self, label: int) requires label argument",
+      "passed": true
+    }
+  ]
+}

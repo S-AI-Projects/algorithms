@@ -226,5 +226,123 @@ class TestSuite(unittest.TestCase):
         random_list_node5.random = random_list_node3
 
 
+class TestRandomListNodeBoundaries(unittest.TestCase):
+    """Boundary and contract test suite for RandomListNode and copy_random_pointer."""
+
+    def test_random_list_node_initialization_and_boundaries(self):
+        # Valid interior: integer label
+        node = RandomListNode(42)
+        self.assertEqual(node.label, 42)
+        self.assertIsNone(node.next)
+        self.assertIsNone(node.random)
+
+        # Valid boundary: falsy integer label 0
+        node_zero = RandomListNode(0)
+        self.assertEqual(node_zero.label, 0)
+
+        # Valid boundary: negative integer label
+        node_neg = RandomListNode(-7)
+        self.assertEqual(node_neg.label, -7)
+
+        # Valid boundary: string label supported via duck typing
+        node_str = RandomListNode("A")
+        self.assertEqual(node_str.label, "A")
+
+        # Explicitly unsupported boundary: missing required label argument
+        with self.assertRaises(TypeError):
+            RandomListNode()  # type: ignore[call-arg]
+
+    def test_fixture_three_nodes_separate_value_and_link_checks(self):
+        # Fixture: construct three distinct nodes A -> B -> C
+        node_a = RandomListNode("A")
+        node_b = RandomListNode("B")
+        node_c = RandomListNode("C")
+        node_a.next = node_b
+        node_b.next = node_c
+        node_c.next = None
+        # Non-trivial random pointer assignments: A->C, B->A, C->None
+        node_a.random = node_c
+        node_b.random = node_a
+        node_c.random = None
+
+        for copy_fn in (copy_random_pointer_v1, copy_random_pointer_v2):
+            with self.subTest(copy_fn=copy_fn.__name__):
+                copied_head = copy_fn(node_a)
+                self.assertIsNotNone(copied_head)
+                copied_b = copied_head.next
+                copied_c = copied_b.next if copied_b else None
+
+                # 1. Check values separately
+                self.assertEqual(copied_head.label, "A")
+                self.assertEqual(copied_b.label, "B")
+                self.assertEqual(copied_c.label, "C")
+
+                # 2. Check node links separately (distinct instances, correct structure)
+                self.assertIsNot(copied_head, node_a)
+                self.assertIsNot(copied_b, node_b)
+                self.assertIsNot(copied_c, node_c)
+
+                # Next pointers
+                self.assertIs(copied_head.next, copied_b)
+                self.assertIs(copied_b.next, copied_c)
+                self.assertIsNone(copied_c.next)
+
+                # Random pointers
+                self.assertIs(copied_head.random, copied_c)
+                self.assertIs(copied_b.random, copied_head)
+                self.assertIsNone(copied_c.random)
+
+                # 3. Verify original list was not mutated
+                self.assertEqual(node_a.label, "A")
+                self.assertEqual(node_b.label, "B")
+                self.assertEqual(node_c.label, "C")
+                self.assertIs(node_a.next, node_b)
+                self.assertIs(node_b.next, node_c)
+                self.assertIsNone(node_c.next)
+                self.assertIs(node_a.random, node_c)
+                self.assertIs(node_b.random, node_a)
+                self.assertIsNone(node_c.random)
+
+    def test_smallest_supported_list_empty(self):
+        # Smallest supported list: None (empty list)
+        self.assertIsNone(copy_random_pointer_v1(None))
+        self.assertIsNone(copy_random_pointer_v2(None))
+
+    def test_smallest_supported_list_single_node(self):
+        # Smallest non-empty list: single node with no next/random links
+        single = RandomListNode(1)
+        for copy_fn in (copy_random_pointer_v1, copy_random_pointer_v2):
+            with self.subTest(copy_fn=copy_fn.__name__):
+                copied = copy_fn(single)
+                self.assertIsNotNone(copied)
+                self.assertIsNot(copied, single)
+                self.assertEqual(copied.label, 1)
+                self.assertIsNone(copied.next)
+                self.assertIsNone(copied.random)
+
+    def test_single_node_self_referential_random(self):
+        # Single node with random pointing to itself
+        single = RandomListNode(99)
+        single.random = single
+        for copy_fn in (copy_random_pointer_v1, copy_random_pointer_v2):
+            with self.subTest(copy_fn=copy_fn.__name__):
+                copied = copy_fn(single)
+                self.assertIsNotNone(copied)
+                self.assertIsNot(copied, single)
+                self.assertEqual(copied.label, 99)
+                self.assertIsNone(copied.next)
+                self.assertIs(copied.random, copied)
+
+    def test_boundary_falsy_label_zero_preserved(self):
+        # Node with label 0
+        node = RandomListNode(0)
+        for copy_fn in (copy_random_pointer_v1, copy_random_pointer_v2):
+            with self.subTest(copy_fn=copy_fn.__name__):
+                copied = copy_fn(node)
+                self.assertIsNotNone(copied)
+                self.assertIsNot(copied, node)
+                self.assertEqual(copied.label, 0)
+
+
 if __name__ == "__main__":
     unittest.main()

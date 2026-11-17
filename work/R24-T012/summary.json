@@ -1,0 +1,13 @@
+{
+  "task": "R24-T012",
+  "target": "algorithms/linked_list/copy_random_pointer.py:RandomListNode",
+  "fixture_passed": true,
+  "boundary_cases_total": 10,
+  "boundary_cases_passed": 10,
+  "doctest_attempted": 10,
+  "doctest_failed": 0,
+  "pytest_command": "/Users/nandini/Desktop/SnAI/algorithms/.venv/bin/pytest tests/test_linked_list.py::TestRandomListNodeBoundaries -v --no-header",
+  "pytest_test_count": 6,
+  "pytest_passed": true,
+  "overall": "PASS"
+}

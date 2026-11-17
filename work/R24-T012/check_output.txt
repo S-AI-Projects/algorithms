@@ -1,0 +1,42 @@
+======================================================================
+R24-T012 RandomListNode boundary and contract check
+======================================================================
+
+Executing Fixture: Three distinct nodes A -> B -> C
+  [PASS] copy_random_pointer_v1: values_ok=True links_ok=True orig_unmutated=True
+  [PASS] copy_random_pointer_v2: values_ok=True links_ok=True orig_unmutated=True
+
+Executing Boundary Cases:
+  [PASS] (valid boundary) smallest_empty_list_v1: expected=None
+  [PASS] (valid boundary) smallest_empty_list_v2: expected=None
+  [PASS] (valid boundary) single_node_smallest_nonempty_v1: expected=distinct node with label=1, next=None, random=None
+  [PASS] (valid boundary) single_node_smallest_nonempty_v2: expected=distinct node with label=1, next=None, random=None
+  [PASS] (valid boundary) single_node_self_referential_v1: expected=distinct copy with copy.random is copy
+  [PASS] (valid boundary) single_node_self_referential_v2: expected=distinct copy with copy.random is copy
+  [PASS] (valid boundary) falsy_label_zero_preserved: expected=label == 0
+  [PASS] (valid boundary) negative_label_preserved: expected=label == -7
+  [PASS] (valid interior) duck_typed_string_label: expected=label == 'A'
+  [PASS] (explicitly unsupported) missing_required_label_argument: expected=raises TypeError
+
+Running doctests on algorithms/linked_list/copy_random_pointer.py...
+Doctest results: attempted=10, failed=0
+
+Executing test command: /Users/nandini/Desktop/SnAI/algorithms/.venv/bin/pytest tests/test_linked_list.py::TestRandomListNodeBoundaries -v --no-header
+============================= test session starts ==============================
+collecting ... collected 6 items
+
+tests/test_linked_list.py::TestRandomListNodeBoundaries::test_boundary_falsy_label_zero_preserved 
+tests/test_linked_list.py::TestRandomListNodeBoundaries::test_boundary_falsy_label_zero_preserved PASSED [ 16%]
+tests/test_linked_list.py::TestRandomListNodeBoundaries::test_fixture_three_nodes_separate_value_and_link_checks 
+tests/test_linked_list.py::TestRandomListNodeBoundaries::test_fixture_three_nodes_separate_value_and_link_checks PASSED [ 33%]
+tests/test_linked_list.py::TestRandomListNodeBoundaries::test_random_list_node_initialization_and_boundaries PASSED [ 50%]
+tests/test_linked_list.py::TestRandomListNodeBoundaries::test_single_node_self_referential_random 
+tests/test_linked_list.py::TestRandomListNodeBoundaries::test_single_node_self_referential_random PASSED [ 66%]
+tests/test_linked_list.py::TestRandomListNodeBoundaries::test_smallest_supported_list_empty PASSED [ 83%]
+tests/test_linked_list.py::TestRandomListNodeBoundaries::test_smallest_supported_list_single_node 
+tests/test_linked_list.py::TestRandomListNodeBoundaries::test_smallest_supported_list_single_node PASSED [100%]
+
+===================== 6 passed, 8 subtests passed in 0.02s =====================
+
+
+OVERALL: PASS
