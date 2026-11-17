@@ -1,0 +1,121 @@
+[
+  {
+    "name": "source_anchor",
+    "description": "Primary fixture from source anchor",
+    "haystack": "hello",
+    "needle": "ll",
+    "expected": 2
+  },
+  {
+    "name": "neighbour_suffix",
+    "description": "Neighboring input: suffix match 'lo' at index 3",
+    "haystack": "hello",
+    "needle": "lo",
+    "expected": 3
+  },
+  {
+    "name": "neighbour_prefix",
+    "description": "Neighboring input: prefix match 'he' at index 0",
+    "haystack": "hello",
+    "needle": "he",
+    "expected": 0
+  },
+  {
+    "name": "neighbour_partial_mismatch",
+    "description": "Neighboring input: partial prefix 'l' followed by mismatch 'a'",
+    "haystack": "hello",
+    "needle": "la",
+    "expected": -1
+  },
+  {
+    "name": "smallest_empty_needle_and_haystack",
+    "description": "Smallest input: empty needle in empty haystack -> 0",
+    "haystack": "",
+    "needle": "",
+    "expected": 0
+  },
+  {
+    "name": "smallest_empty_needle_nonempty_haystack",
+    "description": "Smallest needle: empty needle in non-empty haystack -> 0",
+    "haystack": "a",
+    "needle": "",
+    "expected": 0
+  },
+  {
+    "name": "smallest_nonempty_needle_empty_haystack",
+    "description": "Non-empty needle in empty haystack -> -1",
+    "haystack": "",
+    "needle": "a",
+    "expected": -1
+  },
+  {
+    "name": "smallest_single_char_match",
+    "description": "Smallest non-empty exact match: single character",
+    "haystack": "a",
+    "needle": "a",
+    "expected": 0
+  },
+  {
+    "name": "smallest_single_char_mismatch",
+    "description": "Smallest single character mismatch",
+    "haystack": "a",
+    "needle": "b",
+    "expected": -1
+  },
+  {
+    "name": "boundary_all_identical",
+    "description": "Repeated-value boundary: all characters identical",
+    "haystack": "aaaaa",
+    "needle": "aa",
+    "expected": 0
+  },
+  {
+    "name": "boundary_repeated_pattern",
+    "description": "Repeated pattern in haystack, returns first occurrence index 0",
+    "haystack": "abcabc",
+    "needle": "abc",
+    "expected": 0
+  },
+  {
+    "name": "boundary_multiple_occurrences",
+    "description": "Multiple occurrences of needle in haystack; returns first at index 2",
+    "haystack": "helloll",
+    "needle": "ll",
+    "expected": 2
+  },
+  {
+    "name": "boundary_overlapping_partial_match",
+    "description": "Overlapping partial match before full match",
+    "haystack": "mississippi",
+    "needle": "issi",
+    "expected": 1
+  },
+  {
+    "name": "boundary_needle_longer_than_haystack",
+    "description": "Needle length strictly greater than haystack length",
+    "haystack": "short",
+    "needle": "longer_needle",
+    "expected": -1
+  },
+  {
+    "name": "boundary_full_match",
+    "description": "Needle equals entire haystack",
+    "haystack": "hello",
+    "needle": "hello",
+    "expected": 0
+  },
+  {
+    "name": "case_sensitivity_haystack",
+    "description": "Case sensitivity: capitalized haystack",
+    "haystack": "Hello",
+    "needle": "hello",
+    "expected": -1
+  },
+  {
+    "name": "case_sensitivity_needle",
+    "description": "Case sensitivity: capitalized needle",
+    "haystack": "hello",
+    "needle": "LL",
+    "expected": -1
+  }
+]

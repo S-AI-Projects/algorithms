@@ -1,0 +1,38 @@
+======================================================================
+R24-T011 contain_string contract check
+======================================================================
+
+Direct cases (expected vs actual):
+  [PASS] source_anchor: haystack='hello' needle='ll' expected=2 actual=2 input_unchanged=True
+  [PASS] neighbour_suffix: haystack='hello' needle='lo' expected=3 actual=3 input_unchanged=True
+  [PASS] neighbour_prefix: haystack='hello' needle='he' expected=0 actual=0 input_unchanged=True
+  [PASS] neighbour_partial_mismatch: haystack='hello' needle='la' expected=-1 actual=-1 input_unchanged=True
+  [PASS] smallest_empty_needle_and_haystack: haystack='' needle='' expected=0 actual=0 input_unchanged=True
+  [PASS] smallest_empty_needle_nonempty_haystack: haystack='a' needle='' expected=0 actual=0 input_unchanged=True
+  [PASS] smallest_nonempty_needle_empty_haystack: haystack='' needle='a' expected=-1 actual=-1 input_unchanged=True
+  [PASS] smallest_single_char_match: haystack='a' needle='a' expected=0 actual=0 input_unchanged=True
+  [PASS] smallest_single_char_mismatch: haystack='a' needle='b' expected=-1 actual=-1 input_unchanged=True
+  [PASS] boundary_all_identical: haystack='aaaaa' needle='aa' expected=0 actual=0 input_unchanged=True
+  [PASS] boundary_repeated_pattern: haystack='abcabc' needle='abc' expected=0 actual=0 input_unchanged=True
+  [PASS] boundary_multiple_occurrences: haystack='helloll' needle='ll' expected=2 actual=2 input_unchanged=True
+  [PASS] boundary_overlapping_partial_match: haystack='mississippi' needle='issi' expected=1 actual=1 input_unchanged=True
+  [PASS] boundary_needle_longer_than_haystack: haystack='short' needle='longer_needle' expected=-1 actual=-1 input_unchanged=True
+  [PASS] boundary_full_match: haystack='hello' needle='hello' expected=0 actual=0 input_unchanged=True
+  [PASS] case_sensitivity_haystack: haystack='Hello' needle='hello' expected=-1 actual=-1 input_unchanged=True
+  [PASS] case_sensitivity_needle: haystack='hello' needle='LL' expected=-1 actual=-1 input_unchanged=True
+
+Running doctests on algorithms/string/contain_string.py...
+Doctest results: attempted=4, failed=0
+
+Executing test command: /Users/nandini/Desktop/SnAI/algorithms/.venv/bin/pytest tests/test_string.py::TestContainString -v --no-header
+============================= test session starts ==============================
+collecting ... collected 3 items
+
+tests/test_string.py::TestContainString::test_contain_string PASSED      [ 33%]
+tests/test_string.py::TestContainString::test_contain_string_does_not_mutate_inputs PASSED [ 66%]
+tests/test_string.py::TestContainString::test_contain_string_fixtures_and_boundaries PASSED [100%]
+
+============================== 3 passed in 0.02s ===============================
+
+
+OVERALL: PASS

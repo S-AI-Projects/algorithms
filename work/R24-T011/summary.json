@@ -1,0 +1,12 @@
+{
+  "task": "R24-T011",
+  "target": "algorithms/string/contain_string.py:contain_string",
+  "direct_cases": 17,
+  "direct_cases_passed": 17,
+  "doctest_attempted": 4,
+  "doctest_failed": 0,
+  "pytest_command": "/Users/nandini/Desktop/SnAI/algorithms/.venv/bin/pytest tests/test_string.py::TestContainString -v --no-header",
+  "pytest_test_count": 3,
+  "pytest_passed": true,
+  "overall": "PASS"
+}

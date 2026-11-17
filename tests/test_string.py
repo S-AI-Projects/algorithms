@@ -546,6 +546,62 @@ class TestContainString(unittest.TestCase):
         self.assertEqual(0, contain_string("Hello World", ""))
         self.assertEqual(2, contain_string("hello", "ll"))
 
+    def test_contain_string_fixtures_and_boundaries(self):
+        # Primary fixture: source anchor
+        self.assertEqual(contain_string("hello", "ll"), 2)
+
+        # Neighboring supported inputs:
+        # Suffix substring "lo" at index 3
+        self.assertEqual(contain_string("hello", "lo"), 3)
+        # Prefix substring "he" at index 0
+        self.assertEqual(contain_string("hello", "he"), 0)
+        # Partial match prefix but mismatch suffix "la" -> -1
+        self.assertEqual(contain_string("hello", "la"), -1)
+
+        # Smallest supported inputs:
+        # Empty needle in empty haystack -> 0
+        self.assertEqual(contain_string("", ""), 0)
+        # Empty needle in non-empty haystack -> 0
+        self.assertEqual(contain_string("a", ""), 0)
+        # Non-empty needle in empty haystack -> -1
+        self.assertEqual(contain_string("", "a"), -1)
+        # Single-character exact match -> 0
+        self.assertEqual(contain_string("a", "a"), 0)
+        # Single-character mismatch -> -1
+        self.assertEqual(contain_string("a", "b"), -1)
+
+        # Repeated-value / domain boundary:
+        # All characters identical, matches first window at index 0
+        self.assertEqual(contain_string("aaaaa", "aa"), 0)
+        # Repeated pattern in haystack, returns first occurrence index 0
+        self.assertEqual(contain_string("abcabc", "abc"), 0)
+        # Multiple occurrences of needle, returns first occurrence index 2
+        self.assertEqual(contain_string("helloll", "ll"), 2)
+        # Overlapping partial match before full match
+        self.assertEqual(contain_string("mississippi", "issi"), 1)
+        # Needle longer than haystack -> -1
+        self.assertEqual(contain_string("short", "longer_needle"), -1)
+        # Needle equals entire haystack -> 0
+        self.assertEqual(contain_string("hello", "hello"), 0)
+
+        # Case sensitivity:
+        self.assertEqual(contain_string("Hello", "hello"), -1)
+        self.assertEqual(contain_string("hello", "LL"), -1)
+
+    def test_contain_string_does_not_mutate_inputs(self):
+        haystack = "hello"
+        needle = "ll"
+        haystack_copy = str(haystack)
+        needle_copy = str(needle)
+
+        first_res = contain_string(haystack, needle)
+        second_res = contain_string(haystack, needle)
+
+        self.assertEqual(haystack, haystack_copy)
+        self.assertEqual(needle, needle_copy)
+        self.assertEqual(first_res, 2)
+        self.assertEqual(second_res, 2)
+
 
 class TestCountBinarySubstring(unittest.TestCase):
     def test_count_binary_substring(self):
