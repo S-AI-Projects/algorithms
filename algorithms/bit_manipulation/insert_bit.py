@@ -16,13 +16,18 @@ from __future__ import annotations
 def insert_one_bit(number: int, bit: int, position: int) -> int:
     """Insert a single bit at a specific position in an integer.
 
+    Purity & Determinism Contract:
+        - Pure function: zero external dependencies, no global state, no I/O, no randomness.
+        - Idempotence / Repeatability: Repeated calls with identical arguments return identical outputs.
+        - Input isolation: Earlier executions cannot alter later results or shared state.
+
     Splits the number at *position*, shifts the upper part left by one
     to make room, inserts *bit*, and merges with the lower part.
 
     Args:
         number: The integer to modify.
         bit: The bit value to insert (0 or 1).
-        position: Zero-based index at which to insert the bit.
+        position: Zero-based index at which to insert the bit (>= 0).
 
     Returns:
         The resulting integer after insertion.
@@ -32,6 +37,10 @@ def insert_one_bit(number: int, bit: int, position: int) -> int:
         45
         >>> insert_one_bit(21, 0, 2)
         41
+        >>> insert_one_bit(21, 1, 0)
+        43
+        >>> insert_one_bit(21, 0, 0)
+        42
     """
     upper = number >> position
     upper = (upper << 1) | bit

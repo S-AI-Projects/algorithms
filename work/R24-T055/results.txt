@@ -1,0 +1,13 @@
+Task: R24-T055
+File: algorithms/bit_manipulation/insert_bit.py
+
+Test command:
+python3 work/R24-T055/check.py
+python3 -m unittest tests.test_bit_manipulation.TestInsertBitRepeatabilityAndIsolation
+
+Tests executed: 4 in check.py, 4 in TestInsertBitRepeatabilityAndIsolation
+Tests passed: All passed
+Exit code: 0
+
+Tool versions:
+Python 3.9.6

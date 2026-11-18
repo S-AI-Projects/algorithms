@@ -291,5 +291,37 @@ class TestSuite(unittest.TestCase):
         self.assertEqual(4, binary_gap(145))
 
 
+class TestInsertBitRepeatabilityAndIsolation(unittest.TestCase):
+    def test_anchor_fixtures(self):
+        self.assertEqual(insert_one_bit(21, 1, 2), 45)
+        self.assertEqual(insert_one_bit(21, 0, 2), 41)
+        self.assertEqual(insert_mult_bits(5, 7, 3, 1), 47)
+
+    def test_neighbor_fixtures(self):
+        self.assertEqual(insert_one_bit(21, 1, 0), 43)
+        self.assertEqual(insert_one_bit(21, 0, 0), 42)
+        self.assertEqual(insert_mult_bits(5, 7, 3, 0), 47)
+
+    def test_repeatability_and_input_isolation(self):
+        first_run = insert_one_bit(21, 1, 2)
+        self.assertEqual(first_run, 45)
+
+        # Interleaved call
+        insert_one_bit(100, 0, 4)
+
+        # Repeat must match
+        second_run = insert_one_bit(21, 1, 2)
+        self.assertEqual(second_run, 45)
+
+        # Interleaved mult bits
+        insert_mult_bits(5, 7, 3, 1)
+        third_run = insert_one_bit(21, 1, 2)
+        self.assertEqual(third_run, 45)
+
+    def test_boundary_zero_number_and_position(self):
+        self.assertEqual(insert_one_bit(0, 1, 0), 1)
+        self.assertEqual(insert_one_bit(0, 0, 0), 0)
+
+
 if __name__ == "__main__":
     unittest.main()
