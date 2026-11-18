@@ -1,0 +1,13 @@
+Task: R24-T054
+File: algorithms/array/josephus.py
+
+Test command:
+python3 work/R24-T054/check.py
+python3 -m unittest tests.test_array.TestJosephusInvariants
+
+Tests executed: 8 check suites (100 property iterations)
+Tests passed: All passed
+Exit code: 0
+
+Tool versions:
+Python 3.9.6
