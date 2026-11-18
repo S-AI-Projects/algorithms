@@ -1,0 +1,13 @@
+Task: R24-T053
+File: algorithms/array/delete_nth.py
+
+Test command:
+python3 work/R24-T053/check.py
+python3 -m unittest tests.test_array.TestDeleteNthNaiveReferenceComparison
+
+Tests executed: 25 distinct checks
+Tests passed: 25 / 25
+Exit code: 0
+
+Tool versions:
+Python 3.9.6

@@ -86,6 +86,60 @@ class TestDeleteNth(unittest.TestCase):
         )
 
 
+class TestDeleteNthNaiveReferenceComparison(unittest.TestCase):
+    @staticmethod
+    def _oracle(arr, n):
+        res = []
+        for x in arr:
+            if sum(1 for item in res if item == x) < n:
+                res.append(x)
+        return res
+
+    def test_anchor_fixture(self):
+        res = delete_nth_naive([1, 2, 3, 1, 2, 1, 2, 3], 2)
+        self.assertEqual(res, [1, 2, 3, 1, 2, 3])
+
+    def test_neighbor_input(self):
+        res = delete_nth_naive([1, 2, 3, 1, 2, 1, 2, 3], 1)
+        self.assertEqual(res, [1, 2, 3])
+
+    def test_cross_check_twenty_inputs(self):
+        cases = [
+            ([], 0),
+            ([], 1),
+            ([1], 0),
+            ([1], 1),
+            ([1, 1], 1),
+            ([1, 1], 2),
+            ([1, 2, 3], 1),
+            ([1, 2, 3], 2),
+            ([1, 2, 3, 1, 2, 1, 2, 3], 2),
+            ([1, 2, 3, 1, 2, 1, 2, 3], 1),
+            ([1, 2, 3, 1, 2, 1, 2, 3], 3),
+            ([5, 5, 5, 5, 5], 1),
+            ([5, 5, 5, 5, 5], 3),
+            ([5, 5, 5, 5, 5], 5),
+            ([1, 2, 1, 2, 1, 2], 0),
+            ([3, 1, 4, 1, 5, 9, 2, 6, 5], 1),
+            ([3, 1, 4, 1, 5, 9, 2, 6, 5], 2),
+            ([0, 0, 0], 1),
+            ([-1, -2, -1, -3, -2], 1),
+            ([-5, 10, -5, 20, 10], 2),
+            ([42], 5),
+            ([7, 7, 8, 8, 7, 8], 2),
+        ]
+        for arr, n in cases:
+            expected = self._oracle(arr, n)
+            actual = delete_nth_naive(arr, n)
+            self.assertEqual(actual, expected)
+
+    def test_input_immutability(self):
+        arr = [1, 2, 3, 1, 2, 1, 2, 3]
+        copy_arr = list(arr)
+        delete_nth_naive(arr, 2)
+        self.assertEqual(arr, copy_arr)
+
+
 class TestFlatten(unittest.TestCase):
     def test_flatten(self):
 

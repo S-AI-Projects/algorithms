@@ -23,6 +23,16 @@ import collections
 def delete_nth_naive(array: list[int], n: int) -> list[int]:
     """Keep at most n copies of each element using naive counting.
 
+    Contract:
+        - Pure function: returns a new list; does not mutate the input array.
+        - Preserves relative ordering of elements.
+        - Elements exceeding n occurrences are dropped.
+
+    Representative Reference Result:
+        For array=[1, 2, 3, 1, 2, 1, 2, 3] and n=1, the result is [1, 2, 3]
+        because after each distinct number (1, 2, 3) has been encountered once,
+        subsequent occurrences are discarded.
+
     Args:
         array: Source list of integers.
         n: Maximum number of allowed occurrences per element.
@@ -33,6 +43,8 @@ def delete_nth_naive(array: list[int], n: int) -> list[int]:
     Examples:
         >>> delete_nth_naive([1, 2, 3, 1, 2, 1, 2, 3], 2)
         [1, 2, 3, 1, 2, 3]
+        >>> delete_nth_naive([1, 2, 3, 1, 2, 1, 2, 3], 1)
+        [1, 2, 3]
     """
     result = []
     for num in array:
