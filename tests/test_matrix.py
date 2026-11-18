@@ -236,6 +236,38 @@ class TestMatrixExponentiation(unittest.TestCase):
         )
 
 
+class TestMatrixMultiplyFailureAndBoundaries(unittest.TestCase):
+    def test_one_by_one_matrix(self):
+        res = matrix_exponentiation.multiply([[3]], [[4]])
+        self.assertEqual(res, [[12]])
+
+    def test_zero_containing_matrix(self):
+        a = [[0, 2], [3, 0]]
+        b = [[1, 0], [0, 4]]
+        self.assertEqual(matrix_exponentiation.multiply(a, b), [[0, 8], [3, 0]])
+
+    def test_empty_absent_result_boundary(self):
+        self.assertEqual(matrix_exponentiation.multiply([], []), [])
+
+    def test_failure_branch_rectangular_matrix(self):
+        # 2x1 rectangular matrices: row count 2, column count 1
+        a = [[1], [2]]
+        b = [[3], [4]]
+        copy_a = [list(row) for row in a]
+        copy_b = [list(row) for row in b]
+
+        with self.assertRaises(IndexError):
+            matrix_exponentiation.multiply(a, b)
+
+        # Verify caller-owned state remained valid and untouched
+        self.assertEqual(a, copy_a)
+        self.assertEqual(b, copy_b)
+
+        # Successful call following the failure
+        success = matrix_exponentiation.multiply([[1, 0], [0, 1]], [[2, 3], [4, 5]])
+        self.assertEqual(success, [[2, 3], [4, 5]])
+
+
 class TestMultiply(unittest.TestCase):
     """[summary]
     Test for the file multiply.py

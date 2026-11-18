@@ -18,6 +18,14 @@ from __future__ import annotations
 def multiply(mat_a: list[list[int]], mat_b: list[list[int]]) -> list[list[int]]:
     """Multiply two square matrices.
 
+    Contract & Failure Behavior:
+        - Expectation: Assumes square matrices of matching dimension (n x n).
+        - Absent-result / Empty boundary: If `mat_a` is empty `[]`, `size = 0` and returns
+          `[]` directly without error.
+        - Failure path: If input matrices have incompatible rectangular dimensions where column
+          count is less than row count (e.g., 2x1 matrix), accessing `mat_a[i][k]` raises `IndexError`
+          at the innermost loop. Caller state is preserved unmutated.
+
     Args:
         mat_a: First square matrix (n x n).
         mat_b: Second square matrix (n x n).
@@ -28,6 +36,10 @@ def multiply(mat_a: list[list[int]], mat_b: list[list[int]]) -> list[list[int]]:
     Examples:
         >>> multiply([[1, 0], [0, 1]], [[2, 3], [4, 5]])
         [[2, 3], [4, 5]]
+        >>> multiply([], [])
+        []
+        >>> multiply([[3]], [[4]])
+        [[12]]
     """
     size = len(mat_a)
     result = [[0] * size for _ in range(size)]
