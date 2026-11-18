@@ -17,15 +17,31 @@ from __future__ import annotations
 def cocktail_shaker_sort(array: list[int]) -> list[int]:
     """Sort an array in ascending order using cocktail shaker sort.
 
+    Contract & Invariants:
+        - In-place mutation: Rearranges `array` in place and returns the identical list instance.
+        - Ascending ordering: Guarantees `array[i] <= array[i + 1]` for all adjacent indices.
+        - Element conservation: Exactly preserves all element values and multiplicities.
+        - Protected condition: Full traversal over `range(1, n)` on the forward pass and
+          `range(n - 1, 0, -1)` on the reverse pass ensures arrays with tail inversions
+          (e.g., `[1, 3, 2]`) are not prematurely declared sorted.
+
     Args:
         array: List of integers to sort.
 
     Returns:
-        A sorted list.
+        The sorted list (same instance modified in-place).
 
     Examples:
         >>> cocktail_shaker_sort([3, 1, 2])
         [1, 2, 3]
+        >>> cocktail_shaker_sort([2, 2, 1])
+        [1, 2, 2]
+        >>> cocktail_shaker_sort([1, 2, 3])
+        [1, 2, 3]
+        >>> cocktail_shaker_sort([3, 2, 1])
+        [1, 2, 3]
+        >>> cocktail_shaker_sort([])
+        []
     """
     n = len(array)
     swapped = True

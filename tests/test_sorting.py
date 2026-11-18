@@ -94,5 +94,32 @@ class TestSuite(unittest.TestCase):
         self.assertTrue(is_sorted(cocktail_shaker_sort([1, 3, 2, 5, 65, 23, 57, 1232])))
 
 
+class TestCocktailShakerSortStrengthened(unittest.TestCase):
+    def test_fixture_unordered(self):
+        self.assertEqual(cocktail_shaker_sort([3, 1, 2]), [1, 2, 3])
+
+    def test_fixture_duplicates_multiplicities(self):
+        self.assertEqual(cocktail_shaker_sort([2, 2, 1]), [1, 2, 2])
+
+    def test_fixture_already_ordered(self):
+        self.assertEqual(cocktail_shaker_sort([1, 2, 3]), [1, 2, 3])
+
+    def test_fixture_reversed(self):
+        self.assertEqual(cocktail_shaker_sort([3, 2, 1]), [1, 2, 3])
+
+    def test_fixture_smallest_supported(self):
+        self.assertEqual(cocktail_shaker_sort([]), [])
+        self.assertEqual(cocktail_shaker_sort([1]), [1])
+
+    def test_in_place_mutation_contract(self):
+        arr = [3, 1, 2]
+        res = cocktail_shaker_sort(arr)
+        self.assertIs(res, arr)
+        self.assertEqual(arr, [1, 2, 3])
+
+    def test_protected_condition_tail_inversion(self):
+        self.assertEqual(cocktail_shaker_sort([1, 3, 2]), [1, 2, 3])
+
+
 if __name__ == "__main__":
     unittest.main()

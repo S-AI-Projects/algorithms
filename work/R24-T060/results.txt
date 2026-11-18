@@ -1,0 +1,13 @@
+Task: R24-T060
+File: algorithms/sorting/cocktail_shaker_sort.py
+
+Test command:
+python3 work/R24-T060/check.py
+python3 -m unittest tests.test_sorting.TestCocktailShakerSortStrengthened
+
+Tests executed: 3 check suites in check.py, 7 unit tests in TestCocktailShakerSortStrengthened
+Tests passed: All passed
+Exit code: 0
+
+Tool versions:
+Python 3.9.6
