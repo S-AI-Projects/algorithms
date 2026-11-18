@@ -21,6 +21,13 @@ from algorithms.tree.tree import TreeNode
 def is_subtree(big: TreeNode, small: TreeNode) -> bool:
     """Check whether the small tree is a subtree of the big tree.
 
+    Contract:
+        - Traverses the `big` tree level-by-level using BFS.
+        - When a node matching `small.val` is identified, verifies subtree equality
+          via structural recursion (`_comp`).
+        - Returns True immediately upon finding a valid subtree match, otherwise False.
+        - Pure inspection function: does not mutate either tree.
+
     Args:
         big: The root of the larger tree.
         small: The root of the potential subtree.
@@ -32,19 +39,22 @@ def is_subtree(big: TreeNode, small: TreeNode) -> bool:
         >>> node = TreeNode(1)
         >>> is_subtree(node, node)
         True
+        >>> big = TreeNode(1)
+        >>> big.left = TreeNode(2); big.right = TreeNode(3)
+        >>> small = TreeNode(2)
+        >>> is_subtree(big, small)
+        True
     """
-    flag = False
-    queue: collections.deque[TreeNode] = collections.deque()
-    queue.append(big)
+    queue: collections.deque[TreeNode] = collections.deque([big])
     while queue:
         node = queue.popleft()
         if node.val == small.val:
-            flag = _comp(node, small)
-            break
-        else:
+            return _comp(node, small)
+        if node.left is not None:
             queue.append(node.left)
+        if node.right is not None:
             queue.append(node.right)
-    return flag
+    return False
 
 
 def _comp(p: TreeNode | None, q: TreeNode | None) -> bool:

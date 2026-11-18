@@ -1,0 +1,13 @@
+Task: R24-T056
+File: algorithms/tree/is_subtree.py
+
+Test command:
+python3 work/R24-T056/check.py
+python3 -m unittest tests.test_tree.TestIsSubtree
+
+Tests executed: 6 in check.py, 6 in TestIsSubtree
+Tests passed: All passed
+Exit code: 0
+
+Tool versions:
+Python 3.9.6
