@@ -6,6 +6,8 @@ from algorithms.tree import construct_tree_postorder_preorder as ctpp
 from algorithms.tree.traversal_inorder import inorder, inorder_rec
 from algorithms.tree.traversal_postorder import postorder, postorder_rec
 from algorithms.tree.traversal_preorder import preorder, preorder_rec
+from algorithms.tree.is_subtree import is_subtree
+from algorithms.tree.tree import TreeNode
 
 
 class Node:
@@ -167,6 +169,52 @@ class TestFenwickTree(unittest.TestCase):
         freq[2] += 11
         ft.update_bit(bit_tree, 2, 11)
         self.assertEqual(23, ft.get_sum(bit_tree, 4))
+
+
+class TestIsSubtree(unittest.TestCase):
+    def test_anchor_single_node(self):
+        node = TreeNode(1)
+        self.assertTrue(is_subtree(node, node))
+
+    def test_neighbor_left_child_subtree(self):
+        big = TreeNode(1)
+        big.left = TreeNode(2)
+        big.right = TreeNode(3)
+        small = TreeNode(2)
+        self.assertTrue(is_subtree(big, small))
+
+    def test_neighbor_right_child_subtree(self):
+        big = TreeNode(1)
+        big.left = TreeNode(2)
+        big.right = TreeNode(3)
+        small = TreeNode(3)
+        self.assertTrue(is_subtree(big, small))
+
+    def test_not_a_subtree_value_mismatch(self):
+        big = TreeNode(1)
+        big.left = TreeNode(2)
+        big.right = TreeNode(3)
+        small = TreeNode(4)
+        self.assertFalse(is_subtree(big, small))
+
+    def test_not_a_subtree_structural_mismatch(self):
+        big = TreeNode(1)
+        big.left = TreeNode(2)
+        small = TreeNode(2)
+        small.left = TreeNode(3)
+        self.assertFalse(is_subtree(big, small))
+
+    def test_larger_tree_deep_subtree(self):
+        big = TreeNode(10)
+        big.left = TreeNode(5)
+        big.left.left = TreeNode(2)
+        big.left.right = TreeNode(7)
+        big.right = TreeNode(15)
+
+        small = TreeNode(5)
+        small.left = TreeNode(2)
+        small.right = TreeNode(7)
+        self.assertTrue(is_subtree(big, small))
 
 
 if __name__ == "__main__":
