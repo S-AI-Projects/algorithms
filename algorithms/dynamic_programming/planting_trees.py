@@ -20,10 +20,18 @@ from math import sqrt
 def planting_trees(trees: list[int], length: int, width: int) -> float:
     """Compute the minimum distance to rearrange trees to valid positions.
 
+    Contract & Supported Boundaries:
+        - Pure function: does not mutate the input trees list.
+        - Supported tree domain: Requires an even number of trees N >= 4 (at least 2 pairs),
+          as spacing between pairs is length / (n_pairs - 1) where n_pairs = len(trees) // 2.
+        - Road boundaries: length >= 0 and width >= 0.
+        - At length == 0, all target locations collapse to 0.0.
+        - At width == 0, cross-road displacement penalties are 0.0.
+
     Args:
-        trees: Sorted list of current tree positions along the road.
-        length: Length of the road.
-        width: Width of the road.
+        trees: Sorted list of current tree positions along the road (even length >= 4).
+        length: Length of the road (>= 0).
+        width: Width of the road (>= 0).
 
     Returns:
         Minimum total distance the trees must be moved.
@@ -31,6 +39,12 @@ def planting_trees(trees: list[int], length: int, width: int) -> float:
     Examples:
         >>> planting_trees([0, 1, 10, 10], 10, 1)
         2.414213562373095
+        >>> planting_trees([0, 0, 10, 10], 10, 1)
+        2.0
+        >>> planting_trees([0, 0, 10, 10], 10, 0)
+        0.0
+        >>> planting_trees([0, 0, 0, 0], 0, 0)
+        0.0
     """
     trees = [0] + trees
 
