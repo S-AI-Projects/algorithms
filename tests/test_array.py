@@ -50,6 +50,51 @@ class TestJosephus(unittest.TestCase):
         self.assertRaises(StopIteration, next, josephus_generator)
 
 
+class TestJosephusInvariants(unittest.TestCase):
+    def test_anchor_fixture(self):
+        res = list(josephus([1, 2, 3, 4, 5, 6, 7, 8, 9], 3))
+        self.assertEqual(res, [3, 6, 9, 4, 8, 5, 2, 7, 1])
+
+    def test_neighbor_fixture(self):
+        res = list(josephus([1, 2, 3, 4, 5, 6, 7, 8, 9], 2))
+        self.assertEqual(res, [2, 4, 6, 8, 1, 5, 9, 7, 3])
+
+    def test_skip_one_identity(self):
+        items = [1, 2, 3, 4, 5]
+        res = list(josephus(list(items), 1))
+        self.assertEqual(res, items)
+
+    def test_single_element(self):
+        self.assertEqual(list(josephus([42], 5)), [42])
+
+    def test_empty_list(self):
+        self.assertEqual(list(josephus([], 3)), [])
+
+    def test_in_place_mutation_contract(self):
+        items = [1, 2, 3, 4]
+        list(josephus(items, 2))
+        self.assertEqual(items, [])
+
+    def test_hundred_bounded_property_cases(self):
+        import random
+        rng = random.Random(42)
+        for _ in range(100):
+            n = rng.randint(1, 50)
+            k = rng.randint(1, 20)
+            original = list(range(1, n + 1))
+            res = list(josephus(list(original), k))
+
+            # Permutation invariant
+            self.assertEqual(len(res), n)
+            self.assertEqual(sorted(res), original)
+
+            # Mathematical survivor recurrence
+            surv = 0
+            for i in range(1, n + 1):
+                surv = (surv + k) % i
+            self.assertEqual(res[-1], original[surv])
+
+
 class TestDeleteNth(unittest.TestCase):
     def test_delete_nth_naive(self):
 
