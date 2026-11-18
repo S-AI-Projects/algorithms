@@ -263,6 +263,38 @@ class TestPlantingTrees(unittest.TestCase):
         self.assertEqual(res, 9.28538328578604)
 
 
+class TestPlantingTreesBoundaries(unittest.TestCase):
+    def test_anchor_fixture(self):
+        res = planting_trees([0, 1, 10, 10], 10, 1)
+        self.assertEqual(res, 2.414213562373095)
+
+    def test_neighboring_input_aligned_trees(self):
+        res = planting_trees([0, 0, 10, 10], 10, 1)
+        self.assertEqual(res, 2.0)
+
+    def test_width_boundary_zero(self):
+        res = planting_trees([0, 0, 10, 10], 10, 0)
+        self.assertEqual(res, 0.0)
+
+    def test_length_and_width_boundary_zero(self):
+        res = planting_trees([0, 0, 0, 0], 0, 0)
+        self.assertEqual(res, 0.0)
+
+    def test_smallest_supported_collection(self):
+        res = planting_trees([1, 2, 3, 4], 3, 0)
+        self.assertEqual(res, 4.0)
+
+    def test_input_immutability(self):
+        trees = [0, 1, 10, 10]
+        original = list(trees)
+        planting_trees(trees, 10, 1)
+        self.assertEqual(trees, original)
+
+    def test_unsupported_boundary_under_four_trees(self):
+        with self.assertRaises(ZeroDivisionError):
+            planting_trees([1, 2], 10, 1)
+
+
 class TestRegexMatching(unittest.TestCase):
     def test_none_0(self):
         s = ""
