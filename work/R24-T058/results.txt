@@ -1,0 +1,13 @@
+Task: R24-T058
+File: algorithms/matrix/matrix_exponentiation.py
+
+Test command:
+python3 work/R24-T058/check.py
+python3 -m unittest tests.test_matrix.TestMatrixMultiplyFailureAndBoundaries
+
+Tests executed: 4 in check.py, 4 in TestMatrixMultiplyFailureAndBoundaries
+Tests passed: All passed
+Exit code: 0
+
+Tool versions:
+Python 3.9.6
