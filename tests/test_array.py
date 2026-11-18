@@ -394,6 +394,26 @@ class TestTrimmean(unittest.TestCase):
         self.assertEqual(trimmean([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 20), 6.0)
 
 
+class TestTrimmeanWorkedExamples(unittest.TestCase):
+    def test_anchor_example(self):
+        self.assertEqual(trimmean([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20), 5.5)
+
+    def test_neighbor_example_forty_percent(self):
+        self.assertEqual(trimmean([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 40), 5.5)
+
+    def test_documented_walkthrough_example(self):
+        arr = [10.0, 2.0, 4.0, 8.0, 6.0]
+        self.assertEqual(trimmean(arr, 40), 6.0)
+
+    def test_boundary_zero_percent(self):
+        self.assertEqual(trimmean([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 0), 5.5)
+
+    def test_in_place_sort_effect(self):
+        arr = [5.0, 1.0, 3.0]
+        trimmean(arr, 0)
+        self.assertEqual(arr, [1.0, 3.0, 5.0])
+
+
 class TestTop1(unittest.TestCase):
     def test_top_1(self):
         self.assertListEqual(top_1([1, 1, 2, 2, 3]), [1, 2])
