@@ -1,0 +1,13 @@
+Task: R24-T059
+File: algorithms/array/merge_intervals.py
+
+Test command:
+python3 work/R24-T059/check.py
+python3 -m unittest tests.test_array.TestMergeIntervalsScalingAndRegressions
+
+Tests executed: 3 test suites, 15 timed benchmark iterations
+Tests passed: All passed
+Exit code: 0
+
+Tool versions:
+Python 3.9.6

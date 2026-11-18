@@ -7,8 +7,10 @@ consolidated set.
 Reference: https://en.wikipedia.org/wiki/Interval_(mathematics)
 
 Complexity:
-    Time:  O(n log n) due to sorting
-    Space: O(n)
+    Let N be the number of intervals (N = len(intervals)).
+    Time:  O(N log N) worst-case and average-case, dominated by sorting
+           intervals by start position. The subsequent consolidation pass runs in O(N).
+    Space: O(N) auxiliary space for the sorted container and consolidated output.
 """
 
 from __future__ import annotations
@@ -60,6 +62,11 @@ class Interval:
     def merge(intervals: list[Interval]) -> list[Interval]:
         """Merge overlapping intervals into a consolidated list.
 
+        Complexity:
+            Let N = len(intervals). Sorting requires O(N log N) time, followed
+            by an O(N) linear sweep to merge adjacent overlapping intervals.
+            Overall time complexity: O(N log N); space complexity: O(N).
+
         Args:
             intervals: List of Interval objects to merge.
 
@@ -69,6 +76,10 @@ class Interval:
         Examples:
             >>> Interval.merge([Interval(1, 3), Interval(2, 6)])
             [Interval (1, 6)]
+            >>> Interval.merge([Interval(1, 4), Interval(2, 6), Interval(8, 10)])
+            [Interval (1, 6), Interval (8, 10)]
+            >>> Interval.merge([Interval(1, 3), Interval(4, 7)])
+            [Interval (1, 3), Interval (4, 7)]
         """
         out = []
         for interval in sorted(intervals, key=lambda i: i.start):

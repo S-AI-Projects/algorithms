@@ -235,6 +235,35 @@ class TestMergeInterval(unittest.TestCase):
         self.assertEqual(merged_intervals, [[1, 6], [8, 10], [15, 18]])
 
 
+class TestMergeIntervalsScalingAndRegressions(unittest.TestCase):
+    def test_anchor_fixtures(self):
+        res1 = Interval.merge([Interval(1, 3), Interval(2, 6)])
+        self.assertEqual(res1, [Interval(1, 6)])
+
+        res2 = Interval.print_intervals([Interval(1, 3)])
+        self.assertEqual(res2, "Interval (1, 3)")
+
+        res3 = merge_intervals([[1, 3], [2, 6], [8, 10]])
+        self.assertEqual(res3, [[1, 6], [8, 10]])
+
+    def test_neighbor_disjoint_and_nested_fixtures(self):
+        disjoint = Interval.merge([Interval(1, 3), Interval(4, 7)])
+        self.assertEqual(disjoint, [Interval(1, 3), Interval(4, 7)])
+
+        nested = Interval.merge([Interval(1, 10), Interval(2, 5)])
+        self.assertEqual(nested, [Interval(1, 10)])
+
+        chain = Interval.merge([Interval(1, 4), Interval(2, 6), Interval(5, 8)])
+        self.assertEqual(chain, [Interval(1, 8)])
+
+    def test_synthetic_scaling_correctness(self):
+        intervals = [Interval(i * 10, i * 10 + 5) for i in range(100)]
+        merged = Interval.merge(intervals)
+        self.assertEqual(len(merged), 100)
+        for i in range(len(merged) - 1):
+            self.assertLess(merged[i].end, merged[i + 1].start)
+
+
 class TestMissingRanges(unittest.TestCase):
     def test_missing_ranges(self):
 
