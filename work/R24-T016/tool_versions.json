@@ -1,0 +1,7 @@
+{
+  "python": "3.9.6",
+  "implementation": "CPython",
+  "platform": "macOS-27.2.1-arm64-arm-64bit",
+  "pytest": "9.2.0",
+  "pytest_command": "/Users/nandini/Desktop/SnAI/algorithms/.venv/bin/pytest tests/test_linked_list.py::TestRemoveRangeRefactor -v --no-header"
+}

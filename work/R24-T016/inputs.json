@@ -1,0 +1,45 @@
+{
+  "fixture_cases": [
+    {
+      "name": "remove_head_0_0",
+      "start": 0,
+      "end": 0,
+      "expected_vals": [
+        "B",
+        "C"
+      ],
+      "expected_head_is_b": true
+    },
+    {
+      "name": "remove_middle_1_1",
+      "start": 1,
+      "end": 1,
+      "expected_vals": [
+        "A",
+        "C"
+      ],
+      "expected_head_is_a": true
+    },
+    {
+      "name": "remove_tail_2_2",
+      "start": 2,
+      "end": 2,
+      "expected_vals": [
+        "A",
+        "B"
+      ],
+      "expected_head_is_a": true
+    },
+    {
+      "name": "remove_all_0_2",
+      "start": 0,
+      "end": 2,
+      "expected_vals": [],
+      "expected_head_is_none": true
+    }
+  ],
+  "smallest_inputs": [
+    "None",
+    "Node('X')"
+  ]
+}

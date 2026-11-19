@@ -14,8 +14,30 @@ Complexity:
 from __future__ import annotations
 
 
+def _advance(node: object | None, steps: int) -> object | None:
+    """Advance *node* forward by *steps* links, returning None if exhausted."""
+    current = node
+    for _ in range(steps):
+        if current is not None:
+            current = current.next
+        else:
+            return None
+    return current
+
+
 def remove_range(head: object | None, start: int, end: int) -> object | None:
     """Remove nodes from index start to end (inclusive) from a linked list.
+
+    Contract:
+        - `head`: Head node of a singly linked list (must have `.next` attr) or None.
+        - `start`, `end`: 0-based indices defining the range of nodes to
+          remove (inclusive). Precondition: `start <= end`.
+        - Returns: The head of the modified list after removing nodes in range
+          [start, end].
+        - Mutation: Modifies the links of the input list in-place.
+        - Boundaries:
+            - `head is None`: returns `None`.
+            - `start == 0`: removes from the front of the list, returning a new head.
 
     Args:
         head: Head node of the linked list (must have .next attr).
@@ -31,13 +53,9 @@ def remove_range(head: object | None, start: int, end: int) -> object | None:
     """
     assert start <= end
     if start == 0:
-        for _ in range(end + 1):
-            if head is not None:
-                head = head.next
+        head = _advance(head, end + 1)
     else:
-        current = head
-        for _ in range(start - 1):
-            current = current.next
+        current = _advance(head, start - 1)
         for _ in range(end - start + 1):
             if current is not None and current.next is not None:
                 current.next = current.next.next

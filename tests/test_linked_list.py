@@ -226,5 +226,72 @@ class TestSuite(unittest.TestCase):
         random_list_node5.random = random_list_node3
 
 
+class TestRemoveRangeRefactor(unittest.TestCase):
+    """Regression and link-separation tests for refactored remove_range."""
+
+    def test_fixture_three_distinct_nodes_remove_head(self):
+        # A -> B -> C, remove index 0..0 (head)
+        a, b, c = Node("A"), Node("B"), Node("C")
+        a.next, b.next = b, c
+        res = remove_range(a, 0, 0)
+
+        # Value check
+        self.assertEqual(res.val, "B")
+        self.assertEqual(res.next.val, "C")
+        self.assertIsNone(res.next.next)
+
+        # Link check
+        self.assertIs(res, b)
+        self.assertIs(res.next, c)
+        self.assertIsNone(res.next.next)
+
+    def test_fixture_three_distinct_nodes_remove_middle(self):
+        # A -> B -> C, remove index 1..1 (middle)
+        a, b, c = Node("A"), Node("B"), Node("C")
+        a.next, b.next = b, c
+        res = remove_range(a, 1, 1)
+
+        # Value check
+        self.assertEqual(res.val, "A")
+        self.assertEqual(res.next.val, "C")
+        self.assertIsNone(res.next.next)
+
+        # Link check
+        self.assertIs(res, a)
+        self.assertIs(res.next, c)
+        self.assertIsNone(res.next.next)
+
+    def test_fixture_three_distinct_nodes_remove_tail(self):
+        # A -> B -> C, remove index 2..2 (tail)
+        a, b, c = Node("A"), Node("B"), Node("C")
+        a.next, b.next = b, c
+        res = remove_range(a, 2, 2)
+
+        # Value check
+        self.assertEqual(res.val, "A")
+        self.assertEqual(res.next.val, "B")
+        self.assertIsNone(res.next.next)
+
+        # Link check
+        self.assertIs(res, a)
+        self.assertIs(res.next, b)
+        self.assertIsNone(res.next.next)
+
+    def test_fixture_three_distinct_nodes_remove_all(self):
+        # A -> B -> C, remove index 0..2 (all nodes)
+        a, b, c = Node("A"), Node("B"), Node("C")
+        a.next, b.next = b, c
+        res = remove_range(a, 0, 2)
+        self.assertIsNone(res)
+
+    def test_smallest_supported_list_empty_and_singleton(self):
+        # Empty list
+        self.assertIsNone(remove_range(None, 0, 0))
+
+        # Singleton list remove 0..0
+        single = Node("A")
+        self.assertIsNone(remove_range(single, 0, 0))
+
+
 if __name__ == "__main__":
     unittest.main()

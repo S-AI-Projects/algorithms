@@ -1,0 +1,13 @@
+{
+  "task": "R24-T016",
+  "target": "algorithms/linked_list/remove_range.py:remove_range",
+  "refactor_operation": "extracted _advance traversal helper",
+  "fixture_cases_passed": 4,
+  "smallest_cases_passed": 2,
+  "doctest_attempted": 1,
+  "doctest_failed": 0,
+  "pytest_command": "/Users/nandini/Desktop/SnAI/algorithms/.venv/bin/pytest tests/test_linked_list.py::TestRemoveRangeRefactor -v --no-header",
+  "pytest_test_count": 5,
+  "pytest_passed": true,
+  "overall": "PASS"
+}

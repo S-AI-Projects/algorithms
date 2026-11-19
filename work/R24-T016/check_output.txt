@@ -1,0 +1,31 @@
+======================================================================
+R24-T016 remove_range refactoring verification check
+======================================================================
+
+Verifying _advance helper function:
+  _advance helper tests: PASS
+
+Executing Fixture Checks (A -> B -> C):
+  [PASS] remove_head_0_0 (range [0, 0]): values_ok=True link_ok=True
+  [PASS] remove_middle_1_1 (range [1, 1]): values_ok=True link_ok=True
+  [PASS] remove_tail_2_2 (range [2, 2]): values_ok=True link_ok=True
+  [PASS] remove_all_0_2 (range [0, 2]): values_ok=True link_ok=True
+  Smallest supported list checks: PASS
+
+Running doctests on algorithms/linked_list/remove_range.py...
+Doctest results: attempted=1, failed=0
+
+Executing test command: /Users/nandini/Desktop/SnAI/algorithms/.venv/bin/pytest tests/test_linked_list.py::TestRemoveRangeRefactor -v --no-header
+============================= test session starts ==============================
+collecting ... collected 5 items
+
+tests/test_linked_list.py::TestRemoveRangeRefactor::test_fixture_three_distinct_nodes_remove_all PASSED [ 20%]
+tests/test_linked_list.py::TestRemoveRangeRefactor::test_fixture_three_distinct_nodes_remove_head PASSED [ 40%]
+tests/test_linked_list.py::TestRemoveRangeRefactor::test_fixture_three_distinct_nodes_remove_middle PASSED [ 60%]
+tests/test_linked_list.py::TestRemoveRangeRefactor::test_fixture_three_distinct_nodes_remove_tail PASSED [ 80%]
+tests/test_linked_list.py::TestRemoveRangeRefactor::test_smallest_supported_list_empty_and_singleton PASSED [100%]
+
+============================== 5 passed in 0.02s ===============================
+
+
+OVERALL: PASS

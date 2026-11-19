@@ -1,0 +1,72 @@
+{
+  "advance_helper_passed": true,
+  "fixture_results": [
+    {
+      "name": "remove_head_0_0",
+      "range": [
+        0,
+        0
+      ],
+      "expected_vals": [
+        "B",
+        "C"
+      ],
+      "actual_vals": [
+        "B",
+        "C"
+      ],
+      "values_ok": true,
+      "link_ok": true,
+      "passed": true
+    },
+    {
+      "name": "remove_middle_1_1",
+      "range": [
+        1,
+        1
+      ],
+      "expected_vals": [
+        "A",
+        "C"
+      ],
+      "actual_vals": [
+        "A",
+        "C"
+      ],
+      "values_ok": true,
+      "link_ok": true,
+      "passed": true
+    },
+    {
+      "name": "remove_tail_2_2",
+      "range": [
+        2,
+        2
+      ],
+      "expected_vals": [
+        "A",
+        "B"
+      ],
+      "actual_vals": [
+        "A",
+        "B"
+      ],
+      "values_ok": true,
+      "link_ok": true,
+      "passed": true
+    },
+    {
+      "name": "remove_all_0_2",
+      "range": [
+        0,
+        2
+      ],
+      "expected_vals": [],
+      "actual_vals": [],
+      "values_ok": true,
+      "link_ok": true,
+      "passed": true
+    }
+  ],
+  "smallest_supported_passed": true
+}
