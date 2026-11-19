@@ -20,20 +20,40 @@ import random
 class RandomizedSet:
     """A set supporting O(1) insert, remove, and random element access.
 
+    Contract & Repeatability:
+        - Elements: Supports unique integers stored with O(1) average lookup,
+          insertion, and removal.
+        - Dependency seam: Supports an optional ``rng`` (an instance of
+          ``random.Random``) in ``__init__`` for deterministic, repeatable testing.
+          Defaults to ``None``, preserving compatibility by falling back to the
+          global ``random`` module.
+        - Isolation: Each instance maintains its own internal list and mapping;
+          operations on one instance never affect another.
+
     Examples:
         >>> rs = RandomizedSet()
         >>> rs.insert(1)
         True
         >>> rs.insert(1)
         False
+        >>> rs.insert(2)
+        True
         >>> rs.remove(1)
         True
+        >>> rs.get_random()
+        2
     """
 
-    def __init__(self) -> None:
-        """Initialize the randomized set."""
+    def __init__(self, rng: random.Random | None = None) -> None:
+        """Initialize the randomized set.
+
+        Args:
+            rng: Optional random number generator for deterministic execution.
+                Defaults to None (uses global random module).
+        """
         self.nums: list[int] = []
         self.idxs: dict[int, int] = {}
+        self._rng: random.Random | None = rng
 
     def insert(self, val: int) -> bool:
         """Insert a value into the set.
@@ -73,5 +93,10 @@ class RandomizedSet:
         Returns:
             A randomly chosen element.
         """
-        idx = random.randint(0, len(self.nums) - 1)
+        if not self.nums:
+            raise IndexError("Cannot get random element from an empty RandomizedSet")
+        if self._rng is not None:
+            idx = self._rng.randint(0, len(self.nums) - 1)
+        else:
+            idx = random.randint(0, len(self.nums) - 1)
         return self.nums[idx]

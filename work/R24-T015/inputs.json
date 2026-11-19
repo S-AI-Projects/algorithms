@@ -1,0 +1,35 @@
+{
+  "fixture_operations": [
+    {
+      "op": "insert",
+      "val": 1,
+      "expected": true
+    },
+    {
+      "op": "insert",
+      "val": 1,
+      "expected": false
+    },
+    {
+      "op": "insert",
+      "val": 2,
+      "expected": true
+    },
+    {
+      "op": "remove",
+      "val": 1,
+      "expected": true
+    },
+    {
+      "op": "remove",
+      "val": 1,
+      "expected": false
+    },
+    {
+      "op": "get_random",
+      "val": null,
+      "expected": 2
+    }
+  ],
+  "dependency_seam_seed": 42
+}

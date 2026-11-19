@@ -1,0 +1,28 @@
+======================================================================
+R24-T015 RandomizedSet repeatability check
+======================================================================
+
+Executing Fixture & Neighbor Checks:
+  Run 1 (fresh instance): PASS
+  Run 2 (repeatability check): PASS
+  Run 3 (after prior instance activity): PASS
+
+Testing Deterministic Dependency Seam (seeded RNG):
+  Seeded RNG sequence match: PASS (length=25)
+
+Running doctests on algorithms/map/randomized_set.py...
+Doctest results: attempted=6, failed=0
+
+Executing test command: /Users/nandini/Desktop/SnAI/algorithms/.venv/bin/pytest tests/test_map.py::TestRandomizedSetRepeatable -v --no-header
+============================= test session starts ==============================
+collecting ... collected 4 items
+
+tests/test_map.py::TestRandomizedSetRepeatable::test_deterministic_dependency_seam PASSED [ 25%]
+tests/test_map.py::TestRandomizedSetRepeatable::test_empty_set_get_random_raises PASSED [ 50%]
+tests/test_map.py::TestRandomizedSetRepeatable::test_fixture_and_neighbor_with_explicit_values PASSED [ 75%]
+tests/test_map.py::TestRandomizedSetRepeatable::test_repeatability_and_input_isolation PASSED [100%]
+
+============================== 4 passed in 0.01s ===============================
+
+
+OVERALL: PASS

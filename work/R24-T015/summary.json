@@ -1,0 +1,13 @@
+{
+  "task": "R24-T015",
+  "target": "algorithms/map/randomized_set.py:RandomizedSet",
+  "fixture_runs_passed": 3,
+  "repeatability_verified": true,
+  "dependency_seam_verified": true,
+  "doctest_attempted": 6,
+  "doctest_failed": 0,
+  "pytest_command": "/Users/nandini/Desktop/SnAI/algorithms/.venv/bin/pytest tests/test_map.py::TestRandomizedSetRepeatable -v --no-header",
+  "pytest_test_count": 4,
+  "pytest_passed": true,
+  "overall": "PASS"
+}

@@ -1,0 +1,148 @@
+{
+  "run1_fresh": [
+    {
+      "op": "insert",
+      "val": 1,
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "op": "insert",
+      "val": 1,
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "op": "insert",
+      "val": 2,
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "op": "remove",
+      "val": 1,
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "op": "remove",
+      "val": 1,
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "op": "get_random",
+      "val": null,
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    }
+  ],
+  "run2_repeat": [
+    {
+      "op": "insert",
+      "val": 1,
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "op": "insert",
+      "val": 1,
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "op": "insert",
+      "val": 2,
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "op": "remove",
+      "val": 1,
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "op": "remove",
+      "val": 1,
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "op": "get_random",
+      "val": null,
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    }
+  ],
+  "run3_after_other_instance": [
+    {
+      "op": "insert",
+      "val": 1,
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "op": "insert",
+      "val": 1,
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "op": "insert",
+      "val": 2,
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "op": "remove",
+      "val": 1,
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "op": "remove",
+      "val": 1,
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "op": "get_random",
+      "val": null,
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    }
+  ],
+  "other_instance_isolated": true,
+  "seam_deterministic_match": true,
+  "sample_random_sequence": [
+    1,
+    0,
+    4,
+    3,
+    3,
+    2,
+    1,
+    8,
+    1,
+    9
+  ]
+}

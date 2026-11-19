@@ -2,6 +2,7 @@ import unittest
 
 from algorithms.map import (
     HashTable,
+    RandomizedSet,
     ResizableHashTable,
     SeparateChainingHashTable,
     is_anagram,
@@ -186,6 +187,91 @@ class TestIsAnagram(unittest.TestCase):
     def test_is_anagram(self):
         self.assertTrue(is_anagram("anagram", "nagaram"))
         self.assertFalse(is_anagram("rat", "car"))
+
+
+class TestRandomizedSetRepeatable(unittest.TestCase):
+    """Repeatability, dependency seam, and isolation test suite for RandomizedSet."""
+
+    def test_fixture_and_neighbor_with_explicit_values(self):
+        rs = RandomizedSet()
+        self.assertTrue(rs.insert(1))
+        self.assertFalse(rs.insert(1))
+
+        # Neighbor: insert distinct element 2, remove 1, remove 1 again, get_random
+        self.assertTrue(rs.insert(2))
+        self.assertTrue(rs.remove(1))
+        self.assertFalse(rs.remove(1))
+        self.assertEqual(rs.get_random(), 2)
+
+    def test_repeatability_and_input_isolation(self):
+        # Run 1: fresh isolated instance
+        rs1 = RandomizedSet()
+        ops1 = [
+            rs1.insert(1),
+            rs1.insert(1),
+            rs1.insert(2),
+            rs1.remove(1),
+            rs1.remove(1),
+            rs1.get_random(),
+        ]
+
+        # Run 2: second fresh isolated instance
+        rs2 = RandomizedSet()
+        ops2 = [
+            rs2.insert(1),
+            rs2.insert(1),
+            rs2.insert(2),
+            rs2.remove(1),
+            rs2.remove(1),
+            rs2.get_random(),
+        ]
+
+        self.assertEqual(ops1, ops2)
+        self.assertEqual(ops1, [True, False, True, True, False, 2])
+
+        # Another valid input on separate instance
+        rs_other = RandomizedSet()
+        rs_other.insert(99)
+        rs_other.insert(100)
+
+        # Run 3: after earlier operations on other instances
+        rs3 = RandomizedSet()
+        ops3 = [
+            rs3.insert(1),
+            rs3.insert(1),
+            rs3.insert(2),
+            rs3.remove(1),
+            rs3.remove(1),
+            rs3.get_random(),
+        ]
+        self.assertEqual(ops3, ops1)
+
+        # Confirm rs_other is isolated and intact
+        self.assertFalse(rs_other.insert(99))
+        self.assertTrue(rs_other.remove(99))
+
+    def test_deterministic_dependency_seam(self):
+        # Inject deterministic seeded RNGs
+        import random
+
+        rng1 = random.Random(42)
+        rs1 = RandomizedSet(rng=rng1)
+        for val in range(10):
+            rs1.insert(val)
+        seq1 = [rs1.get_random() for _ in range(20)]
+
+        rng2 = random.Random(42)
+        rs2 = RandomizedSet(rng=rng2)
+        for val in range(10):
+            rs2.insert(val)
+        seq2 = [rs2.get_random() for _ in range(20)]
+
+        self.assertEqual(seq1, seq2)
+
+    def test_empty_set_get_random_raises(self):
+        rs = RandomizedSet()
+        with self.assertRaises(IndexError):
+            rs.get_random()
 
 
 if __name__ == "__main__":
