@@ -1,3 +1,4 @@
+import random
 import unittest
 
 from algorithms.sorting import (
@@ -21,6 +22,7 @@ from algorithms.sorting import (
     radix_sort,
     selection_sort,
     shell_sort,
+    wiggle_sort,
 )
 
 
@@ -92,6 +94,52 @@ class TestSuite(unittest.TestCase):
 
     def test_cocktail_shaker_sort(self):
         self.assertTrue(is_sorted(cocktail_shaker_sort([1, 3, 2, 5, 65, 23, 57, 1232])))
+
+
+class TestWiggleSortInvariant(unittest.TestCase):
+    """Property and invariant test suite for wiggle_sort."""
+
+    @staticmethod
+    def is_wiggle_sorted(array: list[int]) -> bool:
+        for i in range(len(array) - 1):
+            if i % 2 == 0 and not (array[i] <= array[i + 1]):
+                return False
+            if i % 2 == 1 and not (array[i] >= array[i + 1]):
+                return False
+        return True
+
+    def test_fixture_cases(self):
+        # Fixture cases from brief: [3, 1, 2], [2, 2, 1],
+        # ordered [1, 2, 3], reversed [3, 2, 1], smallest [] and [1]
+        fixtures = [
+            ([3, 1, 2], [1, 3, 2]),
+            ([2, 2, 1], [1, 2, 2]),
+            ([1, 2, 3], [1, 3, 2]),
+            ([3, 2, 1], [1, 3, 2]),
+            ([], []),
+            ([1], [1]),
+            ([1, 2], [1, 2]),
+        ]
+        for inp, expected in fixtures:
+            with self.subTest(inp=inp):
+                target = list(inp)
+                res = wiggle_sort(target)
+                self.assertIs(res, target)
+                self.assertEqual(res, expected)
+                self.assertTrue(self.is_wiggle_sorted(res))
+                self.assertEqual(sorted(res), sorted(inp))
+
+    def test_invariant_property_random_cases(self):
+        # 100+ bounded valid cases with fixed seed
+        rng = random.Random(24014)
+        for _ in range(120):
+            length = rng.randint(0, 30)
+            arr = [rng.randint(-100, 100) for _ in range(length)]
+            orig = list(arr)
+            res = wiggle_sort(arr)
+            self.assertIs(res, arr)
+            self.assertEqual(sorted(res), sorted(orig))
+            self.assertTrue(self.is_wiggle_sorted(res))
 
 
 if __name__ == "__main__":

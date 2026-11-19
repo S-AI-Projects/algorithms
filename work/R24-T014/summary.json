@@ -1,0 +1,14 @@
+{
+  "task": "R24-T014",
+  "target": "algorithms/sorting/wiggle_sort.py:wiggle_sort",
+  "fixture_passed": true,
+  "property_cases_total": 120,
+  "property_cases_passed": 120,
+  "broken_invariant_detected": true,
+  "doctest_attempted": 4,
+  "doctest_failed": 0,
+  "pytest_command": "/Users/nandini/Desktop/SnAI/algorithms/.venv/bin/pytest tests/test_sorting.py::TestWiggleSortInvariant -v --no-header",
+  "pytest_test_count": 2,
+  "pytest_passed": true,
+  "overall": "PASS"
+}

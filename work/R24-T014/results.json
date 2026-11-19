@@ -1,0 +1,149 @@
+{
+  "fixtures": [
+    {
+      "name": "fixture_3_1_2",
+      "input": [
+        3,
+        1,
+        2
+      ],
+      "expected": [
+        1,
+        3,
+        2
+      ],
+      "actual": [
+        1,
+        3,
+        2
+      ],
+      "wiggle_ok": true,
+      "multiplicity_ok": true,
+      "in_place": true,
+      "passed": true
+    },
+    {
+      "name": "fixture_2_2_1",
+      "input": [
+        2,
+        2,
+        1
+      ],
+      "expected": [
+        1,
+        2,
+        2
+      ],
+      "actual": [
+        1,
+        2,
+        2
+      ],
+      "wiggle_ok": true,
+      "multiplicity_ok": true,
+      "in_place": true,
+      "passed": true
+    },
+    {
+      "name": "fixture_already_ordered",
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "expected": [
+        1,
+        3,
+        2
+      ],
+      "actual": [
+        1,
+        3,
+        2
+      ],
+      "wiggle_ok": true,
+      "multiplicity_ok": true,
+      "in_place": true,
+      "passed": true
+    },
+    {
+      "name": "fixture_reversed",
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "expected": [
+        1,
+        3,
+        2
+      ],
+      "actual": [
+        1,
+        3,
+        2
+      ],
+      "wiggle_ok": true,
+      "multiplicity_ok": true,
+      "in_place": true,
+      "passed": true
+    },
+    {
+      "name": "fixture_smallest_empty",
+      "input": [],
+      "expected": [],
+      "actual": [],
+      "wiggle_ok": true,
+      "multiplicity_ok": true,
+      "in_place": true,
+      "passed": true
+    },
+    {
+      "name": "fixture_smallest_single",
+      "input": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "actual": [
+        1
+      ],
+      "wiggle_ok": true,
+      "multiplicity_ok": true,
+      "in_place": true,
+      "passed": true
+    },
+    {
+      "name": "fixture_two_elements",
+      "input": [
+        1,
+        2
+      ],
+      "expected": [
+        1,
+        2
+      ],
+      "actual": [
+        1,
+        2
+      ],
+      "wiggle_ok": true,
+      "multiplicity_ok": true,
+      "in_place": true,
+      "passed": true
+    }
+  ],
+  "property_check_summary": {
+    "total_cases": 120,
+    "passed": 120,
+    "failed": 0,
+    "seed": 24014
+  },
+  "broken_invariant_detected": true,
+  "smallest_broken_example": [
+    3,
+    1,
+    2
+  ]
+}
