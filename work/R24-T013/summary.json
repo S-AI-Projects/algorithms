@@ -1,0 +1,14 @@
+{
+  "task": "R24-T013",
+  "target": "algorithms/searching/exponential_search.py:exponential_search",
+  "fixture_cases_total": 6,
+  "fixture_cases_passed": 6,
+  "cross_check_cases_total": 216,
+  "cross_check_cases_passed": 216,
+  "doctest_attempted": 5,
+  "doctest_failed": 0,
+  "pytest_command": "/Users/nandini/Desktop/SnAI/algorithms/.venv/bin/pytest tests/test_searching.py::TestExponentialSearchCrossCheck -v --no-header",
+  "pytest_test_count": 3,
+  "pytest_passed": true,
+  "overall": "PASS"
+}

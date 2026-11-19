@@ -1,0 +1,378 @@
+{
+  "fixture_results": [
+    {
+      "name": "fixture_search_2_hit",
+      "description": "Search [2, 4, 6, 8] for first element 2",
+      "arr": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "target": 2,
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "fixture_search_8_hit",
+      "description": "Search [2, 4, 6, 8] for last element 8",
+      "arr": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "target": 8,
+      "expected": 3,
+      "actual": 3,
+      "passed": true
+    },
+    {
+      "name": "fixture_search_5_miss",
+      "description": "Search [2, 4, 6, 8] for absent element 5",
+      "arr": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "target": 5,
+      "expected": -1,
+      "actual": -1,
+      "passed": true
+    },
+    {
+      "name": "fixture_singleton_hit",
+      "description": "Search singleton [42] for 42",
+      "arr": [
+        42
+      ],
+      "target": 42,
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "fixture_singleton_miss",
+      "description": "Search singleton [42] for absent 99",
+      "arr": [
+        42
+      ],
+      "target": 99,
+      "expected": -1,
+      "actual": -1,
+      "passed": true
+    },
+    {
+      "name": "fixture_empty_collection",
+      "description": "Search empty collection [] for 5",
+      "arr": [],
+      "target": 5,
+      "expected": -1,
+      "actual": -1,
+      "passed": true
+    }
+  ],
+  "cross_check_summary": {
+    "total_cases": 216,
+    "passed_cases": 216,
+    "failed_cases": 0
+  },
+  "cross_check_sample": [
+    {
+      "arr": [],
+      "target": -25,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [],
+      "target": -20,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [],
+      "target": -10,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [],
+      "target": -7,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [],
+      "target": 0,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [],
+      "target": 1,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [],
+      "target": 2,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [],
+      "target": 4,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [],
+      "target": 5,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [],
+      "target": 6,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [],
+      "target": 8,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [],
+      "target": 9,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [],
+      "target": 10,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [],
+      "target": 15,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [],
+      "target": 23,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [],
+      "target": 42,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [],
+      "target": 55,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [],
+      "target": 60,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [
+        1
+      ],
+      "target": -25,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [
+        1
+      ],
+      "target": -20,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [
+        1
+      ],
+      "target": -10,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [
+        1
+      ],
+      "target": -7,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [
+        1
+      ],
+      "target": 0,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [
+        1
+      ],
+      "target": 1,
+      "oracle_index": 0,
+      "actual_index": 0,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [
+        1
+      ],
+      "target": 2,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [
+        1
+      ],
+      "target": 4,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [
+        1
+      ],
+      "target": 5,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [
+        1
+      ],
+      "target": 6,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [
+        1
+      ],
+      "target": 8,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    },
+    {
+      "arr": [
+        1
+      ],
+      "target": 9,
+      "oracle_index": -1,
+      "actual_index": -1,
+      "match": true,
+      "input_unchanged": true,
+      "passed": true
+    }
+  ]
+}

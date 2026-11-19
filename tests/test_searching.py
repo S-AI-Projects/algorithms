@@ -3,6 +3,7 @@ import unittest
 from algorithms.searching import (
     binary_search,
     binary_search_recur,
+    exponential_search,
     find_min_rotate,
     find_min_rotate_recur,
     first_occurrence,
@@ -153,6 +154,92 @@ class TestSuite(unittest.TestCase):
         self.assertEqual(-1, interpolation_search(array, 22))
         self.assertEqual(-1, interpolation_search(array, -10))
         self.assertEqual(10, interpolation_search(array, 20))
+
+
+class TestExponentialSearchCrossCheck(unittest.TestCase):
+    """Cross-check exponential_search against an independent reference."""
+
+    @staticmethod
+    def linear_oracle(arr: list[int], target: int) -> int:
+        """Independent reference: simple linear scan."""
+        for idx, val in enumerate(arr):
+            if val == target:
+                return idx
+        return -1
+
+    def test_fixture_cases(self):
+        # Fixture from brief: search [2, 4, 6, 8] for 2, 8 and 5
+        fixture = [2, 4, 6, 8]
+        self.assertEqual(exponential_search(fixture, 2), 0)
+        self.assertEqual(exponential_search(fixture, 8), 3)
+        self.assertEqual(exponential_search(fixture, 5), -1)
+
+        # Singleton collection
+        self.assertEqual(exponential_search([42], 42), 0)
+        self.assertEqual(exponential_search([42], 99), -1)
+
+        # Empty collection
+        self.assertEqual(exponential_search([], 5), -1)
+
+    def test_cross_check_against_oracle_20_plus_inputs(self):
+        test_arrays = [
+            [],
+            [1],
+            [10],
+            [1, 3],
+            [2, 5],
+            [1, 2, 3],
+            [2, 4, 6, 8],
+            [1, 3, 5, 7, 9],
+            [-10, -5, 0, 5, 10],
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+            [2, 3, 5, 7, 11, 13, 17, 19, 23],
+            [-20, -15, -10, -5, 0, 5, 15, 25, 35, 45, 55],
+        ]
+
+        query_targets = [
+            -25,
+            -20,
+            -10,
+            -7,
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            15,
+            23,
+            42,
+            55,
+            60,
+        ]
+
+        case_count = 0
+        for arr in test_arrays:
+            for target in query_targets:
+                case_count += 1
+                with self.subTest(arr=arr, target=target):
+                    expected = self.linear_oracle(arr, target)
+                    actual = exponential_search(list(arr), target)
+                    if expected == -1:
+                        self.assertEqual(actual, -1)
+                    else:
+                        self.assertTrue(0 <= actual < len(arr))
+                        self.assertEqual(arr[actual], target)
+        self.assertGreaterEqual(case_count, 20)
+
+    def test_non_mutation_and_idempotence(self):
+        arr = [2, 4, 6, 8, 10]
+        snapshot = list(arr)
+        res1 = exponential_search(arr, 6)
+        res2 = exponential_search(arr, 6)
+        self.assertEqual(arr, snapshot)
+        self.assertEqual(res1, 2)
+        self.assertEqual(res2, 2)
 
 
 if __name__ == "__main__":
