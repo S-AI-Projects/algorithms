@@ -1,0 +1,266 @@
+{
+  "docstring_examples": [
+    {
+      "example": "pancake_sort([3, 1, 2])",
+      "displayed": "[1, 2, 3]",
+      "actual": "[1, 2, 3]"
+    },
+    {
+      "example": "pancake_sort([1, 3, 2])",
+      "displayed": "[1, 2, 3]",
+      "actual": "[1, 2, 3]"
+    },
+    {
+      "example": "pancake_sort([2, 2, 1])",
+      "displayed": "[1, 2, 2]",
+      "actual": "[1, 2, 2]"
+    },
+    {
+      "example": "pancake_sort([1, 2, 3])",
+      "displayed": "[1, 2, 3]",
+      "actual": "[1, 2, 3]"
+    },
+    {
+      "example": "pancake_sort([3, 2, 1])",
+      "displayed": "[1, 2, 3]",
+      "actual": "[1, 2, 3]"
+    },
+    {
+      "example": "pancake_sort([])",
+      "displayed": "[]",
+      "actual": "[]"
+    },
+    {
+      "example": "pancake_sort([5])",
+      "displayed": "[5]",
+      "actual": "[5]"
+    },
+    {
+      "example": "data = [3, 1, 2]",
+      "displayed": "",
+      "actual": ""
+    },
+    {
+      "example": "pancake_sort(data) is data",
+      "displayed": "True",
+      "actual": "True"
+    },
+    {
+      "example": "data",
+      "displayed": "[1, 2, 3]",
+      "actual": "[1, 2, 3]"
+    }
+  ],
+  "doctest": {
+    "attempted": 10,
+    "failed": 0
+  },
+  "traces": [
+    {
+      "input": [
+        3,
+        1,
+        2
+      ],
+      "expected_states": [
+        [
+          2,
+          1,
+          3
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "actual_states": [
+        [
+          2,
+          1,
+          3
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected_result": [
+        1,
+        2,
+        3
+      ],
+      "actual_result": [
+        1,
+        2,
+        3
+      ],
+      "passed": true
+    },
+    {
+      "input": [
+        1,
+        3,
+        2
+      ],
+      "expected_states": [
+        [
+          3,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          3
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "actual_states": [
+        [
+          3,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          3
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected_result": [
+        1,
+        2,
+        3
+      ],
+      "actual_result": [
+        1,
+        2,
+        3
+      ],
+      "passed": true
+    },
+    {
+      "input": [
+        2,
+        2,
+        1
+      ],
+      "expected_states": [
+        [
+          1,
+          2,
+          2
+        ]
+      ],
+      "actual_states": [
+        [
+          1,
+          2,
+          2
+        ]
+      ],
+      "expected_result": [
+        1,
+        2,
+        2
+      ],
+      "actual_result": [
+        1,
+        2,
+        2
+      ],
+      "passed": true
+    },
+    {
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "expected_states": [],
+      "actual_states": [],
+      "expected_result": [
+        1,
+        2,
+        3
+      ],
+      "actual_result": [
+        1,
+        2,
+        3
+      ],
+      "passed": true
+    },
+    {
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "expected_states": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "actual_states": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected_result": [
+        1,
+        2,
+        3
+      ],
+      "actual_result": [
+        1,
+        2,
+        3
+      ],
+      "passed": true
+    },
+    {
+      "input": [],
+      "expected_states": [],
+      "actual_states": [],
+      "expected_result": [],
+      "actual_result": [],
+      "passed": true
+    },
+    {
+      "input": [
+        5
+      ],
+      "expected_states": [],
+      "actual_states": [],
+      "expected_result": [
+        5
+      ],
+      "actual_result": [
+        5
+      ],
+      "passed": true
+    }
+  ],
+  "pytest": {
+    "command": "python3 -m pytest tests/test_sorting.py::TestPancakeSortWorkedExample",
+    "exit_code": 0,
+    "passed": 5
+  },
+  "failures": 0
+}

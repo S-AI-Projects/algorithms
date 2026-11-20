@@ -1,0 +1,22 @@
+R24-T047: pancake_sort worked example checks
+PASS [docstring] >>> pancake_sort([3, 1, 2])  displayed='[1, 2, 3]' actual='[1, 2, 3]'
+PASS [docstring] >>> pancake_sort([1, 3, 2])  displayed='[1, 2, 3]' actual='[1, 2, 3]'
+PASS [docstring] >>> pancake_sort([2, 2, 1])  displayed='[1, 2, 2]' actual='[1, 2, 2]'
+PASS [docstring] >>> pancake_sort([1, 2, 3])  displayed='[1, 2, 3]' actual='[1, 2, 3]'
+PASS [docstring] >>> pancake_sort([3, 2, 1])  displayed='[1, 2, 3]' actual='[1, 2, 3]'
+PASS [docstring] >>> pancake_sort([])  displayed='[]' actual='[]'
+PASS [docstring] >>> pancake_sort([5])  displayed='[5]' actual='[5]'
+PASS [docstring] >>> data = [3, 1, 2]  displayed='' actual=''
+PASS [docstring] >>> pancake_sort(data) is data  displayed='True' actual='True'
+PASS [docstring] >>> data  displayed='[1, 2, 3]' actual='[1, 2, 3]'
+PASS [doctest] doctest.testmod: expected 10 attempted / 0 failed, actual 10 attempted / 0 failed
+PASS [trace] [3, 1, 2]: expected flips [[2, 1, 3], [1, 2, 3]] -> [1, 2, 3], actual [[2, 1, 3], [1, 2, 3]] -> [1, 2, 3]
+PASS [trace] [1, 3, 2]: expected flips [[3, 1, 2], [2, 1, 3], [1, 2, 3]] -> [1, 2, 3], actual [[3, 1, 2], [2, 1, 3], [1, 2, 3]] -> [1, 2, 3]
+PASS [trace] [2, 2, 1]: expected flips [[1, 2, 2]] -> [1, 2, 2], actual [[1, 2, 2]] -> [1, 2, 2]
+PASS [trace] [1, 2, 3]: expected flips [] -> [1, 2, 3], actual [] -> [1, 2, 3]
+PASS [trace] [3, 2, 1]: expected flips [[1, 2, 3]] -> [1, 2, 3], actual [[1, 2, 3]] -> [1, 2, 3]
+PASS [trace] []: expected flips [] -> [], actual [] -> []
+PASS [trace] [5]: expected flips [] -> [5], actual [] -> [5]
+PASS [in place] pancake_sort(data) is data, expected data=[1, 2, 2], actual data=[1, 2, 2]
+PASS [pytest] python3 -m pytest tests/test_sorting.py::TestPancakeSortWorkedExample -> exit=0, 5 passed
+RESULT: OK
