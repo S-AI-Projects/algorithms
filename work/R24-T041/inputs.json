@@ -1,0 +1,96 @@
+[
+  {
+    "label": "anchor",
+    "prices": [
+      7,
+      1,
+      5,
+      3,
+      6,
+      4
+    ],
+    "expected": 5,
+    "derivation": "buy 1, sell 6"
+  },
+  {
+    "label": "anchor",
+    "prices": [
+      7,
+      6,
+      4,
+      3,
+      1
+    ],
+    "expected": 0,
+    "derivation": "strictly decreasing, no profit"
+  },
+  {
+    "label": "neighbor",
+    "prices": [
+      7,
+      1,
+      5,
+      3,
+      6,
+      4,
+      8
+    ],
+    "expected": 7,
+    "derivation": "anchor + 8: buy 1, sell 8"
+  },
+  {
+    "label": "smallest",
+    "prices": [],
+    "expected": 0,
+    "derivation": "no days, no trade"
+  },
+  {
+    "label": "smallest",
+    "prices": [
+      5
+    ],
+    "expected": 0,
+    "derivation": "one day, no trade"
+  },
+  {
+    "label": "two-day",
+    "prices": [
+      1,
+      2
+    ],
+    "expected": 1,
+    "derivation": "buy 1, sell 2"
+  },
+  {
+    "label": "two-day",
+    "prices": [
+      2,
+      1
+    ],
+    "expected": 0,
+    "derivation": "price falls"
+  },
+  {
+    "label": "repeated",
+    "prices": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "expected": 0,
+    "derivation": "equal prices give 0"
+  },
+  {
+    "label": "repeated",
+    "prices": [
+      2,
+      2,
+      5,
+      5,
+      2
+    ],
+    "expected": 3,
+    "derivation": "buy 2, sell 5"
+  }
+]

@@ -21,6 +21,16 @@ from __future__ import annotations
 def max_profit_naive(prices: list[int]) -> int:
     """Find maximum profit by checking all pairs of buy/sell days.
 
+    Contract:
+        Input: ``prices`` is a list of numeric prices, one per day, in
+            chronological order. Any length is supported, including empty.
+        Output: ``max(prices[j] - prices[i])`` over all ``i < j``, or 0 when
+            that maximum is not positive. The result is never negative.
+        Boundaries: an empty or single-day list returns 0 (no trade is
+            possible). Equal prices give zero profit, so a flat or
+            non-increasing series returns 0.
+        Side effects: ``prices`` is only read, never mutated. No I/O.
+
     Args:
         prices: List of stock prices per day.
 
@@ -31,6 +41,8 @@ def max_profit_naive(prices: list[int]) -> int:
         >>> max_profit_naive([7, 1, 5, 3, 6, 4])
         5
         >>> max_profit_naive([7, 6, 4, 3, 1])
+        0
+        >>> max_profit_naive([])
         0
     """
     max_so_far = 0

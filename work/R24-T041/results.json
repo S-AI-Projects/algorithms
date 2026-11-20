@@ -1,0 +1,122 @@
+{
+  "cases": [
+    {
+      "label": "anchor",
+      "prices": [
+        7,
+        1,
+        5,
+        3,
+        6,
+        4
+      ],
+      "expected": 5,
+      "actual": 5,
+      "derivation": "buy 1, sell 6",
+      "passed": true
+    },
+    {
+      "label": "anchor",
+      "prices": [
+        7,
+        6,
+        4,
+        3,
+        1
+      ],
+      "expected": 0,
+      "actual": 0,
+      "derivation": "strictly decreasing, no profit",
+      "passed": true
+    },
+    {
+      "label": "neighbor",
+      "prices": [
+        7,
+        1,
+        5,
+        3,
+        6,
+        4,
+        8
+      ],
+      "expected": 7,
+      "actual": 7,
+      "derivation": "anchor + 8: buy 1, sell 8",
+      "passed": true
+    },
+    {
+      "label": "smallest",
+      "prices": [],
+      "expected": 0,
+      "actual": 0,
+      "derivation": "no days, no trade",
+      "passed": true
+    },
+    {
+      "label": "smallest",
+      "prices": [
+        5
+      ],
+      "expected": 0,
+      "actual": 0,
+      "derivation": "one day, no trade",
+      "passed": true
+    },
+    {
+      "label": "two-day",
+      "prices": [
+        1,
+        2
+      ],
+      "expected": 1,
+      "actual": 1,
+      "derivation": "buy 1, sell 2",
+      "passed": true
+    },
+    {
+      "label": "two-day",
+      "prices": [
+        2,
+        1
+      ],
+      "expected": 0,
+      "actual": 0,
+      "derivation": "price falls",
+      "passed": true
+    },
+    {
+      "label": "repeated",
+      "prices": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "expected": 0,
+      "actual": 0,
+      "derivation": "equal prices give 0",
+      "passed": true
+    },
+    {
+      "label": "repeated",
+      "prices": [
+        2,
+        2,
+        5,
+        5,
+        2
+      ],
+      "expected": 3,
+      "actual": 3,
+      "derivation": "buy 2, sell 5",
+      "passed": true
+    }
+  ],
+  "pytest": {
+    "command": "python3 -m pytest tests/test_dynamic_programming.py::TestMaxProfitNaiveContract",
+    "exit_code": 0,
+    "passed": 9
+  },
+  "failures": 0
+}
