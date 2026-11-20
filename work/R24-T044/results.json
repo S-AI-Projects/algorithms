@@ -1,0 +1,113 @@
+{
+  "fixture": [
+    {
+      "check": "A->B->C: returned head is C",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "check": "A->B->C link: C.next is B",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "check": "A->B->C link: B.next is A",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "check": "A->B->C link: A.next is None",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "check": "A->B->C values",
+      "expected": [
+        "C",
+        "B",
+        "A"
+      ],
+      "actual": [
+        "C",
+        "B",
+        "A"
+      ],
+      "passed": true
+    },
+    {
+      "check": "empty list: reverse_list(None)",
+      "expected": null,
+      "actual": null,
+      "passed": true
+    },
+    {
+      "check": "single node: same node returned",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "check": "single node: next is None",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    }
+  ],
+  "property": {
+    "cases": 200,
+    "expected_violations": 0,
+    "actual_violations": 0,
+    "smallest_failing_case": null
+  },
+  "mutants": [
+    {
+      "mutant": "drop links (current.next = None)",
+      "violations": 182,
+      "cases": 200,
+      "smallest_failing_case": {
+        "values": [
+          -1,
+          0
+        ],
+        "problem": "expected 2 nodes, reached 1"
+      },
+      "caught": true
+    },
+    {
+      "mutant": "skip last node (while head.next)",
+      "violations": 182,
+      "cases": 200,
+      "smallest_failing_case": {
+        "values": [
+          -1,
+          0
+        ],
+        "problem": "expected 2 nodes, reached 1"
+      },
+      "caught": true
+    },
+    {
+      "mutant": "reverse values only, keep links",
+      "violations": 182,
+      "cases": 200,
+      "smallest_failing_case": {
+        "values": [
+          -1,
+          0
+        ],
+        "problem": "result is not the original nodes in reverse order"
+      },
+      "caught": true
+    }
+  ],
+  "pytest": {
+    "command": "python3 -m pytest tests/test_linked_list.py::TestReverseListInvariant",
+    "exit_code": 0,
+    "passed": 8
+  },
+  "failures": 0
+}

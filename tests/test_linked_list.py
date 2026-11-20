@@ -1,5 +1,7 @@
+import random
 import unittest
 
+from algorithms.common import ListNode
 from algorithms.linked_list import (
     RandomListNode,
     copy_random_pointer_v1,
@@ -224,6 +226,127 @@ class TestSuite(unittest.TestCase):
         )
         random_list_node4.next = random_list_node5
         random_list_node5.random = random_list_node3
+
+
+def _build(values):
+    """Build a ListNode chain and return (head, nodes in original order)."""
+    nodes = [ListNode(v) for v in values]
+    for node, nxt in zip(nodes, nodes[1:], strict=False):
+        node.next = nxt
+    return (nodes[0] if nodes else None), nodes
+
+
+def _walk(head, limit):
+    """Return the nodes reachable from head, or None after more than limit."""
+    seen = []
+    while head is not None:
+        if len(seen) == limit + 1:
+            return None
+        seen.append(head)
+        head = head.next
+    return seen
+
+
+def _reverse_violation(reverse, values):
+    """Check the reverse_list invariant for one input.
+
+    Returns None when it holds, else a description of the first violation.
+    Links are checked by node identity and values separately, so a
+    value-only comparison cannot hide a broken link.
+    """
+    head, nodes = _build(values)
+    walked = _walk(reverse(head), len(nodes))
+    if walked is None:
+        return "traversal did not terminate"
+    if len(walked) != len(nodes):
+        return f"expected {len(nodes)} nodes, reached {len(walked)}"
+    if any(a is not b for a, b in zip(walked, reversed(nodes), strict=True)):
+        return "result is not the original nodes in reverse order"
+    if [node.val for node in walked] != list(reversed(values)):
+        return "node values changed"
+    if nodes and nodes[0].next is not None:
+        return "old head is not the tail"
+    return None
+
+
+class TestReverseListInvariant(unittest.TestCase):
+    """Invariant tests for reverse_list (R24-T044).
+
+    Invariant: for input n0 -> ... -> nk, the result is the same node
+    objects linked nk -> ... -> n0 -> None, each exactly once, with values
+    unchanged. Only finite, acyclic lists of ListNode are generated, which is
+    the supported input domain.
+    """
+
+    SEED = 44
+    CASES = 200
+
+    def test_three_distinct_nodes_links(self):
+        a, b, c = ListNode("A"), ListNode("B"), ListNode("C")
+        a.next, b.next = b, c
+        result = reverse_list(a)
+        self.assertIs(result, c)
+        self.assertIs(c.next, b)
+        self.assertIs(b.next, a)
+        self.assertIsNone(a.next)
+
+    def test_three_distinct_nodes_values(self):
+        a, b, c = ListNode("A"), ListNode("B"), ListNode("C")
+        a.next, b.next = b, c
+        result = reverse_list(a)
+        self.assertEqual(convert(result), ["C", "B", "A"])
+        self.assertEqual([a.val, b.val, c.val], ["A", "B", "C"])
+
+    def test_empty_list(self):
+        self.assertIsNone(reverse_list(None))
+
+    def test_single_node(self):
+        node = ListNode(1)
+        self.assertIs(reverse_list(node), node)
+        self.assertIsNone(node.next)
+        self.assertEqual(node.val, 1)
+
+    def test_duplicate_values_checked_by_identity(self):
+        head, nodes = _build([7, 7, 7])
+        walked = _walk(reverse_list(head), 3)
+        self.assertEqual([node.val for node in walked], [7, 7, 7])
+        self.assertEqual([id(n) for n in walked], [id(n) for n in nodes[::-1]])
+
+    def test_reverse_twice_restores_order(self):
+        head, nodes = _build([1, 2, 3, 4])
+        restored = reverse_list(reverse_list(head))
+        self.assertIs(restored, nodes[0])
+        self.assertEqual(convert(restored), [1, 2, 3, 4])
+
+    def test_invariant_on_seeded_cases(self):
+        rng = random.Random(self.SEED)
+        cases = [[1, 2, 3]]  # readable small case first
+        while len(cases) < self.CASES:
+            length = rng.randint(0, 25)
+            cases.append([rng.randint(-3, 3) for _ in range(length)])
+        failures = [
+            (values, problem)
+            for values in cases
+            if (problem := _reverse_violation(reverse_list, values)) is not None
+        ]
+        smallest = min(failures, key=lambda f: len(f[0]), default=None)
+        self.assertIsNone(smallest, f"smallest failing case: {smallest}")
+        self.assertEqual(len(cases), 200)
+
+    def test_invariant_rejects_value_only_reverse(self):
+        # A broken "reverse" that swaps values but keeps the links passes a
+        # value-only comparison; the invariant must still reject it.
+        def reverse_values_only(head):
+            nodes = _walk(head, 100)
+            values = [node.val for node in nodes]
+            for node, value in zip(nodes, reversed(values), strict=True):
+                node.val = value
+            return head
+
+        self.assertEqual(
+            _reverse_violation(reverse_values_only, [1, 2, 3]),
+            "result is not the original nodes in reverse order",
+        )
 
 
 if __name__ == "__main__":
