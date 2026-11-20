@@ -1,0 +1,11 @@
+{
+  "task": "R24-T017",
+  "status": "PASS",
+  "function": "prims_minimum_spanning",
+  "module": "algorithms.graph.prims_minimum_spanning",
+  "source_anchor_passed": true,
+  "neighbor_passed": true,
+  "decisive_transition_verified": true,
+  "doctest_passed": true,
+  "pytest_passed": true
+}

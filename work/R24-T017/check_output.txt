@@ -1,0 +1,24 @@
+============================================================
+R24-T017: prims_minimum_spanning Worked Example Verification
+============================================================
+PASS: Source anchor {1: [[1, 2]], 2: [[1, 1]]} -> 1
+PASS: Neighbor graph -> 3
+Traced 4 steps through neighbor graph execution.
+PASS: Decisive greedy step verified: popped [2, 3] over edge [4, 3] with cumulative mincost=3
+PASS: Doctest verified 5 examples with 0 failures
+Running focused native test: /Users/nandini/Desktop/SnAI/algorithms/.venv/bin/python3 -m pytest -v tests/test_graph.py::TestPrimsWorkedExample
+============================= test session starts ==============================
+platform darwin -- Python 3.15.2, pytest-9.2.0, pluggy-1.7.0 -- /Users/nandini/Desktop/SnAI/algorithms/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/nandini/Desktop/SnAI/algorithms
+configfile: pyproject.toml
+plugins: platformdirs-4.14.5
+collecting ... collected 3 items
+
+tests/test_graph.py::TestPrimsWorkedExample::test_doctest_worked_example PASSED [ 33%]
+tests/test_graph.py::TestPrimsWorkedExample::test_neighbor_triangle_decisive_transition PASSED [ 66%]
+tests/test_graph.py::TestPrimsWorkedExample::test_source_anchor_two_nodes PASSED [100%]
+
+============================== 3 passed in 0.06s ===============================
+
+PASS: Native pytest suite passed.

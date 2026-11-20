@@ -299,6 +299,35 @@ class PrimsMinimumSpanning(unittest.TestCase):
         self.assertEqual(19, prims_minimum_spanning(graph2))
 
 
+class TestPrimsWorkedExample(unittest.TestCase):
+    """Tests executing and verifying the docstring worked example
+    for prims_minimum_spanning.
+    """
+
+    def test_source_anchor_two_nodes(self):
+        # Anchor fixture from task brief
+        graph = {1: [[1, 2]], 2: [[1, 1]]}
+        self.assertEqual(prims_minimum_spanning(graph), 1)
+
+    def test_neighbor_triangle_decisive_transition(self):
+        # Neighbor fixture with greedy choice between weight 2 and weight 4
+        graph = {
+            1: [[1, 2], [4, 3]],
+            2: [[1, 1], [2, 3]],
+            3: [[4, 1], [2, 2]],
+        }
+        self.assertEqual(prims_minimum_spanning(graph), 3)
+
+    def test_doctest_worked_example(self):
+        import doctest
+        import importlib
+
+        pms_module = importlib.import_module("algorithms.graph.prims_minimum_spanning")
+        results = doctest.testmod(pms_module)
+        self.assertEqual(results.failed, 0)
+        self.assertGreaterEqual(results.attempted, 2)
+
+
 class TestDigraphStronglyConnected(unittest.TestCase):
     def test_digraph_strongly_connected(self):
         g1 = check_digraph_strongly_connected.Graph(5)
