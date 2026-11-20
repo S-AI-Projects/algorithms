@@ -1,0 +1,46 @@
+{
+  "anchor_results": [
+    {
+      "s": "egg",
+      "t": "add",
+      "result": true,
+      "ops": 3
+    },
+    {
+      "s": "foo",
+      "t": "bar",
+      "result": false,
+      "ops": 3
+    },
+    {
+      "s": "ab",
+      "t": "aa",
+      "result": false,
+      "ops": 2
+    },
+    {
+      "s": "a",
+      "t": "ab",
+      "result": false,
+      "ops": 0
+    }
+  ],
+  "scaling": [
+    {
+      "n": 10,
+      "ops": 10
+    },
+    {
+      "n": 100,
+      "ops": 100
+    },
+    {
+      "n": 500,
+      "ops": 500
+    }
+  ],
+  "pytest": {
+    "returncode": 0,
+    "command": "/Users/nandini/Desktop/SnAI/algorithms/.venv/bin/python3 -m pytest -v tests/test_map.py::TestIsIsomorphicWorkMeasurement"
+  }
+}

@@ -1,0 +1,29 @@
+============================================================
+R24-T019: is_isomorphic Work Measurement
+============================================================
+PASS: is_isomorphic('egg','add') -> True, ops=3 (n=3)
+PASS: is_isomorphic('foo','bar') -> False, ops=3 (n=3)
+PASS: is_isomorphic('ab','aa') -> False, ops=2 (n=2 early exit)
+PASS: unequal length -> False, ops=0
+PASS: n=10, ops=10 (confirms O(n))
+PASS: n=100, ops=100 (confirms O(n))
+PASS: n=500, ops=500 (confirms O(n))
+Running: /Users/nandini/Desktop/SnAI/algorithms/.venv/bin/python3 -m pytest -v tests/test_map.py::TestIsIsomorphicWorkMeasurement
+============================= test session starts ==============================
+platform darwin -- Python 3.15.2, pytest-9.2.0, pluggy-1.7.0 -- /Users/nandini/Desktop/SnAI/algorithms/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/nandini/Desktop/SnAI/algorithms
+configfile: pyproject.toml
+plugins: platformdirs-4.14.5
+collecting ... collected 6 items
+
+tests/test_map.py::TestIsIsomorphicWorkMeasurement::test_correctness_independent_fixture_paper_title PASSED [ 16%]
+tests/test_map.py::TestIsIsomorphicWorkMeasurement::test_linear_scaling_three_sizes PASSED [ 33%]
+tests/test_map.py::TestIsIsomorphicWorkMeasurement::test_neighbor_ab_aa PASSED [ 50%]
+tests/test_map.py::TestIsIsomorphicWorkMeasurement::test_source_anchor_egg_add PASSED [ 66%]
+tests/test_map.py::TestIsIsomorphicWorkMeasurement::test_source_anchor_foo_bar PASSED [ 83%]
+tests/test_map.py::TestIsIsomorphicWorkMeasurement::test_unequal_length_zero_iterations PASSED [100%]
+
+============================== 6 passed in 0.03s ===============================
+
+PASS: Native pytest passed.

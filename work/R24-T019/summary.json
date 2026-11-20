@@ -1,0 +1,16 @@
+{
+  "task": "R24-T019",
+  "status": "PASS",
+  "function": "is_isomorphic",
+  "module": "algorithms.map.is_isomorphic",
+  "complexity": "O(n) confirmed by iteration counting",
+  "input_size_variable": "n = len(s) = len(t)",
+  "sizes_tested": [
+    10,
+    100,
+    500
+  ],
+  "ops_equal_n_for_isomorphic": true,
+  "no_wall_clock_threshold": true,
+  "pytest_passed": true
+}

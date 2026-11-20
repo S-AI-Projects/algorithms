@@ -1,0 +1,33 @@
+{
+  "anchors": [
+    {
+      "s": "egg",
+      "t": "add",
+      "expected": true,
+      "expected_ops": 3
+    },
+    {
+      "s": "foo",
+      "t": "bar",
+      "expected": false,
+      "expected_ops": 3
+    },
+    {
+      "s": "ab",
+      "t": "aa",
+      "expected": false,
+      "expected_ops": 2
+    },
+    {
+      "s": "a",
+      "t": "ab",
+      "expected": false,
+      "expected_ops": 0
+    }
+  ],
+  "scaling_sizes": [
+    10,
+    100,
+    500
+  ]
+}
