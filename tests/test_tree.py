@@ -1,8 +1,10 @@
 import unittest
 
+from algorithms.common import TreeNode
 from algorithms.data_structures.b_tree import BTree
 from algorithms.data_structures.fenwick_tree import Fenwick_Tree
 from algorithms.tree import construct_tree_postorder_preorder as ctpp
+from algorithms.tree.bst_lowest_common_ancestor import lowest_common_ancestor
 from algorithms.tree.traversal_inorder import inorder, inorder_rec
 from algorithms.tree.traversal_postorder import postorder, postorder_rec
 from algorithms.tree.traversal_preorder import preorder, preorder_rec
@@ -167,6 +169,124 @@ class TestFenwickTree(unittest.TestCase):
         freq[2] += 11
         ft.update_bit(bit_tree, 2, 11)
         self.assertEqual(23, ft.get_sum(bit_tree, 4))
+
+
+def _bst_insert(root, val):
+    """Insert val into the BST rooted at root and return the root."""
+    if root is None:
+        return TreeNode(val)
+    if val < root.val:
+        root.left = _bst_insert(root.left, val)
+    else:
+        root.right = _bst_insert(root.right, val)
+    return root
+
+
+def _build_fixture():
+    """Keys 4, 2, 6, 1, 3, 5, 7 inserted in that order:
+
+            4
+          /   \\
+         2     6
+        / \\   / \\
+       1   3 5   7
+    """
+    root = None
+    for key in (4, 2, 6, 1, 3, 5, 7):
+        root = _bst_insert(root, key)
+    nodes = {}
+    stack = [root]
+    while stack:
+        node = stack.pop()
+        if node is not None:
+            nodes[node.val] = node
+            stack.extend((node.left, node.right))
+    return root, nodes
+
+
+def _path_to(root, node):
+    """Nodes from root down to node, found by plain BST search."""
+    path = [root]
+    while path[-1] is not node:
+        current = path[-1]
+        path.append(current.left if node.val < current.val else current.right)
+    return path
+
+
+def _shape(node):
+    """(val, id, left shape, right shape) to detect any change to the tree."""
+    if node is None:
+        return None
+    return (node.val, id(node), _shape(node.left), _shape(node.right))
+
+
+class TestBstLowestCommonAncestor(unittest.TestCase):
+    """Regression tests for lowest_common_ancestor (R24-T046).
+
+    Fixture: the BST built from keys 4, 2, 6, 1, 3, 5, 7 using TreeNode.
+    The refactored step is the check of whether the current node's key lies
+    in the target range [min(p, q), max(p, q)]; it is exercised at the root
+    and at leaves.
+    """
+
+    def setUp(self):
+        self.root, self.nodes = _build_fixture()
+
+    def lca(self, p, q):
+        return lowest_common_ancestor(self.root, self.nodes[p], self.nodes[q])
+
+    def test_fixture_shape(self):
+        n = self.nodes
+        self.assertIs(self.root, n[4])
+        self.assertEqual((n[4].left.val, n[4].right.val), (2, 6))
+        self.assertEqual((n[2].left.val, n[2].right.val), (1, 3))
+        self.assertEqual((n[6].left.val, n[6].right.val), (5, 7))
+
+    def test_split_at_root(self):
+        # 1 < 4 < 7: the root is already in range, so it is the answer.
+        self.assertIs(self.lca(1, 7), self.nodes[4])
+        self.assertIs(self.lca(3, 5), self.nodes[4])
+
+    def test_root_is_one_of_the_targets(self):
+        self.assertIs(self.lca(4, 1), self.nodes[4])
+        self.assertIs(self.lca(6, 4), self.nodes[4])
+
+    def test_same_leaf(self):
+        # The search walks down to the leaf, whose key is the whole range.
+        self.assertIs(self.lca(1, 1), self.nodes[1])
+        self.assertIs(self.lca(7, 7), self.nodes[7])
+
+    def test_two_leaves_under_one_parent(self):
+        self.assertIs(self.lca(1, 3), self.nodes[2])
+        self.assertIs(self.lca(5, 7), self.nodes[6])
+
+    def test_leaf_and_its_parent(self):
+        self.assertIs(self.lca(3, 2), self.nodes[2])
+        self.assertIs(self.lca(6, 5), self.nodes[6])
+
+    def test_argument_order_does_not_matter(self):
+        for p, q in ((1, 3), (5, 4), (7, 2)):
+            with self.subTest(p=p, q=q):
+                self.assertIs(self.lca(p, q), self.lca(q, p))
+
+    def test_all_pairs_match_path_oracle(self):
+        # Independent oracle: last shared node of the two root-to-node paths.
+        for p in self.nodes.values():
+            for q in self.nodes.values():
+                path_p = _path_to(self.root, p)
+                path_q = _path_to(self.root, q)
+                shared = [a for a, b in zip(path_p, path_q, strict=False) if a is b]
+                with self.subTest(p=p.val, q=q.val):
+                    self.assertIs(lowest_common_ancestor(self.root, p, q), shared[-1])
+
+    def test_tree_is_not_modified(self):
+        before = _shape(self.root)
+        self.lca(1, 7)
+        self.lca(3, 3)
+        self.assertEqual(_shape(self.root), before)
+
+    def test_empty_tree(self):
+        self.assertIsNone(lowest_common_ancestor(None, TreeNode(1), TreeNode(2)))
 
 
 if __name__ == "__main__":

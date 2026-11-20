@@ -22,16 +22,41 @@ since a node can be a descendant of itself according to the LCA definition.
 
 
 def lowest_common_ancestor(root, p, q):
+    """Return the lowest common ancestor of p and q in a BST.
+
+    The LCA is the first node on the search path from the root whose key
+    lies in the target range ``[min(p.val, q.val), max(p.val, q.val)]``:
+    above it both keys are on the same side, and at it they split (or one
+    of them is the node itself).
+
+    Contract:
+        ``root`` is the root of a binary search tree of ``TreeNode`` (or
+        ``None``), and ``p`` and ``q`` are nodes of that tree. The argument
+        order does not matter. The tree is only read, never modified.
+        Returns the LCA node itself, or ``None`` when ``root`` is ``None``.
+        Membership of ``p`` and ``q`` is not checked.
+
+    :type root: TreeNode
+    :type p: TreeNode
+    :type q: TreeNode
+    :rtype: TreeNode
+
+    Examples:
+        >>> from algorithms.common import TreeNode
+        >>> one, three = TreeNode(1), TreeNode(3)
+        >>> root = TreeNode(2, one, three)
+        >>> lowest_common_ancestor(root, one, three).val
+        2
+        >>> lowest_common_ancestor(root, one, one) is one
+        True
     """
-    :type root: Node
-    :type p: Node
-    :type q: Node
-    :rtype: Node
-    """
+    if not root:
+        return None
+    low, high = min(p.val, q.val), max(p.val, q.val)
     while root:
-        if p.val > root.val < q.val:
+        if root.val < low:  # both keys are larger: go right
             root = root.right
-        elif p.val < root.val > q.val:
+        elif root.val > high:  # both keys are smaller: go left
             root = root.left
-        else:
+        else:  # low <= root.val <= high: the keys split here
             return root

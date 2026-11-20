@@ -1,0 +1,69 @@
+{
+  "tree_keys_in_insert_order": [
+    4,
+    2,
+    6,
+    1,
+    3,
+    5,
+    7
+  ],
+  "fixture": [
+    {
+      "p": 1,
+      "q": 7,
+      "expected": 4,
+      "where": "root: 1 <= 4 <= 7, split at the root"
+    },
+    {
+      "p": 3,
+      "q": 5,
+      "expected": 4,
+      "where": "root: 3 <= 4 <= 5, split at the root"
+    },
+    {
+      "p": 4,
+      "q": 1,
+      "expected": 4,
+      "where": "root: the root is one of the targets"
+    },
+    {
+      "p": 1,
+      "q": 1,
+      "expected": 1,
+      "where": "leaf: walks 4 -> 2 -> 1, range is [1, 1]"
+    },
+    {
+      "p": 7,
+      "q": 7,
+      "expected": 7,
+      "where": "leaf: walks 4 -> 6 -> 7, range is [7, 7]"
+    },
+    {
+      "p": 1,
+      "q": 3,
+      "expected": 2,
+      "where": "two leaves under 2"
+    },
+    {
+      "p": 5,
+      "q": 7,
+      "expected": 6,
+      "where": "two leaves under 6"
+    },
+    {
+      "p": 3,
+      "q": 2,
+      "expected": 2,
+      "where": "leaf and its parent"
+    }
+  ],
+  "pairs": "all 49 (p, q) with p, q in the tree",
+  "edge_cases": [
+    "empty tree",
+    "empty tree, no targets",
+    "keys above the tree",
+    "keys below the tree",
+    "keys straddling the root"
+  ]
+}
