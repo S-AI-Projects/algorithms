@@ -17,6 +17,19 @@ from __future__ import annotations
 def quick_sort(array: list[int]) -> list[int]:
     """Sort an array in ascending order using quick sort.
 
+    Contract:
+        - Sorts ``array`` **in-place** and also returns the same list object.
+        - The smallest supported collection is an empty list; ``quick_sort([])``
+          returns ``[]`` without raising.
+        - After any failed or no-op call the caller's reference to the list
+          is still valid and usable.
+
+    Failure / boundary behaviour:
+        - Empty list (line 32): ``first >= last`` so the recursive helper
+          returns immediately without touching the array.  The function
+          returns the same empty list.
+        - Single-element list: same early-exit branch; unchanged.
+
     Args:
         array: List of integers to sort.
 
@@ -26,6 +39,10 @@ def quick_sort(array: list[int]) -> list[int]:
     Examples:
         >>> quick_sort([3, 1, 2])
         [1, 2, 3]
+        >>> quick_sort([])
+        []
+        >>> quick_sort([1])
+        [1]
     """
     _quick_sort_recursive(array, 0, len(array) - 1)
     return array
