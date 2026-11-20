@@ -1,0 +1,14 @@
+R24-T041: max_profit_naive contract checks
+PASS [anchor] [7, 1, 5, 3, 6, 4] expected=5 actual=5
+PASS [anchor] [7, 6, 4, 3, 1] expected=0 actual=0
+PASS [neighbor] [7, 1, 5, 3, 6, 4, 8] expected=7 actual=7
+PASS [smallest] [] expected=0 actual=0
+PASS [smallest] [5] expected=0 actual=0
+PASS [two-day] [1, 2] expected=1 actual=1
+PASS [two-day] [2, 1] expected=0 actual=0
+PASS [repeated] [3, 3, 3, 3] expected=0 actual=0
+PASS [repeated] [2, 2, 5, 5, 2] expected=3 actual=3
+PASS [anchor] max_profit_optimized([7, 1, 5, 3, 6, 4]) expected=5 actual=5
+PASS [mutation] input unchanged: [7, 1, 5, 3, 6, 4]
+PASS [pytest] -m pytest tests/test_dynamic_programming.py::TestMaxProfitNaiveContract -> exit=0, 9 passed
+RESULT: OK

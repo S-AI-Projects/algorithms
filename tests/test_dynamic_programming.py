@@ -37,6 +37,62 @@ class TestBuySellStock(unittest.TestCase):
         self.assertEqual(max_profit_optimized([7, 6, 4, 3, 1]), 0)
 
 
+class TestMaxProfitNaiveContract(unittest.TestCase):
+    """Contract regression tests for max_profit_naive (R24-T041).
+
+    Expected values were derived by hand from the definition
+    max(prices[j] - prices[i]) for i < j, floored at 0.
+    """
+
+    def assert_profit(self, prices, expected):
+        actual = max_profit_naive(prices)
+        self.assertEqual(
+            actual, expected, f"prices={prices}: expected {expected}, got {actual}"
+        )
+
+    def test_anchor_rising_then_falling(self):
+        # Buy at 1 (day 1), sell at 6 (day 4): 6 - 1 = 5.
+        self.assert_profit([7, 1, 5, 3, 6, 4], 5)
+
+    def test_anchor_strictly_decreasing(self):
+        # Every later price is lower, so no trade is profitable.
+        self.assert_profit([7, 6, 4, 3, 1], 0)
+
+    def test_anchor_agrees_with_optimized(self):
+        prices = [7, 1, 5, 3, 6, 4]
+        self.assertEqual(max_profit_optimized(prices), 5)
+        self.assertEqual(max_profit_naive(prices), max_profit_optimized(prices))
+
+    def test_neighbor_new_high_after_anchor(self):
+        # Appending 8 to the anchor moves the best sell day: 8 - 1 = 7.
+        self.assert_profit([7, 1, 5, 3, 6, 4, 8], 7)
+
+    def test_smallest_inputs_return_zero(self):
+        self.assert_profit([], 0)
+        self.assert_profit([5], 0)
+
+    def test_two_days(self):
+        self.assert_profit([1, 2], 1)
+        self.assert_profit([2, 1], 0)
+
+    def test_repeated_values(self):
+        # Equal prices give zero profit.
+        self.assert_profit([3, 3, 3, 3], 0)
+        # Duplicates around the best pair: buy at 2, sell at 5.
+        self.assert_profit([2, 2, 5, 5, 2], 3)
+
+    def test_result_is_never_negative(self):
+        for prices in ([], [9], [9, 1], [5, 4, 3, 2, 1], [4, 4]):
+            with self.subTest(prices=prices):
+                self.assertGreaterEqual(max_profit_naive(prices), 0)
+
+    def test_input_is_not_mutated(self):
+        prices = [7, 1, 5, 3, 6, 4]
+        snapshot = list(prices)
+        max_profit_naive(prices)
+        self.assertEqual(prices, snapshot)
+
+
 class TestClimbingStairs(unittest.TestCase):
     def test_climb_stairs(self):
         self.assertEqual(climb_stairs(2), 2)
