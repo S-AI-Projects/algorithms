@@ -1,0 +1,61 @@
+{
+  "fixture": [
+    {
+      "num": 5,
+      "base": 2,
+      "expected": "101",
+      "derivation": "anchor: 5 = 4 + 1"
+    },
+    {
+      "num": 255,
+      "base": 16,
+      "expected": "FF",
+      "derivation": "anchor: 255 = 15 * 16 + 15"
+    },
+    {
+      "num": 0,
+      "base": 2,
+      "expected": "0",
+      "derivation": "anchor: zero"
+    },
+    {
+      "num": 256,
+      "base": 16,
+      "expected": "100",
+      "derivation": "neighbor of 255: 256 = 1 * 16 ** 2"
+    }
+  ],
+  "other_inputs": [
+    {
+      "num": -1000,
+      "base": 7,
+      "expected": "-2626",
+      "derivation": "1000 = 2*343 + 6*49 + 2*7 + 6"
+    },
+    {
+      "num": 18446744073709551616,
+      "base": 16,
+      "expected": "10000000000000000",
+      "derivation": "2**64 = 16**16"
+    },
+    {
+      "num": 35,
+      "base": 36,
+      "expected": "Z",
+      "derivation": "largest digit of base 36"
+    }
+  ],
+  "blocked_dependencies": [
+    "builtins.open",
+    "socket.socket",
+    "time.time",
+    "time.monotonic",
+    "random.random",
+    "random.getrandbits",
+    "os.getenv"
+  ],
+  "decode_range": {
+    "num": "-40..40",
+    "base": "2..36"
+  }
+}
