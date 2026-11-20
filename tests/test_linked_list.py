@@ -1,5 +1,6 @@
 import unittest
 
+from algorithms.common import ListNode
 from algorithms.linked_list import (
     RandomListNode,
     copy_random_pointer_v1,
@@ -224,6 +225,103 @@ class TestSuite(unittest.TestCase):
         )
         random_list_node4.next = random_list_node5
         random_list_node5.random = random_list_node3
+
+
+def _values(head):
+    """Walk a list iteratively and return its values."""
+    values = []
+    while head is not None:
+        values.append(head.val)
+        head = head.next
+    return values
+
+
+class TestListNodeBoundaries(unittest.TestCase):
+    """Boundary tests for algorithms.common.ListNode (R24-T042).
+
+    Each test sits on one side of a boundary documented in the ListNode
+    docstring. Expected values were worked out by hand from that contract.
+    """
+
+    def test_anchor_three_node_list(self):
+        head = ListNode(1, ListNode(2, ListNode(3)))
+        self.assertEqual(head.val, 1)
+        self.assertEqual(head.next.val, 2)
+        self.assertEqual(head.next.next.val, 3)
+        self.assertIsNone(head.next.next.next)
+
+    def test_neighbor_prepend_to_anchor(self):
+        # Prepending 0 to the anchor gives 0 -> 1 -> 2 -> 3.
+        head = ListNode(1, ListNode(2, ListNode(3)))
+        new_head = ListNode(0, head)
+        self.assertEqual(_values(new_head), [0, 1, 2, 3])
+        self.assertIs(new_head.next, head)
+        self.assertEqual(_values(head), [1, 2, 3])
+
+    def test_default_node_is_smallest_list(self):
+        node = ListNode()
+        self.assertEqual(node.val, 0)
+        self.assertIsNone(node.next)
+        self.assertEqual(_values(node), [0])
+
+    def test_single_node_has_no_next(self):
+        node = ListNode(7)
+        self.assertIsNone(node.next)
+        self.assertEqual(node, ListNode(7, None))
+        self.assertEqual(_values(node), [7])
+
+    def test_keyword_arguments(self):
+        node = ListNode(next=ListNode(5), val=4)
+        self.assertEqual(_values(node), [4, 5])
+
+    def test_zero_value_node_is_truthy(self):
+        node = ListNode(0)
+        self.assertTrue(node)
+        self.assertEqual(node.val, 0)
+
+    def test_equality_same_values_same_length(self):
+        self.assertEqual(ListNode(1, ListNode(2)), ListNode(1, ListNode(2)))
+
+    def test_equality_different_length(self):
+        self.assertNotEqual(ListNode(1), ListNode(1, ListNode(2)))
+        self.assertNotEqual(ListNode(1, ListNode(2)), ListNode(1))
+
+    def test_equality_different_tail_value(self):
+        self.assertNotEqual(ListNode(1, ListNode(2)), ListNode(1, ListNode(3)))
+
+    def test_equality_with_non_node(self):
+        self.assertFalse(ListNode(1) == 1)
+        self.assertFalse(ListNode(0) == 0)
+
+    def test_next_is_not_copied(self):
+        tail = ListNode(2)
+        head = ListNode(1, tail)
+        self.assertIs(head.next, tail)
+        tail.val = 9
+        self.assertEqual(_values(head), [1, 9])
+
+    def test_relinking_next(self):
+        head = ListNode(1, ListNode(2, ListNode(3)))
+        head.next = head.next.next
+        self.assertEqual(_values(head), [1, 3])
+        head.next = None
+        self.assertEqual(_values(head), [1])
+
+    def test_repr(self):
+        self.assertEqual(repr(ListNode()), "ListNode(val=0, next=None)")
+        self.assertEqual(
+            repr(ListNode(1, ListNode(2))),
+            "ListNode(val=1, next=ListNode(val=2, next=None))",
+        )
+
+    def test_repr_of_cycle(self):
+        node = ListNode(1)
+        node.next = node
+        self.assertEqual(repr(node), "ListNode(val=1, next=...)")
+
+    def test_nodes_are_unhashable(self):
+        with self.assertRaises(TypeError):
+            hash(ListNode())
 
 
 if __name__ == "__main__":

@@ -1,0 +1,122 @@
+[
+  {
+    "boundary": "anchor",
+    "side": "interior",
+    "expression": "ListNode(1, ListNode(2, ListNode(3))).val",
+    "expected": 1
+  },
+  {
+    "boundary": "anchor",
+    "side": "interior",
+    "expression": "ListNode(1, ListNode(2, ListNode(3))).next.val",
+    "expected": 2
+  },
+  {
+    "boundary": "neighbor",
+    "side": "interior",
+    "expression": "values(ListNode(0, head)), values(head)",
+    "expected": [
+      [
+        0,
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        2,
+        3
+      ]
+    ]
+  },
+  {
+    "boundary": "construction",
+    "side": "boundary",
+    "expression": "(ListNode().val, ListNode().next)",
+    "expected": [
+      0,
+      null
+    ]
+  },
+  {
+    "boundary": "end of list",
+    "side": "boundary",
+    "expression": "ListNode(7).next",
+    "expected": null
+  },
+  {
+    "boundary": "end of list",
+    "side": "interior",
+    "expression": "values(ListNode(7, ListNode(8)))",
+    "expected": [
+      7,
+      8
+    ]
+  },
+  {
+    "boundary": "truthiness",
+    "side": "boundary",
+    "expression": "bool(ListNode(0))",
+    "expected": true
+  },
+  {
+    "boundary": "equality",
+    "side": "equal",
+    "expression": "ListNode(1, ListNode(2)) == ListNode(1, ListNode(2))",
+    "expected": true
+  },
+  {
+    "boundary": "equality",
+    "side": "length differs",
+    "expression": "ListNode(1) == ListNode(1, ListNode(2))",
+    "expected": false
+  },
+  {
+    "boundary": "equality",
+    "side": "tail differs",
+    "expression": "ListNode(1, ListNode(2)) == ListNode(1, ListNode(3))",
+    "expected": false
+  },
+  {
+    "boundary": "equality",
+    "side": "non-node",
+    "expression": "ListNode(1) == 1",
+    "expected": false
+  },
+  {
+    "boundary": "construction",
+    "side": "no copy",
+    "expression": "values after tail.val = 9",
+    "expected": [
+      1,
+      9
+    ]
+  },
+  {
+    "boundary": "mutation",
+    "side": "relink",
+    "expression": "values after head.next = head.next.next",
+    "expected": [
+      1,
+      3
+    ]
+  },
+  {
+    "boundary": "repr",
+    "side": "boundary",
+    "expression": "repr(ListNode())",
+    "expected": "ListNode(val=0, next=None)"
+  },
+  {
+    "boundary": "repr",
+    "side": "cycle",
+    "expression": "repr of node whose next is itself",
+    "expected": "ListNode(val=1, next=...)"
+  },
+  {
+    "boundary": "hashing",
+    "side": "boundary",
+    "expression": "hash(ListNode())",
+    "expected": "TypeError"
+  }
+]
