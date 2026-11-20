@@ -1,0 +1,15 @@
+R24-T044: reverse_list invariant checks
+PASS [fixture] A->B->C: returned head is C: expected=True actual=True
+PASS [fixture] A->B->C link: C.next is B: expected=True actual=True
+PASS [fixture] A->B->C link: B.next is A: expected=True actual=True
+PASS [fixture] A->B->C link: A.next is None: expected=True actual=True
+PASS [fixture] A->B->C values: expected=['C', 'B', 'A'] actual=['C', 'B', 'A']
+PASS [fixture] empty list: reverse_list(None): expected=None actual=None
+PASS [fixture] single node: same node returned: expected=True actual=True
+PASS [fixture] single node: next is None: expected=True actual=True
+PASS [property] 200 seeded cases (seed=44, lengths 0..25): expected 0 violations, actual 0
+PASS [mutant] drop links (current.next = None): expected violations, actual 182/200; smallest failing case {'values': [-1, 0], 'problem': 'expected 2 nodes, reached 1'}
+PASS [mutant] skip last node (while head.next): expected violations, actual 182/200; smallest failing case {'values': [-1, 0], 'problem': 'expected 2 nodes, reached 1'}
+PASS [mutant] reverse values only, keep links: expected violations, actual 182/200; smallest failing case {'values': [-1, 0], 'problem': 'result is not the original nodes in reverse order'}
+PASS [pytest] python3 -m pytest tests/test_linked_list.py::TestReverseListInvariant -> exit=0, 8 passed
+RESULT: OK
