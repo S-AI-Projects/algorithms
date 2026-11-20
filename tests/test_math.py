@@ -1,4 +1,9 @@
+import json
+import subprocess
+import sys
 import unittest
+from pathlib import Path
+from unittest import mock
 
 import pytest
 
@@ -87,6 +92,96 @@ class TestBaseConversion(unittest.TestCase):
         self.assertEqual(5, base_to_int("101", 2))
         self.assertEqual(0, base_to_int("0", 2))
         self.assertEqual(255, base_to_int("FF", 16))
+
+
+INT_TO_BASE_FIXTURE = [
+    # (num, base, expected), worked out by hand.
+    (5, 2, "101"),  # source anchor: 4 + 1
+    (255, 16, "FF"),  # source anchor: 15 * 16 + 15
+    (0, 2, "0"),  # source anchor: zero
+    (256, 16, "100"),  # neighbor of 255: 1 * 16 ** 2
+]
+
+_FRESH_PROCESS_SCRIPT = (
+    "import json, sys\n"
+    "from algorithms.math.base_conversion import int_to_base\n"
+    "cases = json.loads(sys.argv[1])\n"
+    "print(json.dumps([int_to_base(n, b) for n, b in cases]))\n"
+)
+
+
+def _int_to_base_in_fresh_process():
+    """Run the fixture in a new isolated interpreter and return its outputs."""
+    cases = json.dumps([[n, b] for n, b, _ in INT_TO_BASE_FIXTURE])
+    proc = subprocess.run(
+        [sys.executable, "-c", _FRESH_PROCESS_SCRIPT, cases],
+        cwd=Path(__file__).resolve().parents[1],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    return json.loads(proc.stdout)
+
+
+class TestIntToBaseDeterminism(unittest.TestCase):
+    """Repeatability and input isolation for int_to_base (R24-T045).
+
+    int_to_base has no external dependency (no I/O, time, randomness,
+    environment or mutable global state), so these tests check that it is
+    pure rather than mocking anything it uses.
+    """
+
+    EXPECTED = [expected for _, _, expected in INT_TO_BASE_FIXTURE]
+
+    def run_fixture(self):
+        return [int_to_base(num, base) for num, base, _ in INT_TO_BASE_FIXTURE]
+
+    def test_fixture_values(self):
+        self.assertEqual(self.run_fixture(), ["101", "FF", "0", "100"])
+
+    def test_two_fresh_processes_agree(self):
+        first = _int_to_base_in_fresh_process()
+        second = _int_to_base_in_fresh_process()
+        self.assertEqual(first, ["101", "FF", "0", "100"])
+        self.assertEqual(second, ["101", "FF", "0", "100"])
+
+    def test_earlier_calls_do_not_change_later_results(self):
+        before = self.run_fixture()
+        # Other valid inputs: negative, large and the largest base.
+        self.assertEqual(int_to_base(-1000, 7), "-2626")
+        self.assertEqual(int_to_base(2**64, 16), "10000000000000000")
+        self.assertEqual(int_to_base(35, 36), "Z")
+        after = self.run_fixture()
+        self.assertEqual(before, self.EXPECTED)
+        self.assertEqual(after, self.EXPECTED)
+
+    def test_caller_value_is_not_changed(self):
+        num, base = -255, 16
+        self.assertEqual(int_to_base(num, base), "-FF")
+        self.assertEqual(num, -255)
+        self.assertEqual(base, 16)
+
+    def test_no_io_time_or_randomness_used(self):
+        # Any attempt to use these during the call fails the test.
+        forbidden = AssertionError("int_to_base used an external dependency")
+        with (
+            mock.patch("builtins.open", side_effect=forbidden),
+            mock.patch("socket.socket", side_effect=forbidden),
+            mock.patch("time.time", side_effect=forbidden),
+            mock.patch("time.monotonic", side_effect=forbidden),
+            mock.patch("random.random", side_effect=forbidden),
+            mock.patch("random.getrandbits", side_effect=forbidden),
+            mock.patch("os.getenv", side_effect=forbidden),
+        ):
+            self.assertEqual(self.run_fixture(), ["101", "FF", "0", "100"])
+
+    def test_matches_builtin_int_decoding(self):
+        # Independent check: Python's int(text, base) must read the result
+        # back to the original number for every supported base.
+        for base in range(2, 37):
+            for num in range(-40, 41):
+                with self.subTest(num=num, base=base):
+                    self.assertEqual(int(int_to_base(num, base), base), num)
 
 
 class TestDecimalToBinaryIP(unittest.TestCase):
@@ -620,6 +715,7 @@ class TestFFT(unittest.TestCase):
         imag_result = [float(f"{f.imag:.1f}") for f in fft.fft(x)]
         self.assertEqual(real, real_result)
         self.assertEqual(imag, imag_result)
+
 
 class TestChebyshevDistance(unittest.TestCase):
     """[summary]

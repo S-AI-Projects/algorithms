@@ -26,6 +26,23 @@ def int_to_base(num: int, base: int) -> str:
     Returns:
         String representation of num in the given base.
 
+    Contract:
+        Supported input is any ``int`` ``num`` and a ``base`` from 2 to 36.
+        Digits are ``0-9`` then uppercase ``A-Z``, with no leading zeros;
+        ``0`` gives ``"0"`` and a negative ``num`` gets a ``"-"`` prefix.
+        Bases outside 2..36 are not supported: base 1 never terminates,
+        base 0 raises ``ZeroDivisionError`` and bases above 36 can raise
+        ``IndexError``.
+
+    Determinism:
+        The function is pure. Its only dependency is the constant digit
+        alphabet ``string.digits + string.ascii_uppercase``. It does no I/O
+        and does not use time, randomness, the environment, locale or any
+        mutable global state, so the same ``(num, base)`` always gives the
+        same string, in any order of calls and in a fresh interpreter.
+        ``num`` is an immutable ``int``; ``num *= -1`` only rebinds the local
+        name, so the caller's value is never changed.
+
     Examples:
         >>> int_to_base(5, 2)
         '101'
@@ -33,6 +50,8 @@ def int_to_base(num: int, base: int) -> str:
         'FF'
         >>> int_to_base(0, 2)
         '0'
+        >>> int_to_base(-255, 16)
+        '-FF'
     """
     is_negative = False
     if num == 0:

@@ -1,0 +1,165 @@
+{
+  "dependency_inventory": {
+    "string.digits + string.ascii_uppercase": "constant ASCII digit alphabet",
+    "file / network I/O": "none",
+    "time / clock": "none",
+    "randomness": "none",
+    "environment / locale": "none",
+    "mutable global state": "none",
+    "UI / user account": "none"
+  },
+  "checks": [
+    {
+      "check": "fixture int_to_base(5, 2)",
+      "expected": "101",
+      "actual": "101",
+      "passed": true
+    },
+    {
+      "check": "fixture int_to_base(255, 16)",
+      "expected": "FF",
+      "actual": "FF",
+      "passed": true
+    },
+    {
+      "check": "fixture int_to_base(0, 2)",
+      "expected": "0",
+      "actual": "0",
+      "passed": true
+    },
+    {
+      "check": "fixture int_to_base(256, 16)",
+      "expected": "100",
+      "actual": "100",
+      "passed": true
+    },
+    {
+      "check": "fresh process run 1 (python -I)",
+      "expected": [
+        "101",
+        "FF",
+        "0",
+        "100"
+      ],
+      "actual": [
+        "101",
+        "FF",
+        "0",
+        "100"
+      ],
+      "passed": true
+    },
+    {
+      "check": "fresh process run 2 (python -I)",
+      "expected": [
+        "101",
+        "FF",
+        "0",
+        "100"
+      ],
+      "actual": [
+        "101",
+        "FF",
+        "0",
+        "100"
+      ],
+      "passed": true
+    },
+    {
+      "check": "other input int_to_base(-1000, 7)",
+      "expected": "-2626",
+      "actual": "-2626",
+      "passed": true
+    },
+    {
+      "check": "other input int_to_base(18446744073709551616, 16)",
+      "expected": "10000000000000000",
+      "actual": "10000000000000000",
+      "passed": true
+    },
+    {
+      "check": "other input int_to_base(35, 36)",
+      "expected": "Z",
+      "actual": "Z",
+      "passed": true
+    },
+    {
+      "check": "fixture before other inputs",
+      "expected": [
+        "101",
+        "FF",
+        "0",
+        "100"
+      ],
+      "actual": [
+        "101",
+        "FF",
+        "0",
+        "100"
+      ],
+      "passed": true
+    },
+    {
+      "check": "fixture after other inputs",
+      "expected": [
+        "101",
+        "FF",
+        "0",
+        "100"
+      ],
+      "actual": [
+        "101",
+        "FF",
+        "0",
+        "100"
+      ],
+      "passed": true
+    },
+    {
+      "check": "caller value: int_to_base(-255, 16)",
+      "expected": "-FF",
+      "actual": "-FF",
+      "passed": true
+    },
+    {
+      "check": "caller value: num and base unchanged",
+      "expected": [
+        -255,
+        16
+      ],
+      "actual": [
+        -255,
+        16
+      ],
+      "passed": true
+    },
+    {
+      "check": "fixture with 7 dependencies blocked",
+      "expected": [
+        "101",
+        "FF",
+        "0",
+        "100"
+      ],
+      "actual": [
+        "101",
+        "FF",
+        "0",
+        "100"
+      ],
+      "passed": true
+    },
+    {
+      "check": "int(int_to_base(n, b), b) == n for 2835 inputs",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "pytest": {
+    "command": "python3 -m pytest tests/test_math.py::TestIntToBaseDeterminism",
+    "exit_code": 0,
+    "passed": 6
+  },
+  "failures": 0
+}
