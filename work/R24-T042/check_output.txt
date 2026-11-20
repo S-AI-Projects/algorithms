@@ -1,0 +1,19 @@
+R24-T042: ListNode boundary checks
+PASS [anchor / interior] ListNode(1, ListNode(2, ListNode(3))).val expected=1 actual=1
+PASS [anchor / interior] ListNode(1, ListNode(2, ListNode(3))).next.val expected=2 actual=2
+PASS [neighbor / interior] values(ListNode(0, head)), values(head) expected=([0, 1, 2, 3], [1, 2, 3]) actual=([0, 1, 2, 3], [1, 2, 3])
+PASS [construction / boundary] (ListNode().val, ListNode().next) expected=(0, None) actual=(0, None)
+PASS [end of list / boundary] ListNode(7).next expected=None actual=None
+PASS [end of list / interior] values(ListNode(7, ListNode(8))) expected=[7, 8] actual=[7, 8]
+PASS [truthiness / boundary] bool(ListNode(0)) expected=True actual=True
+PASS [equality / equal] ListNode(1, ListNode(2)) == ListNode(1, ListNode(2)) expected=True actual=True
+PASS [equality / length differs] ListNode(1) == ListNode(1, ListNode(2)) expected=False actual=False
+PASS [equality / tail differs] ListNode(1, ListNode(2)) == ListNode(1, ListNode(3)) expected=False actual=False
+PASS [equality / non-node] ListNode(1) == 1 expected=False actual=False
+PASS [construction / no copy] values after tail.val = 9 expected=[1, 9] actual=[1, 9]
+PASS [mutation / relink] values after head.next = head.next.next expected=[1, 3] actual=[1, 3]
+PASS [repr / boundary] repr(ListNode()) expected='ListNode(val=0, next=None)' actual='ListNode(val=0, next=None)'
+PASS [repr / cycle] repr of node whose next is itself expected='ListNode(val=1, next=...)' actual='ListNode(val=1, next=...)'
+PASS [hashing / boundary] hash(ListNode()) expected='TypeError' actual='TypeError'
+PASS [pytest] python3 -m pytest tests/test_linked_list.py::TestListNodeBoundaries -> exit=0, 15 passed
+RESULT: OK
