@@ -1,0 +1,18 @@
+R24-T043: distance_between_two_points reference comparison
+PASS [table] (0, 0, 3, 4) expected=5.0 actual=5.0 (anchor: dx=3, dy=4, sqrt(25))
+PASS [table] (-1, -1, 2, 3) expected=5.0 actual=5.0 (anchor: dx=3, dy=4, sqrt(25))
+PASS [table] (-1, -1, 2, 4) expected=5.830951894845301 actual=5.830951894845301 (neighbor: dx=3, dy=5, sqrt(34))
+PASS [table] (0, 0, 5, 12) expected=13.0 actual=13.0 (dx=5, dy=12, sqrt(169))
+PASS [table] (1, 1, 9, 16) expected=17.0 actual=17.0 (dx=8, dy=15, sqrt(289))
+PASS [table] (0, 0, 0, 0) expected=0.0 actual=0.0 (same point)
+PASS [table] (-4, 2, 3, 2) expected=7.0 actual=7.0 (horizontal only, |dx|=7)
+PASS [table] (5, -3, 5, 6) expected=9.0 actual=9.0 (vertical only, |dy|=9)
+PASS [table] (0, 0, 1, 1) expected=1.4142135623730951 actual=1.4142135623730951 (sqrt(2))
+PASS [table] (0.5, 0.5, 3.5, 4.5) expected=5.0 actual=5.0 (dx=3.0, dy=4.0 exactly)
+PASS [table] (10, -7, 13, -3) expected=5.0 actual=5.0 (anchor shifted by (+10, -7))
+PASS [grid] 625 integer inputs in -2..2 vs Decimal oracle, 0 mismatches
+PASS [repeat] 5 int runs + 1 float run expected={5.0} actual=[5.0]
+INFO [documented limit] (0, 0, 1e+200, 0) true distance=1e200 actual=OverflowError: (34, 'Result too large') (dx ** 2 overflows the float range)
+INFO [documented limit] (0, 0, 1e-200, 0) true distance=1e-200 actual=0.0 (dx ** 2 underflows to 0.0)
+PASS [pytest] python3 -m pytest tests/test_math.py::TestDistanceBetweenTwoPoints -> exit=0, 7 passed
+RESULT: OK

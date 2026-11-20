@@ -1,4 +1,6 @@
 import unittest
+from decimal import Decimal, localcontext
+from itertools import product
 
 import pytest
 
@@ -12,6 +14,7 @@ from algorithms.math import (
     decimal_to_binary_ip,
     decrypt,
     diffie_hellman_key_exchange,
+    distance_between_two_points,
     encrypt,
     euler_totient,
     extended_gcd,
@@ -621,6 +624,7 @@ class TestFFT(unittest.TestCase):
         self.assertEqual(real, real_result)
         self.assertEqual(imag, imag_result)
 
+
 class TestChebyshevDistance(unittest.TestCase):
     """[summary]
     Test for the file chebyshev_distance.py
@@ -633,6 +637,77 @@ class TestChebyshevDistance(unittest.TestCase):
         self.assertEqual(3, chebyshev_distance([1, 2, 3], [4, 5, 6]))
         self.assertEqual(0, chebyshev_distance([1, 2], [1, 2]))
         self.assertEqual(5, chebyshev_distance([-1, -2], [4, 3]))
+
+
+def _reference_distance(x1, y1, x2, y2):
+    """Independent oracle for integer points.
+
+    Builds the exact squared distance as an int and takes its square root
+    with 50-digit Decimal arithmetic before rounding to float, so it shares
+    no floating-point steps with the function under test.
+    """
+    squared = (x2 - x1) ** 2 + (y2 - y1) ** 2
+    with localcontext() as ctx:
+        ctx.prec = 50
+        return float(Decimal(squared).sqrt())
+
+
+class TestDistanceBetweenTwoPoints(unittest.TestCase):
+    """Reference comparison for distance_between_two_points (R24-T043)."""
+
+    # Reviewed result table: (x1, y1, x2, y2) -> expected, worked out by hand.
+    TABLE = [
+        ((0, 0, 3, 4), 5.0),  # source anchor: 3-4-5 triangle
+        ((-1, -1, 2, 3), 5.0),  # source anchor: dx=3, dy=4
+        ((-1, -1, 2, 4), 5.830951894845301),  # neighbor: dx=3, dy=5, sqrt(34)
+        ((0, 0, 5, 12), 13.0),  # 5-12-13 triangle
+        ((1, 1, 9, 16), 17.0),  # dx=8, dy=15: 8-15-17 triangle
+        ((0, 0, 0, 0), 0.0),  # same point
+        ((-4, 2, 3, 2), 7.0),  # horizontal only
+        ((5, -3, 5, 6), 9.0),  # vertical only
+        ((0, 0, 1, 1), 1.4142135623730951),  # sqrt(2)
+        ((0.5, 0.5, 3.5, 4.5), 5.0),  # non-integer coordinates, exact
+    ]
+
+    def test_reviewed_table(self):
+        for args, expected in self.TABLE:
+            with self.subTest(args=args):
+                self.assertEqual(distance_between_two_points(*args), expected)
+
+    def test_oracle_agrees_with_table(self):
+        for args, expected in self.TABLE:
+            if all(isinstance(v, int) for v in args):
+                with self.subTest(args=args):
+                    self.assertEqual(_reference_distance(*args), expected)
+
+    def test_matches_reference_on_small_grid(self):
+        # Every pair of points with coordinates in -2..2: 625 inputs.
+        points = range(-2, 3)
+        checked = 0
+        for x1, y1, x2, y2 in product(points, repeat=4):
+            expected = _reference_distance(x1, y1, x2, y2)
+            actual = distance_between_two_points(x1, y1, x2, y2)
+            self.assertEqual(actual, expected, f"({x1}, {y1}) -> ({x2}, {y2})")
+            checked += 1
+        self.assertEqual(checked, 625)
+
+    def test_returns_float_for_int_input(self):
+        self.assertIsInstance(distance_between_two_points(0, 0, 3, 4), float)
+
+    def test_symmetric(self):
+        self.assertEqual(
+            distance_between_two_points(-1, -1, 2, 4),
+            distance_between_two_points(2, 4, -1, -1),
+        )
+
+    def test_translation_invariant(self):
+        # Shifting both anchor points by (+10, -7) keeps the distance 5.0.
+        self.assertEqual(distance_between_two_points(10, -7, 13, -3), 5.0)
+
+    def test_repeated_runs_with_fresh_equivalent_inputs(self):
+        results = {distance_between_two_points(-1, -1, 2, 3) for _ in range(5)}
+        results.add(distance_between_two_points(-1.0, -1.0, 2.0, 3.0))
+        self.assertEqual(results, {5.0})
 
 
 class TestGeometricMean(unittest.TestCase):
