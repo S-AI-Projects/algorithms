@@ -1,0 +1,40 @@
+============================================================
+R24-T020: add_bitwise_operator Mutation-Resistant Tests
+============================================================
+PASS: add_bitwise_operator(2, 3) -> 5
+PASS: add_bitwise_operator(0, 0) -> 0
+PASS: add_bitwise_operator(1, 1) -> 2
+PASS: add_bitwise_operator(10, 0) -> 10
+PASS: add_bitwise_operator(0, 10) -> 10
+PASS: add_bitwise_operator(3, 5) -> 8
+PASS: add_bitwise_operator(4, 4) -> 8
+PASS: add_bitwise_operator(5432, 97823) -> 103255
+PASS: Original: add_bitwise_operator(2,3) == 5
+PASS: Mutant (carry=first|second) produces 1690200800304305868662270940503 != 5, regression caught
+PASS: commutative: (2,3) == (3,2)
+PASS: commutative: (7,5) == (5,7)
+PASS: ValueError raised for negative input
+Running: /Users/nandini/Desktop/SnAI/algorithms/.venv/bin/python3 -m pytest -v tests/test_bit_manipulation.py::TestAddBitwiseOperatorStrengthened
+============================= test session starts ==============================
+platform darwin -- Python 3.15.2, pytest-9.2.0, pluggy-1.7.0 -- /Users/nandini/Desktop/SnAI/algorithms/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/nandini/Desktop/SnAI/algorithms
+configfile: pyproject.toml
+plugins: platformdirs-4.14.5
+collecting ... collected 10 items
+
+tests/test_bit_manipulation.py::TestAddBitwiseOperatorStrengthened::test_commutativity 
+tests/test_bit_manipulation.py::TestAddBitwiseOperatorStrengthened::test_commutativity PASSED [ 10%]
+tests/test_bit_manipulation.py::TestAddBitwiseOperatorStrengthened::test_identity_a_plus_zero PASSED [ 20%]
+tests/test_bit_manipulation.py::TestAddBitwiseOperatorStrengthened::test_large_values PASSED [ 30%]
+tests/test_bit_manipulation.py::TestAddBitwiseOperatorStrengthened::test_mutation_detecting_case_carry_xor PASSED [ 40%]
+tests/test_bit_manipulation.py::TestAddBitwiseOperatorStrengthened::test_negative_input_raises PASSED [ 50%]
+tests/test_bit_manipulation.py::TestAddBitwiseOperatorStrengthened::test_neighbor_one_plus_one PASSED [ 60%]
+tests/test_bit_manipulation.py::TestAddBitwiseOperatorStrengthened::test_power_of_two_operands PASSED [ 70%]
+tests/test_bit_manipulation.py::TestAddBitwiseOperatorStrengthened::test_repeated_runs_same_result PASSED [ 80%]
+tests/test_bit_manipulation.py::TestAddBitwiseOperatorStrengthened::test_source_anchor_two_plus_three PASSED [ 90%]
+tests/test_bit_manipulation.py::TestAddBitwiseOperatorStrengthened::test_source_anchor_zero_plus_zero PASSED [100%]
+
+==================== 10 passed, 4 subtests passed in 0.04s =====================
+
+PASS: Native pytest passed.

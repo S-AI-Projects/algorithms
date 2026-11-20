@@ -291,5 +291,77 @@ class TestSuite(unittest.TestCase):
         self.assertEqual(4, binary_gap(145))
 
 
+class TestAddBitwiseOperatorStrengthened(unittest.TestCase):
+    """Mutation-resistant regression tests for add_bitwise_operator (R24-T020).
+
+    Protected invariant: add_bitwise_operator(a, b) == a + b for all a, b >= 0.
+
+    Plausible one-line mutation under test:
+        Replace ``carry = first & second`` with ``carry = first | second``.
+        For input (2, 3):
+          Correct:  carry = 2 & 3 = 2 -> final = 5
+          Mutant:   carry = 2 | 3 = 3 -> infinite loop or wrong result
+        The test_mutation_detecting_case below catches this by asserting == 5.
+    """
+
+    def test_source_anchor_two_plus_three(self):
+        # Anchor fixture: 2 + 3 = 5
+        # Detects carry mutation: (2 & 3)=2 correct; (2 | 3)=3 wrong
+        self.assertEqual(add_bitwise_operator(2, 3), 5)
+
+    def test_source_anchor_zero_plus_zero(self):
+        self.assertEqual(add_bitwise_operator(0, 0), 0)
+
+    def test_neighbor_one_plus_one(self):
+        # Derived independently: 1 + 1 = 2
+        # In binary: XOR(01,01)=00, carry=(01&01)<<1=10; XOR(00,10)=10 -> 2
+        self.assertEqual(add_bitwise_operator(1, 1), 2)
+
+    def test_identity_a_plus_zero(self):
+        self.assertEqual(add_bitwise_operator(10, 0), 10)
+        self.assertEqual(add_bitwise_operator(0, 10), 10)
+
+    def test_commutativity(self):
+        pairs = [(2, 3), (7, 5), (255, 1), (100, 200)]
+        for a, b in pairs:
+            with self.subTest(a=a, b=b):
+                self.assertEqual(
+                    add_bitwise_operator(a, b),
+                    add_bitwise_operator(b, a),
+                )
+
+    def test_mutation_detecting_case_carry_xor(self):
+        # This case is sensitive to the carry computation.
+        # (3, 5): 011 + 101
+        # XOR = 110, carry=(011&101)=001<<1=010 -> XOR(110,010)=100,
+        # carry=(110&010)=010<<1=100 -> XOR(100,100)=000, carry=1000...
+        # Correct: 3+5=8
+        self.assertEqual(add_bitwise_operator(3, 5), 8)
+
+    def test_power_of_two_operands(self):
+        # Power-of-two additions exercise the carry chain
+        self.assertEqual(add_bitwise_operator(4, 4), 8)
+        self.assertEqual(add_bitwise_operator(8, 8), 16)
+        self.assertEqual(add_bitwise_operator(128, 128), 256)
+
+    def test_large_values(self):
+        self.assertEqual(
+            add_bitwise_operator(5432, 97823),
+            5432 + 97823,
+        )
+
+    def test_negative_input_raises(self):
+        with self.assertRaises(ValueError):
+            add_bitwise_operator(-1, 5)
+        with self.assertRaises(ValueError):
+            add_bitwise_operator(5, -1)
+
+    def test_repeated_runs_same_result(self):
+        # Repeatability: same output on identical inputs
+        for _ in range(5):
+            self.assertEqual(add_bitwise_operator(2, 3), 5)
+            self.assertEqual(add_bitwise_operator(0, 0), 0)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,66 @@
+{
+  "results": [
+    {
+      "a": 2,
+      "b": 3,
+      "expected": 5,
+      "actual": 5
+    },
+    {
+      "a": 0,
+      "b": 0,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "a": 1,
+      "b": 1,
+      "expected": 2,
+      "actual": 2
+    },
+    {
+      "a": 10,
+      "b": 0,
+      "expected": 10,
+      "actual": 10
+    },
+    {
+      "a": 0,
+      "b": 10,
+      "expected": 10,
+      "actual": 10
+    },
+    {
+      "a": 3,
+      "b": 5,
+      "expected": 8,
+      "actual": 8
+    },
+    {
+      "a": 4,
+      "b": 4,
+      "expected": 8,
+      "actual": 8
+    },
+    {
+      "a": 5432,
+      "b": 97823,
+      "expected": 103255,
+      "actual": 103255
+    }
+  ],
+  "mutant_detection": {
+    "input": [
+      2,
+      3
+    ],
+    "original_result": 5,
+    "mutant_result": 1690200800304305868662270940503,
+    "mutation": "carry = first | second (instead of &)",
+    "caught": true
+  },
+  "pytest": {
+    "returncode": 0,
+    "command": "/Users/nandini/Desktop/SnAI/algorithms/.venv/bin/python3 -m pytest -v tests/test_bit_manipulation.py::TestAddBitwiseOperatorStrengthened"
+  }
+}

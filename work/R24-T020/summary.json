@@ -1,0 +1,15 @@
+{
+  "task": "R24-T020",
+  "status": "PASS",
+  "function": "add_bitwise_operator",
+  "module": "algorithms.bit_manipulation.add_bitwise_operator",
+  "mutation": "carry = first | second instead of first & second",
+  "detecting_input": [
+    2,
+    3
+  ],
+  "original_passes": true,
+  "mutant_fails": true,
+  "no_mutation_in_final_source": true,
+  "pytest_passed": true
+}
