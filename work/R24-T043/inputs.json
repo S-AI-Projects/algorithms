@@ -1,0 +1,136 @@
+{
+  "table": [
+    {
+      "args": [
+        0,
+        0,
+        3,
+        4
+      ],
+      "expected": 5.0,
+      "derivation": "anchor: dx=3, dy=4, sqrt(25)"
+    },
+    {
+      "args": [
+        -1,
+        -1,
+        2,
+        3
+      ],
+      "expected": 5.0,
+      "derivation": "anchor: dx=3, dy=4, sqrt(25)"
+    },
+    {
+      "args": [
+        -1,
+        -1,
+        2,
+        4
+      ],
+      "expected": 5.830951894845301,
+      "derivation": "neighbor: dx=3, dy=5, sqrt(34)"
+    },
+    {
+      "args": [
+        0,
+        0,
+        5,
+        12
+      ],
+      "expected": 13.0,
+      "derivation": "dx=5, dy=12, sqrt(169)"
+    },
+    {
+      "args": [
+        1,
+        1,
+        9,
+        16
+      ],
+      "expected": 17.0,
+      "derivation": "dx=8, dy=15, sqrt(289)"
+    },
+    {
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": 0.0,
+      "derivation": "same point"
+    },
+    {
+      "args": [
+        -4,
+        2,
+        3,
+        2
+      ],
+      "expected": 7.0,
+      "derivation": "horizontal only, |dx|=7"
+    },
+    {
+      "args": [
+        5,
+        -3,
+        5,
+        6
+      ],
+      "expected": 9.0,
+      "derivation": "vertical only, |dy|=9"
+    },
+    {
+      "args": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "expected": 1.4142135623730951,
+      "derivation": "sqrt(2)"
+    },
+    {
+      "args": [
+        0.5,
+        0.5,
+        3.5,
+        4.5
+      ],
+      "expected": 5.0,
+      "derivation": "dx=3.0, dy=4.0 exactly"
+    },
+    {
+      "args": [
+        10,
+        -7,
+        13,
+        -3
+      ],
+      "expected": 5.0,
+      "derivation": "anchor shifted by (+10, -7)"
+    }
+  ],
+  "grid": "all (x1, y1, x2, y2) with each value in range(-2, 3)",
+  "oracle": "float(Decimal(dx**2 + dy**2).sqrt()) at 50 digits",
+  "known_limits": [
+    {
+      "args": [
+        "0",
+        "0",
+        "1e+200",
+        "0"
+      ],
+      "true_distance": "1e200"
+    },
+    {
+      "args": [
+        "0",
+        "0",
+        "1e-200",
+        "0"
+      ],
+      "true_distance": "1e-200"
+    }
+  ]
+}
