@@ -1,0 +1,16 @@
+R24-T048: fizzbuzz failure-path checks
+INFO [source] algorithms/string/fizzbuzz.py: guard 'if number < 1' at L48, raise ValueError at L49, 'if number is None' at L50, fizzbuzz_with_helper_func body at L82
+PASS [anchor] fizzbuzz(5) expected=('ok', [1, 2, 'Fizz', 4, 'Buzz'], None) actual=('ok', [1, 2, 'Fizz', 4, 'Buzz'], None)
+PASS [anchor] fizzbuzz_with_helper_func(3) expected=('ok', [1, 2, 'Fizz'], None) actual=('ok', [1, 2, 'Fizz'], None)
+PASS [neighbor] fizzbuzz(6) expected=('ok', [1, 2, 'Fizz', 4, 'Buzz', 'Fizz'], None) actual=('ok', [1, 2, 'Fizz', 4, 'Buzz', 'Fizz'], None)
+PASS [neighbor] fizzbuzz_with_helper_func(4) expected=('ok', [1, 2, 'Fizz', 4], None) actual=('ok', [1, 2, 'Fizz', 4], None)
+PASS [smallest valid] fizzbuzz(1) expected=('ok', [1], None) actual=('ok', [1], None)
+PASS [failure: smallest input reaching ValueError] fizzbuzz(0) expected=('ValueError', 'n cannot be less than one', 49) actual=('ValueError', 'n cannot be less than one', 49)
+PASS [failure: negative input] fizzbuzz(-2) expected=('ValueError', 'n cannot be less than one', 49) actual=('ValueError', 'n cannot be less than one', 49)
+PASS [failure: None raises at the guard comparison] fizzbuzz(None) expected=('TypeError', "'<' not supported between instances of 'NoneType' and 'int'", 48) actual=('TypeError', "'<' not supported between instances of 'NoneType' and 'int'", 48)
+PASS [after failure: valid call succeeds] fizzbuzz(5) expected=('ok', [1, 2, 'Fizz', 4, 'Buzz'], None) actual=('ok', [1, 2, 'Fizz', 4, 'Buzz'], None)
+PASS [after failure: caller state] earlier result expected=[1, 2, 'Fizz'] actual=[1, 2, 'Fizz'], new call returns a new list
+PASS [empty result: no guard] fizzbuzz_with_helper_func(0) expected=('ok', [], None) actual=('ok', [], None)
+PASS [empty result: no guard] fizzbuzz_with_helper_func(-3) expected=('ok', [], None) actual=('ok', [], None)
+PASS [pytest] python3 -m pytest tests/test_string.py::TestFizzbuzzFailurePath -> exit=0, 7 passed
+RESULT: OK

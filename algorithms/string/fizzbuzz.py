@@ -28,9 +28,22 @@ def fizzbuzz(number: int) -> list[int | str]:
         ValueError: If number is less than 1.
         TypeError: If number is None.
 
+    Failure paths:
+        The guard ``if number < 1`` raises
+        ``ValueError("n cannot be less than one")``. The smallest input that
+        reaches it is ``0``; ``1`` is the smallest valid input and gives
+        ``[1]``. ``None`` raises ``TypeError`` as documented, but from the
+        ``number < 1`` comparison itself, so the later ``number is None``
+        check is never reached. A failed call leaves nothing behind: no state
+        is kept between calls and every successful call returns a new list.
+
     Examples:
         >>> fizzbuzz(5)
         [1, 2, 'Fizz', 4, 'Buzz']
+        >>> fizzbuzz(0)
+        Traceback (most recent call last):
+            ...
+        ValueError: n cannot be less than one
     """
     if number < 1:
         raise ValueError("n cannot be less than one")
@@ -57,11 +70,14 @@ def fizzbuzz_with_helper_func(number: int) -> list[int | str]:
         number: The upper bound of the sequence (inclusive).
 
     Returns:
-        A list of FizzBuzz values from 1 to number.
+        A list of FizzBuzz values from 1 to number. Unlike ``fizzbuzz``,
+        there is no guard: any ``number`` below 1 gives the empty list.
 
     Examples:
         >>> fizzbuzz_with_helper_func(3)
         [1, 2, 'Fizz']
+        >>> fizzbuzz_with_helper_func(0)
+        []
     """
     return [_fb(value) for value in range(1, number + 1)]
 

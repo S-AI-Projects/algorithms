@@ -1,0 +1,21 @@
+{
+  "source_lines": {
+    "guard_if_number_lt_1": 48,
+    "raise_value_error": 49,
+    "unreachable_if_number_is_none": 50,
+    "helper_list_comprehension": 82
+  },
+  "calls": [
+    "fizzbuzz(5)",
+    "fizzbuzz_with_helper_func(3)",
+    "fizzbuzz(6)",
+    "fizzbuzz_with_helper_func(4)",
+    "fizzbuzz(1)",
+    "fizzbuzz(0)",
+    "fizzbuzz(-2)",
+    "fizzbuzz(None)",
+    "fizzbuzz(5)",
+    "fizzbuzz_with_helper_func(0)",
+    "fizzbuzz_with_helper_func(-3)"
+  ]
+}
