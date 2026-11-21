@@ -1,3 +1,5 @@
+import inspect
+import traceback
 import unittest
 
 from algorithms.string import (
@@ -785,6 +787,83 @@ class TestFizzbuzz(unittest.TestCase):
             "FizzBuzz",
         ]
         self.assertEqual(result, expected)
+
+
+def _source_line(func, text):
+    """Absolute line number of the first source line of func containing text."""
+    lines, start = inspect.getsourcelines(func)
+    for offset, line in enumerate(lines):
+        if text in line:
+            return start + offset
+    raise AssertionError(f"{text!r} not found in {func.__name__}")
+
+
+def _call_expecting(exc_type, func, *args):
+    """Call func, require exc_type, return (exception, line raised in func).
+
+    assertRaises drops the traceback, so the line is read here instead.
+    """
+    try:
+        func(*args)
+    except exc_type as exc:
+        frames = traceback.extract_tb(exc.__traceback__)
+        return exc, [f.lineno for f in frames if f.name == func.__name__][-1]
+    raise AssertionError(f"{func.__name__}{args} did not raise {exc_type.__name__}")
+
+
+class TestFizzbuzzFailurePath(unittest.TestCase):
+    """Failure and empty-result paths of fizzbuzz (R24-T048).
+
+    Branch under test: the guard ``if number < 1`` in fizzbuzz, which raises
+    ValueError. The tests look its line up in the source and check the
+    traceback, so the input is shown to reach that exact branch.
+    """
+
+    def test_anchors(self):
+        self.assertEqual(fizzbuzz.fizzbuzz(5), [1, 2, "Fizz", 4, "Buzz"])
+        self.assertEqual(fizzbuzz.fizzbuzz_with_helper_func(3), [1, 2, "Fizz"])
+
+    def test_neighbor_inputs(self):
+        # 6 is a multiple of 3, so one more "Fizz" after the anchor.
+        self.assertEqual(fizzbuzz.fizzbuzz(6), [1, 2, "Fizz", 4, "Buzz", "Fizz"])
+        self.assertEqual(fizzbuzz.fizzbuzz_with_helper_func(4), [1, 2, "Fizz", 4])
+
+    def test_zero_reaches_value_error_branch(self):
+        exc, line = _call_expecting(ValueError, fizzbuzz.fizzbuzz, 0)
+        self.assertEqual(str(exc), "n cannot be less than one")
+        self.assertEqual(
+            line,
+            _source_line(fizzbuzz.fizzbuzz, 'raise ValueError("n cannot be less'),
+        )
+
+    def test_one_is_smallest_valid_input(self):
+        self.assertEqual(fizzbuzz.fizzbuzz(1), [1])
+
+    def test_none_raises_type_error_at_the_guard(self):
+        # The documented TypeError comes from `number < 1`, so the
+        # `number is None` check after it is never reached.
+        exc, line = _call_expecting(TypeError, fizzbuzz.fizzbuzz, None)
+        self.assertEqual(
+            str(exc),
+            "'<' not supported between instances of 'NoneType' and 'int'",
+        )
+        self.assertEqual(line, _source_line(fizzbuzz.fizzbuzz, "if number < 1:"))
+
+    def test_valid_call_succeeds_after_failure(self):
+        before = fizzbuzz.fizzbuzz(3)
+        with self.assertRaises(ValueError):
+            fizzbuzz.fizzbuzz(0)
+        after = fizzbuzz.fizzbuzz(5)
+        self.assertEqual(after, [1, 2, "Fizz", 4, "Buzz"])
+        # Caller-owned results are untouched and not shared between calls.
+        self.assertEqual(before, [1, 2, "Fizz"])
+        self.assertIsNot(fizzbuzz.fizzbuzz(3), before)
+
+    def test_helper_version_returns_empty_list_below_one(self):
+        # fizzbuzz_with_helper_func has no guard: range(1, 1) is empty.
+        self.assertEqual(fizzbuzz.fizzbuzz_with_helper_func(0), [])
+        self.assertEqual(fizzbuzz.fizzbuzz_with_helper_func(-3), [])
+        self.assertEqual(fizzbuzz.fizzbuzz_with_helper_func(1), [1])
 
 
 if __name__ == "__main__":

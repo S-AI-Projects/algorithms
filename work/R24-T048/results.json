@@ -1,0 +1,244 @@
+{
+  "checks": [
+    {
+      "check": "anchor",
+      "call": "fizzbuzz(5)",
+      "expected": [
+        "ok",
+        [
+          1,
+          2,
+          "Fizz",
+          4,
+          "Buzz"
+        ],
+        null
+      ],
+      "actual": [
+        "ok",
+        [
+          1,
+          2,
+          "Fizz",
+          4,
+          "Buzz"
+        ],
+        null
+      ],
+      "passed": true
+    },
+    {
+      "check": "anchor",
+      "call": "fizzbuzz_with_helper_func(3)",
+      "expected": [
+        "ok",
+        [
+          1,
+          2,
+          "Fizz"
+        ],
+        null
+      ],
+      "actual": [
+        "ok",
+        [
+          1,
+          2,
+          "Fizz"
+        ],
+        null
+      ],
+      "passed": true
+    },
+    {
+      "check": "neighbor",
+      "call": "fizzbuzz(6)",
+      "expected": [
+        "ok",
+        [
+          1,
+          2,
+          "Fizz",
+          4,
+          "Buzz",
+          "Fizz"
+        ],
+        null
+      ],
+      "actual": [
+        "ok",
+        [
+          1,
+          2,
+          "Fizz",
+          4,
+          "Buzz",
+          "Fizz"
+        ],
+        null
+      ],
+      "passed": true
+    },
+    {
+      "check": "neighbor",
+      "call": "fizzbuzz_with_helper_func(4)",
+      "expected": [
+        "ok",
+        [
+          1,
+          2,
+          "Fizz",
+          4
+        ],
+        null
+      ],
+      "actual": [
+        "ok",
+        [
+          1,
+          2,
+          "Fizz",
+          4
+        ],
+        null
+      ],
+      "passed": true
+    },
+    {
+      "check": "smallest valid",
+      "call": "fizzbuzz(1)",
+      "expected": [
+        "ok",
+        [
+          1
+        ],
+        null
+      ],
+      "actual": [
+        "ok",
+        [
+          1
+        ],
+        null
+      ],
+      "passed": true
+    },
+    {
+      "check": "failure: smallest input reaching ValueError",
+      "call": "fizzbuzz(0)",
+      "expected": [
+        "ValueError",
+        "n cannot be less than one",
+        49
+      ],
+      "actual": [
+        "ValueError",
+        "n cannot be less than one",
+        49
+      ],
+      "passed": true
+    },
+    {
+      "check": "failure: negative input",
+      "call": "fizzbuzz(-2)",
+      "expected": [
+        "ValueError",
+        "n cannot be less than one",
+        49
+      ],
+      "actual": [
+        "ValueError",
+        "n cannot be less than one",
+        49
+      ],
+      "passed": true
+    },
+    {
+      "check": "failure: None raises at the guard comparison",
+      "call": "fizzbuzz(None)",
+      "expected": [
+        "TypeError",
+        "'<' not supported between instances of 'NoneType' and 'int'",
+        48
+      ],
+      "actual": [
+        "TypeError",
+        "'<' not supported between instances of 'NoneType' and 'int'",
+        48
+      ],
+      "passed": true
+    },
+    {
+      "check": "after failure: valid call succeeds",
+      "call": "fizzbuzz(5)",
+      "expected": [
+        "ok",
+        [
+          1,
+          2,
+          "Fizz",
+          4,
+          "Buzz"
+        ],
+        null
+      ],
+      "actual": [
+        "ok",
+        [
+          1,
+          2,
+          "Fizz",
+          4,
+          "Buzz"
+        ],
+        null
+      ],
+      "passed": true
+    },
+    {
+      "check": "caller state after failure",
+      "actual": [
+        1,
+        2,
+        "Fizz"
+      ],
+      "passed": true
+    },
+    {
+      "check": "empty result: no guard",
+      "call": "fizzbuzz_with_helper_func(0)",
+      "expected": [
+        "ok",
+        [],
+        null
+      ],
+      "actual": [
+        "ok",
+        [],
+        null
+      ],
+      "passed": true
+    },
+    {
+      "check": "empty result: no guard",
+      "call": "fizzbuzz_with_helper_func(-3)",
+      "expected": [
+        "ok",
+        [],
+        null
+      ],
+      "actual": [
+        "ok",
+        [],
+        null
+      ],
+      "passed": true
+    }
+  ],
+  "pytest": {
+    "command": "python3 -m pytest tests/test_string.py::TestFizzbuzzFailurePath",
+    "exit_code": 0,
+    "passed": 7
+  },
+  "failures": 0
+}
