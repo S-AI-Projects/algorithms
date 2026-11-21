@@ -1,3 +1,4 @@
+import random
 import unittest
 
 from algorithms.graph import (
@@ -631,3 +632,86 @@ class TestTopologicalSort(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             topological_sort(vertices, edges)
+
+
+def _sort_or_error(vertices, edges):
+    """topological_sort, with a ValueError turned into a comparable value.
+
+    A mutant that wrongly reports a cycle then fails the same assertEqual
+    as one that returns a wrong order, with the reason in the message.
+    """
+    try:
+        return topological_sort(vertices, edges)
+    except ValueError as exc:
+        return f"ValueError: {exc}"
+
+
+def _violations(vertices, edges, order):
+    """Ways order breaks the invariant: each vertex once, edges respected."""
+    problems = []
+    if sorted(order) != list(range(vertices)):
+        problems.append(f"not each vertex exactly once: {order}")
+    position = {node: i for i, node in enumerate(order)}
+    for u, v in edges:
+        if u in position and v in position and position[u] > position[v]:
+            problems.append(f"{v} placed before its predecessor {u}")
+    return problems
+
+
+class TestTopologicalSortMutationResistant(unittest.TestCase):
+    """Regression tests for topological_sort (R24-T050).
+
+    The sorting-style fixture of the task is mapped to graphs:
+    unsorted [3, 1, 2] -> chain 2 -> 0 -> 1; repeated value [2, 2, 1] ->
+    repeated edge 1 -> 0; ordered [1, 2, 3] -> chain 0 -> 1 -> 2; reversed
+    [3, 2, 1] -> chain 2 -> 1 -> 0; smallest collection -> no vertices.
+    """
+
+    def test_fixture_unsorted_chain(self):
+        self.assertEqual(topological_sort(3, [(2, 0), (0, 1)]), [2, 0, 1])
+
+    def test_fixture_ordered_chain(self):
+        self.assertEqual(topological_sort(3, [(0, 1), (1, 2)]), [0, 1, 2])
+
+    def test_fixture_reversed_chain(self):
+        self.assertEqual(topological_sort(3, [(2, 1), (1, 0)]), [2, 1, 0])
+
+    def test_fixture_smallest_graphs(self):
+        self.assertEqual(topological_sort(0, []), [])
+        self.assertEqual(topological_sort(1, []), [0])
+
+    def test_repeated_edge_is_counted_with_multiplicity(self):
+        # Minimal input for the "skip a repeated edge" mutant: vertex 1 has
+        # in-degree 2 and must be released by both copies of the edge.
+        self.assertEqual(_sort_or_error(2, [(0, 1), (0, 1)]), [0, 1])
+        self.assertEqual(_sort_or_error(2, [(1, 0), (1, 0)]), [1, 0])
+
+    def test_vertex_waits_for_all_predecessors(self):
+        # Minimal input for the "in_degree[v] = 1" mutant: 2 has two
+        # predecessors and 0 -> 2 is processed before 0 -> 1 -> 2.
+        self.assertEqual(_sort_or_error(3, [(0, 2), (0, 1), (1, 2)]), [0, 1, 2])
+
+    def test_edges_not_modified_and_result_is_new(self):
+        edges = [(0, 2), (0, 1), (1, 2)]
+        first = topological_sort(3, edges)
+        self.assertEqual(edges, [(0, 2), (0, 1), (1, 2)])
+        self.assertIsNot(topological_sort(3, edges), first)
+
+    def test_invariant_on_seeded_dags_with_repeated_edges(self):
+        rng = random.Random(50)
+        for _ in range(100):
+            vertices = rng.randint(1, 8)
+            rank = list(range(vertices))
+            rng.shuffle(rank)
+            edges = []
+            for _ in range(rng.randint(0, 12)):
+                a, b = (
+                    sorted(rng.sample(range(vertices), 2)) if vertices > 1 else (0, 0)
+                )
+                if a != b:
+                    edge = (rank[a], rank[b])
+                    edges.extend([edge] * rng.randint(1, 2))
+            with self.subTest(vertices=vertices, edges=edges):
+                order = _sort_or_error(vertices, edges)
+                self.assertIsInstance(order, list, order)
+                self.assertEqual(_violations(vertices, edges, order), [])
