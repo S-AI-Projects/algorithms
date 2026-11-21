@@ -1,0 +1,27 @@
+R24-T049: tsp work measurement (n = number of cities)
+PASS [fixture] anchor (source doctest): expected=80 actual=80
+PASS [fixture] neighbor: edge 0-2 lowered 15 -> 5: expected=70 actual=70
+PASS [fixture] 1 city: expected=0 actual=0
+PASS [fixture] 2 cities: 0 -> 1 -> 0: expected=7 actual=7
+PASS [fixture] empty matrix: expected=inf actual=inf
+PASS [ops] n= 1: lookups expected=1 actual=1, ratio to n^2*2^n=0.5000, result matches oracle=True
+PASS [ops] n= 2: lookups expected=2 actual=2, ratio to n^2*2^n=0.1250, result matches oracle=True
+PASS [ops] n= 3: lookups expected=6 actual=6, ratio to n^2*2^n=0.0833, result matches oracle=True
+PASS [ops] n= 4: lookups expected=21 actual=21, ratio to n^2*2^n=0.0820, result matches oracle=True
+PASS [ops] n= 5: lookups expected=64 actual=64, ratio to n^2*2^n=0.0800, result matches oracle=True
+PASS [ops] n= 6: lookups expected=185 actual=185, ratio to n^2*2^n=0.0803, result matches oracle=True
+PASS [ops] n= 7: lookups expected=516 actual=516, ratio to n^2*2^n=0.0823, result matches oracle=True
+PASS [ops] n= 8: lookups expected=1393 actual=1393, ratio to n^2*2^n=0.0850, result matches oracle=True
+PASS [ops] n= 9: lookups expected=3648 actual=3648, ratio to n^2*2^n=0.0880, result matches oracle=True
+PASS [ops] n=10: lookups expected=9297 actual=9297, ratio to n^2*2^n=0.0908, result matches oracle=True
+PASS [ops] n=11: lookups expected=23140 actual=23140, ratio to n^2*2^n=0.0934, result matches oracle=True
+PASS [ops] n=12: lookups expected=56441 actual=56441, ratio to n^2*2^n=0.0957, result matches oracle=True
+PASS [ops] n=13: lookups expected=135312 actual=135312, ratio to n^2*2^n=0.0977, result matches oracle=True
+PASS [ops] n=14: lookups expected=319657 actual=319657, ratio to n^2*2^n=0.0995, result matches oracle=True
+INFO [timing] n= 8: median 0.24 ms, range 0.23-0.24 ms over 5 fresh inputs; all 5 results correct
+INFO [timing] n=11: median 3.99 ms, range 3.93-4.00 ms over 5 fresh inputs; all 5 results correct
+INFO [timing] n=14: median 55.77 ms, range 55.59-59.49 ms over 5 fresh inputs; all 5 results correct
+INFO [growth] n 8 -> 11: median time x16.7, lookups x16.6
+INFO [growth] n 11 -> 14: median time x14.0, lookups x13.8
+PASS [pytest] python3 -m pytest tests/test_dynamic_programming.py::TestTspBitmask -> exit=0, 5 passed
+RESULT: OK

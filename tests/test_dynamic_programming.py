@@ -1,3 +1,6 @@
+import itertools
+import math
+import random
 import unittest
 
 from algorithms.dynamic_programming import (
@@ -24,6 +27,7 @@ from algorithms.dynamic_programming import (
     planting_trees,
     regex_matching,
     schedule,
+    tsp,
 )
 
 
@@ -309,6 +313,59 @@ class TestRegexMatching(unittest.TestCase):
         s = "abb"
         p = "ab*"
         self.assertTrue(regex_matching.is_match(s, p))
+
+
+def _brute_force_tsp(dist):
+    """Independent oracle: try every order of cities 1..n-1."""
+    n = len(dist)
+    best = math.inf
+    for order in itertools.permutations(range(1, n)):
+        tour = (0, *order, 0)
+        best = min(best, sum(dist[a][b] for a, b in itertools.pairwise(tour)))
+    return best
+
+
+class TestTspBitmask(unittest.TestCase):
+    """Regression tests for tsp in bitmask.py (R24-T049)."""
+
+    ANCHOR = [
+        [0, 10, 15, 20],
+        [10, 0, 35, 25],
+        [15, 35, 0, 30],
+        [20, 25, 30, 0],
+    ]
+
+    def test_anchor(self):
+        # Best tour 0-1-3-2-0: 10 + 25 + 30 + 15 = 80.
+        self.assertEqual(tsp(self.ANCHOR), 80)
+
+    def test_neighbor_cheaper_edge(self):
+        # Edge 0-2 lowered from 15 to 5: 0-1-3-2-0 becomes 10+25+30+5 = 70,
+        # the other tours are 95 and 85.
+        dist = [row[:] for row in self.ANCHOR]
+        dist[0][2] = dist[2][0] = 5
+        self.assertEqual(tsp(dist), 70)
+
+    def test_smallest_inputs(self):
+        self.assertEqual(tsp([[0]]), 0)
+        self.assertEqual(tsp([[0, 3], [4, 0]]), 7)  # 0 -> 1 -> 0
+        self.assertEqual(tsp([]), math.inf)
+
+    def test_matrix_not_modified(self):
+        dist = [row[:] for row in self.ANCHOR]
+        tsp(dist)
+        self.assertEqual(dist, self.ANCHOR)
+
+    def test_matches_brute_force_on_seeded_matrices(self):
+        rng = random.Random(49)
+        for n in range(2, 8):
+            for _ in range(5):
+                dist = [
+                    [0 if i == j else rng.randint(1, 99) for j in range(n)]
+                    for i in range(n)
+                ]
+                with self.subTest(n=n, dist=dist):
+                    self.assertEqual(tsp(dist), _brute_force_tsp(dist))
 
 
 if __name__ == "__main__":
