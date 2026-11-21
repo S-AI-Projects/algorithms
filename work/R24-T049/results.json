@@ -1,0 +1,207 @@
+{
+  "fixture": [
+    {
+      "case": "anchor (source doctest)",
+      "expected": "80",
+      "actual": "80"
+    },
+    {
+      "case": "neighbor: edge 0-2 lowered 15 -> 5",
+      "expected": "70",
+      "actual": "70"
+    },
+    {
+      "case": "1 city",
+      "expected": "0",
+      "actual": "0"
+    },
+    {
+      "case": "2 cities: 0 -> 1 -> 0",
+      "expected": "7",
+      "actual": "7"
+    },
+    {
+      "case": "empty matrix",
+      "expected": "inf",
+      "actual": "inf"
+    }
+  ],
+  "operation_counts": [
+    {
+      "n": 1,
+      "predicted_lookups": 1,
+      "measured_lookups": 1,
+      "n2_2n": 2,
+      "ratio": 0.5,
+      "result": 0,
+      "oracle_agrees": true
+    },
+    {
+      "n": 2,
+      "predicted_lookups": 2,
+      "measured_lookups": 2,
+      "n2_2n": 16,
+      "ratio": 0.125,
+      "result": 97,
+      "oracle_agrees": true
+    },
+    {
+      "n": 3,
+      "predicted_lookups": 6,
+      "measured_lookups": 6,
+      "n2_2n": 72,
+      "ratio": 0.083333,
+      "result": 148,
+      "oracle_agrees": true
+    },
+    {
+      "n": 4,
+      "predicted_lookups": 21,
+      "measured_lookups": 21,
+      "n2_2n": 256,
+      "ratio": 0.082031,
+      "result": 199,
+      "oracle_agrees": true
+    },
+    {
+      "n": 5,
+      "predicted_lookups": 64,
+      "measured_lookups": 64,
+      "n2_2n": 800,
+      "ratio": 0.08,
+      "result": 183,
+      "oracle_agrees": true
+    },
+    {
+      "n": 6,
+      "predicted_lookups": 185,
+      "measured_lookups": 185,
+      "n2_2n": 2304,
+      "ratio": 0.080295,
+      "result": 197,
+      "oracle_agrees": true
+    },
+    {
+      "n": 7,
+      "predicted_lookups": 516,
+      "measured_lookups": 516,
+      "n2_2n": 6272,
+      "ratio": 0.08227,
+      "result": 106,
+      "oracle_agrees": true
+    },
+    {
+      "n": 8,
+      "predicted_lookups": 1393,
+      "measured_lookups": 1393,
+      "n2_2n": 16384,
+      "ratio": 0.085022,
+      "result": 208,
+      "oracle_agrees": true
+    },
+    {
+      "n": 9,
+      "predicted_lookups": 3648,
+      "measured_lookups": 3648,
+      "n2_2n": 41472,
+      "ratio": 0.087963,
+      "result": 172,
+      "oracle_agrees": true
+    },
+    {
+      "n": 10,
+      "predicted_lookups": 9297,
+      "measured_lookups": 9297,
+      "n2_2n": 102400,
+      "ratio": 0.090791,
+      "result": 160,
+      "oracle_agrees": true
+    },
+    {
+      "n": 11,
+      "predicted_lookups": 23140,
+      "measured_lookups": 23140,
+      "n2_2n": 247808,
+      "ratio": 0.093379,
+      "result": 139,
+      "oracle_agrees": true
+    },
+    {
+      "n": 12,
+      "predicted_lookups": 56441,
+      "measured_lookups": 56441,
+      "n2_2n": 589824,
+      "ratio": 0.095691,
+      "result": 152,
+      "oracle_agrees": true
+    },
+    {
+      "n": 13,
+      "predicted_lookups": 135312,
+      "measured_lookups": 135312,
+      "n2_2n": 1384448,
+      "ratio": 0.097737,
+      "result": 180,
+      "oracle_agrees": true
+    },
+    {
+      "n": 14,
+      "predicted_lookups": 319657,
+      "measured_lookups": 319657,
+      "n2_2n": 3211264,
+      "ratio": 0.099542,
+      "result": 152,
+      "oracle_agrees": true
+    }
+  ],
+  "timing": [
+    {
+      "n": 8,
+      "times_ms": [
+        0.2422,
+        0.2405,
+        0.2391,
+        0.2344,
+        0.2268
+      ],
+      "median_ms": 0.2391,
+      "min_ms": 0.2268,
+      "max_ms": 0.2422,
+      "predicted_lookups": 1393
+    },
+    {
+      "n": 11,
+      "times_ms": [
+        3.9926,
+        3.9912,
+        3.9729,
+        3.9333,
+        3.9987
+      ],
+      "median_ms": 3.9912,
+      "min_ms": 3.9333,
+      "max_ms": 3.9987,
+      "predicted_lookups": 23140
+    },
+    {
+      "n": 14,
+      "times_ms": [
+        55.7718,
+        59.4864,
+        55.587,
+        55.7562,
+        55.8518
+      ],
+      "median_ms": 55.7718,
+      "min_ms": 55.587,
+      "max_ms": 59.4864,
+      "predicted_lookups": 319657
+    }
+  ],
+  "pytest": {
+    "command": "python3 -m pytest tests/test_dynamic_programming.py::TestTspBitmask",
+    "exit_code": 0,
+    "passed": 5
+  },
+  "failures": 0
+}
