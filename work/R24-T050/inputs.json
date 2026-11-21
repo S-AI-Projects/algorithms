@@ -1,0 +1,156 @@
+{
+  "fixture": [
+    {
+      "case": "unsorted [3, 1, 2] -> chain 2->0->1",
+      "vertices": 3,
+      "edges": [
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "expected": [
+        2,
+        0,
+        1
+      ]
+    },
+    {
+      "case": "repeated [2, 2, 1] -> edge 1->0 twice",
+      "vertices": 2,
+      "edges": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "expected": [
+        1,
+        0
+      ]
+    },
+    {
+      "case": "ordered [1, 2, 3] -> chain 0->1->2",
+      "vertices": 3,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "expected": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "case": "reversed [3, 2, 1] -> chain 2->1->0",
+      "vertices": 3,
+      "edges": [
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "expected": [
+        2,
+        1,
+        0
+      ]
+    },
+    {
+      "case": "smallest: no vertices",
+      "vertices": 0,
+      "edges": [],
+      "expected": []
+    },
+    {
+      "case": "smallest: one vertex",
+      "vertices": 1,
+      "edges": [],
+      "expected": [
+        0
+      ]
+    }
+  ],
+  "mutants": [
+    {
+      "mutant": "skip a repeated edge when building the adjacency list",
+      "original_line": "graph[u].append(v)",
+      "mutant_line": "graph[u].append(v) if v not in graph[u] else None",
+      "minimal_input": {
+        "vertices": 2,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "named_test": "test_repeated_edge_is_counted_with_multiplicity"
+    },
+    {
+      "mutant": "accumulation: in_degree[v] = 1 instead of += 1",
+      "original_line": "in_degree[v] += 1",
+      "mutant_line": "in_degree[v] = 1",
+      "minimal_input": {
+        "vertices": 3,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "named_test": "test_vertex_waits_for_all_predecessors"
+    },
+    {
+      "mutant": "boundary: queue when in_degree <= 1 instead of == 0",
+      "original_line": "if in_degree[neighbor] == 0:",
+      "mutant_line": "if in_degree[neighbor] <= 1:",
+      "minimal_input": {
+        "vertices": 2,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "named_test": "test_repeated_edge_is_counted_with_multiplicity"
+    }
+  ]
+}
